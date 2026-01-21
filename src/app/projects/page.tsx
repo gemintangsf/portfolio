@@ -37,6 +37,7 @@ interface Project {
     evidence?: string[];
     responsibilities?: string[];
     impact?: string[];
+    tags?: string[];
 }
 
 // Updated Data with Private Fields
@@ -59,7 +60,8 @@ const projects: Project[] = [
             "Payroll and HR System Integration",
             "Performance Review System"
         ],
-        evidence: ["/assets/phc/3.jpg", "/assets/phc/4.jpg", "/assets/phc/5.jpg", "/assets/phc/6.jpg", "/assets/phc/7.jpg", "/assets/phc/2.jpg"]
+        evidence: ["/assets/phc/3.jpg", "/assets/phc/4.jpg", "/assets/phc/5.jpg", "/assets/phc/6.jpg", "/assets/phc/7.jpg", "/assets/phc/2.jpg"],
+        tags: ["Mobile"]
     },
     {
         id: 2,
@@ -79,7 +81,8 @@ const projects: Project[] = [
             "Real-time Inventory Synchronization",
             "Centralized POS Configuration & Reporting"
         ],
-        evidence: ["/assets/pos/1.png", "/assets/pos/4.png", "/assets/pos/6.png"]
+        evidence: ["/assets/pos/1.png", "/assets/pos/4.png", "/assets/pos/6.png"],
+        tags: ["Mobile"]
     },
     {
         id: 3,
@@ -100,7 +103,8 @@ const projects: Project[] = [
             "Real-time Product Ranking Based on Sales Analytics",
             "Personalized Book & Product Recommendations"
         ],
-        evidence: ["/assets/web_p+/2.png", "/assets/web_p+/1.png", "/assets/web_p+/3.png"]
+        evidence: ["/assets/web_p+/2.png", "/assets/web_p+/1.png", "/assets/web_p+/3.png"],
+        tags: ["AI", "Web"]
     },
     {
         id: 4,
@@ -146,7 +150,8 @@ const projects: Project[] = [
         evidence: [
             "/assets/nadia/1.jpg",
             "/assets/nadia/2.jpg"
-        ]
+        ],
+        tags: ["Enterprise", "Web"]
     },
     {
         id: 5,
@@ -165,7 +170,8 @@ const projects: Project[] = [
             "Service-oriented Package Calculation Support",
             "Enterprise System Integration"
         ],
-        evidence: []
+        evidence: [],
+        tags: ["Enterprise", "Web"]
     },
 
     {
@@ -186,7 +192,8 @@ const projects: Project[] = [
             "Order Deactivation and Status Synchronization Workflow",
             "Inter-system Communication Across Microservices"
         ],
-        evidence: ["/assets/scone/1.jpg"]
+        evidence: ["/assets/scone/1.jpg"],
+        tags: ["Enterprise", "Web"]
     },
 
     {
@@ -207,7 +214,8 @@ const projects: Project[] = [
             "Document CRUD with Metadata Management",
             "Integration Support for SCONE Order Evidence Uploads"
         ],
-        evidence: ["assets/dms/1.jpg", "assets/dms/2.jpg", "assets/dms/3.jpg"]
+        evidence: ["assets/dms/1.jpg", "assets/dms/2.jpg", "assets/dms/3.jpg"],
+        tags: ["Enterprise", "Web"]
     },
 
     {
@@ -227,7 +235,8 @@ const projects: Project[] = [
             "Frontend Support Under Tight Deadlines",
             "Cross-role Collaboration with System Analysts"
         ],
-        evidence: []
+        evidence: ["assets/ppt/1.jpg"],
+        tags: ["Enterprise", "Web"]
     },
 
     {
@@ -246,7 +255,8 @@ const projects: Project[] = [
             "Feature Enhancements Based on Product and QA Feedback",
             "Cross-functional Collaboration with PM, QA, and PO",
             "Kanban-based Task Management and Continuous Delivery Workflow"
-        ]
+        ],
+        tags: ["Web"]
     },
     {
         id: 10,
@@ -267,7 +277,8 @@ const projects: Project[] = [
             "Transaction Recording and Reporting",
             "Role-based Access for Organizers",
             "Structured and Transparent Donation Workflow"
-        ]
+        ],
+        tags: ["Others", "Web"]
     },
     {
         id: 11,
@@ -287,6 +298,7 @@ const projects: Project[] = [
             "Team-based Development Experience"
         ],
         evidence: ["/assets/sinbada/1.jpg"],
+        tags: ["Others", "Web"]
     },
     {
         id: 12,
@@ -306,6 +318,7 @@ const projects: Project[] = [
             "Collaborative Development Workflow"
         ],
         evidence: ["/assets/siinvent/2.jpg"],
+        tags: ["Others", "Web"]
     },
 ];
 
@@ -313,6 +326,7 @@ const categories = ["All", "Web", "Mobile", "Enterprise", "AI", "Others"];
 
 export default function ProjectsPage() {
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+    const [selectedCategory, setSelectedCategory] = useState("All");
 
     const openProject = (project: Project) => {
         setSelectedProject(project);
@@ -322,6 +336,12 @@ export default function ProjectsPage() {
         setSelectedProject(null);
     };
 
+    // Filter Logic
+    const filteredProjects = selectedCategory === "All"
+        ? projects
+        : projects.filter(p => p.tags?.includes(selectedCategory));
+
+    // Specific subsets for "All" view
     const featuredProjects = projects.filter(p => p.category !== "Others");
     const otherProjects = projects.filter(p => p.category === "Others");
 
@@ -367,7 +387,7 @@ export default function ProjectsPage() {
                 </p>
             </motion.div>
 
-            {/* Categories / Filter (Visual Only for now) */}
+            {/* Categories / Filter */}
             <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -377,8 +397,9 @@ export default function ProjectsPage() {
                 {categories.map((cat, idx) => (
                     <button
                         key={idx}
-                        className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${idx === 0
-                            ? "bg-brand-base text-white shadow-lg"
+                        onClick={() => setSelectedCategory(cat)}
+                        className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${selectedCategory === cat
+                            ? "bg-brand-base text-white shadow-lg scale-105"
                             : "bg-white text-gray-600 hover:bg-brand-highlight hover:text-brand-base border border-gray-200"
                             }`}
                     >
@@ -387,14 +408,16 @@ export default function ProjectsPage() {
                 ))}
             </motion.div>
 
-            {/* Featured Projects Grid */}
+            {/* Projects Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-                {featuredProjects.map((project, index) => (
+                {(selectedCategory === "All" ? featuredProjects : filteredProjects).map((project, index) => (
                     <motion.div
                         key={project.id}
+                        layout // Enable layout animation for smooth filtering
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 * index + 0.3, duration: 0.6 }}
+                        exit={{ opacity: 0, scale: 0.9 }}
+                        transition={{ duration: 0.4 }}
                         className="group relative bg-white/60 backdrop-blur-md rounded-3xl border border-white/20 shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 flex flex-col"
                     >
                         {/* Image Placeholder Area */}
@@ -482,8 +505,8 @@ export default function ProjectsPage() {
             </div>
 
 
-            {/* Divider for Other Projects */}
-            {otherProjects.length > 0 && (
+            {/* Divider for Other Projects - Only show in ALL view */}
+            {selectedCategory === "All" && otherProjects.length > 0 && (
                 <>
                     <motion.div
                         initial={{ opacity: 0 }}
