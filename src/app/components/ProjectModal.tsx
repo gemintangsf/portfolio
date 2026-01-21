@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { FaTimes, FaLayerGroup, FaCheckCircle, FaLock, FaExternalLinkAlt, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useEffect, useState, useCallback } from "react";
 import { useUI } from "../context/UIContext";
@@ -240,9 +241,11 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                                     className="rounded-xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-md transition-all cursor-pointer bg-gray-50"
                                                     onClick={() => openLightbox(idx)}
                                                 >
-                                                    <img
+                                                    <Image
                                                         src={img}
                                                         alt={`Evidence ${idx + 1}`}
+                                                        width={800}
+                                                        height={600}
                                                         className="w-full h-auto object-cover"
                                                     />
                                                 </motion.div>
@@ -267,7 +270,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                                     Due to non-disclosure agreements, source code and live demos are not available.
                                                 </p>
                                                 <p className="font-medium text-brand-base">
-                                                    Interested in the technical details? <a href="/contact" className="underline hover:text-brand-primary">Let's chat about it.</a>
+                                                    Interested in the technical details? <a href="/contact" className="underline hover:text-brand-primary">Let&apos;s chat about it.</a>
                                                 </p>
                                             </div>
                                         );
@@ -344,10 +347,12 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                     className="relative max-w-7xl max-h-[90vh] flex items-center justify-center"
                                     onClick={(e) => e.stopPropagation()}
                                 >
-                                    <img
+                                    <Image
                                         src={project.evidence[selectedImageIndex]}
                                         alt={`Evidence Fullscreen ${selectedImageIndex + 1}`}
-                                        className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
+                                        width={1920}
+                                        height={1080}
+                                        className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl w-auto h-auto"
                                     />
 
                                     {/* Navigation Buttons */}

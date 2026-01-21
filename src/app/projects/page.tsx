@@ -214,7 +214,7 @@ const projects: Project[] = [
             "Document CRUD with Metadata Management",
             "Integration Support for SCONE Order Evidence Uploads"
         ],
-        evidence: ["assets/dms/1.jpg", "assets/dms/2.jpg", "assets/dms/3.jpg"],
+        evidence: ["/assets/dms/1.jpg", "/assets/dms/2.jpg", "/assets/dms/3.jpg"],
         tags: ["Enterprise", "Web"]
     },
 
@@ -235,7 +235,7 @@ const projects: Project[] = [
             "Frontend Support Under Tight Deadlines",
             "Cross-role Collaboration with System Analysts"
         ],
-        evidence: ["assets/ppt/1.jpg"],
+        evidence: ["/assets/ppt/1.jpg"],
         tags: ["Enterprise", "Web"]
     },
 
@@ -410,7 +410,7 @@ export default function ProjectsPage() {
 
             {/* Projects Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-                {(selectedCategory === "All" ? featuredProjects : filteredProjects).map((project, index) => (
+                {(selectedCategory === "All" ? featuredProjects : filteredProjects).map((project) => (
                     <motion.div
                         key={project.id}
                         layout // Enable layout animation for smooth filtering

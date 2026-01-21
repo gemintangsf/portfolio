@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
@@ -51,21 +51,21 @@ export default function TechStack() {
 
     const totalPages = Math.ceil(technologies.length / visibleItems);
 
-    const nextSlide = () => {
+    const nextSlide = useCallback(() => {
         setDirection(1);
         setCurrentIndex((prev) => (prev + 1) % totalPages);
-    };
+    }, [totalPages]);
 
-    const prevSlide = () => {
+    const prevSlide = useCallback(() => {
         setDirection(-1);
         setCurrentIndex((prev) => (prev - 1 + totalPages) % totalPages);
-    };
+    }, [totalPages]);
 
     // Auto-slide every 5 seconds
     useEffect(() => {
         const interval = setInterval(nextSlide, 5000);
         return () => clearInterval(interval);
-    }, [totalPages, visibleItems, currentIndex]); // Reset timer on interaction
+    }, [totalPages, visibleItems, currentIndex, nextSlide]); // Reset timer on interaction
 
     // Calculate visible stack
     const currentStack = technologies.slice(
