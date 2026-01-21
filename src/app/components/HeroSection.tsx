@@ -39,7 +39,7 @@ export default function HeroSection() {
         transition={{ delay: 0.3, duration: 0.8 }}
         className="mt-4 text-lg md:text-xl text-gray-700"
       >
-        Fullstack and Mobile Developer
+        Software Engineer
       </motion.p>
 
       <motion.p
@@ -60,12 +60,12 @@ export default function HeroSection() {
         transition={{ delay: 1, duration: 0.8 }}
         className="mt-8 flex gap-4 justify-center"
       >
-        <a
-          href="#projects"
+        <Link
+          href="/projects"
           className="px-6 py-3 rounded-2xl bg-brand-base text-white font-medium hover:scale-105 hover:bg-brand-primary transition-transform shadow-lg"
         >
           View My Work
-        </a>
+        </Link>
         <Link
           href="/contact"
           className="px-6 py-3 rounded-2xl border border-brand-base text-brand-base hover:bg-brand-highlight hover:scale-105 transition-transform shadow"

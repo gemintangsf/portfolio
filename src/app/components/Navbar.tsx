@@ -3,11 +3,14 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
+import { useUI } from "../context/UIContext";
 
 export default function Navbar() {
   const pathname = usePathname();
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+
+  const { isModalOpen } = useUI();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,9 +32,13 @@ export default function Navbar() {
     };
   }, [lastScrollY]);
 
+  // Hide navbar if modal is open OR if scrolled down logic applies
+  // Using !isModalOpen check to force hide/translate away if modal is open
+  const shouldShow = isVisible && !isModalOpen;
+
   return (
     <nav
-      className={`fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl flex items-center justify-between px-8 py-4 bg-brand-base/80 backdrop-blur-md rounded-full text-white shadow-2xl z-50 border border-white/10 transition-transform duration-300 ${isVisible ? "translate-y-0" : "-translate-y-[200%]"
+      className={`fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl flex items-center justify-between px-8 py-4 bg-brand-base/80 backdrop-blur-md rounded-full text-white shadow-2xl z-50 border border-white/10 transition-transform duration-300 ${shouldShow ? "translate-y-0" : "-translate-y-[200%]"
         }`}
     >
       {/* 1. Left: Logo */}

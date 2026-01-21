@@ -1,7 +1,15 @@
+"use client";
+
 import Link from "next/link";
 import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt, FaFileAlt } from "react-icons/fa";
 
+import { useUI } from "../context/UIContext";
+
 export default function Footer() {
+  const { isModalOpen } = useUI();
+
+  if (isModalOpen) return null;
+
   return (
     <footer className="w-[95%] max-w-7xl mx-auto mb-6 rounded-3xl bg-brand-base/90 backdrop-blur-md text-white p-12 border border-white/10 shadow-2xl mt-20 relative z-50">
       <div className="container mx-auto">
