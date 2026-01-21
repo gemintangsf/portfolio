@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
+import { useState, useEffect } from "react";
 import { FaLaptopCode, FaServer, FaMobileAlt, FaProjectDiagram } from "react-icons/fa";
 
 const services = [
@@ -52,6 +53,18 @@ const cardVariants: Variants = {
     },
 };
 
+// Client-only wrapper for Icons to avoid SSR issues with react-icons in Next.js 15+
+function ServiceIcon({ icon: Icon }: { icon: React.ElementType }) {
+    const [mounted, setMounted] = useState(false);
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) return <div className="w-8 h-8" />; // Placeholder to prevent layout shift
+
+    return <Icon />;
+}
+
 export default function ServicesPage() {
     return (
         <section className="min-h-screen pt-32 pb-20 px-6 max-w-7xl mx-auto flex flex-col items-center">
@@ -76,7 +89,6 @@ export default function ServicesPage() {
                 className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full px-4 md:px-12"
             >
                 {services.map((service, index) => {
-                    const Icon = service.icon;
                     return (
                         <motion.div
                             key={index}
@@ -88,7 +100,7 @@ export default function ServicesPage() {
                             <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${service.color} opacity-10 rounded-bl-[100px] transition-opacity group-hover:opacity-20`} />
 
                             <div className={`p-4 rounded-2xl bg-gradient-to-br ${service.color} text-white text-2xl shadow-md group-hover:scale-110 transition-transform duration-300`}>
-                                <Icon />
+                                <ServiceIcon icon={service.icon} />
                             </div>
 
                             <div>
