@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, PanInfo } from "framer-motion";
 import Image from "next/image";
 import { FaTimes, FaLayerGroup, FaCheckCircle, FaLock, FaExternalLinkAlt, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useEffect, useState, useCallback } from "react";
@@ -78,17 +78,26 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
         setSelectedImageIndex(null);
     };
 
-    const handleNext = (e: React.MouseEvent) => {
-        e.stopPropagation();
+    const handleNext = (e?: React.MouseEvent) => {
+        e?.stopPropagation();
         if (project?.evidence && selectedImageIndex !== null && selectedImageIndex < project.evidence.length - 1) {
             setSelectedImageIndex(selectedImageIndex + 1);
         }
     };
 
-    const handlePrev = (e: React.MouseEvent) => {
-        e.stopPropagation();
+    const handlePrev = (e?: React.MouseEvent) => {
+        e?.stopPropagation();
         if (project?.evidence && selectedImageIndex !== null && selectedImageIndex > 0) {
             setSelectedImageIndex(selectedImageIndex - 1);
+        }
+    };
+
+    const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+        const threshold = 50;
+        if (info.offset.x < -threshold && project?.evidence && selectedImageIndex !== null && selectedImageIndex < project.evidence.length - 1) {
+            handleNext(null as any);
+        } else if (info.offset.x > threshold && project?.evidence && selectedImageIndex !== null && selectedImageIndex > 0) {
+            handlePrev(null as any);
         }
     };
 
@@ -344,7 +353,11 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                     initial={{ scale: 0.9, opacity: 0 }}
                                     animate={{ scale: 1, opacity: 1 }}
                                     exit={{ scale: 0.9, opacity: 0 }}
-                                    className="relative max-w-7xl max-h-[90vh] flex items-center justify-center"
+                                    drag="x"
+                                    dragConstraints={{ left: 0, right: 0 }}
+                                    dragElastic={0.2}
+                                    onDragEnd={handleDragEnd}
+                                    className="relative max-w-7xl max-h-[90vh] flex items-center justify-center cursor-grab active:cursor-grabbing"
                                     onClick={(e) => e.stopPropagation()}
                                 >
                                     <Image
@@ -352,7 +365,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                         alt={`Evidence Fullscreen ${selectedImageIndex + 1}`}
                                         width={1920}
                                         height={1080}
-                                        className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl w-auto h-auto"
+                                        className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl w-auto h-auto pointer-events-none"
                                     />
 
                                     {/* Navigation Buttons */}
@@ -360,7 +373,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                         <>
                                             {selectedImageIndex > 0 && (
                                                 <button
-                                                    className="absolute left-[-60px] top-1/2 -translate-y-1/2 p-3 text-white/70 hover:text-white hover:bg-white/10 rounded-full transition-all"
+                                                    className="absolute left-2 lg:left-[-60px] top-1/2 -translate-y-1/2 p-3 text-white/70 hover:text-white hover:bg-white/10 rounded-full transition-all bg-black/20 lg:bg-transparent"
                                                     onClick={handlePrev}
                                                 >
                                                     <FaChevronLeft size={32} />
@@ -369,7 +382,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
                                             {selectedImageIndex < project.evidence.length - 1 && (
                                                 <button
-                                                    className="absolute right-[-60px] top-1/2 -translate-y-1/2 p-3 text-white/70 hover:text-white hover:bg-white/10 rounded-full transition-all"
+                                                    className="absolute right-2 lg:right-[-60px] top-1/2 -translate-y-1/2 p-3 text-white/70 hover:text-white hover:bg-white/10 rounded-full transition-all bg-black/20 lg:bg-transparent"
                                                     onClick={handleNext}
                                                 >
                                                     <FaChevronRight size={32} />

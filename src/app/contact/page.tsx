@@ -4,6 +4,13 @@ export default function ContactPage() {
   return (
     <section className="min-h-screen flex flex-col items-center justify-center px-6 text-center">
       {/* Background moved to layout.tsx */}
+      <div className="inline-flex px-4 py-1.5 rounded-full bg-brand-accent/10 border border-brand-accent/20 text-brand-base text-sm font-medium items-center gap-2 mb-6 backdrop-blur-sm">
+        <span className="relative flex h-2 w-2">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-accent opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-accent"></span>
+        </span>
+        Contact Me
+      </div>
       <h1 className="text-4xl md:text-6xl font-bold text-brand-base">
         Contact Me
       </h1>
@@ -13,20 +20,39 @@ export default function ContactPage() {
         Feel free to reach out using the form below or connect with me on social media.
       </p>
 
-      <form className="mt-8 w-full max-w-md space-y-4">
+      <form
+        action="https://formsubmit.co/gemintangsfurqon@gmail.com"
+        method="POST"
+        className="mt-8 w-full max-w-md space-y-4"
+      >
+        {/* Anti-spam honeypot (optional but good) */}
+        <input type="text" name="_honey" style={{ display: "none" }} />
+
+        {/* Disable Captcha to maintain clean UI */}
+        <input type="hidden" name="_captcha" value="false" />
+
+        {/* Redirect back to this page after submit (Optional, remove if you want default success page) */}
+        {/* <input type="hidden" name="_next" value="http://localhost:3000/contact" /> */}
+
         <input
           type="text"
+          name="name"
           placeholder="Your Name"
+          required
           className="w-full px-4 py-3 rounded-2xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-brand-primary transition-all dark:bg-gray-800 dark:border-gray-700 dark:text-white"
         />
         <input
           type="email"
+          name="email"
           placeholder="Your Email"
+          required
           className="w-full px-4 py-3 rounded-2xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-brand-primary transition-all dark:bg-gray-800 dark:border-gray-700 dark:text-white"
         />
         <textarea
+          name="message"
           placeholder="Your Message"
           rows={4}
+          required
           className="w-full px-4 py-3 rounded-2xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-brand-primary transition-all dark:bg-gray-800 dark:border-gray-700 dark:text-white"
         />
         <button
@@ -36,12 +62,6 @@ export default function ContactPage() {
           Send Message
         </button>
       </form>
-
-      <div className="mt-6">
-        <Link href="/" className="text-brand-base hover:text-brand-primary font-medium transition-colors flex items-center gap-2">
-          ← Back to Home
-        </Link>
-      </div>
     </section>
   );
 }

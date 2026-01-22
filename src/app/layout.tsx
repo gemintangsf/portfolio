@@ -1,20 +1,14 @@
 import type { Metadata } from "next";
-import { Inter, Roboto_Mono } from "next/font/google";
+// import { Inter, Roboto_Mono } from "next/font/google"; // Disabled due to network issues
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import InteractiveBackground from "./components/InteractiveBackground";
 import { UIProvider } from "./context/UIContext";
 
-const inter = Inter({
-  variable: "--font-geist-sans", // Keeping variable name same to avoid changing css
-  subsets: ["latin"],
-});
-
-const robotoMono = Roboto_Mono({
-  variable: "--font-geist-mono", // Keeping variable name same to avoid changing css
-  subsets: ["latin"],
-});
+// fonts are now defined in globals.css to avoid network errors
+// const inter = Inter({ ... });
+// const robotoMono = Roboto_Mono({ ... });
 
 export const metadata: Metadata = {
   title: "Portfolio Gemintang",
@@ -28,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${robotoMono.variable} antialiased`}>
+      <body className={`antialiased`}>
         <UIProvider>
           {/* Global Background */}
           <div className="fixed inset-0 bg-brand-highlight -z-50" />

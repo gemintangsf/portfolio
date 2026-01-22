@@ -17,8 +17,9 @@ import {
     FaHospital,     // PABOI
     FaHeart,        // JTK Berbagi (Donation)
     FaBoxes,        // Inventory
+    FaChevronDown,
 } from "react-icons/fa";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ProjectModal from "../components/ProjectModal";
 
 // Define Project Type locally for now
@@ -328,6 +329,10 @@ export default function ProjectsPage() {
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
     const [selectedCategory, setSelectedCategory] = useState("All");
 
+    // Infinite Scroll State
+    const [visibleCount, setVisibleCount] = useState(3);
+    const [isLoadingMore, setIsLoadingMore] = useState(false);
+
     const openProject = (project: Project) => {
         setSelectedProject(project);
     };
@@ -344,6 +349,23 @@ export default function ProjectsPage() {
     // Specific subsets for "All" view
     const featuredProjects = projects.filter(p => p.category !== "Others");
     const otherProjects = projects.filter(p => p.category === "Others");
+
+    // Determine which list is currently main display
+    const currentMainList = selectedCategory === "All" ? featuredProjects : filteredProjects;
+    const isListTruncated = visibleCount < currentMainList.length;
+
+    // Reset visible count when category changes
+    useEffect(() => {
+        setVisibleCount(4);
+    }, [selectedCategory]);
+
+    const handleLoadMore = () => {
+        setIsLoadingMore(true);
+        setTimeout(() => {
+            setVisibleCount((prev) => prev + 3);
+            setIsLoadingMore(false);
+        }, 500);
+    };
 
     // Helper to get icon based on project ID
     const getProjectIcon = (id: number) => {
@@ -374,9 +396,13 @@ export default function ProjectsPage() {
                 transition={{ duration: 0.6 }}
                 className="text-center mb-16"
             >
-                <span className="inline-block px-3 py-1 rounded-full bg-brand-accent/10 text-brand-base text-sm font-medium mb-4 border border-brand-accent/20">
+                <div className="inline-flex px-4 py-1.5 rounded-full bg-brand-accent/10 border border-brand-accent/20 text-brand-base text-sm font-medium items-center gap-2 mb-8 backdrop-blur-sm">
+                    <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-accent opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-accent"></span>
+                    </span>
                     My Portfolio
-                </span>
+                </div>
                 <h1 className="text-4xl md:text-5xl font-extrabold text-brand-base mb-6">
                     Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent">Projects</span>
                 </h1>
@@ -388,17 +414,18 @@ export default function ProjectsPage() {
             </motion.div>
 
             {/* Categories / Filter */}
+
             <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.6 }}
-                className="flex flex-wrap justify-center gap-3 mb-12"
+                className="flex overflow-x-auto md:flex-wrap justify-start md:justify-center gap-3 mb-12 pb-4 md:pb-0 -mx-6 px-6 md:mx-0 md:px-0 no-scrollbar snap-x"
             >
                 {categories.map((cat, idx) => (
                     <button
                         key={idx}
                         onClick={() => setSelectedCategory(cat)}
-                        className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${selectedCategory === cat
+                        className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap flex-shrink-0 snap-center ${selectedCategory === cat
                             ? "bg-brand-base text-white shadow-lg scale-105"
                             : "bg-white text-gray-600 hover:bg-brand-highlight hover:text-brand-base border border-gray-200"
                             }`}
@@ -409,8 +436,8 @@ export default function ProjectsPage() {
             </motion.div>
 
             {/* Projects Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-                {(selectedCategory === "All" ? featuredProjects : filteredProjects).map((project) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                {currentMainList.slice(0, visibleCount).map((project) => (
                     <motion.div
                         key={project.id}
                         layout // Enable layout animation for smooth filtering
@@ -503,6 +530,29 @@ export default function ProjectsPage() {
                     </motion.div>
                 ))}
             </div>
+
+            {/* Load More Button */}
+            {isListTruncated && (
+                <div className="flex justify-center mb-20 py-8">
+                    <button
+                        onClick={handleLoadMore}
+                        disabled={isLoadingMore}
+                        className="px-8 py-3 rounded-full bg-white border border-gray-200 text-gray-600 font-medium hover:bg-brand-base hover:text-white hover:border-brand-base transition-all duration-300 shadow-md flex items-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                    >
+                        {isLoadingMore ? (
+                            <>
+                                <span className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin"></span>
+                                Loading...
+                            </>
+                        ) : (
+                            <>
+                                Load More Projects
+                                <FaChevronDown className="animate-bounce" />
+                            </>
+                        )}
+                    </button>
+                </div>
+            )}
 
 
             {/* Divider for Other Projects - Only show in ALL view */}

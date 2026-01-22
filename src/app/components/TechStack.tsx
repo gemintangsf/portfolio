@@ -89,18 +89,18 @@ export default function TechStack() {
                 </p>
             </div>
 
-            <div className="container mx-auto px-6 flex items-center justify-center gap-4 md:gap-8">
+            <div className="container mx-auto px-2 md:px-6 flex items-center justify-center gap-2 md:gap-8">
                 {/* Left Button */}
                 <button
                     onClick={prevSlide}
-                    className="p-3 rounded-full bg-white/10 backdrop-blur-md border border-brand-primary/20 text-brand-base hover:bg-brand-primary hover:text-white transition-all shadow-lg shrink-0"
+                    className="p-2 md:p-3 rounded-full bg-white/10 backdrop-blur-md border border-brand-primary/20 text-brand-base hover:bg-brand-primary hover:text-white transition-all shadow-lg shrink-0"
                     aria-label="Previous Tech"
                 >
-                    <FaChevronLeft size={20} />
+                    <FaChevronLeft size={16} className="md:w-5 md:h-5" />
                 </button>
 
                 {/* Carousel Window */}
-                <div className="w-full max-w-5xl overflow-hidden px-2 md:px-4" style={{ minHeight: '80px' }}>
+                <div className="w-full max-w-5xl overflow-hidden px-1 md:px-4" style={{ minHeight: '80px' }}>
                     <AnimatePresence mode="wait" custom={direction}>
                         <motion.div
                             key={currentIndex}
@@ -109,14 +109,14 @@ export default function TechStack() {
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: direction > 0 ? -50 : 50 }}
                             transition={{ duration: 0.4, ease: "easeInOut" }}
-                            className="flex justify-center gap-4 md:gap-8 flex-wrap md:flex-nowrap w-full"
+                            className="flex justify-center gap-2 md:gap-8 flex-wrap md:flex-nowrap w-full"
                         >
                             {currentStack.map((tech, index) => (
                                 <div
                                     key={`${tech}-${index}`}
-                                    className="flex-1 min-w-[140px] max-w-[200px] flex items-center justify-center px-6 py-4 rounded-xl border border-brand-primary/20 bg-white/50 backdrop-blur-sm shadow-sm hover:shadow-md hover:border-brand-primary/50 transition-all cursor-default mt-2"
+                                    className="flex-1 min-w-[120px] max-w-[180px] md:max-w-[200px] flex items-center justify-center px-4 py-3 md:px-6 md:py-4 rounded-xl border border-brand-primary/20 bg-white/50 backdrop-blur-sm shadow-sm hover:shadow-md hover:border-brand-primary/50 transition-all cursor-default mt-2"
                                 >
-                                    <span className="text-brand-base font-medium text-lg whitespace-nowrap text-center">
+                                    <span className="text-brand-base font-medium text-sm md:text-lg whitespace-nowrap text-center">
                                         {tech}
                                     </span>
                                 </div>
@@ -128,10 +128,10 @@ export default function TechStack() {
                 {/* Right Button */}
                 <button
                     onClick={nextSlide}
-                    className="p-3 rounded-full bg-white/10 backdrop-blur-md border border-brand-primary/20 text-brand-base hover:bg-brand-primary hover:text-white transition-all shadow-lg shrink-0"
+                    className="p-2 md:p-3 rounded-full bg-white/10 backdrop-blur-md border border-brand-primary/20 text-brand-base hover:bg-brand-primary hover:text-white transition-all shadow-lg shrink-0"
                     aria-label="Next Tech"
                 >
-                    <FaChevronRight size={20} />
+                    <FaChevronRight size={16} className="md:w-5 md:h-5" />
                 </button>
             </div>
 

@@ -52,9 +52,13 @@ export default function FAQPage() {
                 transition={{ duration: 0.8 }}
                 className="text-center mb-16"
             >
-                <span className="text-brand-primary font-semibold tracking-wider uppercase text-sm">
+                <div className="inline-flex px-4 py-1.5 rounded-full bg-brand-accent/10 border border-brand-accent/20 text-brand-base text-sm font-medium items-center gap-2 mb-6 backdrop-blur-sm">
+                    <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-accent opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-accent"></span>
+                    </span>
                     Common Questions
-                </span>
+                </div>
                 <h1 className="text-4xl md:text-5xl font-bold mt-3 text-brand-base">
                     Frequently Asked Questions
                 </h1>

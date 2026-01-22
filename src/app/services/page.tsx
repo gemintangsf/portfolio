@@ -74,6 +74,13 @@ export default function ServicesPage() {
                 transition={{ duration: 0.6 }}
                 className="text-center mb-16"
             >
+                <div className="inline-flex px-4 py-1.5 rounded-full bg-brand-accent/10 border border-brand-accent/20 text-brand-base text-sm font-medium items-center gap-2 mb-6 backdrop-blur-sm">
+                    <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-accent opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-accent"></span>
+                    </span>
+                    What I Offer
+                </div>
                 <h1 className="text-4xl md:text-5xl font-extrabold text-brand-base mb-6">
                     My <span className="text-brand-accent">Services</span>
                 </h1>

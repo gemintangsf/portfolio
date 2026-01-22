@@ -3,12 +3,20 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  
+
   /* User Palette */
-  --color-base: #005461;     /* Dark Teal */
-  --color-primary: #018790;  /* Teal */
-  --color-accent: #00B7B5;   /* Light Teal */
-  --color-highlight: #F4F4F4; /* Off-white */
+  --color-base: #005461;
+  /* Dark Teal */
+  --color-primary: #018790;
+  /* Teal */
+  --color-accent: #00B7B5;
+  /* Light Teal */
+  --color-highlight: #F4F4F4;
+  /* Off-white */
+
+  /* Fallback Fonts (Network Safe) */
+  --font-geist-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-geist-mono: "Roboto Mono", "Courier New", monospace;
 }
 
 @theme inline {
@@ -16,7 +24,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  
+
   /* Map Palette to Tailwind classes */
   --color-brand-base: var(--color-base);
   --color-brand-primary: var(--color-primary);
