@@ -330,8 +330,16 @@ export default function ProjectsPage() {
     const [selectedCategory, setSelectedCategory] = useState("All");
 
     // Infinite Scroll State
-    const [visibleCount, setVisibleCount] = useState(3);
+    const [visibleCount, setVisibleCount] = useState(6); // Default to desktop count for SSR consistency
     const [isLoadingMore, setIsLoadingMore] = useState(false);
+
+    // Dynamic step based on screen size
+    const getStepSize = () => (typeof window !== "undefined" && window.innerWidth <= 768) ? 4 : 6;
+
+    // Set initial count based on screen size after mount
+    useEffect(() => {
+        setVisibleCount(getStepSize());
+    }, []);
 
     const openProject = (project: Project) => {
         setSelectedProject(project);
@@ -356,13 +364,14 @@ export default function ProjectsPage() {
 
     // Reset visible count when category changes
     useEffect(() => {
-        setVisibleCount(4);
+        setVisibleCount(getStepSize());
     }, [selectedCategory]);
 
     const handleLoadMore = () => {
         setIsLoadingMore(true);
         setTimeout(() => {
-            setVisibleCount((prev) => prev + 3);
+            const step = getStepSize();
+            setVisibleCount((prev) => prev + step);
             setIsLoadingMore(false);
         }, 500);
     };
