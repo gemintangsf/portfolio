@@ -46,7 +46,7 @@ export default function Footer() {
               </p>
 
               <a
-                href="https://drive.google.com/file/d/1URcPQaEpgrmk-Nd4cOvpgJ5HjNmhBbRQ/view?usp=drive_link"
+                href="https://drive.google.com/file/d/1Kd-t71NEdlQPdplKcFczwNIrcTM6S0kd/view?usp=drive_link"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 border border-white/20 rounded-full text-white text-sm font-semibold hover:bg-white hover:text-brand-base transition-all shadow-md transform hover:scale-[1.02] w-fit"

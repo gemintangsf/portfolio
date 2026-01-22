@@ -94,7 +94,7 @@ export default function AboutPage() {
 
             <div className="pt-2">
               <motion.a
-                href="https://drive.google.com/file/d/1URcPQaEpgrmk-Nd4cOvpgJ5HjNmhBbRQ/view?usp=drive_link"
+                href="https://drive.google.com/file/d/1Kd-t71NEdlQPdplKcFczwNIrcTM6S0kd/view?usp=drive_link"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
