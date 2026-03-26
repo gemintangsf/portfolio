@@ -1,0 +1,295 @@
+/* src/app/game24/game24.css */
+.game-wrapper {
+    width: 100%;
+    color: var(--color-brand-base);
+}
+
+.game-container {
+    max-width: 650px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.9);   
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 84, 97, 0.15);
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0 20px 40px -10px rgba(0, 84, 97, 0.15);
+    text-align: center;
+    margin: 0 auto;
+}
+
+.player-card {
+    background: #ffffff;
+    border: 1px solid rgba(0, 84, 97, 0.15);
+    border-radius: 12px;
+    padding: 15px;
+    flex: 1;
+    transition: all 0.2s;
+    box-shadow: 0 4px 6px -1px rgba(0, 84, 97, 0.05);
+}
+
+.player-card.active {
+    border-color: var(--color-brand-primary);
+    background: rgba(1, 135, 144, 0.05);
+    box-shadow: 0 0 0 2px var(--color-brand-primary);
+    transform: translateY(-2px);
+}
+
+.player-card.slowest {
+    border-color: #ef4444;
+    background: rgba(239, 68, 68, 0.05);
+}
+
+.playing-card {
+    width: 80px;
+    height: 115px;
+    background: #ffffff;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+    cursor: default;
+    user-select: none;
+    box-sizing: border-box;
+    color: #1e293b;
+}
+
+.playing-card.red {
+    color: #ef4444;
+}
+
+.playing-card.new-deal {
+    animation: dealCard 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) backwards;
+}
+
+@keyframes dealCard {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.5) rotate(10deg);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotate(0);
+    }
+}
+
+.btn-react {
+    flex: 1;
+    min-width: 120px;
+    padding: 16px 10px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.1s;
+    color: white;
+    box-shadow: 0 6px 0 rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-react:active {
+    transform: translateY(6px);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
+}
+
+.btn-react:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: translateY(6px);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
+}
+
+.p1-btn { background-color: var(--color-brand-primary); }
+.p2-btn { background-color: var(--color-brand-accent); }
+.p3-btn { background-color: var(--color-brand-base); }
+.p4-btn { background-color: #0b9e9c; } /* some other teal */
+
+input[type="number"], input[type="text"], select {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1.1rem;
+    background: #ffffff;
+    border: 2px solid rgba(0, 84, 97, 0.2);
+    border-radius: 12px;
+    color: var(--color-brand-base);
+    outline: none;
+    box-sizing: border-box;
+    text-align: center;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+}
+
+input[type="number"]:focus, input[type="text"]:focus {
+    border-color: var(--color-brand-primary);
+    box-shadow: 0 0 0 3px rgba(1, 135, 144, 0.2);
+}
+
+button.standard {
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: white;
+    background-color: var(--color-brand-primary);
+    box-shadow: 0 4px 6px -1px rgba(1, 135, 144, 0.2);
+}
+
+button.standard:hover {
+    background-color: var(--color-brand-base);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px -2px rgba(0, 84, 97, 0.3);
+}
+
+/* snackbar */
+#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    max-width: 80%;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 12px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+    font-size: 1.1rem;
+    font-weight: 600;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    transition: visibility 0s 0.3s, opacity 0.3s linear, bottom 0.3s ease-out;
+    opacity: 0;
+}
+
+#snackbar.show {
+    visibility: visible;
+    opacity: 1;
+    bottom: 50px;
+    transition: visibility 0s, opacity 0.3s linear, bottom 0.3s ease-out;
+}
+
+#snackbar.success { background-color: var(--color-brand-accent); color: white; }
+#snackbar.error { background-color: #ef4444; color: white; }
+#snackbar.info { background-color: var(--color-brand-primary); color: white; }
+
+.target-btn {
+    background: #ffffff;
+    border: 2px solid rgba(0, 84, 97, 0.2);
+    color: var(--color-brand-base);
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.target-btn:hover {
+    background: rgba(0, 183, 181, 0.05);
+}
+
+.target-btn.selected {
+    border-color: var(--color-brand-accent);
+    background: rgba(0, 183, 181, 0.1);
+    color: var(--color-brand-primary);
+}
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 84, 97, 0.4);
+    backdrop-filter: blur(4px);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-overlay.show {
+    display: flex;
+}
+
+.modal-body ul {
+    text-align: left;
+    margin: 10px 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+.modal-body li {
+    margin-bottom: 8px;
+    font-family: var(--font-mono);
+    font-size: 1.2rem;
+    background: rgba(1, 135, 144, 0.05);
+    border: 1px solid rgba(1, 135, 144, 0.2);
+    border-radius: 6px;
+    padding: 8px 15px;
+    color: var(--color-brand-base);
+    font-weight: 600;
+}
+
+@media (max-width: 600px) {
+    .game-container {
+        padding: 20px 16px;
+        border-radius: 16px;
+    }
+
+    .player-card {
+        flex: 1 1 calc(50% - 10px);
+        min-width: 110px;
+        padding: 10px;
+    }
+
+    .player-card .text-3xl {
+        font-size: 1.75rem;
+    }
+
+    .playing-card {
+        width: 65px;
+        height: 95px;
+        padding: 6px;
+    }
+
+    .playing-card .text-4xl {
+        font-size: 1.75rem;
+    }
+
+    .playing-card .text-base {
+        font-size: 0.8rem;
+    }
+
+    .btn-react {
+        min-width: calc(50% - 8px);
+        padding: 12px 10px;
+        font-size: 1rem;
+    }
+
+    button.standard {
+        padding: 10px 16px;
+        font-size: 1rem;
+    }
+
+    .status-bar {
+        font-size: 0.9rem;
+        padding: 10px 12px;
+    }
+
+    input[type="number"], input[type="text"], select {
+        padding: 10px 12px;
+        font-size: 1rem;
+    }
+    
+    .modal-content {
+        padding: 20px !important;
+    }
+}
