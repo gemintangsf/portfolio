@@ -18,12 +18,13 @@ export default function InteractiveBackground() {
 
         // Dot configuration
         const DOT_SPACING = 30; // Spacing between dots
-        const DOT_RADIUS = 1.5; // Base radius
+        const DOT_RADIUS = 1.2; // Base radius
         const HOVER_RADIUS = 300; // Radius of mouse interaction
 
-        // Brand color: #005461 (Dark Teal)
-        const DOT_COLOR = "rgba(0, 84, 97, 0.4)"; // Low opacity base color
-        const HOVER_COLOR = "rgba(0, 183, 181, 0.8)"; // Bright Accent on hover
+        // Monochrome colors (Fixed for forced dark mode)
+        const DOT_COLOR = "rgba(255, 255, 255, 0.15)"; 
+        const HOVER_COLOR = "rgba(255, 255, 255, 0.4)"; 
+
 
         const resize = () => {
             canvas.width = window.innerWidth;

@@ -5,15 +5,18 @@ import React, { createContext, useContext, useState, ReactNode } from "react";
 interface UIContextType {
     isModalOpen: boolean;
     setModalOpen: (open: boolean) => void;
+    isLoaded: boolean;
+    setLoaded: (loaded: boolean) => void;
 }
 
 const UIContext = createContext<UIContextType | undefined>(undefined);
 
 export function UIProvider({ children }: { children: ReactNode }) {
     const [isModalOpen, setModalOpen] = useState(false);
+    const [isLoaded, setLoaded] = useState(false);
 
     return (
-        <UIContext.Provider value={{ isModalOpen, setModalOpen }}>
+        <UIContext.Provider value={{ isModalOpen, setModalOpen, isLoaded, setLoaded }}>
             {children}
         </UIContext.Provider>
     );

@@ -1,0 +1,441 @@
+{
+    "categories": [
+        "All",
+        "Web",
+        "Mobile",
+        "Enterprise",
+        "AI",
+        "Others"
+    ],
+    "projects": [
+        {
+            "id": 1,
+            "title": "PHC Mobile: Attendance & HR System",
+            "category": "Mobile Application",
+            "description": "Developed an internal Human Capital mobile application to support HR workflows, including attendance tracking, leave management, and employee data management. The system includes face recognition for attendance validation and geolocation-based check-in/out.",
+            "image": "bg-brand-highlight",
+            "stack": [
+                "Flutter",
+                "Python",
+                "InsightFace",
+                "MySQL",
+                "OpenCart",
+                "REST API"
+            ],
+            "link": "#",
+            "isPrivate": true,
+            "challenge": "Ensuring reliable attendance validation using face recognition across different mobile devices and varying image conditions.",
+            "solution": "Implemented a face recognition flow using photo comparison with a Python-based service, integrated with the mobile app and backend system for validation during attendance.",
+            "features": [
+                "Face Recognition-based Attendance",
+                "Geolocation-based Check-in/out",
+                "Leave Management",
+                "Basic Payroll Support",
+                "Employee Data Management"
+            ],
+            "evidence": [
+                "/assets/phc/face_recognitions/3.jpg",
+                "/assets/phc/face_recognitions/4.jpg",
+                "/assets/phc/face_recognitions/5.jpg",
+                "/assets/phc/face_recognitions/6.jpg",
+                "/assets/phc/face_recognitions/7.jpg"
+            ],
+            "tags": [
+                "Mobile"
+            ]
+        },
+        {
+            "id": 2,
+            "title": "PHC Mobile: Gamification Module",
+            "category": "Mobile Application",
+            "description": "Developed a gamification module within the PHC mobile application to improve employee engagement and product knowledge. This includes features such as leaderboard and quiz, with focus on handling large data and maintaining smooth performance on mobile devices.",
+            "image": "bg-brand-highlight",
+            "stack": [
+                "Flutter",
+                "Custom Cache Manager",
+                "Performance Optimization",
+                "Gamification Logic"
+            ],
+            "link": "#",
+            "isPrivate": true,
+            "challenge": "Handling large amounts of data (hundreds of leaderboard entries with images) while keeping the UI responsive on various mobile devices.",
+            "solution": "Applied caching and image optimization techniques to reduce memory usage and improve rendering performance, especially for list-heavy views.",
+            "features": [
+                "Leaderboard System",
+                "Weekly Quiz Feature",
+                "Smooth List Scrolling",
+                "Background Data Sync",
+                "Point & Reward System"
+            ],
+            "technicalOptimizations": [
+                {
+                    "title": "Image Caching",
+                    "description": "Implemented a cache mechanism to limit stored images and prevent excessive storage usage."
+                },
+                {
+                    "title": "Optimized Image Loading",
+                    "description": "Resized images during loading to match UI needs and reduce memory consumption."
+                },
+                {
+                    "title": "Efficient List Rendering",
+                    "description": "Adjusted rendering strategy to keep scrolling smooth when displaying large datasets."
+                }
+            ],
+            "evidence": [
+                "/assets/phc/leaderboards/1.png",
+                "/assets/phc/leaderboards/2.png",
+                "/assets/phc/leaderboards/3.png",
+                "/assets/phc/leaderboards/4.png",
+                "/assets/phc/leaderboards/5.png",
+                "/assets/phc/leaderboards/6.png",
+                "/assets/phc/leaderboards/7.png",
+                "/assets/phc/leaderboards/8.png"
+            ],
+            "tags": [
+                "Mobile"
+            ]
+        },
+        {
+            "id": 3,
+            "title": "Mobile POS (Point of Sale) Application",
+            "category": "Retail System",
+            "description": "Developed a mobile-based POS application to support cashier operations, including transaction processing, product handling, and receipt printing. The application is designed to be simple, responsive, and easier to maintain compared to traditional desktop-based POS systems.",
+            "image": "bg-brand-highlight",
+            "stack": [
+                "Flutter",
+                "REST API",
+                "Mobile Design"
+            ],
+            "link": "#",
+            "isPrivate": true,
+            "challenge": "Maintaining smooth transaction flow in a cashier environment while handling pricing rules, device integrations, and reducing dependency on locally installed POS systems.",
+            "solution": "Built a mobile POS application with a focus on simple and responsive UI, efficient API usage, and basic hardware integration such as printer and scanner to support daily operations.",
+            "features": [
+                "Barcode Scanning for Checkout",
+                "Payment and Discount Handling",
+                "Receipt Printing Integration",
+                "Inventory Synchronization",
+                "Centralized Configuration"
+            ],
+            "evidence": [
+                "/assets/pos/1.png",
+                "/assets/pos/4.png",
+                "/assets/pos/6.png"
+            ],
+            "tags": [
+                "Mobile"
+            ]
+        },
+        {
+            "id": 4,
+            "title": "Book Search & Recommendation System",
+            "category": "Search System",
+            "description": "Developed a book search and recommendation system to improve search relevance and user experience on a large product catalog. The system includes keyword-based search, search suggestions, and basic recommendation features.",
+            "image": "bg-brand-highlight",
+            "stack": [
+                "Python",
+                "OpenSearch",
+                "MySQL",
+                "OpenCart",
+                "Flutter"
+            ],
+            "link": "https://www.periplus.com/",
+            "isPrivate": true,
+            "challenge": "Improving search relevance and performance on a large dataset while keeping query response fast and results meaningful for users.",
+            "solution": "Enhanced search functionality using OpenSearch by improving query logic, keyword handling, and indexing strategy. Also added support for search suggestions and ranking based on product popularity.",
+            "features": [
+                "Keyword-based Search",
+                "Search Suggestions (Autocomplete)",
+                "Typo-tolerant Search",
+                "Product Ranking Based on Popularity",
+                "Basic Recommendation Features"
+            ],
+            "evidence": [
+                "/assets/web_p+/2.png",
+                "/assets/web_p+/1.png",
+                "/assets/web_p+/3.png"
+            ],
+            "tags": [
+                "Web",
+                "AI"
+            ]
+        },
+        {
+            "id": 5,
+            "title": "NADIA – Network Terminal Equipment Management",
+            "category": "Enterprise Application",
+            "description": "An internal system used by Telkom Indonesia to manage Network Terminal Equipment (NTE) assets, such as customer routers that need to be returned after service termination. Contributed to improving unclear workflows, fixing issues in legacy features, and making the system more structured and maintainable.",
+            "image": "bg-brand-highlight",
+            "stack": [
+                "NestJS",
+                "Next.js",
+                "PostgreSQL",
+                "SonarQube",
+                "Apache Airflow"
+            ],
+            "link": "#",
+            "isPrivate": true,
+            "challenge": "Worked on a legacy system with unclear business workflows and frequent issues. Needed to understand asset retrieval processes, reduce ambiguity, and improve overall system reliability.",
+            "solution": "Worked with stakeholders to clarify and document business flows. Refactored parts of the system using NestJS and Next.js, improved code quality with SonarQube, and added scheduled workflows using Apache Airflow.",
+            "features": [
+                "NTE asset retrieval and return tracking",
+                "Structured business workflow handling",
+                "Background job scheduling",
+                "Basic logging and error handling",
+                "Legacy feature improvements"
+            ],
+            "responsibilities": [
+                "Developed backend and frontend features",
+                "Translated business requirements into technical workflows",
+                "Collaborated with stakeholders to clarify processes",
+                "Improved code quality and maintainability",
+                "Implemented scheduled jobs using Apache Airflow"
+            ],
+            "impact": [
+                "Made business workflows easier to understand",
+                "Reduced issues in legacy features",
+                "Improved system reliability",
+                "Helped teams follow clearer asset retrieval processes"
+            ],
+            "evidence": [
+                "/assets/nadia/1.jpg",
+                "/assets/nadia/2.jpg"
+            ],
+            "tags": [
+                "Enterprise",
+                "Web"
+            ]
+        },
+        {
+            "id": 6,
+            "title": "PEFITA – Package Management System",
+            "category": "Enterprise Application",
+            "description": "Contributed to an internal package management system used to calculate and manage product packages for other applications. Focused on improving the map-based visualization feature for better location context.",
+            "image": "bg-brand-highlight",
+            "stack": [
+                "React (Vite)",
+                "NestJS",
+                "PostgreSQL",
+                "Google Maps API"
+            ],
+            "link": "#",
+            "isPrivate": true,
+            "challenge": "Worked within an existing system with established architecture and standards. Needed to improve map visualization while ensuring compatibility with other parts of the system.",
+            "solution": "Enhanced the map feature using Google Maps, including adding Street View for better location visibility. Integrated the changes into the existing frontend and backend without disrupting current functionality.",
+            "features": [
+                "Package location visualization",
+                "Google Maps integration",
+                "Street View support",
+                "Integration with existing services"
+            ],
+            "evidence": [],
+            "tags": [
+                "Enterprise",
+                "Web"
+            ]
+        },
+        {
+            "id": 7,
+            "title": "SCONE – Order Management System",
+            "category": "Enterprise Application",
+            "description": "Contributed to an internal order management system used by Telkom Indonesia. Worked on migrating the legacy UI to Next.js and supporting order flow integration with other systems.",
+            "image": "bg-brand-highlight",
+            "stack": [
+                "Next.js",
+                "Zend Framework",
+                "Oracle"
+            ],
+            "link": "#",
+            "isPrivate": true,
+            "challenge": "Migrating a legacy UI to a modern frontend while following existing design standards. Also needed to handle order flow integration between systems with consistent status updates.",
+            "solution": "Rebuilt parts of the UI using Next.js based on existing design guidelines. Implemented and maintained order integration flows to ensure correct status synchronization between related systems.",
+            "features": [
+                "UI migration from Zend Framework to Next.js",
+                "Updated interface based on existing design standards",
+                "Order status synchronization",
+                "Integration with related systems"
+            ],
+            "evidence": [
+                "/assets/scone/1.jpg"
+            ],
+            "tags": [
+                "Enterprise",
+                "Web"
+            ]
+        },
+        {
+            "id": 8,
+            "title": "DMS – Document Management System",
+            "category": "Enterprise Application",
+            "description": "Contributed to the development of an internal document management system for Telkom Indonesia. Built a document landing page with CRUD functionality to support document uploads and usage by other systems.",
+            "image": "bg-brand-highlight",
+            "stack": [
+                "Zend Framework",
+                "jQuery",
+                "REST API",
+                "MinIO",
+                "PostgreSQL"
+            ],
+            "link": "#",
+            "isPrivate": true,
+            "challenge": "Implementing a document management flow with safe handling of file uploads and storage. Needed to ensure consistency and avoid risks related to file deletion in object storage.",
+            "solution": "Worked with the team to design a structured document flow. Implemented upload and storage using MinIO, and handled document state carefully without relying on direct deletion.",
+            "features": [
+                "Document upload and management",
+                "CRUD operations with metadata",
+                "Integration with other systems",
+                "Structured document storage using MinIO"
+            ],
+            "evidence": [
+                "/assets/dms/1.jpg",
+                "/assets/dms/2.jpg",
+                "/assets/dms/3.jpg"
+            ],
+            "tags": [
+                "Enterprise",
+                "Web"
+            ]
+        },
+        {
+            "id": 9,
+            "title": "PPT – Master Data Management",
+            "category": "Enterprise Application",
+            "description": "Contributed to updating the frontend of a Master Data Management system by migrating from a legacy PHP-based interface to a Next.js application. Focused on improving usability and aligning with existing UI standards.",
+            "image": "bg-brand-highlight",
+            "stack": [
+                "Next.js"
+            ],
+            "link": "#",
+            "isPrivate": true,
+            "challenge": "Worked on a time-constrained UI update while adapting to a different collaboration setup. Requirements were mainly communicated through system analysts, which required careful clarification.",
+            "solution": "Implemented UI changes based on provided specifications and maintained regular communication with system analysts to ensure alignment. Delivered the required updates within the given timeline.",
+            "features": [
+                "UI migration from PHP to Next.js",
+                "Updated interface based on existing standards",
+                "Frontend improvements for usability"
+            ],
+            "evidence": [
+                "/assets/ppt/1.jpg"
+            ],
+            "tags": [
+                "Enterprise",
+                "Web"
+            ]
+        },
+        {
+            "id": 10,
+            "title": "PABOI (Indonesia Orthopedic Association) Web Application",
+            "category": "Full Stack Intern Project",
+            "description": "Contributed to the development and maintenance of the PABOI web application during a 4-month internship. Worked on both backend and frontend tasks as needed, gaining experience in a team-based development environment.",
+            "image": "bg-brand-highlight",
+            "stack": [
+                "ReactJS",
+                "Ruby on Rails",
+                "MySQL"
+            ],
+            "link": "https://indonesia-orthopaedic.org/",
+            "isPrivate": true,
+            "challenge": "Adjusted to a professional development workflow and contributed to an existing system while collaborating with developers, QA, and product team members.",
+            "solution": "Implemented small feature updates and fixed bugs across backend and frontend. Followed team processes and worked with QA and product team to ensure changes met requirements.",
+            "features": [
+                "Bug fixing on backend and frontend",
+                "Small feature updates",
+                "Team collaboration across roles",
+                "Task tracking using Kanban"
+            ],
+            "tags": [
+                "Web"
+            ]
+        },
+        {
+            "id": 11,
+            "title": "JTK Berbagi – Donation Management Platform",
+            "category": "Others",
+            "description": "Developed a donation management platform for the Computer Engineering Department at POLBAN. The system helps manage donation campaigns, track transactions, and organize distribution in a more structured way.",
+            "image": "bg-brand-highlight",
+            "stack": [
+                "ReactJS",
+                "Ruby on Rails",
+                "MySQL"
+            ],
+            "link": "https://github.com/gemintangsf/tugas_akhir/tree/main",
+            "isPrivate": false,
+            "evidence": [
+                "/assets/jtkberbagi/1.png",
+                "/assets/jtkberbagi/2.png"
+            ],
+            "challenge": "Built the system from scratch, starting from requirement gathering to implementation. Needed to handle changing requirements and align the system with actual donation workflows.",
+            "solution": "Designed and developed the system based on identified requirements. Defined workflows, implemented core features, and tested the system to ensure it met basic operational needs.",
+            "features": [
+                "Donation campaign management",
+                "Donor and recipient data tracking",
+                "Transaction recording and reporting",
+                "Role-based access",
+                "Structured donation workflow"
+            ],
+            "tags": [
+                "Others",
+                "Web"
+            ]
+        },
+        {
+            "id": 12,
+            "title": "Sinbada",
+            "category": "Others",
+            "description": "Developed a web-based inventory system as part of a university team project. The system was used to manage asset and inventory data.",
+            "image": "bg-brand-highlight",
+            "stack": [
+                "ReactJS",
+                "Ruby on Rails",
+                "MongoDB",
+                "Azure"
+            ],
+            "link": "https://github.com/SekelompokOrangKuat/ProjectInventaris/tree/dev",
+            "isPrivate": false,
+            "challenge": "Worked in a team environment while learning to use multiple technologies and understand how frontend and backend systems interact.",
+            "solution": "Contributed to both frontend and backend development and followed team workflows to complete assigned tasks.",
+            "features": [
+                "Asset and inventory management",
+                "CRUD operations",
+                "Role-based access",
+                "Team-based development"
+            ],
+            "evidence": [
+                "/assets/sinbada/1.jpg"
+            ],
+            "tags": [
+                "Others",
+                "Web"
+            ]
+        },
+        {
+            "id": 13,
+            "title": "Siinvent",
+            "category": "Others",
+            "description": "Developed a web-based inventory management system as part of an early university team project. The system was used to manage inventory data and basic stock tracking.",
+            "image": "bg-brand-highlight",
+            "stack": [
+                "Express.js",
+                "ReactJS",
+                "PostgreSQL"
+            ],
+            "link": "https://github.com/SekelompokOrangKuat/PROJECTCUAN/tree/backend",
+            "isPrivate": false,
+            "challenge": "Learned to work in a team environment, including handling shared code, aligning on decisions, and managing contributions through version control.",
+            "solution": "Collaborated with team members to build core features, used version control for code management, and followed basic development workflows.",
+            "features": [
+                "Inventory data management",
+                "Basic stock tracking",
+                "User authentication",
+                "Team-based development"
+            ],
+            "evidence": [
+                "/assets/siinvent/2.jpg"
+            ],
+            "tags": [
+                "Others",
+                "Web"
+            ]
+        }
+    ]
+}

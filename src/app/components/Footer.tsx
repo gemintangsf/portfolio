@@ -15,41 +15,41 @@ export default function Footer() {
   if (isModalOpen) return null;
 
   return (
-    <footer className="w-[95%] max-w-7xl mx-auto mb-6 rounded-3xl bg-brand-base/90 backdrop-blur-md text-white p-6 md:p-8 lg:p-12 border border-white/10 shadow-2xl mt-20 relative z-50">
-      <div className="container mx-auto">
-        <div className="flex flex-col md:flex-row">
+    <footer className="w-full bg-transparent backdrop-blur-xl text-white py-16 md:py-24 border-t border-white/10 shadow-2xl mt-0 relative z-40">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className="flex flex-col md:flex-row gap-12 lg:gap-20">
 
           {/* LEFT SIDE: Info, Resume, Icons */}
-          <div className="w-full md:w-5/12 flex flex-col justify-between md:border-r md:border-white/10 md:pr-6 lg:pr-12 mb-8 md:mb-0">
-            <div className="space-y-6">
+          <div className="w-full md:w-5/12 flex flex-col justify-between">
+            <div className="space-y-8">
               <div className="flex justify-between items-center">
-                <h3 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent inline-block">
+                <h3 className="text-3xl md:text-4xl font-black text-white inline-block uppercase tracking-tighter">
                   Gemintang
                 </h3>
-                {/* Social Icons for Mobile - Visible here to save space at bottom */}
+                {/* Social Icons for Mobile */}
                 <div className="flex md:hidden gap-3">
-                  <a href="https://github.com/gemintangsf" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-all">
+                  <a href="https://github.com/gemintangsf" target="_blank" rel="noopener noreferrer" className="p-2 rounded-none border border-white/20 bg-white/5 hover:bg-white hover:text-black transition-all">
                     <FaGithub size={16} />
                   </a>
-                  <a href="https://www.linkedin.com/in/gemintangsf/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-all">
+                  <a href="https://www.linkedin.com/in/gemintangsf/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-none border border-white/20 bg-white/5 hover:bg-white hover:text-black transition-all">
                     <FaLinkedin size={16} />
                   </a>
-                  <a href="mailto:gemintangsfurqon@gmail.com" className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-all">
+                  <a href="mailto:gemintangsfurqon@gmail.com" className="p-2 rounded-none border border-white/20 bg-white/5 hover:bg-white hover:text-black transition-all">
                     <FaEnvelope size={16} />
                   </a>
                 </div>
               </div>
 
-              <p className="text-white/90 leading-relaxed text-sm">
-                I am a Software Developer with 3 years of experience specializing in Backend, Frontend, and Mobile Development.
-                Proficient in analyzing business flows and translating them into robust, scalable applications.
+              <p className="text-white/60 leading-relaxed text-base font-light max-w-md">
+                A Software Developer with 3 years of experience specializing in Backend, Frontend, and Mobile Development.
+                Focusing on building elegant, performant, and scalable solutions.
               </p>
 
               <a
-                href="https://drive.google.com/file/d/1Kd-t71NEdlQPdplKcFczwNIrcTM6S0kd/view?usp=drive_link"
+                href="https://drive.google.com/file/d/11tTDEuKvSlyvgbA0gWvBT8xzOGcqPO2u/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 border border-white/20 rounded-full text-white text-sm font-semibold hover:bg-white hover:text-brand-base transition-all shadow-md transform hover:scale-[1.02] w-fit"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-white text-black border border-white rounded-none text-sm font-bold hover:bg-transparent hover:text-white transition-all shadow-xl w-fit uppercase tracking-widest"
               >
                 <FaFileAlt />
                 My Resume
@@ -57,49 +57,47 @@ export default function Footer() {
             </div>
 
             {/* Social Icons - Desktop Only */}
-            <div className="hidden md:flex gap-4 pt-8 md:pt-0">
-              <a href="https://github.com/gemintangsf" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-white/10 hover:bg-white/20 hover:text-brand-accent transition-all border border-white/10">
+            <div className="hidden md:flex gap-4 mt-12">
+              <a href="https://github.com/gemintangsf" target="_blank" rel="noopener noreferrer" className="p-4 rounded-none border border-white/10 bg-white/5 hover:bg-white hover:text-black transition-all">
                 <FaGithub size={20} />
               </a>
-              <a href="https://www.linkedin.com/in/gemintangsf/" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-white/10 hover:bg-white/20 hover:text-brand-accent transition-all border border-white/10">
+              <a href="https://www.linkedin.com/in/gemintangsf/" target="_blank" rel="noopener noreferrer" className="p-4 rounded-none border border-white/10 bg-white/5 hover:bg-white hover:text-black transition-all">
                 <FaLinkedin size={20} />
               </a>
-              <a href="mailto:gemintangsfurqon@gmail.com" className="p-3 rounded-full bg-white/10 hover:bg-white/20 hover:text-brand-accent transition-all border border-white/10">
+              <a href="mailto:gemintangsfurqon@gmail.com" className="p-4 rounded-none border border-white/10 bg-white/5 hover:bg-white hover:text-black transition-all">
                 <FaEnvelope size={20} />
               </a>
             </div>
           </div>
 
           {/* RIGHT SIDE: Menu/Contact & Copyright */}
-          <div className="w-full md:w-7/12 flex flex-col justify-between md:pl-6 lg:pl-12">
-            {/* Top Right: Quick Menu & Contact */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+          <div className="w-full md:w-7/12 flex flex-col justify-between">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-8">
 
-              {/* Quick Menus Accordion */}
-              <div className="border-b border-white/10 md:border-none pb-4 md:pb-0">
+              {/* Quick Menus */}
+              <div>
                 <button
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
-                  className="w-full flex justify-between items-center text-lg font-bold text-white mb-2 md:mb-6 md:cursor-default"
+                  className="w-full flex justify-between items-center text-xl font-bold text-white mb-6 md:mb-8 md:cursor-default uppercase tracking-[0.2em]"
                 >
                   Quick Menu
                   <FaChevronDown className={`md:hidden transition-transform duration-300 ${isMenuOpen ? 'rotate-180' : ''}`} size={14} />
                 </button>
 
                 <AnimatePresence>
-                  {/* Mobile uses AnimatePresence, Desktop always shows content (using hidden logic or just media queries) */}
                   <motion.div
                     initial={false}
                     animate={{ height: isMenuOpen ? 'auto' : 0, opacity: isMenuOpen ? 1 : 0 }}
                     className="overflow-hidden md:!h-auto md:!opacity-100"
                   >
-                    <ul className="space-y-3 pt-2 md:pt-0">
+                    <ul className="space-y-4">
                       {['Home', 'Services', 'Projects', 'About Me', 'FAQs'].map((item) => (
                         <li key={item}>
                           <Link
-                            href={item === 'Home' ? '/' : `/${item.toLowerCase().replace(' ', '-')}`}
-                            className="text-white/80 hover:text-brand-accent transition-colors text-sm flex items-center gap-2 group w-fit"
+                            href={item === 'Home' ? '/#home' : `/#${item.toLowerCase().replace(' ', '-')}`}
+                            className="text-white/50 hover:text-white transition-colors text-sm flex items-center gap-3 group w-fit uppercase tracking-widest font-medium"
                           >
-                            <span className="w-1.5 h-1.5 rounded-full bg-white/50 group-hover:bg-brand-accent transition-colors" />
+                            <span className="w-6 h-px bg-white/20 group-hover:w-8 group-hover:bg-white transition-all" />
                             {item}
                           </Link>
                         </li>
@@ -109,11 +107,11 @@ export default function Footer() {
                 </AnimatePresence>
               </div>
 
-              {/* Contact Info Accordion */}
-              <div className="border-b border-white/10 md:border-none pb-4 md:pb-0">
+              {/* Contact Info */}
+              <div>
                 <button
                   onClick={() => setIsContactOpen(!isContactOpen)}
-                  className="w-full flex justify-between items-center text-lg font-bold text-white mb-2 md:mb-6 md:cursor-default"
+                  className="w-full flex justify-between items-center text-xl font-bold text-white mb-6 md:mb-8 md:cursor-default uppercase tracking-[0.2em]"
                 >
                   Contact Me
                   <FaChevronDown className={`md:hidden transition-transform duration-300 ${isContactOpen ? 'rotate-180' : ''}`} size={14} />
@@ -125,36 +123,36 @@ export default function Footer() {
                     animate={{ height: isContactOpen ? 'auto' : 0, opacity: isContactOpen ? 1 : 0 }}
                     className="overflow-hidden md:!h-auto md:!opacity-100"
                   >
-                    <ul className="space-y-5 pt-2 md:pt-0">
-                      <li className="flex items-start gap-4 text-white/90 text-sm group">
-                        <div className="p-2 rounded-lg bg-white/10 group-hover:bg-white/20 transition-colors">
-                          <FaEnvelope className="text-brand-accent" />
+                    <ul className="space-y-8">
+                      <li className="flex items-start gap-4">
+                        <div className="p-3 rounded-none bg-white/5 border border-white/10">
+                          <FaEnvelope size={14} />
                         </div>
                         <div>
-                          <span className="block text-white/50 text-xs font-medium mb-1 uppercase tracking-wider">Email</span>
-                          <a href="mailto:gemintangsfurqon@gmail.com" className="hover:text-brand-accent transition-colors font-medium break-all">
+                          <span className="block text-white/30 text-[10px] font-bold mb-1 uppercase tracking-[0.2em]">Email</span>
+                          <a href="mailto:gemintangsfurqon@gmail.com" className="text-white/80 hover:text-white transition-colors text-sm font-medium">
                             gemintangsfurqon@gmail.com
                           </a>
                         </div>
                       </li>
-                      <li className="flex items-start gap-4 text-white/90 text-sm group">
-                        <div className="p-2 rounded-lg bg-white/10 group-hover:bg-white/20 transition-colors">
-                          <FaPhone className="text-brand-accent" />
+                      <li className="flex items-start gap-4">
+                        <div className="p-3 rounded-none bg-white/5 border border-white/10">
+                          <FaPhone size={14} />
                         </div>
                         <div>
-                          <span className="block text-white/50 text-xs font-medium mb-1 uppercase tracking-wider">Phone</span>
-                          <a href="tel:+6282118397901" className="hover:text-brand-accent transition-colors font-medium">
+                          <span className="block text-white/30 text-[10px] font-bold mb-1 uppercase tracking-[0.2em]">Phone</span>
+                          <a href="tel:+6282118397901" className="text-white/80 hover:text-white transition-colors text-sm font-medium">
                             +62 821-1839-7901
                           </a>
                         </div>
                       </li>
-                      <li className="flex items-start gap-4 text-white/90 text-sm group">
-                        <div className="p-2 rounded-lg bg-white/10 group-hover:bg-white/20 transition-colors">
-                          <FaMapMarkerAlt className="text-brand-accent" />
+                      <li className="flex items-start gap-4">
+                        <div className="p-3 rounded-none bg-white/5 border border-white/10">
+                          <FaMapMarkerAlt size={14} />
                         </div>
                         <div>
-                          <span className="block text-white/50 text-xs font-medium mb-1 uppercase tracking-wider">Address</span>
-                          <span className="font-medium">Pulo Gadung, East Jakarta,<br />Jakarta, Indonesia</span>
+                          <span className="block text-white/30 text-[10px] font-bold mb-1 uppercase tracking-[0.2em]">Location</span>
+                          <span className="text-white/80 text-sm font-medium">Jakarta, Indonesia</span>
                         </div>
                       </li>
                     </ul>
@@ -163,14 +161,15 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Separator Line */}
-            <div className="hidden md:block h-px w-full bg-white/10 my-8" />
-
-            {/* Bottom Right: Copyright */}
-            <div className="pt-8 md:pt-0 flex justify-start items-end">
-              <p className="text-white/40 text-sm">
-                Copyright © {new Date().getFullYear()} Gemintang Sangkaji Furqon. All rights reserved.
+            {/* Bottom: Copyright */}
+            <div className="mt-20 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+              <p className="text-white/30 text-xs uppercase tracking-[0.3em]">
+                © {new Date().getFullYear()} Gemintang Sangkaji Furqon.
               </p>
+              <div className="flex gap-8">
+                <span className="text-[10px] text-white/20 uppercase tracking-widest">Designed by Gemintang</span>
+                <span className="text-[10px] text-white/20 uppercase tracking-widest cursor-pointer hover:text-white transition-colors">Privacy Policy</span>
+              </div>
             </div>
           </div>
 
