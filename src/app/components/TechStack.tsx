@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { useUI } from "../context/UIContext";
 
 const technologies = [
     "React Js",
@@ -32,6 +33,7 @@ const technologies = [
 ];
 
 export default function TechStack() {
+    const { isLoaded } = useUI();
     const [currentIndex, setCurrentIndex] = useState(0);
     const [visibleItems, setVisibleItems] = useState(1);
     const [direction, setDirection] = useState(0);
@@ -79,77 +81,91 @@ export default function TechStack() {
     }
 
     return (
-        <section className="mb-20 overflow-hidden bg-white/5 relative z-10">
-            <div className="container mx-auto px-6 mb-8 text-center pt-10">
-                <h2 className="text-3xl md:text-4xl font-bold text-brand-base">
-                    Technologies I Use
-                </h2>
-                <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
-                    A collection of frameworks, libraries, and tools I use to build robust applications.
-                </p>
-            </div>
-
-            <div className="container mx-auto px-2 md:px-6 flex items-center justify-center gap-2 md:gap-8">
-                {/* Left Button */}
-                <button
-                    onClick={prevSlide}
-                    className="p-2 md:p-3 rounded-full bg-white/10 backdrop-blur-md border border-brand-primary/20 text-brand-base hover:bg-brand-primary hover:text-white transition-all shadow-lg shrink-0"
-                    aria-label="Previous Tech"
-                >
-                    <FaChevronLeft size={16} className="md:w-5 md:h-5" />
-                </button>
-
-                {/* Carousel Window */}
-                <div className="w-full max-w-5xl overflow-hidden px-1 md:px-4" style={{ minHeight: '80px' }}>
-                    <AnimatePresence mode="wait" custom={direction}>
-                        <motion.div
-                            key={currentIndex}
-                            custom={direction}
-                            initial={{ opacity: 0, x: direction > 0 ? 50 : -50 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: direction > 0 ? -50 : 50 }}
-                            transition={{ duration: 0.4, ease: "easeInOut" }}
-                            className="flex justify-center gap-2 md:gap-8 flex-wrap md:flex-nowrap w-full"
-                        >
-                            {currentStack.map((tech, index) => (
-                                <div
-                                    key={`${tech}-${index}`}
-                                    className="flex-1 min-w-[120px] max-w-[180px] md:max-w-[200px] flex items-center justify-center px-4 py-3 md:px-6 md:py-4 rounded-xl border border-brand-primary/20 bg-white/50 backdrop-blur-sm shadow-sm hover:shadow-md hover:border-brand-primary/50 transition-all cursor-default mt-2"
-                                >
-                                    <span className="text-brand-base font-medium text-sm md:text-lg whitespace-nowrap text-center">
-                                        {tech}
-                                    </span>
-                                </div>
-                            ))}
-                        </motion.div>
-                    </AnimatePresence>
+        <section className="mb-0 overflow-hidden relative z-10 pt-0 pb-20 md:pt-0 md:pb-20 border-b border-brand-base/5">
+            <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={isLoaded ? { opacity: 1, y: 0 } : {}}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            >
+                <div className="container mx-auto px-6 mb-8 md:mb-12 text-center">
+                    <h2 className="text-2xl md:text-5xl font-black text-brand-base uppercase tracking-tighter">
+                        Technologies I Use
+                    </h2>
+                    <p className="mt-4 text-brand-accent max-w-2xl mx-auto font-light tracking-wide">
+                        A collection of frameworks, libraries, and tools I use to build robust applications.
+                    </p>
                 </div>
 
-                {/* Right Button */}
-                <button
-                    onClick={nextSlide}
-                    className="p-2 md:p-3 rounded-full bg-white/10 backdrop-blur-md border border-brand-primary/20 text-brand-base hover:bg-brand-primary hover:text-white transition-all shadow-lg shrink-0"
-                    aria-label="Next Tech"
-                >
-                    <FaChevronRight size={16} className="md:w-5 md:h-5" />
-                </button>
-            </div>
-
-            {/* Dots Indicator */}
-            <div className="flex justify-center gap-2 mt-8">
-                {Array.from({ length: totalPages }).map((_, idx) => (
+                <div className="container mx-auto px-1 md:px-6 flex items-center justify-center gap-1 md:gap-8">
+                    {/* Left Button */}
                     <button
-                        key={idx}
-                        onClick={() => {
-                            setDirection(idx > currentIndex ? 1 : -1);
-                            setCurrentIndex(idx);
-                        }}
-                        className={`w-2 h-2 rounded-full transition-all ${idx === currentIndex ? "bg-brand-primary w-6" : "bg-brand-primary/30 hover:bg-brand-primary/50"
-                            }`}
-                        aria-label={`Go to slide ${idx + 1}`}
-                    />
-                ))}
-            </div>
+                        onClick={prevSlide}
+                        className="hidden md:flex p-2 md:p-4 rounded-none bg-brand-base text-background hover:invert transition-all shadow-xl shrink-0 border border-brand-base"
+                        aria-label="Previous Tech"
+                    >
+                        <FaChevronLeft size={12} className="md:w-5 md:h-5" />
+                    </button>
+
+                    {/* Carousel Window */}
+                    <div className="w-full max-w-5xl overflow-hidden px-4 md:px-4" style={{ minHeight: '80px' }}>
+                        <AnimatePresence mode="wait" custom={direction}>
+                            <motion.div
+                                key={currentIndex}
+                                custom={direction}
+                                initial={{ opacity: 0, x: direction > 0 ? 50 : -50 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: direction > 0 ? -50 : 50 }}
+                                transition={{ duration: 0.4, ease: "easeInOut" }}
+                                drag="x"
+                                dragConstraints={{ left: 0, right: 0 }}
+                                onDragEnd={(_, info) => {
+                                    const threshold = 50;
+                                    if (info.offset.x < -threshold) nextSlide();
+                                    else if (info.offset.x > threshold) prevSlide();
+                                }}
+                                className="flex justify-center gap-2 md:gap-8 flex-wrap md:flex-nowrap w-full cursor-grab active:cursor-grabbing"
+                            >
+                                {currentStack.map((tech, index) => (
+                                    <div
+                                        key={`${tech}-${index}`}
+                                        className="flex-1 min-w-[140px] max-w-[180px] md:max-w-[200px] flex items-center justify-center px-4 py-4 md:px-6 md:py-6 rounded-none border border-brand-base/10 bg-background backdrop-blur-sm hover:border-brand-base transition-all cursor-default mt-2 group"
+                                    >
+                                        <span className="text-brand-base font-bold text-xs md:text-sm whitespace-nowrap text-center uppercase tracking-widest group-hover:scale-105 transition-transform">
+                                            {tech}
+                                        </span>
+                                    </div>
+                                ))}
+                            </motion.div>
+                        </AnimatePresence>
+                    </div>
+
+                    {/* Right Button */}
+                    <button
+                        onClick={nextSlide}
+                        className="hidden md:flex p-2 md:p-4 rounded-none bg-brand-base text-background hover:invert transition-all shadow-xl shrink-0 border border-brand-base"
+                        aria-label="Next Tech"
+                    >
+                        <FaChevronRight size={12} className="md:w-5 md:h-5" />
+                    </button>
+                </div>
+
+                {/* Dots Indicator - Slightly smaller on mobile */}
+                <div className="flex justify-center gap-2 md:gap-3 md:mt-12">
+                    {Array.from({ length: totalPages }).map((_, idx) => (
+                        <button
+                            key={idx}
+                            onClick={() => {
+                                setDirection(idx > currentIndex ? 1 : -1);
+                                setCurrentIndex(idx);
+                            }}
+                            className={`h-1 transition-all duration-300 ${idx === currentIndex ? "bg-brand-base w-12" : "bg-brand-base/20 w-4 hover:bg-brand-base/40"
+                                }`}
+                            aria-label={`Go to slide ${idx + 1}`}
+                        />
+                    ))}
+                </div>
+            </motion.div>
         </section>
     );
 }

@@ -2,7 +2,8 @@
 
 import { motion, AnimatePresence, PanInfo } from "framer-motion";
 import Image from "next/image";
-import { FaTimes, FaLayerGroup, FaCheckCircle, FaLock, FaExternalLinkAlt, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { createPortal } from "react-dom";
+import { FaTimes, FaLayerGroup, FaCheckCircle, FaLock, FaExternalLinkAlt, FaChevronLeft, FaChevronRight, FaDatabase, FaMemory, FaExclamationTriangle, FaLightbulb } from "react-icons/fa";
 import { useEffect, useState, useCallback } from "react";
 import { useUI } from "../context/UIContext";
 
@@ -21,6 +22,11 @@ interface Project {
     evidence?: string[]; // Array of image paths for screenshots/evidence
     responsibilities?: string[];
     impact?: string[];
+    tags?: string[];
+    technicalOptimizations?: {
+        title: string;
+        description: string;
+    }[];
 }
 
 interface ProjectModalProps {
@@ -101,7 +107,15 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
         }
     };
 
-    return (
+    const [mounted, setMounted] = useState(false);
+    useEffect(() => {
+        setMounted(true);
+        return () => setMounted(false);
+    }, []);
+
+    if (!mounted) return null;
+
+    return createPortal(
         <AnimatePresence>
             {project && (
                 <>
@@ -111,81 +125,125 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={onClose}
-                        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] flex items-center justify-center p-4"
+                        className="fixed inset-0 bg-background/90 backdrop-blur-sm z-[60] flex items-center justify-center p-4 md:p-8"
                     >
                         {/* Modal Container */}
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                            initial={{ opacity: 0, scale: 0.98, y: 20 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
-                            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                            exit={{ opacity: 0, scale: 0.98, y: 20 }}
+                            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                             onClick={(e) => e.stopPropagation()} // Prevent click through
-                            className="bg-white rounded-3xl w-full max-w-4xl max-h-[90vh] overflow-y-auto shadow-2xl relative"
+                            className="bg-background border border-brand-base/20 rounded-none w-full max-w-5xl max-h-[90vh] overflow-y-auto shadow-2xl relative custom-scrollbar"
                         >
                             {/* Close Button */}
                             <button
                                 onClick={onClose}
-                                className="absolute top-4 right-4 p-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 transition-colors z-10"
+                                className="absolute top-6 right-6 p-3 bg-background border border-brand-base/20 hover:bg-brand-base hover:text-background text-brand-base transition-colors z-20 rounded-none mix-blend-difference"
                             >
-                                <FaTimes size={20} />
+                                <FaTimes size={18} />
                             </button>
 
                             {/* Header Image Area */}
-                            <div className={`h-64 md:h-80 w-full ${project.image} relative`}>
-                                <div className="absolute inset-0 bg-black/30 flex flex-col justify-end p-8">
-                                    <div className="flex items-center gap-3 mb-2">
-                                        <span className="px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-white text-xs font-semibold uppercase tracking-wider border border-white/10">
+                            <div className={`h-64 md:h-96 w-full ${project.image} relative`}>
+                                <div className="absolute inset-0 bg-background/60 flex flex-col justify-end p-8 md:p-12 border-b border-brand-base/10 backdrop-blur-[2px]">
+                                    <div className="flex items-center gap-3 mb-6">
+                                        <span className="px-4 py-1.5 bg-brand-base text-background text-[10px] font-bold uppercase tracking-widest rounded-none">
                                             {project.category}
                                         </span>
                                         {project.isPrivate && (
-                                            <span className="flex items-center gap-1 px-3 py-1 rounded-full bg-red-500/80 backdrop-blur-md text-white text-xs font-semibold uppercase tracking-wider border border-white/10">
-                                                <FaLock size={10} /> Private / Enterprise
+                                            <span className="flex items-center gap-2 px-4 py-1.5 bg-background border border-brand-base/20 text-brand-base text-[10px] font-bold uppercase tracking-widest rounded-none">
+                                                <FaLock size={10} /> Private
                                             </span>
                                         )}
                                     </div>
-                                    <h2 className="text-3xl md:text-5xl font-bold text-white mb-2">{project.title}</h2>
+                                    <h2 className="text-3xl md:text-6xl font-black text-brand-base mb-2 uppercase tracking-tighter leading-none">{project.title}</h2>
                                 </div>
                             </div>
 
                             {/* Content Body */}
-                            <div className="p-8 md:p-10 space-y-10">
+                            <div className="p-8 md:p-12 space-y-16">
 
                                 {/* 1. Overview */}
                                 <div>
-                                    <h3 className="text-xl font-bold text-gray-800 mb-3 flex items-center gap-2">
-                                        Project Overview
+                                    <h3 className="text-[10px] font-bold uppercase tracking-widest text-brand-accent mb-6 border-b border-brand-base/10 pb-4">
+                                        Executive Summary
                                     </h3>
-                                    <p className="text-gray-600 leading-relaxed text-lg">
+                                    <p className="text-brand-base font-light leading-relaxed text-lg text-justify">
                                         {project.description}
                                     </p>
                                 </div>
 
                                 {/* 2. Challenge & Solution (Case Study) */}
-                                <div className="grid md:grid-cols-2 gap-8">
-                                    <div className="bg-orange-50 p-6 rounded-2xl border border-orange-100">
-                                        <h4 className="text-lg font-bold text-orange-800 mb-3">The Challenge</h4>
-                                        <p className="text-gray-700 leading-relaxed">
-                                            {project.challenge || "To be added: The specific problem statement and complexities faced during this project."}
-                                        </p>
+                                {(project.challenge || project.solution) && (
+                                    <div className="flex flex-col md:flex-row gap-6 md:gap-8">
+                                        {project.challenge && (
+                                            <div className="flex-1 p-8 md:p-10 border border-brand-base/20 bg-background relative group">
+                                                <div className="flex items-center gap-4 mb-6 pb-6 border-b border-brand-base/10">
+                                                   <span className="w-10 h-10 flex items-center justify-center bg-brand-base/5 text-brand-base border border-brand-base/20 shrink-0">
+                                                        <FaExclamationTriangle size={16} />
+                                                   </span>
+                                                    <h4 className="text-xs font-bold uppercase tracking-widest text-brand-base">
+                                                        The Challenge
+                                                    </h4>
+                                                </div>
+                                                <p className="text-brand-accent font-light leading-relaxed text-sm md:text-base text-justify">
+                                                    {project.challenge}
+                                                </p>
+                                            </div>
+                                        )}
+                                        {project.solution && (
+                                            <div className="flex-1 p-8 md:p-10 border border-brand-base bg-brand-base/5 relative group hover:bg-brand-base hover:text-background transition-all duration-500">
+                                                <div className="flex items-center gap-4 mb-6 pb-6 border-b border-brand-base/20 group-hover:border-background/20 transition-colors">
+                                                   <span className="w-10 h-10 flex items-center justify-center bg-background text-brand-base border border-brand-base/20 shrink-0 group-hover:bg-background/10 group-hover:text-background group-hover:border-background/20 transition-colors">
+                                                        <FaLightbulb size={16} />
+                                                   </span>
+                                                    <h4 className="text-xs font-bold uppercase tracking-widest text-brand-base group-hover:text-background transition-colors">
+                                                        The Solution
+                                                    </h4>
+                                                </div>
+                                                <p className="text-brand-base font-light leading-relaxed text-sm md:text-base text-justify group-hover:text-background/90 transition-colors">
+                                                    {project.solution}
+                                                </p>
+                                            </div>
+                                        )}
                                     </div>
-                                    <div className="bg-teal-50 p-6 rounded-2xl border border-teal-100">
-                                        <h4 className="text-lg font-bold text-teal-800 mb-3">The Solution</h4>
-                                        <p className="text-gray-700 leading-relaxed">
-                                            {project.solution || "To be added: The architectural approach and technical solutions implemented to solve the challenge."}
-                                        </p>
+                                )}
+
+                                {/* Technical Optimizations Section */}
+                                {project.technicalOptimizations && project.technicalOptimizations.length > 0 && (
+                                    <div>
+                                        <h3 className="text-[10px] font-bold uppercase tracking-widest text-brand-accent mb-6 border-b border-brand-base/10 pb-4">
+                                            Performance & Technical Optimization
+                                        </h3>
+                                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                            {project.technicalOptimizations.map((opt, idx) => (
+                                                <div key={idx} className="p-6 border border-brand-base/10 bg-brand-base/5 hover:bg-brand-base hover:text-background transition-all group flex flex-col gap-4">
+                                                    <div className="flex items-center gap-3">
+                                                        {idx === 0 && <FaDatabase className="text-brand-accent group-hover:text-background shrink-0" />}
+                                                        {idx === 1 && <FaMemory className="text-brand-accent group-hover:text-background shrink-0" />}
+                                                        {idx === 2 && <FaLayerGroup className="text-brand-accent group-hover:text-background shrink-0" />}
+                                                        <h4 className="text-xs font-bold uppercase tracking-wider">{opt.title}</h4>
+                                                    </div>
+                                                    <p className="text-xs font-light leading-relaxed opacity-80 group-hover:opacity-100 italic">
+                                                        "{opt.description}"
+                                                    </p>
+                                                </div>
+                                            ))}
+                                        </div>
                                     </div>
-                                </div>
+                                )}
 
                                 {/* Responsibilities & Impact */}
                                 {(project.responsibilities || project.impact) && (
-                                    <div className="grid md:grid-cols-2 gap-8">
+                                    <div className="grid md:grid-cols-2 gap-12">
                                         {project.responsibilities && (
                                             <div>
-                                                <h4 className="text-lg font-bold text-gray-800 mb-3">My Responsibilities</h4>
-                                                <ul className="space-y-2">
+                                                <h4 className="text-[10px] font-bold uppercase tracking-widest text-brand-accent mb-6 border-b border-brand-base/10 pb-4">My Role & Responsibilities</h4>
+                                                <ul className="space-y-4">
                                                     {project.responsibilities.map((item, idx) => (
-                                                        <li key={idx} className="flex gap-2 text-gray-700">
-                                                            <span className="text-brand-primary mt-1.5 w-1.5 h-1.5 rounded-full bg-current shrink-0" />
+                                                        <li key={idx} className="flex gap-4 text-brand-base font-light text-sm">
+                                                            <span className="text-brand-accent mt-0.5 text-[10px] font-bold border border-brand-base/20 px-2 rounded-none">0{idx + 1}</span>
                                                             <span className="leading-relaxed">{item}</span>
                                                         </li>
                                                     ))}
@@ -194,11 +252,11 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                         )}
                                         {project.impact && (
                                             <div>
-                                                <h4 className="text-lg font-bold text-gray-800 mb-3">Key Impact</h4>
-                                                <ul className="space-y-2">
+                                                <h4 className="text-[10px] font-bold uppercase tracking-widest text-brand-accent mb-6 border-b border-brand-base/10 pb-4">Key Impact Output</h4>
+                                                <ul className="space-y-4">
                                                     {project.impact.map((item, idx) => (
-                                                        <li key={idx} className="flex gap-2 text-gray-700">
-                                                            <span className="text-brand-accent mt-1.5 w-1.5 h-1.5 rounded-full bg-current shrink-0" />
+                                                        <li key={idx} className="flex gap-4 text-brand-base font-light text-sm">
+                                                            <span className="text-brand-base mt-0.5 text-[10px] font-bold border border-brand-base px-2 rounded-none">0{idx + 1}</span>
                                                             <span className="leading-relaxed">{item}</span>
                                                         </li>
                                                     ))}
@@ -208,16 +266,16 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                     </div>
                                 )}
 
-                                {/* 3. Key Features */}
+                                {/* 3. Key Capabilities */}
                                 <div>
-                                    <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-                                        <FaLayerGroup className="text-brand-base" /> Key Features
+                                    <h3 className="text-[10px] font-bold uppercase tracking-widest text-brand-accent mb-6 border-b border-brand-base/10 pb-4">
+                                        System Capabilities
                                     </h3>
-                                    <div className="grid md:grid-cols-2 gap-4">
-                                        {(project.features || ["Feature 1 placeholder", "Feature 2 placeholder", "Feature 3 placeholder", "Feature 4 placeholder"]).map((feature, idx) => (
-                                            <div key={idx} className="flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
-                                                <FaCheckCircle className="text-brand-accent mt-1 shrink-0" />
-                                                <span className="text-gray-700">{feature}</span>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border-t border-l border-brand-base/10">
+                                        {(project.features || []).map((feature, idx) => (
+                                            <div key={idx} className="flex items-start gap-4 p-5 border-b border-r border-brand-base/10 bg-background hover:bg-brand-base hover:text-background transition-colors group cursor-default">
+                                                <FaCheckCircle className="mt-0.5 shrink-0 text-brand-accent group-hover:text-background" />
+                                                <span className="font-light text-sm group-hover:text-background text-brand-base">{feature}</span>
                                             </div>
                                         ))}
                                     </div>
@@ -225,10 +283,12 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
                                 {/* 4. Tech Stack */}
                                 <div>
-                                    <h3 className="text-xl font-bold text-gray-800 mb-4">Technologies Used</h3>
+                                    <h3 className="text-[10px] font-bold uppercase tracking-widest text-brand-accent mb-6 border-b border-brand-base/10 pb-4">
+                                        Technology Stack
+                                    </h3>
                                     <div className="flex flex-wrap gap-2">
                                         {project.stack.map((tech) => (
-                                            <span key={tech} className="px-4 py-2 rounded-xl bg-gray-100 text-gray-700 font-medium border border-gray-200">
+                                            <span key={tech} className="px-5 py-2 border border-brand-base/20 bg-background text-brand-base text-[10px] font-bold uppercase tracking-widest hover:bg-brand-base hover:text-background transition-colors cursor-default">
                                                 {tech}
                                             </span>
                                         ))}
@@ -237,35 +297,68 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
                                 {/* 5. Evidence / Screenshots Section */}
                                 {project.evidence && project.evidence.length > 0 && (
-                                    <div>
-                                        <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-                                            Project Evidence
+                                    <div className="pt-8 border-t border-brand-base/10">
+                                        <h3 className="text-2xl md:text-3xl font-black text-brand-base mb-2 uppercase tracking-tighter">
+                                            Application Showcase
                                         </h3>
-                                        <p className="text-sm text-gray-500 mb-4">Click on an image to view in full screen.</p>
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                            {project.evidence.map((img, idx) => (
-                                                <motion.div
-                                                    key={idx}
-                                                    whileHover={{ scale: 1.02 }}
-                                                    className="rounded-xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-md transition-all cursor-pointer bg-gray-50"
-                                                    onClick={() => openLightbox(idx)}
-                                                >
-                                                    <Image
-                                                        src={img}
-                                                        alt={`Evidence ${idx + 1}`}
-                                                        width={800}
-                                                        height={600}
-                                                        className="w-full h-auto object-cover"
-                                                    />
-                                                </motion.div>
-                                            ))}
-                                        </div>
+                                        <p className="text-[10px] uppercase tracking-widest text-brand-accent mb-8">Click image to expand view</p>
+
+                                        {/* Mobile Layout vs Web Layout */}
+                                        {(project.category?.toLowerCase().includes("mobile") || project.tags?.includes("Mobile")) ? (
+                                            <div className="flex overflow-x-auto gap-4 pb-8 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                                                {project.evidence.map((img, idx) => (
+                                                    <div
+                                                        key={idx}
+                                                        className="flex-none w-[240px] md:w-[280px] snap-center overflow-hidden border border-brand-base/20 cursor-pointer bg-background group"
+                                                        onClick={() => openLightbox(idx)}
+                                                    >
+                                                        <Image
+                                                            src={img}
+                                                            alt={`Mobile Screen ${idx + 1}`}
+                                                            width={600}
+                                                            height={1200}
+                                                            className="w-full h-auto object-cover"
+                                                        />
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        ) : (
+                                            <div className={`grid grid-cols-1 ${(project.evidence?.length ?? 0) <= 2 ? "md:grid-cols-2" : "md:grid-cols-3"} gap-6 md:gap-10`}>
+                                                {project.evidence.map((img, idx) => (
+                                                    <div
+                                                        key={idx}
+                                                        className={`relative overflow-hidden border border-brand-base/10 shadow-sm cursor-pointer bg-brand-base/5 group transition-all duration-500 hover:border-brand-base hover:shadow-2xl hover:-translate-y-2 ${(project.evidence?.length ?? 0) > 2 && idx === 0 ? "md:col-span-2 md:row-span-2" : ""}`}
+                                                        onClick={() => openLightbox(idx)}
+                                                    >
+                                                        {/* Browser-like Header (Minimal) */}
+                                                        <div className="flex gap-1.5 p-3 border-b border-brand-base/5 bg-background/50">
+                                                            <div className="w-2 h-2 rounded-full bg-brand-base/10 group-hover:bg-brand-base/30 transition-colors"></div>
+                                                            <div className="w-2 h-2 rounded-full bg-brand-base/10 group-hover:bg-brand-base/30 transition-colors"></div>
+                                                            <div className="w-2 h-2 rounded-full bg-brand-base/10 group-hover:bg-brand-base/30 transition-colors"></div>
+                                                        </div>
+                                                        
+                                                        <div className="relative overflow-hidden aspect-video">
+                                                            <Image
+                                                                src={img}
+                                                                alt={`Web Screen ${idx + 1}`}
+                                                                width={1200}
+                                                                height={800}
+                                                                className="w-full h-full object-cover grayscale-[0.5] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                                                            />
+                                                            <div className="absolute inset-0 bg-brand-base/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                                                <span className="bg-background text-brand-base px-4 py-2 text-[10px] font-bold uppercase tracking-widest border border-brand-base translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                                                    Expand View
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
                                     </div>
                                 )}
 
-                                {/* Footer / CTA usually empty for private projects, or link to contact */}
-
-                                {/* Footer / CTA - Refined Privacy Logic */}
+                                {/* Footer / CTA - Refined Logic */}
                                 {(() => {
                                     const hasLink = project.link && project.link !== "#";
                                     const isSemiPrivate = project.isPrivate && hasLink;
@@ -274,12 +367,12 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
                                     if (isFullyPrivate) {
                                         return (
-                                            <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 text-center">
-                                                <p className="text-gray-500 text-sm mb-2">
-                                                    Due to non-disclosure agreements, source code and live demos are not available.
+                                            <div className="border border-brand-base/10 p-8 text-center bg-brand-base/5">
+                                                <p className="text-brand-accent text-xs font-light mb-4">
+                                                    Due to non-disclosure agreements, source code and live demos are restricted.
                                                 </p>
-                                                <p className="font-medium text-brand-base">
-                                                    Interested in the technical details? <a href="/contact" className="underline hover:text-brand-primary">Let&apos;s chat about it.</a>
+                                                <p className="text-[10px] font-bold text-brand-base uppercase tracking-widest">
+                                                    <a href="/contact" className="hover:text-brand-accent underline decoration-brand-base/30 underline-offset-4">Inquire for details</a>
                                                 </p>
                                             </div>
                                         );
@@ -287,17 +380,17 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
                                     if (isSemiPrivate) {
                                         return (
-                                            <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 text-center">
-                                                <p className="text-gray-500 text-sm mb-4">
-                                                    Source code is not available due to non-disclosure agreements, but you can view the live result.
+                                            <div className="border border-brand-base/10 p-8 text-center bg-brand-base/5 flex flex-col items-center">
+                                                <p className="text-brand-accent text-xs font-light mb-6">
+                                                    Source code is NDA restricted, but you can explore the production environment.
                                                 </p>
                                                 <a
                                                     href={project.link}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="inline-flex items-center gap-2 px-6 py-3 bg-brand-base text-white rounded-xl font-medium hover:bg-brand-primary transition-all shadow-md hover:shadow-lg"
+                                                    className="inline-flex items-center gap-3 px-8 py-3 bg-brand-base text-background text-[10px] uppercase tracking-widest font-bold hover:invert transition-all"
                                                 >
-                                                    <FaExternalLinkAlt /> Visit Live Site
+                                                    <FaExternalLinkAlt /> Open in Browser
                                                 </a>
                                             </div>
                                         );
@@ -305,28 +398,24 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
                                     if (isPublic) {
                                         return (
-                                            <div className="flex flex-wrap gap-4 mt-8">
+                                            <div className="flex flex-col md:flex-row gap-4 border-t border-brand-base/10 pt-12">
                                                 {hasLink && (
                                                     <a
                                                         href={project.link}
                                                         target="_blank"
                                                         rel="noopener noreferrer"
-                                                        className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand-base text-white rounded-xl font-medium hover:bg-brand-primary transition-all shadow-md hover:shadow-lg"
+                                                        className="flex-1 inline-flex items-center justify-center gap-3 px-8 py-4 bg-brand-base text-background text-[10px] uppercase tracking-widest font-bold hover:invert transition-all"
                                                     >
-                                                        {project.link.includes("github.com") ? "View Source Code" : "Visit Live Site"}
+                                                        {project.link.includes("github.com") ? "View Repository" : "Open in Browser"}
                                                         {project.link.includes("github.com") ? null : <FaExternalLinkAlt />}
                                                     </a>
                                                 )}
-                                                {/* If we had a separate source code link field, we would use it here. 
-                                                    For now, assuming public projects with github links in 'link' field are just 'View Source' 
-                                                    or if we want separate buttons we'd need data structure change. 
-                                                    Sticking to generic 'Visit' or inferred 'View Source' based on URL. */}
                                             </div>
                                         );
                                     }
+                                    return null;
                                 })()}
                             </div>
-
                         </motion.div>
                     </motion.div>
 
@@ -401,6 +490,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                     </AnimatePresence>
                 </>
             )}
-        </AnimatePresence>
+        </AnimatePresence>,
+        document.body
     );
 }

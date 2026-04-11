@@ -1,0 +1,72 @@
+"use client";
+
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import { useUI } from "../context/UIContext";
+
+export default function Preloader() {
+    const [show, setShow] = useState(true);
+    const { setLoaded } = useUI();
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShow(false);
+            // Give extra time for the fade-out animation before marking as loaded
+            setTimeout(() => setLoaded(true), 1000);
+        }, 2500);
+
+        return () => clearTimeout(timer);
+    }, [setLoaded]);
+
+    return (
+        <AnimatePresence>
+            {show && (
+                <motion.div
+                    exit={{ opacity: 0, transition: { duration: 1, ease: [0.22, 1, 0.36, 1] } }}
+                    className="fixed inset-0 z-[9999] bg-black flex flex-col items-center justify-center overflow-hidden"
+                >
+                    <div className="relative">
+                        {/* Elegant name animation */}
+                        <motion.h1
+                            initial={{ opacity: 0, letterSpacing: "1.5em", filter: "blur(10px)" }}
+                            animate={{ opacity: 1, letterSpacing: "0.5em", filter: "blur(0px)" }}
+                            transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+                            className="text-white text-2xl md:text-4xl font-black uppercase tracking-[0.5em] ml-[0.5em]"
+                        >
+                            Gemintang
+                        </motion.h1>
+
+                        {/* Progress bar line */}
+                        <motion.div 
+                            initial={{ scaleX: 0 }}
+                            animate={{ scaleX: 1 }}
+                            transition={{ duration: 2, ease: "linear" }}
+                            className="absolute -bottom-4 left-0 right-0 h-[1px] bg-white transform origin-left"
+                        />
+                    </div>
+
+                    <motion.p
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 0.4, y: 0 }}
+                        transition={{ delay: 1, duration: 1 }}
+                        className="text-white/40 text-[10px] uppercase font-bold tracking-[0.3em] mt-12"
+                    >
+                        Initializing Creative Space
+                    </motion.p>
+
+                    {/* Decorative corners */}
+                    <motion.div 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 0.2 }}
+                        className="absolute top-10 left-10 w-20 h-20 border-t border-l border-white"
+                    />
+                    <motion.div 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 0.2 }}
+                        className="absolute bottom-10 right-10 w-20 h-20 border-b border-r border-white"
+                    />
+                </motion.div>
+            )}
+        </AnimatePresence>
+    );
+}
