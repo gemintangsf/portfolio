@@ -5,6 +5,7 @@
         "Mobile",
         "Enterprise",
         "AI",
+        "E-Commerce",
         "Others"
     ],
     "projects": [
@@ -42,7 +43,9 @@
             ],
             "tags": [
                 "Mobile"
-            ]
+            ],
+            "playStore": "https://play.google.com/store/apps/details?id=com.periplus.hc",
+            "appStore": "https://apps.apple.com/app/periplus-human-capital/id1669643043"
         },
         {
             "id": 2,
@@ -93,10 +96,76 @@
             ],
             "tags": [
                 "Mobile"
-            ]
+            ],
+            "playStore": "https://play.google.com/store/apps/details?id=com.periplus.hc",
+            "appStore": "https://apps.apple.com/app/periplus-human-capital/id1669643043"
         },
         {
             "id": 3,
+            "title": "PeriplusApps Mobile",
+            "category": "Mobile Application",
+            "description": "Contributed to the development and refinement of PeriplusApps, a mobile e-commerce application aligned with periplus.com. Focused on improving performance, fixing UI inconsistencies across devices, and ensuring feature reliability across multiple modules.",
+            "image": "bg-brand-highlight",
+            "stack": [
+                "Flutter",
+                "REST API Integration",
+                "Responsive Design",
+                "Bug Fixing & Optimization"
+            ],
+            "link": "#",
+            "isPrivate": true,
+            "challenge": "Maintaining consistent performance and UI behavior across mobile and tablet devices while handling multiple interconnected features and API integrations.",
+            "solution": "Optimized API usage, fixed data mapping issues, and improved UI responsiveness across various modules to ensure a stable and consistent user experience.",
+            "features": [
+                "Wishlist Management",
+                "Barcode (PEC) Integration",
+                "Authentication & Profile Handling",
+                "Cart & Transaction Flow",
+                "Store Locator",
+                "E-Coupon & Reward System"
+            ],
+            "technicalOptimizations": [
+                {
+                    "title": "API Optimization",
+                    "description": "Removed redundant API calls and fixed incorrect endpoint usage to improve efficiency."
+                },
+                {
+                    "title": "Responsive UI Improvements",
+                    "description": "Adjusted layouts and components to ensure consistency across mobile and tablet devices."
+                },
+                {
+                    "title": "Bug Fixing & Data Mapping",
+                    "description": "Resolved multiple issues including incorrect request mapping, UI overflow, and inconsistent state handling."
+                }
+            ],
+            "evidence": [
+                "/assets/mobile_p+/2.jpeg",
+                "/assets/mobile_p+/3.jpeg",
+                "/assets/mobile_p+/4.jpeg",
+                "/assets/mobile_p+/5.jpeg",
+                "/assets/mobile_p+/6.jpeg",
+                "/assets/mobile_p+/7.jpeg",
+                "/assets/mobile_p+/8.jpeg",
+                "/assets/mobile_p+/9.jpeg",
+                "/assets/mobile_p+/10.jpeg",
+                "/assets/mobile_p+/11.jpeg",
+                "/assets/mobile_p+/12.jpeg",
+                "/assets/mobile_p+/13.jpeg",
+                "/assets/mobile_p+/14.jpeg",
+                "/assets/mobile_p+/15.jpeg",
+                "/assets/mobile_p+/16.jpeg",
+                "/assets/mobile_p+/17.jpeg",
+                "/assets/mobile_p+/18.jpeg"
+            ],
+            "tags": [
+                "Mobile",
+                "E-Commerce"
+            ],
+            "playStore": "https://play.google.com/store/apps/details?id=com.bookindo.periplus.periplus",
+            "appStore": "https://apps.apple.com/id/app/periplus/id6444208499"
+        },
+        {
+            "id": 4,
             "title": "Mobile POS (Point of Sale) Application",
             "category": "Retail System",
             "description": "Developed a mobile-based POS application to support cashier operations, including transaction processing, product handling, and receipt printing. The application is designed to be simple, responsive, and easier to maintain compared to traditional desktop-based POS systems.",
@@ -124,10 +193,11 @@
             ],
             "tags": [
                 "Mobile"
-            ]
+            ],
+            "forceDesktopStyle": true
         },
         {
-            "id": 4,
+            "id": 5,
             "title": "Book Search & Recommendation System",
             "category": "Search System",
             "description": "Developed a book search and recommendation system to improve search relevance and user experience on a large product catalog. The system includes keyword-based search, search suggestions, and basic recommendation features.",
@@ -157,11 +227,12 @@
             ],
             "tags": [
                 "Web",
-                "AI"
+                "AI",
+                "E-Commerce"
             ]
         },
         {
-            "id": 5,
+            "id": 6,
             "title": "NADIA – Network Terminal Equipment Management",
             "category": "Enterprise Application",
             "description": "An internal system used by Telkom Indonesia to manage Network Terminal Equipment (NTE) assets, such as customer routers that need to be returned after service termination. Contributed to improving unclear workflows, fixing issues in legacy features, and making the system more structured and maintainable.",
@@ -207,7 +278,7 @@
             ]
         },
         {
-            "id": 6,
+            "id": 7,
             "title": "PEFITA – Package Management System",
             "category": "Enterprise Application",
             "description": "Contributed to an internal package management system used to calculate and manage product packages for other applications. Focused on improving the map-based visualization feature for better location context.",
@@ -235,7 +306,7 @@
             ]
         },
         {
-            "id": 7,
+            "id": 8,
             "title": "SCONE – Order Management System",
             "category": "Enterprise Application",
             "description": "Contributed to an internal order management system used by Telkom Indonesia. Worked on migrating the legacy UI to Next.js and supporting order flow integration with other systems.",
@@ -264,7 +335,7 @@
             ]
         },
         {
-            "id": 8,
+            "id": 9,
             "title": "DMS – Document Management System",
             "category": "Enterprise Application",
             "description": "Contributed to the development of an internal document management system for Telkom Indonesia. Built a document landing page with CRUD functionality to support document uploads and usage by other systems.",
@@ -297,7 +368,7 @@
             ]
         },
         {
-            "id": 9,
+            "id": 10,
             "title": "PPT – Master Data Management",
             "category": "Enterprise Application",
             "description": "Contributed to updating the frontend of a Master Data Management system by migrating from a legacy PHP-based interface to a Next.js application. Focused on improving usability and aligning with existing UI standards.",
@@ -323,7 +394,7 @@
             ]
         },
         {
-            "id": 10,
+            "id": 11,
             "title": "PABOI (Indonesia Orthopedic Association) Web Application",
             "category": "Full Stack Intern Project",
             "description": "Contributed to the development and maintenance of the PABOI web application during a 4-month internship. Worked on both backend and frontend tasks as needed, gaining experience in a team-based development environment.",
@@ -348,7 +419,7 @@
             ]
         },
         {
-            "id": 11,
+            "id": 12,
             "title": "JTK Berbagi – Donation Management Platform",
             "category": "Others",
             "description": "Developed a donation management platform for the Computer Engineering Department at POLBAN. The system helps manage donation campaigns, track transactions, and organize distribution in a more structured way.",
@@ -379,7 +450,7 @@
             ]
         },
         {
-            "id": 12,
+            "id": 13,
             "title": "Sinbada",
             "category": "Others",
             "description": "Developed a web-based inventory system as part of a university team project. The system was used to manage asset and inventory data.",
@@ -409,7 +480,7 @@
             ]
         },
         {
-            "id": 13,
+            "id": 14,
             "title": "Siinvent",
             "category": "Others",
             "description": "Developed a web-based inventory management system as part of an early university team project. The system was used to manage inventory data and basic stock tracking.",
