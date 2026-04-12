@@ -88,13 +88,13 @@ export default function AboutPage() {
             </p>
 
             <p className="text-base opacity-90 italic">
-              Tech stack: Flutter, NestJS, Next.js, React, PostgreSQL, MySQL.
+              Tech stack: Flutter, NestJS, Next.js, Python, PostgreSQL, MySQL.
             </p>
 
 
             <div className="pt-2">
               <motion.a
-                href="https://drive.google.com/file/d/11tTDEuKvSlyvgbA0gWvBT8xzOGcqPO2u/view?usp=sharing"
+                href="https://drive.google.com/file/d/1pM1gkkSRh9u7QdJRbPwICaRId_3yLnb8/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}

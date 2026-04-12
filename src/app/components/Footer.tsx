@@ -46,7 +46,7 @@ export default function Footer() {
               </p>
 
               <a
-                href="https://drive.google.com/file/d/11tTDEuKvSlyvgbA0gWvBT8xzOGcqPO2u/view?usp=sharing"
+                href="https://drive.google.com/file/d/1pM1gkkSRh9u7QdJRbPwICaRId_3yLnb8/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 px-8 py-4 bg-white text-black border border-white rounded-none text-sm font-bold hover:bg-transparent hover:text-white transition-all shadow-xl w-fit uppercase tracking-widest"
