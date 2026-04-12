@@ -3,7 +3,7 @@
 import { motion, AnimatePresence, PanInfo } from "framer-motion";
 import Image from "next/image";
 import { createPortal } from "react-dom";
-import { FaTimes, FaLayerGroup, FaCheckCircle, FaLock, FaExternalLinkAlt, FaChevronLeft, FaChevronRight, FaDatabase, FaMemory, FaExclamationTriangle, FaLightbulb } from "react-icons/fa";
+import { FaTimes, FaLayerGroup, FaCheckCircle, FaLock, FaExternalLinkAlt, FaChevronLeft, FaChevronRight, FaDatabase, FaMemory, FaExclamationTriangle, FaLightbulb, FaGooglePlay, FaApple } from "react-icons/fa";
 import { useEffect, useState, useCallback } from "react";
 import { useUI } from "../context/UIContext";
 
@@ -23,6 +23,9 @@ interface Project {
     responsibilities?: string[];
     impact?: string[];
     tags?: string[];
+    playStore?: string;
+    appStore?: string;
+    forceDesktopStyle?: boolean;
     technicalOptimizations?: {
         title: string;
         description: string;
@@ -162,7 +165,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                             </div>
 
                             {/* Content Body */}
-                            <div className="p-8 md:p-12 space-y-16">
+                            <div className="p-8 md:p-12 space-y-10">
 
                                 {/* 1. Overview */}
                                 <div>
@@ -180,9 +183,9 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                         {project.challenge && (
                                             <div className="flex-1 p-8 md:p-10 border border-brand-base/20 bg-background relative group">
                                                 <div className="flex items-center gap-4 mb-6 pb-6 border-b border-brand-base/10">
-                                                   <span className="w-10 h-10 flex items-center justify-center bg-brand-base/5 text-brand-base border border-brand-base/20 shrink-0">
+                                                    <span className="w-10 h-10 flex items-center justify-center bg-brand-base/5 text-brand-base border border-brand-base/20 shrink-0">
                                                         <FaExclamationTriangle size={16} />
-                                                   </span>
+                                                    </span>
                                                     <h4 className="text-xs font-bold uppercase tracking-widest text-brand-base">
                                                         The Challenge
                                                     </h4>
@@ -195,9 +198,9 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                         {project.solution && (
                                             <div className="flex-1 p-8 md:p-10 border border-brand-base bg-brand-base/5 relative group hover:bg-brand-base hover:text-background transition-all duration-500">
                                                 <div className="flex items-center gap-4 mb-6 pb-6 border-b border-brand-base/20 group-hover:border-background/20 transition-colors">
-                                                   <span className="w-10 h-10 flex items-center justify-center bg-background text-brand-base border border-brand-base/20 shrink-0 group-hover:bg-background/10 group-hover:text-background group-hover:border-background/20 transition-colors">
+                                                    <span className="w-10 h-10 flex items-center justify-center bg-background text-brand-base border border-brand-base/20 shrink-0 group-hover:bg-background/10 group-hover:text-background group-hover:border-background/20 transition-colors">
                                                         <FaLightbulb size={16} />
-                                                   </span>
+                                                    </span>
                                                     <h4 className="text-xs font-bold uppercase tracking-widest text-brand-base group-hover:text-background transition-colors">
                                                         The Solution
                                                     </h4>
@@ -297,29 +300,53 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
                                 {/* 5. Evidence / Screenshots Section */}
                                 {project.evidence && project.evidence.length > 0 && (
-                                    <div className="pt-8 border-t border-brand-base/10">
+                                    <div className="pt-6 border-t border-brand-base/10">
                                         <h3 className="text-2xl md:text-3xl font-black text-brand-base mb-2 uppercase tracking-tighter">
                                             Application Showcase
                                         </h3>
                                         <p className="text-[10px] uppercase tracking-widest text-brand-accent mb-8">Click image to expand view</p>
 
                                         {/* Mobile Layout vs Web Layout */}
-                                        {(project.category?.toLowerCase().includes("mobile") || project.tags?.includes("Mobile")) ? (
-                                            <div className="flex overflow-x-auto gap-4 pb-8 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                                        {((project.category?.toLowerCase().includes("mobile") || project.tags?.includes("Mobile")) && !project.forceDesktopStyle) ? (
+                                            <div className="flex overflow-x-auto gap-8 snap-x snap-mandatory custom-scrollbar-hide">
                                                 {project.evidence.map((img, idx) => (
-                                                    <div
+                                                    <motion.div
                                                         key={idx}
-                                                        className="flex-none w-[240px] md:w-[280px] snap-center overflow-hidden border border-brand-base/20 cursor-pointer bg-background group"
+                                                        initial={{ opacity: 0, x: 40 }}
+                                                        whileInView={{ opacity: 1, x: 0 }}
+                                                        viewport={{ once: true }}
+                                                        transition={{ delay: idx * 0.05 }}
+                                                        className="flex-none w-[260px] md:w-[320px] snap-center group relative cursor-pointer"
                                                         onClick={() => openLightbox(idx)}
                                                     >
-                                                        <Image
-                                                            src={img}
-                                                            alt={`Mobile Screen ${idx + 1}`}
-                                                            width={600}
-                                                            height={1200}
-                                                            className="w-full h-auto object-cover"
-                                                        />
-                                                    </div>
+                                                        {/* Mock Phone Frame - Refined for better definition */}
+                                                        <div className="relative rounded-[2.5rem] md:rounded-[3rem] border-[8px] md:border-[14px] border-brand-highlight shadow-2xl overflow-hidden aspect-[9/19.5] transition-all duration-500 group-hover:border-brand-accent group-hover:-translate-y-4 bg-[#050505] ring-1 ring-brand-base/5">
+                                                            {/* Dynamic Island Style Notch */}
+                                                            <div className="absolute top-3 md:top-4 left-1/2 -translate-x-1/2 w-[30%] h-4 md:h-5 bg-black rounded-full z-20 border border-white/5 shadow-xl group-hover:bg-brand-accent/20 transition-colors flex items-center justify-center">
+                                                                <div className="w-1 h-1 rounded-full bg-white/5 mx-auto"></div>
+                                                            </div>
+
+                                                            <Image
+                                                                src={img}
+                                                                alt={`Mobile Screen ${idx + 1}`}
+                                                                fill
+                                                                className="object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                                                            />
+
+                                                            {/* Inner Bezel Depth Shadow */}
+                                                            <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_40px_rgba(255,255,255,0.03)] opacity-60"></div>
+
+                                                            {/* Expand Hover Overlay */}
+                                                            <div className="absolute inset-0 bg-brand-base/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                                                                <span className="bg-background text-brand-base px-5 py-2 text-[10px] font-bold uppercase tracking-widest border border-brand-base translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                                                    View Full
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
+                                                        {/* Visual Shadow Bottom */}
+                                                        <div className="mt-4 w-4/5 h-2 bg-brand-base/10 mx-auto blur-lg group-hover:bg-brand-accent/40 transition-all duration-500 rounded-full"></div>
+                                                    </motion.div>
                                                 ))}
                                             </div>
                                         ) : (
@@ -330,13 +357,17 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                                         className={`relative overflow-hidden border border-brand-base/10 shadow-sm cursor-pointer bg-brand-base/5 group transition-all duration-500 hover:border-brand-base hover:shadow-2xl hover:-translate-y-2 ${(project.evidence?.length ?? 0) > 2 && idx === 0 ? "md:col-span-2 md:row-span-2" : ""}`}
                                                         onClick={() => openLightbox(idx)}
                                                     >
-                                                        {/* Browser-like Header (Minimal) */}
-                                                        <div className="flex gap-1.5 p-3 border-b border-brand-base/5 bg-background/50">
-                                                            <div className="w-2 h-2 rounded-full bg-brand-base/10 group-hover:bg-brand-base/30 transition-colors"></div>
-                                                            <div className="w-2 h-2 rounded-full bg-brand-base/10 group-hover:bg-brand-base/30 transition-colors"></div>
-                                                            <div className="w-2 h-2 rounded-full bg-brand-base/10 group-hover:bg-brand-base/30 transition-colors"></div>
+                                                        {/* Browser-like Header (Refined) */}
+                                                        <div className="flex items-center gap-3 p-3 border-b border-brand-base/5 bg-background/40 backdrop-blur-md">
+                                                            <div className="flex gap-1.5">
+                                                                <div className="w-2.5 h-2.5 rounded-full bg-brand-base/10 group-hover:bg-brand-base/30 transition-colors"></div>
+                                                                <div className="w-2.5 h-2.5 rounded-full bg-brand-base/10 group-hover:bg-brand-base/30 transition-colors"></div>
+                                                                <div className="w-2.5 h-2.5 rounded-full bg-brand-base/10 group-hover:bg-brand-base/30 transition-colors"></div>
+                                                            </div>
+                                                            {/* Mock Address Bar */}
+                                                            <div className="flex-1 max-w-[200px] h-4 bg-brand-base/5 rounded-full border border-brand-base/5"></div>
                                                         </div>
-                                                        
+
                                                         <div className="relative overflow-hidden aspect-video">
                                                             <Image
                                                                 src={img}
@@ -346,8 +377,8 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                                                 className="w-full h-full object-cover grayscale-[0.5] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
                                                             />
                                                             <div className="absolute inset-0 bg-brand-base/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                                                <span className="bg-background text-brand-base px-4 py-2 text-[10px] font-bold uppercase tracking-widest border border-brand-base translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                                                                    Expand View
+                                                                <span className="bg-background text-brand-base px-5 py-2 text-[10px] font-bold uppercase tracking-widest border border-brand-base translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                                                    View Full
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -361,8 +392,9 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                 {/* Footer / CTA - Refined Logic */}
                                 {(() => {
                                     const hasLink = project.link && project.link !== "#";
-                                    const isSemiPrivate = project.isPrivate && hasLink;
-                                    const isFullyPrivate = project.isPrivate && !hasLink;
+                                    const hasStore = project.playStore || project.appStore;
+                                    const isSemiPrivate = project.isPrivate && (hasLink || hasStore);
+                                    const isFullyPrivate = project.isPrivate && !hasLink && !hasStore;
                                     const isPublic = !project.isPrivate;
 
                                     if (isFullyPrivate) {
@@ -378,38 +410,48 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                         );
                                     }
 
-                                    if (isSemiPrivate) {
+                                    if (isSemiPrivate || isPublic) {
                                         return (
-                                            <div className="border border-brand-base/10 p-8 text-center bg-brand-base/5 flex flex-col items-center">
-                                                <p className="text-brand-accent text-xs font-light mb-6">
-                                                    Source code is NDA restricted, but you can explore the production environment.
-                                                </p>
-                                                <a
-                                                    href={project.link}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="inline-flex items-center gap-3 px-8 py-3 bg-brand-base text-background text-[10px] uppercase tracking-widest font-bold hover:invert transition-all"
-                                                >
-                                                    <FaExternalLinkAlt /> Open in Browser
-                                                </a>
-                                            </div>
-                                        );
-                                    }
-
-                                    if (isPublic) {
-                                        return (
-                                            <div className="flex flex-col md:flex-row gap-4 border-t border-brand-base/10 pt-12">
-                                                {hasLink && (
-                                                    <a
-                                                        href={project.link}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="flex-1 inline-flex items-center justify-center gap-3 px-8 py-4 bg-brand-base text-background text-[10px] uppercase tracking-widest font-bold hover:invert transition-all"
-                                                    >
-                                                        {project.link.includes("github.com") ? "View Repository" : "Open in Browser"}
-                                                        {project.link.includes("github.com") ? null : <FaExternalLinkAlt />}
-                                                    </a>
+                                            <div className="flex flex-col gap-6 border-t border-brand-base/10 pt-4">
+                                                {(isSemiPrivate && !isPublic) && (
+                                                    <p className="text-brand-accent text-xs font-light text-center mb-2">
+                                                        Source code is NDA restricted, but you can explore the production environment.
+                                                    </p>
                                                 )}
+
+                                                <div className="flex flex-col md:flex-row gap-4 justify-center">
+                                                    {project.playStore && (
+                                                        <a
+                                                            href={project.playStore}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="flex-1 inline-flex items-center justify-center gap-3 px-8 py-4 bg-background border border-brand-base text-brand-base text-[10px] uppercase tracking-widest font-bold hover:bg-brand-base hover:text-background transition-all"
+                                                        >
+                                                            <FaGooglePlay size={16} /> Google Play
+                                                        </a>
+                                                    )}
+                                                    {project.appStore && (
+                                                        <a
+                                                            href={project.appStore}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="flex-1 inline-flex items-center justify-center gap-3 px-8 py-4 bg-background border border-brand-base text-brand-base text-[10px] uppercase tracking-widest font-bold hover:bg-brand-base hover:text-background transition-all"
+                                                        >
+                                                            <FaApple size={18} /> App Store
+                                                        </a>
+                                                    )}
+                                                    {hasLink && (
+                                                        <a
+                                                            href={project.link}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="flex-1 inline-flex items-center justify-center gap-3 px-8 py-4 bg-brand-base text-background text-[10px] uppercase tracking-widest font-bold hover:invert transition-all"
+                                                        >
+                                                            {project.link.includes("github.com") ? "View Repository" : "Open in Browser"}
+                                                            {project.link.includes("github.com") ? null : <FaExternalLinkAlt />}
+                                                        </a>
+                                                    )}
+                                                </div>
                                             </div>
                                         );
                                     }
