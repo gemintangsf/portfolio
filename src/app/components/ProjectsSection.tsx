@@ -38,6 +38,9 @@ interface Project {
     responsibilities?: string[];
     impact?: string[];
     tags?: string[];
+    playStore?: string;
+    appStore?: string;
+    forceDesktopStyle?: boolean;
     technicalOptimizations?: {
         title: string;
         description: string;
@@ -83,23 +86,29 @@ export default function ProjectsSection() {
         }, 500);
     };
 
-    const getProjectIcon = (id: number) => {
-        switch (id) {
-            case 1:
-            case 2: return <FaMobileAlt />;
-            case 3: return <FaShoppingCart />;
-            case 4: return <FaBrain />;
-            case 5: return <FaNetworkWired />;
-            case 6: return <FaPlane />;
-            case 7: return <FaLaptopCode />;
-            case 8: return <FaFileAlt />;
-            case 9: return <FaNetworkWired />;
-            case 10: return <FaHospital />;
-            case 11: return <FaHeart />;
-            case 12: return <FaBoxes />;
+    const getProjectIcon = (project: Project) => {
+        // ID-based overrides first
+        switch (project.id) {
+            case 4: return <FaShoppingCart />;
+            case 5: return <FaBrain />;
+            case 6: return <FaNetworkWired />;
+            case 7: return <FaPlane />;
+            case 8: return <FaLaptopCode />;
+            case 9: return <FaFileAlt />;
+            case 10: return <FaNetworkWired />;
+            case 11: return <FaHospital />;
+            case 12: return <FaHeart />;
             case 13: return <FaBoxes />;
-            default: return <FaCode />;
+            case 14: return <FaBoxes />;
         }
+
+        // Category/Keyword based fallback
+        if (project.category.toLowerCase().includes("mobile") || 
+            project.title.toLowerCase().includes("mobile")) {
+            return <FaMobileAlt />;
+        }
+        
+        return <FaCode />;
     };
 
     if (isLoading) {
@@ -192,7 +201,7 @@ export default function ProjectsSection() {
                                 </div>
 
                                 <div className="absolute inset-0 flex items-center justify-center text-brand-base/20 text-6xl pointer-events-none">
-                                    {getProjectIcon(project.id)}
+                                    {getProjectIcon(project)}
                                 </div>
 
                                 {project.isPrivate && (
@@ -264,7 +273,7 @@ export default function ProjectsSection() {
                                     onClick={() => setSelectedProject(project)}
                                 >
                                     <div className="absolute inset-0 flex items-center justify-center text-brand-base/20 text-5xl pointer-events-none">
-                                        {getProjectIcon(project.id)}
+                                        {getProjectIcon(project)}
                                     </div>
                                 </div>
 
