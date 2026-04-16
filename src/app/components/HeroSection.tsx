@@ -85,7 +85,7 @@ export default function HeroSection() {
         <Link
           href={pathname === '/' ? '#contact' : '/#contact'}
           onClick={(e) => handleScroll(e, "contact")}
-          className="px-8 py-3.5 md:px-10 md:py-4 w-full sm:w-auto rounded-none bg-transparent text-brand-base border border-brand-base hover:invert transition-all font-bold text-sm md:text-lg shadow-lg uppercase tracking-widest"
+          className="px-8 py-3.5 md:px-10 md:py-4 w-full sm:w-auto rounded-none bg-transparent text-brand-base border border-brand-base hover:bg-brand-base hover:text-background transition-all duration-300 font-bold text-sm md:text-lg shadow-lg uppercase tracking-widest"
         >
           Contact
         </Link>

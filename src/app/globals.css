@@ -16,9 +16,25 @@ html {
 
   --color-surface: #ffffff;    /* Pure White for surfaces */
   --color-on-surface: #000000;
+  --color-base-rgb: 255, 255, 255;
 
   --font-geist-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-geist-mono: "Roboto Mono", "Courier New", monospace;
+}
+
+[data-theme='light'] {
+  --background: #ffffff;
+  --foreground: #000000;
+
+  /* Reversed Monochrome Palette */
+  --color-base: #000000;      /* Pure Black as base text */
+  --color-primary: #171717;   /* Charcoal as primary text */
+  --color-accent: #525252;    /* Dark Gray as accent */
+  --color-highlight: #f5f5f5; /* Light Gray for highlights/surfaces */
+
+  --color-surface: #000000;
+  --color-on-surface: #ffffff;
+  --color-base-rgb: 0, 0, 0;
 }
 
 @theme inline {

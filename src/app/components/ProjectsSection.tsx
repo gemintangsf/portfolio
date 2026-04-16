@@ -147,19 +147,24 @@ export default function ProjectsSection() {
                 </p>
             </motion.div>
 
-            <div className="flex flex-wrap justify-center gap-3 mb-8">
-                {categories.map((cat) => (
-                    <button
-                        key={cat}
-                        onClick={() => setSelectedCategory(cat)}
-                        className={`px-5 py-2 rounded-none text-sm font-medium transition-all duration-300 ${selectedCategory === cat
-                            ? "bg-brand-base text-background shadow-lg"
-                            : "bg-background text-brand-accent hover:bg-brand-highlight hover:text-brand-base border border-brand-base/10"
-                            } uppercase tracking-widest`}
-                    >
-                        {cat}
-                    </button>
-                ))}
+            {/* Category Filter - Fixed for Mobile */}
+            <div className="relative mb-12">
+                <div className="flex flex-nowrap md:flex-wrap justify-start md:justify-center gap-3 overflow-x-auto pb-4 px-2 custom-scrollbar-hide md:overflow-visible snap-x snap-mandatory">
+                    {categories.map((cat) => (
+                        <button
+                            key={cat}
+                            onClick={() => setSelectedCategory(cat)}
+                            className={`flex-none snap-start px-6 py-2.5 rounded-full text-[10px] md:text-xs font-bold transition-all duration-300 border uppercase tracking-[0.2em] whitespace-nowrap ${selectedCategory === cat
+                                ? "bg-brand-base text-brand-on-surface border-brand-base shadow-[0_0_20px_rgba(var(--color-base-rgb),0.15)]"
+                                : "bg-brand-base/5 text-brand-accent hover:text-brand-base border-brand-base/10 hover:border-brand-base/30 backdrop-blur-sm"
+                                }`}
+                        >
+                            {cat}
+                        </button>
+                    ))}
+                </div>
+                {/* Visual fade effect for mobile scroll hint */}
+                <div className="absolute right-0 top-0 bottom-4 w-12 bg-gradient-to-l from-background to-transparent pointer-events-none md:hidden" />
             </div>
 
             <AnimatePresence mode="wait">
@@ -195,7 +200,7 @@ export default function ProjectsSection() {
                                 onClick={() => setSelectedProject(project)}
                             >
                                 <div className="absolute inset-0 bg-brand-base/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                    <span className="text-background font-bold border border-background px-4 py-2 rounded-none backdrop-blur-sm uppercase tracking-widest">
+                                    <span className="text-brand-on-surface font-bold border border-brand-on-surface px-4 py-2 rounded-none backdrop-blur-sm uppercase tracking-widest">
                                         View Case Study
                                     </span>
                                 </div>
@@ -205,7 +210,7 @@ export default function ProjectsSection() {
                                 </div>
 
                                 {project.isPrivate && (
-                                    <div className="absolute top-4 right-4 bg-brand-base/50 backdrop-blur-md text-background text-[10px] px-3 py-1 rounded-none flex items-center gap-1 uppercase font-bold">
+                                    <div className="absolute top-4 right-4 bg-brand-base/50 backdrop-blur-md text-brand-on-surface text-[10px] px-3 py-1 rounded-none flex items-center gap-1 uppercase font-bold">
                                         <FaLock size={10} /> Private
                                     </div>
                                 )}
@@ -242,7 +247,7 @@ export default function ProjectsSection() {
                     <button
                         onClick={handleLoadMore}
                         disabled={isLoadingMore}
-                        className="px-8 py-3 rounded-none bg-brand-base text-background font-bold hover:invert transition-all flex items-center gap-2 uppercase tracking-widest text-sm"
+                        className="px-8 py-3 rounded-none bg-brand-base text-brand-on-surface font-bold hover:invert transition-all flex items-center gap-2 uppercase tracking-widest text-sm"
                     >
                         {isLoadingMore ? "Loading..." : "Load More Projects"}
                         <FaChevronDown className={isLoadingMore ? "" : "animate-bounce"} />

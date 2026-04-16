@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useUI } from "../context/UIContext";
 
 export default function InteractiveBackground() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
+    const { theme } = useUI();
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -21,9 +23,9 @@ export default function InteractiveBackground() {
         const DOT_RADIUS = 1.2; // Base radius
         const HOVER_RADIUS = 300; // Radius of mouse interaction
 
-        // Monochrome colors (Fixed for forced dark mode)
-        const DOT_COLOR = "rgba(255, 255, 255, 0.15)"; 
-        const HOVER_COLOR = "rgba(255, 255, 255, 0.4)"; 
+        // Theme-aware colors
+        const DOT_COLOR = theme === 'dark' ? "rgba(255, 255, 255, 0.12)" : "rgba(0, 0, 0, 0.12)"; 
+        const HOVER_COLOR = theme === 'dark' ? "rgba(255, 255, 255, 0.4)" : "rgba(0, 0, 0, 0.4)"; 
 
 
         const resize = () => {
@@ -85,7 +87,7 @@ export default function InteractiveBackground() {
             window.removeEventListener("mousemove", handleMouseMove);
             cancelAnimationFrame(animationFrameId);
         };
-    }, []);
+    }, [theme]);
 
     return (
         <canvas

@@ -7,24 +7,27 @@
 .game-container {
     max-width: 650px;
     width: 100%;
-    background: rgba(255, 255, 255, 0.9);   
+    background: var(--color-brand-base);
+    background: color-mix(in srgb, var(--background) 90%, transparent);   
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(0, 84, 97, 0.15);
+    border: 1px solid var(--color-brand-base);
+    border-color: color-mix(in srgb, var(--color-brand-base) 15%, transparent);
     border-radius: 24px;
     padding: 30px;
-    box-shadow: 0 20px 40px -10px rgba(0, 84, 97, 0.15);
+    box-shadow: 0 20px 40px -10px color-mix(in srgb, var(--color-brand-base) 15%, transparent);
     text-align: center;
     margin: 0 auto;
 }
 
 .player-card {
-    background: #ffffff;
-    border: 1px solid rgba(0, 84, 97, 0.15);
+    background: var(--background);
+    border: 1px solid var(--color-brand-base);
+    border-color: color-mix(in srgb, var(--color-brand-base) 15%, transparent);
     border-radius: 12px;
     padding: 15px;
     flex: 1;
     transition: all 0.2s;
-    box-shadow: 0 4px 6px -1px rgba(0, 84, 97, 0.05);
+    box-shadow: 0 4px 6px -1px color-mix(in srgb, var(--color-brand-base) 5%, transparent);
 }
 
 .player-card.active {
@@ -42,19 +45,28 @@
 .playing-card {
     width: 80px;
     height: 115px;
-    background: #ffffff;
+    background: var(--color-brand-on-surface);
     border-radius: 8px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--color-brand-base);
+    border-color: color-mix(in srgb, var(--color-brand-base) 10%, transparent);
     transition: transform 0.2s;
     cursor: default;
     user-select: none;
     box-sizing: border-box;
+    color: var(--color-brand-base);
+    filter: brightness(0.95);
+}
+
+[data-theme='light'] .playing-card {
+    background: #ffffff;
     color: #1e293b;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    filter: none;
 }
 
 .playing-card.red {
@@ -62,7 +74,17 @@
 }
 
 .playing-card.new-deal {
-    animation: dealCard 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) backwards;
+    animation: deal-in 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) backwards;
+}
+
+/* Mobile 2x2 Grid Layout */
+@media (max-width: 768px) {
+    .game-container .flex.justify-center.gap-4.flex-wrap {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr);
+        place-items: center;
+        gap: 1rem;
+    }
 }
 
 @keyframes dealCard {
@@ -86,7 +108,7 @@
     border-radius: 12px;
     cursor: pointer;
     transition: all 0.1s;
-    color: white;
+    color: var(--color-brand-on-surface);
     box-shadow: 0 6px 0 rgba(0, 0, 0, 0.2);
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -113,14 +135,15 @@ input[type="number"], input[type="text"], select {
     width: 100%;
     padding: 12px 15px;
     font-size: 1.1rem;
-    background: #ffffff;
-    border: 2px solid rgba(0, 84, 97, 0.2);
+    background: var(--background);
+    border: 2px solid var(--color-brand-base);
+    border-color: color-mix(in srgb, var(--color-brand-base) 20%, transparent);
     border-radius: 12px;
     color: var(--color-brand-base);
     outline: none;
     box-sizing: border-box;
     text-align: center;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
 }
 
 input[type="number"]:focus, input[type="text"]:focus {
@@ -136,9 +159,9 @@ button.standard {
     border-radius: 12px;
     cursor: pointer;
     transition: all 0.2s;
-    color: white;
-    background-color: var(--color-brand-primary);
-    box-shadow: 0 4px 6px -1px rgba(1, 135, 144, 0.2);
+    color: var(--color-brand-on-surface);
+    background-color: var(--color-brand-base);
+    box-shadow: 0 4px 6px -1px color-mix(in srgb, var(--color-brand-primary) 20%, transparent);
 }
 
 button.standard:hover {
@@ -180,25 +203,48 @@ button.standard:hover {
 #snackbar.error { background-color: #ef4444; color: white; }
 #snackbar.info { background-color: var(--color-brand-primary); color: white; }
 
+/* Merging System Styles */
+.result-node {
+    width: 90px;
+    height: 130px;
+    background: linear-gradient(135deg, var(--color-brand-base) 0%, var(--foreground) 100%);
+    border: 3px solid #10b981; /* Emerald border for results */
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    user-select: none;
+}
+
+.result-node .text-brand-on-surface {
+    color: var(--color-brand-on-surface);
+}
+
+.playing-card.selected, .result-node.selected {
+    box-shadow: 0 0 0 4px var(--color-brand-primary), 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.playing-card.opacity-30 {
+    filter: blur(1px);
+}
+
 .target-btn {
-    background: #ffffff;
-    border: 2px solid rgba(0, 84, 97, 0.2);
-    color: var(--color-brand-base);
-    padding: 8px 16px;
-    border-radius: 8px;
+    padding: 10px 20px;
+    border: 2px solid var(--color-brand-primary);
+    border-radius: 10px;
+    background: transparent;
+    color: var(--color-brand-primary);
+    font-weight: bold;
     cursor: pointer;
-    font-weight: 600;
     transition: all 0.2s;
 }
 
-.target-btn:hover {
-    background: rgba(0, 183, 181, 0.05);
-}
-
 .target-btn.selected {
-    border-color: var(--color-brand-accent);
-    background: rgba(0, 183, 181, 0.1);
-    color: var(--color-brand-primary);
+    background: var(--color-brand-primary);
+    color: var(--color-brand-on-surface);
 }
 
 .modal-overlay {
@@ -230,8 +276,10 @@ button.standard:hover {
     margin-bottom: 8px;
     font-family: var(--font-mono);
     font-size: 1.2rem;
-    background: rgba(1, 135, 144, 0.05);
-    border: 1px solid rgba(1, 135, 144, 0.2);
+    background: var(--color-brand-base);
+    background: color-mix(in srgb, var(--color-brand-base) 5%, transparent);
+    border: 1px solid var(--color-brand-base);
+    border-color: color-mix(in srgb, var(--color-brand-base) 20%, transparent);
     border-radius: 6px;
     padding: 8px 15px;
     color: var(--color-brand-base);

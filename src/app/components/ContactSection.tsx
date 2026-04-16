@@ -49,11 +49,11 @@ export default function ContactSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                className="inline-flex px-4 py-1.5 rounded-none bg-brand-base/5 border border-brand-base/10 text-brand-base text-[10px] font-bold items-center gap-2 mb-4 uppercase tracking-[0.3em]"
+                className="inline-flex px-4 py-1.5 rounded-full bg-brand-accent/10 border border-brand-accent/20 text-brand-base text-sm font-medium items-center gap-2 mb-4 backdrop-blur-sm tracking-tight"
             >
                 <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-base opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-base"></span>
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-accent opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-accent"></span>
                 </span>
                 Available for Projects
             </motion.div>

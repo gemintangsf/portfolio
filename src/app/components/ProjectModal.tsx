@@ -142,7 +142,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                             {/* Close Button */}
                             <button
                                 onClick={onClose}
-                                className="absolute top-6 right-6 p-3 bg-background border border-brand-base/20 hover:bg-brand-base hover:text-background text-brand-base transition-colors z-20 rounded-none mix-blend-difference"
+                                className="absolute top-6 right-6 p-3 bg-background border border-brand-base/20 hover:bg-brand-base hover:text-brand-on-surface text-brand-base transition-colors z-20 rounded-none mix-blend-difference"
                             >
                                 <FaTimes size={18} />
                             </button>
@@ -197,15 +197,15 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                         )}
                                         {project.solution && (
                                             <div className="flex-1 p-8 md:p-10 border border-brand-base bg-brand-base/5 relative group hover:bg-brand-base hover:text-background transition-all duration-500">
-                                                <div className="flex items-center gap-4 mb-6 pb-6 border-b border-brand-base/20 group-hover:border-background/20 transition-colors">
-                                                    <span className="w-10 h-10 flex items-center justify-center bg-background text-brand-base border border-brand-base/20 shrink-0 group-hover:bg-background/10 group-hover:text-background group-hover:border-background/20 transition-colors">
+                                                <div className="flex items-center gap-4 mb-6 pb-6 border-b border-brand-base/20 group-hover:border-brand-on-surface/20 transition-colors">
+                                                    <span className="w-10 h-10 flex items-center justify-center bg-background text-brand-base border border-brand-base/20 shrink-0 group-hover:bg-background/10 group-hover:text-brand-on-surface group-hover:border-brand-on-surface/20 transition-colors">
                                                         <FaLightbulb size={16} />
                                                     </span>
-                                                    <h4 className="text-xs font-bold uppercase tracking-widest text-brand-base group-hover:text-background transition-colors">
+                                                    <h4 className="text-xs font-bold uppercase tracking-widest text-brand-base group-hover:text-brand-on-surface transition-colors">
                                                         The Solution
                                                     </h4>
                                                 </div>
-                                                <p className="text-brand-base font-light leading-relaxed text-sm md:text-base text-justify group-hover:text-background/90 transition-colors">
+                                                <p className="text-brand-base font-light leading-relaxed text-sm md:text-base text-justify group-hover:text-brand-on-surface/90 transition-colors">
                                                     {project.solution}
                                                 </p>
                                             </div>
@@ -322,8 +322,8 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                                         {/* Mock Phone Frame - Refined for better definition */}
                                                         <div className="relative rounded-[2.5rem] md:rounded-[3rem] border-[8px] md:border-[14px] border-brand-highlight shadow-2xl overflow-hidden aspect-[9/19.5] transition-all duration-500 group-hover:border-brand-accent group-hover:-translate-y-4 bg-[#050505] ring-1 ring-brand-base/5">
                                                             {/* Dynamic Island Style Notch */}
-                                                            <div className="absolute top-3 md:top-4 left-1/2 -translate-x-1/2 w-[30%] h-4 md:h-5 bg-black rounded-full z-20 border border-white/5 shadow-xl group-hover:bg-brand-accent/20 transition-colors flex items-center justify-center">
-                                                                <div className="w-1 h-1 rounded-full bg-white/5 mx-auto"></div>
+                                                            <div className="absolute top-3 md:top-4 left-1/2 -translate-x-1/2 w-[30%] h-4 md:h-5 bg-background rounded-full z-20 border border-brand-base/5 shadow-xl group-hover:bg-brand-accent/20 transition-colors flex items-center justify-center">
+                                                                <div className="w-1 h-1 rounded-full bg-brand-base/5 mx-auto"></div>
                                                             </div>
 
                                                             <Image
@@ -334,7 +334,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                                             />
 
                                                             {/* Inner Bezel Depth Shadow */}
-                                                            <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_40px_rgba(255,255,255,0.03)] opacity-60"></div>
+                                                            <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_40px_rgba(var(--color-base-rgb),0.03)] opacity-60"></div>
 
                                                             {/* Expand Hover Overlay */}
                                                             <div className="absolute inset-0 bg-brand-base/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
@@ -425,7 +425,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                                             href={project.playStore}
                                                             target="_blank"
                                                             rel="noopener noreferrer"
-                                                            className="flex-1 inline-flex items-center justify-center gap-3 px-8 py-4 bg-background border border-brand-base text-brand-base text-[10px] uppercase tracking-widest font-bold hover:bg-brand-base hover:text-background transition-all"
+                                                            className="flex-1 inline-flex items-center justify-center gap-3 px-8 py-4 bg-background border border-brand-base text-brand-base text-[10px] uppercase tracking-widest font-bold hover:bg-brand-base hover:text-brand-on-surface transition-all"
                                                         >
                                                             <FaGooglePlay size={16} /> Google Play
                                                         </a>
@@ -435,7 +435,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                                             href={project.appStore}
                                                             target="_blank"
                                                             rel="noopener noreferrer"
-                                                            className="flex-1 inline-flex items-center justify-center gap-3 px-8 py-4 bg-background border border-brand-base text-brand-base text-[10px] uppercase tracking-widest font-bold hover:bg-brand-base hover:text-background transition-all"
+                                                            className="flex-1 inline-flex items-center justify-center gap-3 px-8 py-4 bg-background border border-brand-base text-brand-base text-[10px] uppercase tracking-widest font-bold hover:bg-brand-base hover:text-brand-on-surface transition-all"
                                                         >
                                                             <FaApple size={18} /> App Store
                                                         </a>
@@ -445,7 +445,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                                             href={project.link}
                                                             target="_blank"
                                                             rel="noopener noreferrer"
-                                                            className="flex-1 inline-flex items-center justify-center gap-3 px-8 py-4 bg-brand-base text-background text-[10px] uppercase tracking-widest font-bold hover:invert transition-all"
+                                                            className="flex-1 inline-flex items-center justify-center gap-3 px-8 py-4 bg-brand-base text-brand-on-surface text-[10px] uppercase tracking-widest font-bold hover:invert transition-all"
                                                         >
                                                             {project.link.includes("github.com") ? "View Repository" : "Open in Browser"}
                                                             {project.link.includes("github.com") ? null : <FaExternalLinkAlt />}

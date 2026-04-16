@@ -102,13 +102,10 @@ export default function ServicesSection() {
                             key={index}
                             variants={cardVariants}
                             whileHover={{ y: -5 }}
-                            className="group relative p-10 rounded-xl bg-white/[0.03] border border-white/5 hover:border-white/20 transition-all duration-500 flex flex-col items-start gap-6 overflow-hidden backdrop-blur-sm"
-                        >
+                            className="group relative p-10 rounded-xl bg-brand-base/[0.03] border border-brand-base/5 hover:border-brand-base/20 transition-all duration-500 flex flex-col items-start gap-6 overflow-hidden backdrop-blur-sm"                        >
                             {/* Decorative background glow */}
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-white/[0.02] blur-[50px] group-hover:bg-white/[0.05] transition-colors duration-500 rounded-full -mr-16 -mt-16" />
-
-                            <div className="relative z-10 w-14 h-14 flex items-center justify-center rounded-lg bg-white/5 border border-white/10 text-brand-base text-2xl group-hover:bg-white group-hover:text-black transition-all duration-500">
-                                <ServiceIcon icon={service.icon} />
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-brand-base/[0.02] blur-[50px] group-hover:bg-brand-base/[0.05] transition-colors duration-500 rounded-full -mr-16 -mt-16" />
+                            <div className="relative z-10 w-14 h-14 flex items-center justify-center rounded-lg bg-brand-base/5 border border-brand-base/10 text-brand-base text-2xl group-hover:bg-brand-base group-hover:text-brand-on-surface transition-all duration-500">                                <ServiceIcon icon={service.icon} />
                             </div>
 
                             <div className="relative z-10">
@@ -121,8 +118,7 @@ export default function ServicesSection() {
                             </div>
 
                             {/* Accent line */}
-                            <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-white group-hover:w-full transition-all duration-700 ease-in-out" />
-                        </motion.div>
+                            <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-brand-base group-hover:w-full transition-all duration-700 ease-in-out" />                        </motion.div>
                     );
                 })}
             </motion.div>
