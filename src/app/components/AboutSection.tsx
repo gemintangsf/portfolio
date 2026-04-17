@@ -106,12 +106,12 @@ export default function AboutSection() {
                 <FiDownload className="text-xl" />
                 <span>My Resume</span>
               </motion.a>
-              <Link
+              {/* <Link
                 href="/about-me"
                 className="inline-flex items-center gap-2 px-8 py-3 bg-transparent text-brand-base border border-brand-base font-bold rounded-none shadow-lg hover:bg-brand-base hover:text-background transition-all duration-300 uppercase tracking-widest text-sm"
               >
                 Read Full Biography
-              </Link>
+              </Link> */}
             </div>
           </div>
         </motion.div>
