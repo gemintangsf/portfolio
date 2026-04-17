@@ -63,43 +63,34 @@ export default function AboutPage() {
           </motion.div>
 
           {/* TEXT */}
-          <div className="space-y-6 text-center md:text-left">
+          <div className="space-y-5 text-center md:text-left font-light text-[15px] md:text-base">
             <p>
-              Hi, I’m{" "}
-              <span className="font-bold text-brand-primary text-xl">
-                Gemintang Sangkaji Furqon
-              </span>
-              , a Software Engineer focused on building reliable mobile and web
-              applications.
+              <strong className="font-bold text-brand-primary">Gemintang Sangkaji Furqon</strong> is a Software Engineer specializing in backend, frontend, and mobile application development. Based in Jakarta, Indonesia, he focuses on building scalable, reliable, and high-performance digital solutions for enterprise and retail environments.
             </p>
-
             <p>
-              Currently working as a{" "}
-              <span className="font-semibold text-brand-primary">
-                Full Stack & Mobile Developer
-              </span>{" "}
-              at PT Javabooks Indonesia, developing retail POS systems, mobile apps,
-              and AI-powered search platforms.
+              Currently, he serves as a <strong className="font-bold">Full Stack & Mobile Developer</strong> at PT Javabooks Indonesia. In this role, he leads the technical development of comprehensive retail Point of Sale (POS) systems, maintains client-facing mobile applications, and actively integrates AI-powered search functionalities into scalable retail platforms. 
             </p>
-
             <p>
-              Previously involved in enterprise systems at Telkom Indonesia, which shaped
-              my approach to clean code, scalability, and production-ready solutions.
+              His technical methodology is grounded in strong architectural principles, shaped by his previous enterprise-level experience at Telkom Indonesia. During his tenure, he contributed to the development of production-ready backend systems, enforcing rigorous code quality and high-availability infrastructure design.
+            </p>
+            <p>
+              His primary technology stack includes <strong className="font-bold">Flutter</strong> for cross-platform mobile development, alongside <strong className="font-bold">Next.js</strong> for modern web interfaces. On the backend, he architects scalable APIs utilizing <strong className="font-bold text-brand-accent">NestJS, Python, and Node.js</strong>, leveraging PostgreSQL and MySQL for structured, high-volume data management.
+            </p>
+            <p>
+              As a dedicated cross-platform engineer, he utilizes Flutter to achieve native-level performance across iOS and Android deployments from a single codebase. He implements advanced state management patterns, optimized offline-first data caching, and secure API communication protocols to guarantee reliable mobile performance.
+            </p>
+            <p>
+              For web system architectures, he leverages the Next.js framework to maximize technical SEO, optimize Core Web Vitals, and ensure rapid edge-network content delivery. By combining these frameworks, <strong className="font-bold text-brand-primary">Gemintang Sangkaji Furqon</strong> ensures comprehensive end-to-end type safety, significantly reducing runtime errors and improving long-term application sustainability.
             </p>
 
-            <p className="text-base opacity-90 italic">
-              Tech stack: Flutter, NestJS, Next.js, Python, PostgreSQL, MySQL.
-            </p>
-
-
-            <div className="pt-2">
+            <div className="pt-6">
               <motion.a
                 href="https://drive.google.com/file/d/1pM1gkkSRh9u7QdJRbPwICaRId_3yLnb8/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-2 px-8 py-3 bg-brand-primary text-white font-medium rounded-full shadow-lg hover:bg-brand-accent transition-all duration-300"
+                className="inline-flex items-center gap-3 px-8 py-3 bg-brand-primary text-white font-bold rounded-none shadow-lg hover:bg-brand-accent transition-all duration-300 uppercase tracking-widest text-sm"
               >
                 <FiDownload className="text-xl" />
                 <span>My Resume</span>

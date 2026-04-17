@@ -12,8 +12,21 @@ import { UIProvider } from "./context/UIContext";
 // const robotoMono = Roboto_Mono({ ... });
 
 export const metadata: Metadata = {
-  title: "Portfolio Gemintang",
-  description: "Welcome to Gemintang's Professional Portfolio",
+  metadataBase: new URL("https://gemintangsf.vercel.app"),
+  title: "Gemintang \u2013 Software Engineer | Gemintang Sangkaji Furqon",
+  description: "Gemintang (Gemintang Sangkaji Furqon) is a software engineer specializing in Backend, Frontend, and Mobile Development.",
+  openGraph: {
+    title: "Gemintang \u2013 Software Engineer | Gemintang Sangkaji Furqon",
+    description: "Gemintang (Gemintang Sangkaji Furqon) is a software engineer specializing in Backend, Frontend, and Mobile Development.",
+    url: "https://gemintangsf.vercel.app",
+    siteName: "Portfolio Gemintang",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Gemintang \u2013 Software Engineer | Gemintang Sangkaji Furqon",
+    description: "Gemintang (Gemintang Sangkaji Furqon) is a software engineer specializing in Backend, Frontend, and Mobile Development.",
+  },
   icons: {
     icon: "/favicon.png",
     apple: "/apple-touch-icon.png",
@@ -32,6 +45,21 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body className={`antialiased bg-background text-foreground transition-colors duration-300`}>
         <UIProvider>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "Person",
+                name: "Gemintang Sangkaji Furqon",
+                url: "https://gemintangsf.vercel.app",
+                sameAs: [
+                  "https://github.com/gemintangsf",
+                  "https://www.linkedin.com/in/gemintangsf/"
+                ]
+              })
+            }}
+          />
           <Preloader />
           {/* Global Background Layer */}
           <div className="fixed inset-0 -z-40">

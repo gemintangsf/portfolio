@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { FiDownload } from "react-icons/fi";
 
 export default function AboutSection() {
@@ -93,7 +94,7 @@ export default function AboutSection() {
               Tech stack: Flutter, NestJS, Next.js, Python, PostgreSQL, MySQL.
             </p>
 
-            <div className="pt-4">
+            <div className="pt-4 flex flex-wrap gap-4">
               <motion.a
                 href="https://drive.google.com/file/d/1pM1gkkSRh9u7QdJRbPwICaRId_3yLnb8/view?usp=sharing"
                 target="_blank"
@@ -105,6 +106,12 @@ export default function AboutSection() {
                 <FiDownload className="text-xl" />
                 <span>My Resume</span>
               </motion.a>
+              <Link
+                href="/about-me"
+                className="inline-flex items-center gap-2 px-8 py-3 bg-transparent text-brand-base border border-brand-base font-bold rounded-none shadow-lg hover:bg-brand-base hover:text-background transition-all duration-300 uppercase tracking-widest text-sm"
+              >
+                Read Full Biography
+              </Link>
             </div>
           </div>
         </motion.div>
