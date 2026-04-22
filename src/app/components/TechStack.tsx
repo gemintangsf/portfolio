@@ -6,30 +6,30 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useUI } from "../context/UIContext";
 
 const technologies = [
-    "React Js",
-    "Next Js",
-    "Nest Js",
-    "TypeScript",
+    "React JS",
+    "Next JS",
     "JQuery",
-    "Python Flask/OpenAPI",
-    "Ruby on Rails",
-    "Zend Framework",
-    "OpenCart",
-    "Laravel",
-    "MySQL",
-    "PostgreSQL",
-    "MongoDB",
-    "Oracle",
-    "GraphQL",
-    "Opensearch",
-    "Ollama",
-    "Apache Airflow",
-    "Sonarcube",
     "Flutter",
-    "Git",
-    "JWT / OAuth",
+    "Nest JS",
+    "Ruby on Rails",
+    "Python Flask / Open API",
+    "Open Cart",
+    "Zend Framework",
+    "PostgreSQL",
+    "MySQL",
+    "MongoDB",
+    "OpenSearch / Elasticsearch",
+    "Minio",
+    "RestAPI",
     "Swagger",
-    "REST API",
+    "JWT / OAuth",
+    "Ollama (LLM/AI)",
+    "Apache Airflow",
+    "Docker",
+    "CI/CD",
+    "Git",
+    "Sonarcube",
+    "Git Hooks"
 ];
 
 export default function TechStack() {
@@ -108,7 +108,7 @@ export default function TechStack() {
                     </button>
 
                     {/* Carousel Window */}
-                    <div className="w-full max-w-5xl overflow-hidden px-4 md:px-4" style={{ minHeight: '80px' }}>
+                    <div className="w-full max-w-5xl overflow-hidden px-4 md:px-4 pb-6 md:pb-0" style={{ minHeight: '80px' }}>
                         <AnimatePresence mode="wait" custom={direction}>
                             <motion.div
                                 key={currentIndex}
@@ -129,9 +129,9 @@ export default function TechStack() {
                                 {currentStack.map((tech, index) => (
                                     <div
                                         key={`${tech}-${index}`}
-                                        className="flex-1 min-w-[140px] max-w-[180px] md:max-w-[200px] flex items-center justify-center px-4 py-4 md:px-6 md:py-6 rounded-none border border-brand-base/10 bg-background backdrop-blur-sm hover:border-brand-base transition-all cursor-default mt-2 group"
+                                        className="flex-1 min-w-[120px] max-w-[150px] md:max-w-[200px] min-h-[70px] md:min-h-[100px] flex items-center justify-center px-3 py-4 md:px-4 md:py-6 rounded-none border border-brand-base/10 bg-background backdrop-blur-sm hover:border-brand-base transition-all cursor-default mt-2 group"
                                     >
-                                        <span className="text-brand-base font-bold text-xs md:text-sm whitespace-nowrap text-center uppercase tracking-widest group-hover:scale-105 transition-transform">
+                                        <span className="text-brand-base font-bold text-[10px] md:text-xs text-center uppercase tracking-wider group-hover:scale-105 transition-transform leading-tight block w-full px-1">
                                             {tech}
                                         </span>
                                     </div>
@@ -151,7 +151,7 @@ export default function TechStack() {
                 </div>
 
                 {/* Dots Indicator - Slightly smaller on mobile */}
-                <div className="flex justify-center gap-2 md:gap-3 md:mt-12">
+                <div className="flex justify-center gap-2 md:gap-3 mt-6 md:mt-12">
                     {Array.from({ length: totalPages }).map((_, idx) => (
                         <button
                             key={idx}
