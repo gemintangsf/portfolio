@@ -24,7 +24,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section id="home" className="relative text-center flex flex-col justify-center px-6 pt-24 pb-8 md:pt-40 md:pb-24 overflow-hidden isolate scroll-mt-20">
+    <section id="home" className="relative text-center flex-1 flex flex-col justify-center items-center px-6 pt-24 pb-8 md:pt-40 md:pb-24 overflow-hidden isolate scroll-mt-20">
       {/* Background moved to layout.tsx */}
 
       <motion.div

@@ -9,9 +9,11 @@ import ContactSection from "./components/ContactSection";
 export default function Home() {
   return (
     <main className="flex flex-col">
-      <HeroSection />
-      <div>
+      <div className="min-h-[100dvh] flex flex-col justify-between relative z-10">
+        <HeroSection />
         <TechStack />
+      </div>
+      <div>
         <ServicesSection />
         <ProjectsSection />
         <AboutSection />
