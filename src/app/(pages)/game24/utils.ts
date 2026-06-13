@@ -124,7 +124,7 @@ export function canMakeTarget(arr: any[], target: number): string[] {
                 nextArr.push({ val: aObj.val * bObj.val, expr: `(${aObj.expr} * ${bObj.expr})` });
                 answers.push(...canMakeTarget(nextArr, target));
                 nextArr.pop();
-                if (bObj.val !== 0 && aObj.val % bObj.val === 0) {
+                if (bObj.val !== 0) {
                     nextArr.push({ val: aObj.val / bObj.val, expr: `(${aObj.expr} / ${bObj.expr})` });
                     answers.push(...canMakeTarget(nextArr, target));
                     nextArr.pop();

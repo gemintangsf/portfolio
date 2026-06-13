@@ -286,15 +286,6 @@ export default function Game24Page() {
         let isCorrect = false;
         if (finalValue !== undefined) {
             if (Math.abs(finalValue - gm.state.targetScore) < 0.0001) isCorrect = true;
-        } else {
-            // Fallback for timeout or old logic
-            const input = exprInput.trim();
-            if (!input && !isTimeout) return;
-            try {
-                // eslint-disable-next-line
-                const result = new Function('return ' + input)();
-                if (Math.abs(result - gm.state.targetScore) < 0.0001) isCorrect = true;
-            } catch (e) { }
         }
 
         const currentTableCardsRanks = gm.state.table.slice(-4).map(c => c.rank);
