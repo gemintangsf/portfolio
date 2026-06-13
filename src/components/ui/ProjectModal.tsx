@@ -32,6 +32,11 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
         };
     }, [project, setModalOpen]);
 
+    // Reset lightbox selection when project changes
+    useEffect(() => {
+        setSelectedImageIndex(null);
+    }, [project]);
+
     // Handle Keyboard Navigation for Lightbox
     const handleKeyDown = useCallback((e: KeyboardEvent) => {
         if (selectedImageIndex === null) return;
