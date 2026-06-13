@@ -28,15 +28,35 @@ export default function InteractiveBackground() {
         const HOVER_COLOR = theme === 'dark' ? "rgba(255, 255, 255, 0.4)" : "rgba(0, 0, 0, 0.4)"; 
 
 
+        let tick = false;
+
+        const requestDraw = () => {
+            if (!tick) {
+                tick = true;
+                animationFrameId = requestAnimationFrame(() => {
+                    draw();
+                    tick = false;
+                });
+            }
+        };
+
         const resize = () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
+            requestDraw();
         };
 
         const handleMouseMove = (event: MouseEvent) => {
             const rect = canvas.getBoundingClientRect();
             mouseX = event.clientX - rect.left;
             mouseY = event.clientY - rect.top;
+            requestDraw();
+        };
+
+        const handleMouseLeave = () => {
+            mouseX = -1000;
+            mouseY = -1000;
+            requestDraw();
         };
 
         const draw = () => {
@@ -72,20 +92,21 @@ export default function InteractiveBackground() {
                     ctx.fill();
                 }
             }
-
-            animationFrameId = requestAnimationFrame(draw);
         };
 
         // Initial setup
         resize();
         window.addEventListener("resize", resize);
         window.addEventListener("mousemove", handleMouseMove);
-        draw();
+        window.addEventListener("mouseleave", handleMouseLeave);
 
         return () => {
             window.removeEventListener("resize", resize);
             window.removeEventListener("mousemove", handleMouseMove);
-            cancelAnimationFrame(animationFrameId);
+            window.removeEventListener("mouseleave", handleMouseLeave);
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+            }
         };
     }, [theme]);
 

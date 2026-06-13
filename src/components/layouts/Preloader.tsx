@@ -9,11 +9,23 @@ export default function Preloader() {
     const { setLoaded, theme } = useUI();
 
     useEffect(() => {
+        // Skip preloader if already shown in this tab session
+        if (typeof window !== "undefined" && sessionStorage.getItem("portfolio-preloader-shown") === "true") {
+            setShow(false);
+            setLoaded(true);
+            return;
+        }
+
         const timer = setTimeout(() => {
             setShow(false);
-            // Give extra time for the fade-out animation before marking as loaded
-            setTimeout(() => setLoaded(true), 1000);
-        }, 2500);
+            // Give time for the fade-out animation before marking as loaded
+            setTimeout(() => {
+                setLoaded(true);
+                if (typeof window !== "undefined") {
+                    sessionStorage.setItem("portfolio-preloader-shown", "true");
+                }
+            }, 400); // Fast fade-out transition (reduced from 1000ms)
+        }, 800); // Shorter active display time (reduced from 2500ms)
 
         return () => clearTimeout(timer);
     }, [setLoaded]);
@@ -22,7 +34,7 @@ export default function Preloader() {
         <AnimatePresence>
             {show && (
                 <motion.div
-                    exit={{ opacity: 0, transition: { duration: 1, ease: [0.22, 1, 0.36, 1] } }}
+                    exit={{ opacity: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } }}
                     className="fixed inset-0 z-[9999] bg-background flex flex-col items-center justify-center overflow-hidden"
                 >
                     <div className="relative">

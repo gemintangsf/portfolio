@@ -1,12 +1,11 @@
-import {
-  HeroSection,
-  TechStack,
-  ServicesSection,
-  ProjectsSection,
-  AboutSection,
-  FAQSection,
-  ContactSection,
-} from "@/components/sections";
+import dynamic from "next/dynamic";
+import { HeroSection, TechStack } from "@/components/sections";
+
+const ServicesSection = dynamic(() => import("@/components/sections/ServicesSection"));
+const ProjectsSection = dynamic(() => import("@/components/sections/ProjectsSection"));
+const AboutSection = dynamic(() => import("@/components/sections/AboutSection"));
+const FAQSection = dynamic(() => import("@/components/sections/FAQSection"));
+const ContactSection = dynamic(() => import("@/components/sections/ContactSection"));
 
 
 export default function Home() {
