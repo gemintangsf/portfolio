@@ -20,8 +20,9 @@ export function UIProvider({ children }: { children: ReactNode }) {
     const [isLoaded, setLoaded] = useState(false);
     const [theme, setTheme] = useState<Theme>("dark");
 
-    // Initialize theme
+    // Initialize theme and trigger load transition instantly
     useEffect(() => {
+        setLoaded(true);
         const storedTheme = localStorage.getItem("portfolio-theme") as Theme | null;
         if (storedTheme) {
             setTheme(storedTheme);

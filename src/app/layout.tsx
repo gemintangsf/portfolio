@@ -1,14 +1,8 @@
 import type { Metadata } from "next";
-// import { Inter, Roboto_Mono } from "next/font/google"; // Disabled due to network issues
 import "./globals.css";
-import { Navbar, Footer, InteractiveBackground, Preloader } from "@/components/layouts";
+import { Navbar, Footer, InteractiveBackground } from "@/components/layouts";
 import { UIProvider } from "@/context/UIContext";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-
-
-// fonts are now defined in globals.css to avoid network errors
-// const inter = Inter({ ... });
-// const robotoMono = Roboto_Mono({ ... });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://gemintangsf.vercel.app"),
@@ -63,7 +57,6 @@ export default function RootLayout({
               })
             }}
           />
-          <Preloader />
           {/* Global Background Layer */}
           <div className="fixed inset-0 -z-40">
             <InteractiveBackground />
