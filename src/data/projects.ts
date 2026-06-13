@@ -1,0 +1,513 @@
+import { Project } from "@/types";
+
+export const categories: string[] = [
+  "All",
+  "Web",
+  "Mobile",
+  "Enterprise",
+  "AI",
+  "E-Commerce",
+  "Others"
+];
+
+export const projects: Project[] = [
+  {
+    "id": 1,
+    "title": "PHC Mobile: Attendance & HR System",
+    "category": "Mobile Application",
+    "description": "Built an internal HR mobile app covering attendance, leave requests, and employee records. Face recognition handles check-in validation; geolocation logs entry and exit.",
+    "image": "bg-brand-highlight",
+    "stack": [
+      "Flutter",
+      "Python",
+      "InsightFace",
+      "MySQL",
+      "OpenCart",
+      "REST API"
+    ],
+    "link": "#",
+    "isPrivate": true,
+    "challenge": "Face recognition doesn't behave the same across every device and lighting condition — consistent results were harder to get than expected.",
+    "solution": "Built a photo comparison flow backed by a Python service and wired it into the mobile app.",
+    "features": [
+      "Face Recognition-based Attendance",
+      "Geolocation-based Check-in/out",
+      "Leave Management",
+      "Basic Payroll Support",
+      "Employee Data Management"
+    ],
+    "evidence": [
+      "/assets/phc/face_recognitions/3.jpg",
+      "/assets/phc/face_recognitions/4.jpg",
+      "/assets/phc/face_recognitions/5.jpg",
+      "/assets/phc/face_recognitions/6.jpg",
+      "/assets/phc/face_recognitions/7.jpg"
+    ],
+    "tags": [
+      "Mobile"
+    ],
+    "playStore": "https://play.google.com/store/apps/details?id=com.periplus.hc",
+    "appStore": "https://apps.apple.com/app/periplus-human-capital/id1669643043"
+  },
+  {
+    "id": 2,
+    "title": "PHC Mobile: Gamification Module",
+    "category": "Mobile Application",
+    "description": "Added a gamification module to the PHC app — quiz challenges, a leaderboard, and performance work to keep scrolling smooth on large datasets. Capped the image cache to prevent storage from growing out of control. Resized images at load time to match UI dimensions and reduce memory pressure.",
+    "image": "bg-brand-highlight",
+    "stack": [
+      "Flutter",
+      "Custom Cache Manager",
+      "Performance Optimization",
+      "Gamification Logic"
+    ],
+    "link": "#",
+    "isPrivate": true,
+    "challenge": "Rendering hundreds of leaderboard entries with images without the UI becoming unusable.",
+    "solution": "Applied caching and image optimization to bring down memory usage and keep the list scrollable.",
+    "features": [
+      "Leaderboard System",
+      "Weekly Quiz Feature",
+      "Smooth List Scrolling",
+      "Background Data Sync",
+      "Point & Reward System"
+    ],
+    "technicalOptimizations": [
+      {
+        "title": "Image Caching",
+        "description": "Implemented a cache mechanism to limit stored images and prevent excessive storage usage."
+      },
+      {
+        "title": "Optimized Image Loading",
+        "description": "Resized images during loading to match UI needs and reduce memory consumption."
+      },
+      {
+        "title": "Efficient List Rendering",
+        "description": "Adjusted rendering strategy to keep scrolling smooth when displaying large datasets."
+      }
+    ],
+    "evidence": [
+      "/assets/phc/leaderboards/1.png",
+      "/assets/phc/leaderboards/2.png",
+      "/assets/phc/leaderboards/3.png",
+      "/assets/phc/leaderboards/4.png",
+      "/assets/phc/leaderboards/5.png",
+      "/assets/phc/leaderboards/6.png",
+      "/assets/phc/leaderboards/7.png",
+      "/assets/phc/leaderboards/8.png"
+    ],
+    "tags": [
+      "Mobile"
+    ],
+    "playStore": "https://play.google.com/store/apps/details?id=com.periplus.hc",
+    "appStore": "https://apps.apple.com/app/periplus-human-capital/id1669643043"
+  },
+  {
+    "id": 3,
+    "title": "PeriplusApps Mobile",
+    "category": "Mobile Application",
+    "description": "Worked on PeriplusApps, a mobile e-commerce app tied to periplus.com. Focused on performance tuning, fixing visual inconsistencies across devices, and getting features to behave reliably across different modules. Cut duplicate API calls and corrected endpoints that were pointing to the wrong places. Fixed layouts to behave consistently across phone and tablet screen sizes. Tracked down and fixed a set of bugs: bad request mappings, UI overflow, and state that wasn't being reset properly.",
+    "image": "bg-brand-highlight",
+    "stack": [
+      "Flutter",
+      "REST API Integration",
+      "Responsive Design",
+      "Bug Fixing & Optimization"
+    ],
+    "link": "#",
+    "isPrivate": true,
+    "challenge": "Keeping UI behavior consistent and performance stable across phones and tablets while wiring up multiple features and APIs.",
+    "solution": "Trimmed redundant API calls, fixed data mapping bugs, and tightened up layout behavior across modules.",
+    "features": [
+      "Wishlist Management",
+      "Barcode (PEC) Integration",
+      "Authentication & Profile Handling",
+      "Cart & Transaction Flow",
+      "Store Locator",
+      "E-Coupon & Reward System"
+    ],
+    "technicalOptimizations": [
+      {
+        "title": "API Optimization",
+        "description": "Removed redundant API calls and fixed incorrect endpoint usage to improve efficiency."
+      },
+      {
+        "title": "Responsive UI Improvements",
+        "description": "Adjusted layouts and components to ensure consistency across mobile and tablet devices."
+      },
+      {
+        "title": "Bug Fixing & Data Mapping",
+        "description": "Resolved multiple issues including incorrect request mapping, UI overflow, and inconsistent state handling."
+      }
+    ],
+    "evidence": [
+      "/assets/mobile_p+/2.jpeg",
+      "/assets/mobile_p+/3.jpeg",
+      "/assets/mobile_p+/4.jpeg",
+      "/assets/mobile_p+/5.jpeg",
+      "/assets/mobile_p+/6.jpeg",
+      "/assets/mobile_p+/7.jpeg",
+      "/assets/mobile_p+/8.jpeg",
+      "/assets/mobile_p+/9.jpeg",
+      "/assets/mobile_p+/10.jpeg",
+      "/assets/mobile_p+/11.jpeg",
+      "/assets/mobile_p+/12.jpeg",
+      "/assets/mobile_p+/13.jpeg",
+      "/assets/mobile_p+/14.jpeg",
+      "/assets/mobile_p+/15.jpeg",
+      "/assets/mobile_p+/16.jpeg",
+      "/assets/mobile_p+/17.jpeg",
+      "/assets/mobile_p+/18.jpeg"
+    ],
+    "tags": [
+      "Mobile",
+      "E-Commerce"
+    ],
+    "playStore": "https://play.google.com/store/apps/details?id=com.bookindo.periplus.periplus",
+    "appStore": "https://apps.apple.com/id/app/periplus/id6444208499"
+  },
+  {
+    "id": 4,
+    "title": "Mobile POS (Point of Sale) Application",
+    "category": "Retail System",
+    "description": "Built a mobile POS app for cashier operations — transaction processing, product handling, and receipt printing. Simpler and easier to maintain than the desktop system it replaced.",
+    "image": "bg-brand-highlight",
+    "stack": [
+      "Flutter",
+      "REST API",
+      "Mobile Design"
+    ],
+    "link": "#",
+    "isPrivate": true,
+    "challenge": "Supporting cashier workflows on mobile while managing pricing rules, hardware, and replacing a desktop POS setup.",
+    "solution": "Built a mobile POS with a simple, responsive UI, lean API calls, and basic printer and scanner support.",
+    "features": [
+      "Barcode Scanning for Checkout",
+      "Payment and Discount Handling",
+      "Receipt Printing Integration",
+      "Inventory Synchronization",
+      "Centralized Configuration"
+    ],
+    "evidence": [
+      "/assets/pos/1.png",
+      "/assets/pos/4.png",
+      "/assets/pos/6.png"
+    ],
+    "tags": [
+      "Mobile"
+    ],
+    "forceDesktopStyle": true
+  },
+  {
+    "id": 5,
+    "title": "Book Search & Recommendation System",
+    "category": "Search System",
+    "description": "Built a book search and recommendation feature for a large product catalog, with keyword search, suggestions, and basic recommendation logic.",
+    "image": "bg-brand-highlight",
+    "stack": [
+      "Python",
+      "OpenSearch",
+      "MySQL",
+      "OpenCart",
+      "Flutter"
+    ],
+    "link": "https://www.periplus.com/",
+    "isPrivate": true,
+    "challenge": "Search was slow and results weren't relevant enough for the catalog size.",
+    "solution": "Reworked the OpenSearch query logic, keyword handling, and indexing. Added more search capabilities to surface better results.",
+    "features": [
+      "Keyword-based Search",
+      "Search Suggestions (Autocomplete)",
+      "Typo-tolerant Search",
+      "Product Ranking Based on Popularity",
+      "Basic Recommendation Features"
+    ],
+    "evidence": [
+      "/assets/web_p+/2.png",
+      "/assets/web_p+/1.png",
+      "/assets/web_p+/3.png"
+    ],
+    "tags": [
+      "Web",
+      "AI",
+      "E-Commerce"
+    ]
+  },
+  {
+    "id": 6,
+    "title": "NADIA – Network Terminal Equipment Management",
+    "category": "Enterprise Application",
+    "description": "Worked on an internal Telkom Indonesia system for managing returned NTE assets like customer routers. Untangled confusing workflows, fixed bugs in older features, and tidied up the code structure.",
+    "image": "bg-brand-highlight",
+    "stack": [
+      "NestJS",
+      "Next.js",
+      "PostgreSQL",
+      "SonarQube",
+      "Apache Airflow"
+    ],
+    "link": "#",
+    "isPrivate": true,
+    "challenge": "A legacy system where nobody fully understood the business rules anymore — bugs were frequent and asset retrieval logic was unclear.",
+    "solution": "Mapped out the real workflows with stakeholders and documented them. Refactored using NestJS and Next.js, enforced code quality via SonarQube, and added scheduled jobs for recurring processes (using Airflow).",
+    "features": [
+      "NTE asset retrieval and return tracking",
+      "Structured business workflow handling",
+      "Background job scheduling",
+      "Basic logging and error handling",
+      "Legacy feature improvements"
+    ],
+    "responsibilities": [
+      "Developed backend and frontend features",
+      "Translated business requirements into technical workflows",
+      "Collaborated with stakeholders to clarify processes",
+      "Improved code quality and maintainability",
+      "Implemented scheduled jobs using Apache Airflow"
+    ],
+    "impact": [
+      "Made business workflows easier to understand",
+      "Reduced issues in legacy features",
+      "Improved system reliability",
+      "Helped teams follow clearer asset retrieval processes"
+    ],
+    "evidence": [
+      "/assets/nadia/1.jpg",
+      "/assets/nadia/2.jpg"
+    ],
+    "tags": [
+      "Enterprise",
+      "Web"
+    ]
+  },
+  {
+    "id": 7,
+    "title": "PEFITA – Package Management System",
+    "category": "Enterprise Application",
+    "description": "Improved the map visualization in an internal package management tool used to configure and price product bundles.",
+    "image": "bg-brand-highlight",
+    "stack": [
+      "React (Vite)",
+      "NestJS",
+      "PostgreSQL",
+      "Google Maps API"
+    ],
+    "link": "#",
+    "isPrivate": true,
+    "challenge": "Improving the map feature without disrupting the rest of the system.",
+    "solution": "Extended the map using Google Maps, added Street View, and integrated the changes into the existing frontend and backend without breaking other parts.",
+    "features": [
+      "Package location visualization",
+      "Google Maps integration",
+      "Street View support",
+      "Integration with existing services"
+    ],
+    "evidence": [],
+    "tags": [
+      "Enterprise",
+      "Web"
+    ]
+  },
+  {
+    "id": 8,
+    "title": "SCONE – Order Management System",
+    "category": "Enterprise Application",
+    "description": "Helped migrate the legacy order management UI at Telkom Indonesia to Next.js and worked on connecting the order flow to downstream systems.",
+    "image": "bg-brand-highlight",
+    "stack": [
+      "Next.js",
+      "Zend Framework",
+      "Oracle"
+    ],
+    "link": "#",
+    "isPrivate": true,
+    "challenge": "Replacing a legacy UI with Next.js while matching the team's design standards and keeping order statuses in sync across systems.",
+    "solution": "Rebuilt the relevant screens from the existing design specs and implemented integration flows to keep order state consistent.",
+    "features": [
+      "UI migration from Zend Framework to Next.js",
+      "Updated interface based on existing design standards",
+      "Order status synchronization",
+      "Integration with related systems"
+    ],
+    "evidence": [
+      "/assets/scone/1.jpg"
+    ],
+    "tags": [
+      "Enterprise",
+      "Web"
+    ]
+  },
+  {
+    "id": 9,
+    "title": "DMS – Document Management System",
+    "category": "Enterprise Application",
+    "description": "Built a document landing page with CRUD support for an internal Telkom Indonesia document system, used for uploads and accessed by other internal tools.",
+    "image": "bg-brand-highlight",
+    "stack": [
+      "Zend Framework",
+      "jQuery",
+      "REST API",
+      "MinIO",
+      "PostgreSQL"
+    ],
+    "link": "#",
+    "isPrivate": true,
+    "challenge": "File uploads and storage needed careful handling — especially around deletion, where errors in object storage aren't easily reversible.",
+    "solution": "Worked with the team to define the document flow. Stored files via MinIO and managed state transitions without using direct deletion.",
+    "features": [
+      "Document upload and management",
+      "CRUD operations with metadata",
+      "Integration with other systems",
+      "Structured document storage using MinIO"
+    ],
+    "evidence": [
+      "/assets/dms/1.jpg",
+      "/assets/dms/2.jpg",
+      "/assets/dms/3.jpg"
+    ],
+    "tags": [
+      "Enterprise",
+      "Web"
+    ]
+  },
+  {
+    "id": 10,
+    "title": "PPT – Master Data Management",
+    "category": "Enterprise Application",
+    "description": "Migrated a Master Data Management frontend from PHP to Next.js, fixing usability issues and aligning it with the team's existing UI patterns.",
+    "image": "bg-brand-highlight",
+    "stack": [
+      "Next.js"
+    ],
+    "link": "#",
+    "isPrivate": true,
+    "challenge": "Tight deadline, and most requirements came through system analysts rather than directly from the business.",
+    "solution": "Worked from the provided specs, flagged ambiguities early, and stayed in regular contact with the analysts. Delivered on time.",
+    "features": [
+      "UI migration from PHP to Next.js",
+      "Updated interface based on existing standards",
+      "Frontend improvements for usability"
+    ],
+    "evidence": [
+      "/assets/ppt/1.jpg"
+    ],
+    "tags": [
+      "Enterprise",
+      "Web"
+    ]
+  },
+  {
+    "id": 11,
+    "title": "PABOI (Indonesia Orthopedic Association) Web Application",
+    "category": "Full Stack Intern Project",
+    "description": "Contributed to the PABOI web app during a 4-month internship, taking on both backend and frontend work across different parts of the product.",
+    "image": "bg-brand-highlight",
+    "stack": [
+      "ReactJS",
+      "Ruby on Rails",
+      "MySQL"
+    ],
+    "link": "https://indonesia-orthopaedic.org/",
+    "isPrivate": true,
+    "challenge": "Ramping up on a real team workflow and contributing to a production system without prior professional experience.",
+    "solution": "Fixed bugs and shipped small features on both frontend and backend. Followed team processes and worked alongside QA and product.",
+    "features": [
+      "Bug fixing on backend and frontend",
+      "Small feature updates",
+      "Team collaboration across roles",
+      "Task tracking using Kanban"
+    ],
+    "tags": [
+      "Web"
+    ]
+  },
+  {
+    "id": 12,
+    "title": "JTK Berbagi – Donation Management Platform",
+    "category": "Others",
+    "description": "Built a donation management platform for POLBAN's Computer Engineering Department — covers campaign setup, transaction tracking, and distribution logging.",
+    "image": "bg-brand-highlight",
+    "stack": [
+      "ReactJS",
+      "Ruby on Rails",
+      "MySQL"
+    ],
+    "link": "https://github.com/gemintangsf/tugas_akhir/tree/main",
+    "isPrivate": false,
+    "evidence": [
+      "/assets/jtkberbagi/1.png",
+      "/assets/jtkberbagi/2.png"
+    ],
+    "challenge": "Building a donation system from scratch with requirements that changed as the project moved forward.",
+    "solution": "Gathered requirements, defined the workflows, built the core features, and tested until it matched how donations actually needed to work.",
+    "features": [
+      "Donation campaign management",
+      "Donor and recipient data tracking",
+      "Transaction recording and reporting",
+      "Role-based access",
+      "Structured donation workflow"
+    ],
+    "tags": [
+      "Others",
+      "Web"
+    ]
+  },
+  {
+    "id": 13,
+    "title": "Sinbada",
+    "category": "Others",
+    "description": "Built a web-based inventory system in a university team project to manage asset and stock data.",
+    "image": "bg-brand-highlight",
+    "stack": [
+      "ReactJS",
+      "Ruby on Rails",
+      "MongoDB",
+      "Azure"
+    ],
+    "link": "https://github.com/SekelompokOrangKuat/ProjectInventaris/tree/dev",
+    "isPrivate": false,
+    "challenge": "Worked in a team environment while learning to use multiple technologies and understand how frontend and backend systems interact.",
+    "solution": "Contributed to both frontend and backend development and followed team workflows to complete assigned tasks.",
+    "features": [
+      "Asset and inventory management",
+      "CRUD operations",
+      "Role-based access",
+      "Team-based development"
+    ],
+    "evidence": [
+      "/assets/sinbada/1.jpg"
+    ],
+    "tags": [
+      "Others",
+      "Web"
+    ]
+  },
+  {
+    "id": 14,
+    "title": "Siinvent",
+    "category": "Others",
+    "description": "Earlier university team project — a basic web inventory system for tracking stock and inventory records.",
+    "image": "bg-brand-highlight",
+    "stack": [
+      "Express.js",
+      "ReactJS",
+      "PostgreSQL"
+    ],
+    "link": "https://github.com/SekelompokOrangKuat/PROJECTCUAN/tree/backend",
+    "isPrivate": false,
+    "challenge": "First time working with a shared codebase and figuring out how to contribute without causing conflicts.",
+    "solution": "Built features alongside teammates, used version control throughout, and picked up the basic development workflow as the project went on.",
+    "features": [
+      "Inventory data management",
+      "Basic stock tracking",
+      "User authentication",
+      "Team-based development"
+    ],
+    "evidence": [
+      "/assets/siinvent/2.jpg"
+    ],
+    "tags": [
+      "Others",
+      "Web"
+    ]
+  }
+];
