@@ -87,7 +87,7 @@ export default function EntityPage() {
         </section>
 
         <section className="pt-8 border-t border-brand-base/20 mt-12">
-           <Link href="/" className="inline-flex items-center gap-2 px-8 py-3 bg-brand-base text-background font-bold rounded-none shadow-lg hover:invert transition-all duration-300 uppercase tracking-widest text-sm">
+           <Link href="/" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-base text-background font-bold rounded-none shadow-lg hover:invert transition-all duration-300 uppercase tracking-widest text-sm">
              &larr; Return to Homepage
            </Link>
         </section>

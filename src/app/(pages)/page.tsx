@@ -1,10 +1,13 @@
-import HeroSection from "./components/HeroSection";
-import TechStack from "./components/TechStack";
-import ServicesSection from "./components/ServicesSection";
-import ProjectsSection from "./components/ProjectsSection";
-import AboutSection from "./components/AboutSection";
-import FAQSection from "./components/FAQSection";
-import ContactSection from "./components/ContactSection";
+import {
+  HeroSection,
+  TechStack,
+  ServicesSection,
+  ProjectsSection,
+  AboutSection,
+  FAQSection,
+  ContactSection,
+} from "@/components/sections";
+
 
 export default function Home() {
   return (
