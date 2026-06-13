@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { Button } from '@/components/ui';
 
 export default function NotFound() {
     return (
@@ -23,11 +24,10 @@ export default function NotFound() {
                         The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
                     </p>
 
-                    <Link
-                        href="/"
-                        className="inline-block px-10 py-4 border border-brand-base bg-brand-base text-brand-on-surface font-bold uppercase tracking-[0.3em] transition-all hover:bg-transparent hover:text-brand-base active:scale-95 shadow-2xl"
-                    >
-                        Return to Home
+                    <Link href="/">
+                        <Button variant="primary" size="lg" className="mx-auto">
+                            Return to Home
+                        </Button>
                     </Link>
                 </div>
             </motion.div>

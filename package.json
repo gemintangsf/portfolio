@@ -10,6 +10,7 @@
     "sonar": "sonar-scanner"
   },
   "dependencies": {
+    "@vercel/speed-insights": "^2.0.0",
     "framer-motion": "^12.23.12",
     "next": "^16.1.4",
     "react": "^19.2.3",

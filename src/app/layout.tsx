@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 // import { Inter, Roboto_Mono } from "next/font/google"; // Disabled due to network issues
 import "./globals.css";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import InteractiveBackground from "./components/InteractiveBackground";
-import Preloader from "./components/Preloader";
-import { UIProvider } from "./context/UIContext";
+import { Navbar, Footer, InteractiveBackground, Preloader } from "@/components/layouts";
+import { UIProvider } from "@/context/UIContext";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 
 // fonts are now defined in globals.css to avoid network errors
 // const inter = Inter({ ... });
@@ -69,6 +68,7 @@ export default function RootLayout({
           <Navbar />
           <main className="min-h-screen relative z-0">{children}</main>
           <Footer />
+          <SpeedInsights />
         </UIProvider>
       </body>
     </html>
