@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "sonar": "sonar-scanner"
+    "sonar": "sonar-scanner",
+    "prepare": "husky"
   },
   "dependencies": {
     "@vercel/speed-insights": "^2.0.0",
@@ -25,7 +26,14 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "^16.1.4",
+    "husky": "^9.1.1",
+    "lint-staged": "^15.2.7",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix"
+    ]
   }
 }
