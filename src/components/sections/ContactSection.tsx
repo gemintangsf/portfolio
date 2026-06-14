@@ -4,10 +4,44 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { FaPaperPlane, FaCheckCircle, FaExclamationCircle } from "react-icons/fa";
 import { Container, Grid, Stack, Input, Textarea, Button } from "@/components/ui";
+import { useUI } from "@/hooks/useUI";
 
 export default function ContactSection() {
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
     const [errorMessage, setErrorMessage] = useState("");
+    const { prefilledMessage, setPrefilledMessage, selectedCategory } = useUI();
+
+    const getContactHeader = () => {
+        switch (selectedCategory) {
+            case "Mobile":
+                return {
+                    title: <>Let&apos;s Build Your <span className="text-brand-accent">Mobile App</span></>,
+                    subtitle: "Have a mobile app concept or need optimization? Let's discuss how we can build a responsive, high-performance Flutter solution together."
+                };
+            case "Web":
+                return {
+                    title: <>Let&apos;s Design Your <span className="text-brand-accent">Web Platform</span></>,
+                    subtitle: "Need a modern Next.js site or custom e-commerce solution? Tell me about your requirements and let's craft an SEO-friendly platform."
+                };
+            case "Enterprise":
+                return {
+                    title: <>Let&apos;s Design Your <span className="text-brand-accent">APIs & Backend</span></>,
+                    subtitle: "Looking for a secure, scalable backend architecture? Tell me about your database and server needs, and let's design the ideal API schema."
+                };
+            case "All":
+                return {
+                    title: <>Let&apos;s Work <span className="text-brand-accent">Together</span></>,
+                    subtitle: "Looking for a collaborative full-stack engineer who values clean code? Reach out below to discuss open opportunities or team needs."
+                };
+            default:
+                return {
+                    title: <>Let&apos;s <span className="text-brand-accent">Collaborate</span></>,
+                    subtitle: "Have a vision? Let’s turn it into reality. I’m always open to discussing new projects, roles, and creative solutions."
+                };
+        }
+    };
+
+    const headerContent = getContactHeader();
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -64,7 +98,7 @@ export default function ContactSection() {
                     transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
                     className="text-5xl md:text-7xl font-black text-brand-base uppercase tracking-tighter mb-4"
                 >
-                    Let&apos;s <span className="text-brand-accent">Collaborate</span>
+                    {headerContent.title}
                 </motion.h2>
 
                 <motion.p
@@ -74,8 +108,7 @@ export default function ContactSection() {
                     transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
                     className="text-lg text-brand-accent max-w-xl mb-16 font-light leading-relaxed"
                 >
-                    Have a vision? Let’s turn it into reality.
-                    I’m always open to discussing new projects and opportunities.
+                    {headerContent.subtitle}
                 </motion.p>
 
                 <div className="w-full max-w-2xl">
@@ -134,6 +167,8 @@ export default function ContactSection() {
                                         placeholder="What's on your mind?"
                                         rows={6}
                                         required
+                                        value={prefilledMessage}
+                                        onChange={(e) => setPrefilledMessage(e.target.value)}
                                     />
 
                                     {status === "error" && (

@@ -3,32 +3,37 @@
 import { motion, Variants } from "framer-motion";
 import { useState, useEffect } from "react";
 import { FaLaptopCode, FaServer, FaMobileAlt, FaProjectDiagram } from "react-icons/fa";
-import { Container, Grid, Card, Badge } from "@/components/ui";
+import { Container, Grid, Card } from "@/components/ui";
+import { useUI } from "@/hooks/useUI";
 
 const services = [
     {
-        title: "Front-End Developer",
-        description: "Building responsive and functional web interfaces with a focus on clarity and usability.",
+        title: "Front-End Development",
+        description: "Want an interface that keeps visitors engaged? I build responsive, highly-accessible web applications using Next.js & React with a focus on clean layouts, performance tuning, and Core Web Vitals.",
         icon: FaLaptopCode,
         color: "from-brand-accent/20 to-brand-highlight",
+        matchTag: "Web",
     },
     {
-        title: "Back-End Developer",
-        description: "Developing APIs and backend services that are structured, scalable, and maintainable.",
+        title: "Back-End & APIs",
+        description: "Need server architectures that don't crash under load? I design secure, structured, and scalable APIs using NestJS and Node.js to keep your business workflows and data flowing safely.",
         icon: FaServer,
         color: "from-brand-accent/20 to-brand-highlight",
+        matchTag: "Enterprise",
     },
     {
-        title: "Mobile Developer",
-        description: "Creating cross-platform mobile applications using Flutter with attention to performance and stability.",
+        title: "Mobile App Development",
+        description: "Looking for a mobile app that works flawlessly across iOS & Android? I develop robust Flutter applications with optimized rendering list performance, custom storage caching, and device hardware integrations.",
         icon: FaMobileAlt,
         color: "from-brand-accent/20 to-brand-highlight",
+        matchTag: "Mobile",
     },
     {
-        title: "System Analyst",
-        description: "Translating business requirements into clear technical solutions and system designs.",
+        title: "System Analysis & Design",
+        description: "Unsure how to translate business ideas into scalable code? I map out visual process workflows, plan relational DB schemas, and design robust architectures so we build exactly what you need.",
         icon: FaProjectDiagram,
         color: "from-brand-accent/20 to-brand-highlight",
+        matchTag: "Enterprise",
     },
 ];
 
@@ -66,6 +71,8 @@ function ServiceIcon({ icon: Icon }: { icon: React.ElementType }) {
 }
 
 export default function ServicesSection() {
+    const { selectedCategory } = useUI();
+
     return (
         <section id="services" className="min-h-[100dvh] flex flex-col items-center justify-center relative z-10 py-20 md:py-28 scroll-mt-16 md:scroll-mt-4">
             <Container size="lg" className="flex flex-col items-center justify-center text-center">
@@ -76,14 +83,11 @@ export default function ServicesSection() {
                     transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                     className="text-center mb-8"
                 >
-                    {/* <Badge variant="status" dot className="mb-4">
-                        What I Offer
-                    </Badge> */}
                     <h1 className="text-4xl md:text-5xl font-bold text-brand-base mb-4 uppercase tracking-tighter">
                         My <span className="text-brand-accent">Services</span>
                     </h1>
                     <p className="text-lg text-brand-accent max-w-2xl mx-auto leading-relaxed font-light">
-                        Specialized in delivering high-quality digital solutions across the full software development lifecycle.
+                        Engineering solutions focused on performance, scalability, and user needs.
                     </p>
                 </motion.div>
 
@@ -96,6 +100,7 @@ export default function ServicesSection() {
                 >
                     <Grid cols={{ md: 2 }} gap="gap-8" className="w-full px-4 md:px-12">
                         {services.map((service, index) => {
+                            const isHighlighted = service.matchTag === selectedCategory;
                             return (
                                 <motion.div
                                     key={index}
@@ -105,14 +110,26 @@ export default function ServicesSection() {
                                 >
                                     <Card
                                         hoverable
-                                        className="relative p-10 flex-1 flex flex-col items-start gap-6 overflow-hidden backdrop-blur-sm group"
+                                        className={`relative p-10 flex-1 flex flex-col items-start gap-6 group ${
+                                            isHighlighted 
+                                                ? "!bg-brand-highlight" 
+                                                : ""
+                                        }`}
                                     >
-                                        {/* Decorative background glow */}
-                                        <div className="absolute top-0 right-0 w-32 h-32 bg-brand-base/[0.02] blur-[50px] group-hover:bg-brand-base/[0.05] transition-colors duration-500 rounded-full -mr-16 -mt-16" />
-                                        <div className="relative z-10 w-14 h-14 flex items-center justify-center rounded-none bg-brand-base/5 border border-brand-base/10 text-brand-base text-2xl group-hover:bg-brand-base group-hover:text-brand-on-surface transition-all duration-500">
+                                        {isHighlighted && (
+                                            <div className="absolute top-6 right-6 border border-brand-base text-brand-accent text-[9px] px-2.5 py-1 uppercase tracking-widest font-black bg-background">
+                                                Selected Focus
+                                            </div>
+                                        )}
+ 
+                                        <div className={`relative z-10 w-14 h-14 flex items-center justify-center rounded-none border-2 border-brand-base transition-all duration-500 ${
+                                            isHighlighted 
+                                                ? "bg-brand-base text-background" 
+                                                : "bg-brand-highlight text-brand-base group-hover:bg-brand-base group-hover:text-brand-on-surface"
+                                        }`}>
                                             <ServiceIcon icon={service.icon} />
                                         </div>
-
+ 
                                         <div className="relative z-10 text-left">
                                             <h3 className="text-2xl font-bold text-brand-base mb-4 uppercase tracking-tighter">
                                                 {service.title}
@@ -121,9 +138,6 @@ export default function ServicesSection() {
                                                 {service.description}
                                             </p>
                                         </div>
-
-                                        {/* Accent line */}
-                                        <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-brand-base group-hover:w-full transition-all duration-700 ease-in-out" />
                                     </Card>
                                 </motion.div>
                             );

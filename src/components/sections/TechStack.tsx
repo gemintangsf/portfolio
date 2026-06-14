@@ -129,7 +129,7 @@ export default function TechStack() {
                                 {currentStack.map((tech, index) => (
                                     <div
                                         key={`${tech}-${index}`}
-                                        className="flex-1 min-w-[120px] max-w-[150px] md:max-w-[200px] min-h-[70px] md:min-h-[100px] flex items-center justify-center px-4 py-4 md:px-4 md:py-6 rounded-none border border-brand-base/10 bg-background backdrop-blur-sm hover:border-brand-base transition-all cursor-default mt-2 group"
+                                        className="flex-1 min-w-[120px] max-w-[150px] md:max-w-[200px] min-h-[70px] md:min-h-[100px] flex items-center justify-center px-4 py-4 md:px-4 md:py-6 rounded-none border-2 border-brand-base bg-brand-highlight/20 shadow-[3px_3px_0px_0px_var(--color-primary)] hover:shadow-[5px_5px_0px_0px_var(--color-primary)] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 active:shadow-none transition-all cursor-default mt-2 group"
                                     >
                                         <span className="text-brand-base font-bold text-[10px] md:text-xs text-center uppercase tracking-wider group-hover:scale-105 transition-transform leading-tight block w-full px-1">
                                             {tech}

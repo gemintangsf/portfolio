@@ -3,24 +3,47 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { FiDownload } from "react-icons/fi";
-import { Container, Badge, Button } from "@/components/ui";
+import { Container, Button } from "@/components/ui";
+import { useUI } from "@/hooks/useUI";
 
 export default function AboutSection() {
+  const { selectedCategory } = useUI();
+
+  const getSpotlightData = () => {
+    switch (selectedCategory) {
+      case "Mobile":
+        return {
+          title: "Mobile App Reliability Focus",
+          content: "In mobile development, I focus on performance and resource limits. On the PHC internal app, I engineered optimized loading and custom storage caching to prevent excessive disk use, keeping rendering fluid at 60fps. I also developed secure face-recognition and location tracking for team attendance."
+        };
+      case "Web":
+        return {
+          title: "Web Performance & UX Focus",
+          content: "I design fast, responsive Next.js apps with smooth layouts and zero lag. At PT Javabooks, I integrated OpenSearch autocomplete, ranking logic, and typo-tolerant search suggestions into the storefront catalog, making search response instant."
+        };
+      case "Enterprise":
+        return {
+          title: "Secure backend & Enterprise systems",
+          content: "I construct scalable, secure backend systems using NestJS, Node, and Python. At Telkom Indonesia, I migrated legacy Zend systems to NestJS & Next.js, mapped out complex NTE asset management workflows, and automated database sync schedules using Apache Airflow."
+        };
+      case "All":
+        return {
+          title: "Full-Stack Collaboration",
+          content: "I bridge mobile, frontend, and backend to keep development clean and unified. I enforce code standards using SonarQube, automate lint stages (Husky), and design databases (PostgreSQL, MySQL) for high-availability systems."
+        };
+      default:
+        return {
+          title: "My Engineering Focus",
+          content: "Whether it is custom cached Flutter apps, high-throughput commercial storefront searches, or legacy database migrations, I design and write code to directly solve business needs and simplify workflows."
+        };
+    }
+  };
+
+  const spotlight = getSpotlightData();
+
   return (
     <section id="about-me" className="min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden relative z-10 py-20 md:py-28 scroll-mt-16 md:scroll-mt-4">
       <Container size="md" className="flex flex-col items-center justify-center">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="flex items-center justify-center gap-2 mb-4"
-        >
-          {/* <Badge variant="status" dot>
-            My Story
-          </Badge> */}
-        </motion.div>
-
         <div className="relative z-10 w-full">
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
@@ -46,7 +69,7 @@ export default function AboutSection() {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="flex-shrink-0"
             >
-              <div className="relative w-64 h-80 md:w-72 md:h-96 rounded-none overflow-hidden shadow-2xl border-4 border-brand-base transition-transform duration-500">
+              <div className="relative w-64 h-80 md:w-72 md:h-96 rounded-none overflow-hidden shadow-[12px_12px_0px_0px_var(--color-primary)] border-4 border-brand-base transition-transform duration-500">
                 <Image
                   src="/assets/pp.jpeg"
                   alt="Gemintang Profile"
@@ -57,33 +80,47 @@ export default function AboutSection() {
               </div>
             </motion.div>
 
-            <div className="space-y-6 text-center md:text-left">
-              <p className="font-light">
+            <div className="space-y-6 text-center md:text-left flex-1">
+              <p className="font-light text-base md:text-lg">
                 Hi, I’m{" "}
                 <span className="font-bold text-brand-primary text-xl uppercase tracking-tighter">
                   Gemintang Sangkaji Furqon
                 </span>
-                , a Software Engineer focused on building reliable mobile and web
-                applications.
+                , a Software Engineer focused on translating business needs into high-quality mobile and web applications.
               </p>
 
-              <p className="font-light">
-                Currently working as a{" "}
-                <span className="font-bold text-brand-primary uppercase tracking-widest text-sm">
+              <p className="font-light text-sm md:text-base">
+                I currently work as a{" "}
+                <span className="font-bold text-brand-primary uppercase tracking-widest text-xs">
                   Full Stack & Mobile Developer
                 </span>{" "}
-                at PT Javabooks Indonesia, developing retail POS systems, mobile apps,
-                and AI-powered search platforms.
+                at PT Javabooks Indonesia, where I develop commercial mobile features, POS configurations, and search indexing platforms.
               </p>
 
-              <p className="font-light">
-                Previously involved in enterprise systems at Telkom Indonesia, which shaped
-                my approach to clean code, scalability, and production-ready solutions.
+              <p className="font-light text-sm md:text-base">
+                Previously, I built backend architectures and migrated legacy database structures at{" "}
+                <span className="font-bold text-brand-primary uppercase tracking-widest text-xs">
+                  Telkom Indonesia
+                </span>
+                , ensuring data security and clean code practices.
               </p>
 
               <p className="text-xs uppercase tracking-[0.3em] font-bold text-brand-accent">
                 Tech stack: Flutter, NestJS, Next.js, Python, PostgreSQL, MySQL.
               </p>
+
+              {/* Dynamic Spotlight Alert Box */}
+              <div className="mt-6 p-5 bg-brand-highlight border-2 border-brand-base shadow-[4px_4px_0px_0px_var(--color-primary)] transition-all duration-300 relative rounded-none text-left">
+                <div className="absolute -top-3 left-4 bg-brand-base text-background text-[9px] uppercase tracking-widest font-black px-2 py-0.5 border-2 border-brand-base">
+                  Interactive Spotlight
+                </div>
+                <p className="text-xs font-bold text-brand-base uppercase tracking-wider mb-1">
+                  {spotlight.title}
+                </p>
+                <p className="text-xs text-brand-accent leading-relaxed font-light">
+                  {spotlight.content}
+                </p>
+              </div>
 
               <div className="pt-4 flex flex-wrap gap-4 justify-center md:justify-start">
                 <a

@@ -22,13 +22,14 @@ import {
 import { useState } from "react";
 import { Project } from "@/types";
 import { projects as staticProjects, categories as staticCategories } from "@/data/projects";
-import { Button, ProjectModal } from "@/components/ui";
+import { Button, ProjectModal, Card, Badge } from "@/components/ui";
+import { useUI } from "@/hooks/useUI";
 
 export default function ProjectsSection() {
     const [projects] = useState<Project[]>(staticProjects);
     const [categories] = useState<string[]>(staticCategories);
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-    const [selectedCategory, setSelectedCategory] = useState("All");
+    const { selectedCategory, setSelectedCategory } = useUI();
     const [visibleCount, setVisibleCount] = useState(6);
     const [isLoadingMore, setIsLoadingMore] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -116,9 +117,9 @@ export default function ProjectsSection() {
                         <button
                             key={cat}
                             onClick={() => setSelectedCategory(cat)}
-                            className={`flex-none snap-start px-6 py-2 rounded-full text-[10px] md:text-xs font-bold transition-all duration-300 border uppercase tracking-[0.2em] whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-base focus-visible:ring-offset-2 focus-visible:ring-offset-background ${selectedCategory === cat
-                                ? "bg-brand-base text-brand-on-surface border-brand-base shadow-[0_0_20px_rgba(var(--color-base-rgb),0.15)]"
-                                : "bg-brand-base/5 text-brand-accent hover:text-brand-base border-brand-base/10 hover:border-brand-base/30 backdrop-blur-sm"
+                            className={`flex-none snap-start px-6 py-2.5 rounded-none text-[10px] md:text-xs font-bold transition-all duration-200 border-2 uppercase tracking-[0.2em] whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-base cursor-pointer ${selectedCategory === cat
+                                ? "bg-brand-base text-background border-brand-base shadow-[3px_3px_0px_0px_var(--color-primary)] -translate-x-0.5 -translate-y-0.5"
+                                : "bg-transparent text-brand-base border-brand-base/40 hover:border-brand-base hover:bg-brand-highlight hover:shadow-[3px_3px_0px_0px_var(--color-primary)] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 active:shadow-none"
                                 }`}
                         >
                             {cat}
@@ -155,50 +156,55 @@ export default function ProjectsSection() {
                                 hidden: { opacity: 0, y: 20, scale: 0.95 },
                                 visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
                             }}
-                            className="group relative bg-background rounded-none border border-brand-base/10 shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 flex flex-col"
+                            className="flex"
                         >
-                            <div
-                                className={`h-56 w-full ${project.image} relative overflow-hidden cursor-pointer`}
-                                onClick={() => setSelectedProject(project)}
+                            <Card
+                                hoverable
+                                className="group relative flex-1 flex flex-col"
                             >
-                                <div className="absolute inset-0 bg-brand-base/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                    <span className="text-brand-on-surface font-bold border border-brand-on-surface px-4 py-2 rounded-none backdrop-blur-sm uppercase tracking-widest">
-                                        View Case Study
-                                    </span>
-                                </div>
-
-                                <div className="absolute inset-0 flex items-center justify-center text-brand-base/20 text-6xl pointer-events-none">
-                                    {getProjectIcon(project)}
-                                </div>
-
-                                {project.isPrivate && (
-                                    <div className="absolute top-4 right-4 bg-brand-base/50 backdrop-blur-md text-brand-on-surface text-[10px] px-3 py-1 rounded-none flex items-center gap-1 uppercase font-bold">
-                                        <FaLock size={10} /> Private
-                                    </div>
-                                )}
-                            </div>
-
-                            <div className="p-6 flex-1 flex flex-col">
-                                <span className="text-[10px] font-bold uppercase tracking-widest text-brand-accent mb-2">
-                                    {project.category}
-                                </span>
-                                <h3
-                                    className="text-xl font-bold text-brand-base mb-3 group-hover:text-brand-primary transition-colors cursor-pointer uppercase tracking-tighter"
+                                <div
+                                    className={`h-56 w-full ${project.image} relative overflow-hidden cursor-pointer`}
                                     onClick={() => setSelectedProject(project)}
                                 >
-                                    {project.title}
-                                </h3>
-                                <p className="text-brand-accent mb-6 line-clamp-3 font-light text-sm">
-                                    {project.description}
-                                </p>
-                                <div className="flex flex-wrap gap-2 mt-auto">
-                                    {project.stack.slice(0, 3).map((tech) => (
-                                        <span key={tech} className="text-[10px] font-medium text-brand-accent bg-brand-highlight px-4 py-2 rounded-none border border-brand-base/5 uppercase tracking-widest">
-                                            {tech}
+                                    <div className="absolute inset-0 bg-brand-base/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                        <span className="text-brand-on-surface font-bold border border-brand-on-surface px-4 py-2 rounded-none backdrop-blur-sm uppercase tracking-widest">
+                                            View Case Study
                                         </span>
-                                    ))}
+                                    </div>
+
+                                    <div className="absolute inset-0 flex items-center justify-center text-brand-base/20 text-6xl pointer-events-none">
+                                        {getProjectIcon(project)}
+                                    </div>
+
+                                    {project.isPrivate && (
+                                        <div className="absolute top-4 right-4 bg-brand-base/50 backdrop-blur-md text-brand-on-surface text-[10px] px-3 py-1 rounded-none flex items-center gap-1 uppercase font-bold">
+                                            <FaLock size={10} /> Private
+                                        </div>
+                                    )}
                                 </div>
-                            </div>
+
+                                <div className="p-6 flex-1 flex flex-col">
+                                    <span className="text-[10px] font-bold uppercase tracking-widest text-brand-accent mb-2">
+                                        {project.category}
+                                    </span>
+                                    <h3
+                                        className="text-xl font-bold text-brand-base mb-3 group-hover:text-brand-primary transition-colors cursor-pointer uppercase tracking-tighter"
+                                        onClick={() => setSelectedProject(project)}
+                                    >
+                                        {project.title}
+                                    </h3>
+                                    <p className="text-brand-accent mb-6 line-clamp-3 font-light text-sm">
+                                        {project.description}
+                                    </p>
+                                    <div className="flex flex-wrap gap-2 mt-auto">
+                                        {project.stack.slice(0, 3).map((tech) => (
+                                            <Badge key={tech} variant="tag">
+                                                {tech}
+                                            </Badge>
+                                        ))}
+                                    </div>
+                                </div>
+                            </Card>
                         </motion.div>
                     ))}
                 </motion.div>
@@ -233,41 +239,46 @@ export default function ProjectsSection() {
                         {otherProjects.map((project) => (
                             <motion.div
                                 key={project.id}
-                                className="group relative bg-background rounded-none border border-brand-base/10 overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col"
+                                className="flex"
                             >
-                                <div
-                                    className={`h-48 w-full ${project.image} relative overflow-hidden cursor-pointer grayscale group-hover:grayscale-0 transition-all duration-500`}
-                                    onClick={() => setSelectedProject(project)}
+                                <Card
+                                    hoverable
+                                    className="group relative flex-1 flex flex-col"
                                 >
-                                    <div className="absolute inset-0 flex items-center justify-center text-brand-base/20 text-5xl pointer-events-none">
-                                        {getProjectIcon(project)}
-                                    </div>
-                                </div>
-
-                                <div className="p-6 flex-1 flex flex-col">
-                                    <h3
-                                        className="text-lg font-bold text-brand-base mb-2 group-hover:text-brand-primary transition-colors cursor-pointer uppercase tracking-tighter"
+                                    <div
+                                        className={`h-48 w-full ${project.image} relative overflow-hidden cursor-pointer grayscale group-hover:grayscale-0 transition-all duration-500`}
                                         onClick={() => setSelectedProject(project)}
                                     >
-                                        {project.title}
-                                    </h3>
-                                    <p className="text-brand-accent text-xs mb-4 line-clamp-2 font-light">
-                                        {project.description}
-                                    </p>
-                                    <div className="mt-auto flex items-center justify-between">
-                                        <button
-                                            onClick={() => setSelectedProject(project)}
-                                            className="text-xs font-bold text-brand-base hover:text-brand-primary flex items-center gap-2 transition-colors uppercase tracking-widest focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-base focus-visible:ring-offset-1 focus-visible:ring-offset-background"
-                                        >
-                                            View Details <FaArrowRight size={10} />
-                                        </button>
-                                        {project.link && project.link.includes("github") && (
-                                            <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-brand-accent hover:text-brand-base">
-                                                <FaGithub size={18} />
-                                            </a>
-                                        )}
+                                        <div className="absolute inset-0 flex items-center justify-center text-brand-base/20 text-5xl pointer-events-none">
+                                            {getProjectIcon(project)}
+                                        </div>
                                     </div>
-                                </div>
+
+                                    <div className="p-6 flex-1 flex flex-col">
+                                        <h3
+                                            className="text-lg font-bold text-brand-base mb-2 group-hover:text-brand-primary transition-colors cursor-pointer uppercase tracking-tighter"
+                                            onClick={() => setSelectedProject(project)}
+                                        >
+                                            {project.title}
+                                        </h3>
+                                        <p className="text-brand-accent text-xs mb-4 line-clamp-2 font-light">
+                                            {project.description}
+                                        </p>
+                                        <div className="mt-auto flex items-center justify-between">
+                                            <button
+                                                onClick={() => setSelectedProject(project)}
+                                                className="text-xs font-bold text-brand-base hover:text-brand-primary flex items-center gap-2 transition-colors uppercase tracking-widest focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-base focus-visible:ring-offset-1 focus-visible:ring-offset-background cursor-pointer"
+                                            >
+                                                View Details <FaArrowRight size={10} />
+                                            </button>
+                                            {project.link && project.link.includes("github") && (
+                                                <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-brand-accent hover:text-brand-base">
+                                                    <FaGithub size={18} />
+                                                </a>
+                                            )}
+                                        </div>
+                                    </div>
+                                </Card>
                             </motion.div>
                         ))}
                     </div>

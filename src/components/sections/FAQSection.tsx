@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { AccordionItem, Badge, Container } from "@/components/ui";
+import { AccordionItem, Container } from "@/components/ui";
+import { useUI } from "@/hooks/useUI";
 
 const faqs = [
     {
@@ -33,7 +34,19 @@ const faqs = [
 ];
 
 export default function FAQSection() {
+    const { selectedCategory } = useUI();
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+    // Auto-expand FAQ based on user selection
+    useEffect(() => {
+        if (selectedCategory === "Mobile" || selectedCategory === "Web" || selectedCategory === "Enterprise") {
+            setActiveIndex(1); // Auto-expand primary tech stack question
+        } else if (selectedCategory === "All") {
+            setActiveIndex(3); // Auto-expand team integration question for recruiters
+        } else {
+            setActiveIndex(0); // Default expand freelance question
+        }
+    }, [selectedCategory]);
 
     const toggleFAQ = (index: number) => {
         setActiveIndex(activeIndex === index ? null : index);
@@ -49,9 +62,6 @@ export default function FAQSection() {
                     transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                     className="text-center mb-16"
                 >
-                    {/* <Badge variant="status" dot className="mb-4">
-                        Common Questions
-                    </Badge> */}
                     <h1 className="text-4xl md:text-5xl font-extrabold text-brand-base uppercase tracking-tighter">
                         Frequently Asked <span className="text-brand-accent">Questions</span>
                     </h1>
