@@ -22,7 +22,7 @@ export default function Input({
       )}
       <input
         id={id}
-        className={`w-full px-6 py-4 rounded-none border border-brand-base/40 bg-brand-highlight focus:border-brand-base focus:outline-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-base focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-all text-brand-base font-medium placeholder:text-brand-accent/30 ${className}`}
+        className={`w-full px-6 py-4 rounded-none border-2 border-brand-base bg-brand-highlight focus:bg-background focus:shadow-[4px_4px_0px_0px_var(--color-primary)] focus:outline-none focus-visible:outline-none transition-all text-brand-base font-medium placeholder:text-brand-accent/30 ${className}`}
         {...props}
       />
     </div>

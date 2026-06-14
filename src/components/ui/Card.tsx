@@ -14,13 +14,13 @@ export default function Card({
   hoverable = false,
 }: CardProps) {
   const hoverClass = hoverable
-    ? "hover:border-brand-base/30 hover:shadow-2xl transition-all duration-300"
+    ? "hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_var(--color-primary)]"
     : "";
 
   return (
     <div
       onClick={onClick}
-      className={`bg-background rounded-none border border-brand-base/10 shadow-xl overflow-hidden flex flex-col ${hoverClass} ${onClick ? "cursor-pointer" : ""} ${className}`}
+      className={`bg-background rounded-none border-2 border-brand-base shadow-[4px_4px_0px_0px_var(--color-primary)] overflow-hidden flex flex-col transition-all duration-300 ${hoverClass} ${onClick ? "cursor-pointer active:translate-x-0 active:translate-y-0 active:shadow-none" : ""} ${className}`}
     >
       {children}
     </div>

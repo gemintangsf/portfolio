@@ -15,11 +15,11 @@ export default function Badge({
   icon,
   className = "",
 }: BadgeProps) {
-  const baseStyle = "inline-flex items-center gap-2 font-medium backdrop-blur-sm text-brand-base";
+  const baseStyle = "inline-flex items-center gap-2 font-bold text-brand-base uppercase";
 
   const variants = {
-    status: "px-4 py-2 rounded-full bg-brand-accent/10 border border-brand-accent/20 text-sm",
-    tag: "text-[10px] font-medium text-brand-accent bg-brand-highlight px-4 py-2 rounded-none border border-brand-base/5 uppercase tracking-widest",
+    status: "px-3.5 py-1.5 rounded-none bg-brand-highlight border border-brand-base shadow-[2px_2px_0px_0px_var(--color-primary)] text-xs tracking-wider",
+    tag: "text-[10px] text-brand-accent bg-brand-highlight px-3 py-1.5 rounded-none border border-brand-base shadow-[2px_2px_0px_0px_var(--color-primary)] tracking-widest",
   };
 
   return (

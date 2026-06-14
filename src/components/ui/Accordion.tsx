@@ -17,11 +17,11 @@ export function AccordionItem({
 }: AccordionItemProps) {
   return (
     <div
-      className={`border rounded-none overflow-hidden transition-all duration-300 ${
+      className={`border-2 border-brand-base rounded-none overflow-hidden transition-all duration-300 shadow-[4px_4px_0px_0px_var(--color-primary)] ${
         isOpen
-          ? "border-brand-base bg-brand-highlight shadow-lg"
-          : "border-brand-base/10 bg-background hover:border-brand-base/30"
-      } backdrop-blur-sm`}
+          ? "bg-brand-highlight"
+          : "bg-background hover:bg-brand-highlight/35"
+      }`}
     >
       <button
         onClick={onToggle}
@@ -35,7 +35,7 @@ export function AccordionItem({
           {title}
         </span>
         <span
-          className={`p-2 rounded-none transition-colors duration-300 ${
+          className={`p-2 rounded-none border border-brand-base transition-colors duration-300 ${
             isOpen
               ? "bg-brand-base text-background"
               : "bg-brand-highlight text-brand-accent"
@@ -44,7 +44,7 @@ export function AccordionItem({
           {isOpen ? <FiMinus /> : <FiPlus />}
         </span>
       </button>
-
+ 
       <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
@@ -53,7 +53,7 @@ export function AccordionItem({
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="px-6 pb-6 text-brand-accent font-light leading-relaxed border-t border-dashed border-brand-base/10 pt-4">
+            <div className="px-6 pb-6 text-brand-accent font-light leading-relaxed border-t-2 border-dashed border-brand-base/20 pt-4">
               {children}
             </div>
           </motion.div>
