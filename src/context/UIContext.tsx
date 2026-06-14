@@ -11,6 +11,10 @@ interface UIContextType {
     setLoaded: (loaded: boolean) => void;
     theme: Theme;
     toggleTheme: () => void;
+    selectedCategory: string;
+    setSelectedCategory: (category: string) => void;
+    prefilledMessage: string;
+    setPrefilledMessage: (message: string) => void;
 }
 
 const UIContext = createContext<UIContextType | undefined>(undefined);
@@ -19,6 +23,8 @@ export function UIProvider({ children }: { children: ReactNode }) {
     const [isModalOpen, setModalOpen] = useState(false);
     const [isLoaded, setLoaded] = useState(false);
     const [theme, setTheme] = useState<Theme>("dark");
+    const [selectedCategory, setSelectedCategory] = useState("All");
+    const [prefilledMessage, setPrefilledMessage] = useState("");
 
     // Initialize theme and trigger load transition instantly
     useEffect(() => {
@@ -47,7 +53,11 @@ export function UIProvider({ children }: { children: ReactNode }) {
             isLoaded, 
             setLoaded, 
             theme, 
-            toggleTheme 
+            toggleTheme,
+            selectedCategory,
+            setSelectedCategory,
+            prefilledMessage,
+            setPrefilledMessage
         }}>
             {children}
         </UIContext.Provider>

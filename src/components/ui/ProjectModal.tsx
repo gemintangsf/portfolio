@@ -118,25 +118,25 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                             exit={{ opacity: 0, scale: 0.98, y: 20 }}
                             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                             onClick={(e) => e.stopPropagation()} // Prevent click through
-                            className="bg-background border border-brand-base/20 rounded-none w-full max-w-5xl max-h-[90vh] overflow-y-auto shadow-2xl relative custom-scrollbar"
+                            className="bg-background border-2 border-brand-base rounded-none w-full max-w-5xl max-h-[90vh] overflow-y-auto shadow-[12px_12px_0px_0px_var(--color-primary)] relative custom-scrollbar"
                         >
                             {/* Close Button */}
                             <button
                                 onClick={onClose}
-                                className="absolute top-6 right-6 p-2 bg-background border border-brand-base/20 hover:bg-brand-base hover:text-brand-on-surface text-brand-base transition-colors z-20 rounded-none mix-blend-difference focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-base focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                                className="absolute top-6 right-6 p-2 bg-background border-2 border-brand-base shadow-[3px_3px_0px_0px_var(--color-primary)] hover:shadow-[5px_5px_0px_0px_var(--color-primary)] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 active:shadow-none hover:bg-brand-base hover:text-brand-on-surface text-brand-base transition-all z-20 rounded-none mix-blend-difference focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-base focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                             >
                                 <FaTimes size={18} />
                             </button>
 
                             {/* Header Image Area */}
                             <div className={`h-64 md:h-96 w-full ${project.image} relative`}>
-                                <div className="absolute inset-0 bg-background/60 flex flex-col justify-end p-8 md:p-12 border-b border-brand-base/10 backdrop-blur-[2px]">
+                                <div className="absolute inset-0 bg-background/60 flex flex-col justify-end p-8 md:p-12 border-b-2 border-brand-base backdrop-blur-[2px]">
                                     <div className="flex items-center gap-4 mb-6">
                                         <span className="px-4 py-2 bg-brand-base text-background text-[10px] font-bold uppercase tracking-widest rounded-none">
                                             {project.category}
                                         </span>
                                         {project.isPrivate && (
-                                            <span className="flex items-center gap-2 px-4 py-2 bg-background border border-brand-base/20 text-brand-base text-[10px] font-bold uppercase tracking-widest rounded-none">
+                                            <span className="flex items-center gap-2 px-4 py-2 bg-background border border-brand-base text-brand-base text-[10px] font-bold uppercase tracking-widest rounded-none shadow-[2px_2px_0px_0px_var(--color-primary)]">
                                                 <FaLock size={10} /> Private
                                             </span>
                                         )}
@@ -150,7 +150,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
                                 {/* 1. Overview */}
                                 <div>
-                                    <h3 className="text-[10px] font-bold uppercase tracking-widest text-brand-accent mb-6 border-b border-brand-base/10 pb-4">
+                                    <h3 className="text-[10px] font-bold uppercase tracking-widest text-brand-accent mb-6 border-b-2 border-brand-base pb-4">
                                         Executive Summary
                                     </h3>
                                     <p className="text-brand-base font-light leading-relaxed text-lg text-justify">
@@ -162,9 +162,9 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                 {(project.challenge || project.solution) && (
                                     <div className="flex flex-col md:flex-row gap-6 md:gap-8">
                                         {project.challenge && (
-                                            <div className="flex-1 p-8 md:p-10 border border-brand-base/20 bg-background relative group">
-                                                <div className="flex items-center gap-4 mb-6 pb-6 border-b border-brand-base/10">
-                                                    <span className="w-10 h-10 flex items-center justify-center bg-brand-base/5 text-brand-base border border-brand-base/20 shrink-0">
+                                            <div className="flex-1 p-8 md:p-10 border-2 border-brand-base bg-background shadow-[4px_4px_0px_0px_var(--color-primary)] relative group">
+                                                <div className="flex items-center gap-4 mb-6 pb-6 border-b-2 border-brand-base">
+                                                    <span className="w-10 h-10 flex items-center justify-center bg-brand-base/5 text-brand-base border border-brand-base shrink-0">
                                                         <FaExclamationTriangle size={16} />
                                                     </span>
                                                     <h4 className="text-xs font-bold uppercase tracking-widest text-brand-base">
@@ -177,16 +177,16 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                             </div>
                                         )}
                                         {project.solution && (
-                                            <div className="flex-1 p-8 md:p-10 border border-brand-base bg-brand-base/5 relative group hover:bg-brand-base hover:text-background transition-all duration-500">
-                                                <div className="flex items-center gap-4 mb-6 pb-6 border-b border-brand-base/20 group-hover:border-brand-on-surface/20 transition-colors">
-                                                    <span className="w-10 h-10 flex items-center justify-center bg-background text-brand-base border border-brand-base/20 shrink-0 group-hover:bg-background/10 group-hover:text-brand-on-surface group-hover:border-brand-on-surface/20 transition-colors">
+                                            <div className="flex-1 p-8 md:p-10 border-2 border-brand-base bg-brand-base/5 shadow-[4px_4px_0px_0px_var(--color-primary)] relative group transition-all duration-300">
+                                                <div className="flex items-center gap-4 mb-6 pb-6 border-b-2 border-brand-base transition-colors">
+                                                    <span className="w-10 h-10 flex items-center justify-center bg-background text-brand-base border border-brand-base shrink-0 transition-colors">
                                                         <FaLightbulb size={16} />
                                                     </span>
-                                                    <h4 className="text-xs font-bold uppercase tracking-widest text-brand-base group-hover:text-brand-on-surface transition-colors">
+                                                    <h4 className="text-xs font-bold uppercase tracking-widest text-brand-base transition-colors">
                                                         The Solution
                                                     </h4>
                                                 </div>
-                                                <p className="text-brand-base font-light leading-relaxed text-sm md:text-base text-justify group-hover:text-brand-on-surface/90 transition-colors">
+                                                <p className="text-brand-base font-light leading-relaxed text-sm md:text-base text-justify transition-colors">
                                                     {project.solution}
                                                 </p>
                                             </div>
@@ -197,16 +197,16 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                 {/* Technical Optimizations Section */}
                                 {project.technicalOptimizations && project.technicalOptimizations.length > 0 && (
                                     <div>
-                                        <h3 className="text-[10px] font-bold uppercase tracking-widest text-brand-accent mb-6 border-b border-brand-base/10 pb-4">
+                                        <h3 className="text-[10px] font-bold uppercase tracking-widest text-brand-accent mb-6 border-b-2 border-brand-base pb-4">
                                             Performance & Technical Optimization
                                         </h3>
                                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                                             {project.technicalOptimizations.map((opt, idx) => (
-                                                <div key={idx} className="p-6 border border-brand-base/10 bg-brand-base/5 hover:bg-brand-base hover:text-background transition-all group flex flex-col gap-4">
+                                                <div key={idx} className="p-6 border-2 border-brand-base bg-brand-base/5 shadow-[3px_3px_0px_0px_var(--color-primary)] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_0px_var(--color-primary)] active:translate-x-0 active:translate-y-0 active:shadow-none transition-all group flex flex-col gap-4">
                                                     <div className="flex items-center gap-4">
-                                                        {idx === 0 && <FaDatabase className="text-brand-accent group-hover:text-background shrink-0" />}
-                                                        {idx === 1 && <FaMemory className="text-brand-accent group-hover:text-background shrink-0" />}
-                                                        {idx === 2 && <FaLayerGroup className="text-brand-accent group-hover:text-background shrink-0" />}
+                                                        {idx === 0 && <FaDatabase className="text-brand-accent shrink-0" />}
+                                                        {idx === 1 && <FaMemory className="text-brand-accent shrink-0" />}
+                                                        {idx === 2 && <FaLayerGroup className="text-brand-accent shrink-0" />}
                                                         <h4 className="text-xs font-bold uppercase tracking-wider">{opt.title}</h4>
                                                     </div>
                                                     <p className="text-xs font-light leading-relaxed opacity-80 group-hover:opacity-100 italic">
@@ -223,11 +223,11 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                     <div className="grid md:grid-cols-2 gap-12">
                                         {project.responsibilities && (
                                             <div>
-                                                <h4 className="text-[10px] font-bold uppercase tracking-widest text-brand-accent mb-6 border-b border-brand-base/10 pb-4">My Role & Responsibilities</h4>
+                                                <h4 className="text-[10px] font-bold uppercase tracking-widest text-brand-accent mb-6 border-b-2 border-brand-base pb-4">My Role & Responsibilities</h4>
                                                 <ul className="space-y-4">
                                                     {project.responsibilities.map((item, idx) => (
                                                         <li key={idx} className="flex gap-4 text-brand-base font-light text-sm">
-                                                            <span className="text-brand-accent mt-0.5 text-[10px] font-bold border border-brand-base/20 px-2 rounded-none">0{idx + 1}</span>
+                                                            <span className="text-brand-accent mt-0.5 text-[10px] font-bold border border-brand-base bg-brand-highlight px-2 rounded-none">0{idx + 1}</span>
                                                             <span className="leading-relaxed">{item}</span>
                                                         </li>
                                                     ))}
@@ -236,11 +236,11 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                         )}
                                         {project.impact && (
                                             <div>
-                                                <h4 className="text-[10px] font-bold uppercase tracking-widest text-brand-accent mb-6 border-b border-brand-base/10 pb-4">Key Impact Output</h4>
+                                                <h4 className="text-[10px] font-bold uppercase tracking-widest text-brand-accent mb-6 border-b-2 border-brand-base pb-4">Key Impact Output</h4>
                                                 <ul className="space-y-4">
                                                     {project.impact.map((item, idx) => (
                                                         <li key={idx} className="flex gap-4 text-brand-base font-light text-sm">
-                                                            <span className="text-brand-base mt-0.5 text-[10px] font-bold border border-brand-base px-2 rounded-none">0{idx + 1}</span>
+                                                            <span className="text-brand-base mt-0.5 text-[10px] font-bold border border-brand-base bg-brand-base text-background px-2 rounded-none">0{idx + 1}</span>
                                                             <span className="leading-relaxed">{item}</span>
                                                         </li>
                                                     ))}
@@ -252,14 +252,14 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
                                 {/* 3. Key Capabilities */}
                                 <div>
-                                    <h3 className="text-[10px] font-bold uppercase tracking-widest text-brand-accent mb-6 border-b border-brand-base/10 pb-4">
+                                    <h3 className="text-[10px] font-bold uppercase tracking-widest text-brand-accent mb-6 border-b-2 border-brand-base pb-4">
                                         System Capabilities
                                     </h3>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border-t border-l border-brand-base/10">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border-t-2 border-l-2 border-brand-base">
                                         {(project.features || []).map((feature, idx) => (
-                                            <div key={idx} className="flex items-start gap-4 p-6 border-b border-r border-brand-base/10 bg-background hover:bg-brand-base hover:text-background transition-colors group cursor-default">
-                                                <FaCheckCircle className="mt-0.5 shrink-0 text-brand-accent group-hover:text-background" />
-                                                <span className="font-light text-sm group-hover:text-background text-brand-base">{feature}</span>
+                                            <div key={idx} className="flex items-start gap-4 p-6 border-b-2 border-r-2 border-brand-base bg-background hover:bg-brand-highlight transition-colors group cursor-default">
+                                                <FaCheckCircle className="mt-0.5 shrink-0 text-brand-accent" />
+                                                <span className="font-light text-sm text-brand-base">{feature}</span>
                                             </div>
                                         ))}
                                     </div>
@@ -267,12 +267,12 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
                                 {/* 4. Tech Stack */}
                                 <div>
-                                    <h3 className="text-[10px] font-bold uppercase tracking-widest text-brand-accent mb-6 border-b border-brand-base/10 pb-4">
+                                    <h3 className="text-[10px] font-bold uppercase tracking-widest text-brand-accent mb-6 border-b-2 border-brand-base pb-4">
                                         Technology Stack
                                     </h3>
                                     <div className="flex flex-wrap gap-2">
                                         {project.stack.map((tech) => (
-                                            <span key={tech} className="px-6 py-2 border border-brand-base/20 bg-background text-brand-base text-[10px] font-bold uppercase tracking-widest hover:bg-brand-base hover:text-background transition-colors cursor-default">
+                                            <span key={tech} className="px-4 py-2 border border-brand-base bg-brand-highlight text-brand-base text-[10px] font-bold uppercase tracking-widest shadow-[2px_2px_0px_0px_var(--color-primary)] cursor-default">
                                                 {tech}
                                             </span>
                                         ))}
@@ -281,7 +281,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
                                 {/* 5. Evidence / Screenshots Section */}
                                 {project.evidence && project.evidence.length > 0 && (
-                                    <div className="pt-6 border-t border-brand-base/10">
+                                    <div className="pt-6 border-t-2 border-brand-base">
                                         <h3 className="text-2xl md:text-3xl font-black text-brand-base mb-2 uppercase tracking-tighter">
                                             Application Showcase
                                         </h3>
@@ -301,7 +301,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                                         onClick={() => openLightbox(idx)}
                                                     >
                                                         {/* Mock Phone Frame - Refined for better definition */}
-                                                        <div className="relative rounded-[2.5rem] md:rounded-[3rem] border-[8px] md:border-[14px] border-brand-highlight shadow-2xl overflow-hidden aspect-[9/19.5] transition-all duration-500 group-hover:border-brand-accent group-hover:-translate-y-4 bg-[#050505] ring-1 ring-brand-base/5">
+                                                        <div className="relative rounded-[2.5rem] md:rounded-[3rem] border-[8px] md:border-[14px] border-brand-highlight shadow-[12px_12px_0px_0px_var(--color-primary)] overflow-hidden aspect-[9/19.5] transition-all duration-500 group-hover:border-brand-accent group-hover:-translate-y-4 bg-[#050505] ring-1 ring-brand-base/5">
                                                             {/* Dynamic Island Style Notch */}
                                                             <div className="absolute top-4 left-1/2 -translate-x-1/2 w-[30%] h-4 md:h-5 bg-background rounded-full z-20 border border-brand-base/5 shadow-xl group-hover:bg-brand-accent/20 transition-colors flex items-center justify-center">
                                                                 <div className="w-1 h-1 rounded-full bg-brand-base/5 mx-auto"></div>
@@ -335,18 +335,18 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                                 {project.evidence.map((img, idx) => (
                                                     <div
                                                         key={idx}
-                                                        className={`relative overflow-hidden border border-brand-base/10 shadow-sm cursor-pointer bg-brand-base/5 group transition-all duration-500 hover:border-brand-base hover:shadow-2xl hover:-translate-y-2 ${(project.evidence?.length ?? 0) > 2 && idx === 0 ? "md:col-span-2 md:row-span-2" : ""}`}
+                                                        className={`relative overflow-hidden border-2 border-brand-base shadow-[4px_4px_0px_0px_var(--color-primary)] cursor-pointer bg-brand-base/5 group transition-all duration-300 hover:shadow-[8px_8px_0px_0px_var(--color-primary)] hover:-translate-x-1 hover:-translate-y-1 ${(project.evidence?.length ?? 0) > 2 && idx === 0 ? "md:col-span-2 md:row-span-2" : ""}`}
                                                         onClick={() => openLightbox(idx)}
                                                     >
                                                         {/* Browser-like Header (Refined) */}
-                                                        <div className="flex items-center gap-4 p-4 border-b border-brand-base/5 bg-background/40 backdrop-blur-md">
+                                                        <div className="flex items-center gap-4 p-4 border-b-2 border-brand-base bg-background">
                                                             <div className="flex gap-1.5">
-                                                                <div className="w-2.5 h-2.5 rounded-full bg-brand-base/10 group-hover:bg-brand-base/30 transition-colors"></div>
-                                                                <div className="w-2.5 h-2.5 rounded-full bg-brand-base/10 group-hover:bg-brand-base/30 transition-colors"></div>
-                                                                <div className="w-2.5 h-2.5 rounded-full bg-brand-base/10 group-hover:bg-brand-base/30 transition-colors"></div>
+                                                                <div className="w-2.5 h-2.5 rounded-full bg-brand-base"></div>
+                                                                <div className="w-2.5 h-2.5 rounded-full bg-brand-base"></div>
+                                                                <div className="w-2.5 h-2.5 rounded-full bg-brand-base"></div>
                                                             </div>
                                                             {/* Mock Address Bar */}
-                                                            <div className="flex-1 max-w-[200px] h-4 bg-brand-base/5 rounded-full border border-brand-base/5"></div>
+                                                            <div className="flex-1 max-w-[200px] h-4 bg-brand-highlight rounded-none border border-brand-base"></div>
                                                         </div>
 
                                                         <div className="relative overflow-hidden aspect-video">
@@ -358,7 +358,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                                                 className="w-full h-full object-cover grayscale-[0.5] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
                                                             />
                                                             <div className="absolute inset-0 bg-brand-base/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                                                <span className="bg-background text-brand-base px-5 py-2 text-[10px] font-bold uppercase tracking-widest border border-brand-base translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                                                <span className="bg-background text-brand-base px-5 py-2 text-[10px] font-bold uppercase tracking-widest border-2 border-brand-base translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                                                                     View Full
                                                                 </span>
                                                             </div>
@@ -380,12 +380,12 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
                                     if (isFullyPrivate) {
                                         return (
-                                            <div className="border border-brand-base/10 p-8 text-center bg-brand-base/5">
+                                            <div className="border-2 border-brand-base p-8 text-center bg-brand-highlight shadow-[4px_4px_0px_0px_var(--color-primary)]">
                                                 <p className="text-brand-accent text-xs font-light mb-4">
                                                     Due to non-disclosure agreements, source code and live demos are restricted.
                                                 </p>
                                                 <p className="text-[10px] font-bold text-brand-base uppercase tracking-widest">
-                                                    <a href="/contact" className="hover:text-brand-accent underline decoration-brand-base/30 underline-offset-4">Inquire for details</a>
+                                                    <a href="/contact" className="hover:text-brand-accent underline decoration-brand-base underline-offset-4">Inquire for details</a>
                                                 </p>
                                             </div>
                                         );
@@ -406,7 +406,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                                             href={project.playStore}
                                                             target="_blank"
                                                             rel="noopener noreferrer"
-                                                            className="flex-1 inline-flex items-center justify-center gap-3 px-8 py-4 bg-background border border-brand-base text-brand-base text-[10px] uppercase tracking-widest font-bold hover:bg-brand-base hover:text-brand-on-surface transition-all"
+                                                            className="flex-1 inline-flex items-center justify-center gap-3 px-8 py-4 bg-background border-2 border-brand-base text-brand-base text-[10px] uppercase tracking-widest font-black shadow-[3px_3px_0px_0px_var(--color-primary)] hover:shadow-[5px_5px_0px_0px_var(--color-primary)] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 active:shadow-none transition-all"
                                                         >
                                                             <FaGooglePlay size={16} /> Google Play
                                                         </a>
@@ -416,7 +416,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                                             href={project.appStore}
                                                             target="_blank"
                                                             rel="noopener noreferrer"
-                                                            className="flex-1 inline-flex items-center justify-center gap-3 px-8 py-4 bg-background border border-brand-base text-brand-base text-[10px] uppercase tracking-widest font-bold hover:bg-brand-base hover:text-brand-on-surface transition-all"
+                                                            className="flex-1 inline-flex items-center justify-center gap-3 px-8 py-4 bg-background border-2 border-brand-base text-brand-base text-[10px] uppercase tracking-widest font-black shadow-[3px_3px_0px_0px_var(--color-primary)] hover:shadow-[5px_5px_0px_0px_var(--color-primary)] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 active:shadow-none transition-all"
                                                         >
                                                             <FaApple size={18} /> App Store
                                                         </a>
@@ -426,7 +426,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                                             href={project.link}
                                                             target="_blank"
                                                             rel="noopener noreferrer"
-                                                            className="flex-1 inline-flex items-center justify-center gap-3 px-8 py-4 bg-brand-base text-brand-on-surface text-[10px] uppercase tracking-widest font-bold hover:invert transition-all"
+                                                            className="flex-1 inline-flex items-center justify-center gap-3 px-8 py-4 bg-brand-base text-background border-2 border-brand-base text-[10px] uppercase tracking-widest font-black shadow-[3px_3px_0px_0px_var(--color-primary)] hover:shadow-[5px_5px_0px_0px_var(--color-primary)] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 active:shadow-none hover:invert transition-all"
                                                         >
                                                             {project.link.includes("github.com") ? "View Repository" : "Open in Browser"}
                                                             {project.link.includes("github.com") ? null : <FaExternalLinkAlt />}
