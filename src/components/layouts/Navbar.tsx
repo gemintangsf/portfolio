@@ -109,7 +109,7 @@ export default function Navbar() {
             delay: 0.2,
             ease: [0.22, 1, 0.36, 1]
           }}
-          className={`w-full border-b border-brand-base/10 bg-transparent backdrop-blur-xl pointer-events-auto transition-transform duration-500 ${shouldShow ? "translate-y-0" : "-translate-y-full"
+          className={`w-full border-b-2 border-brand-base bg-background/90 backdrop-blur-xl pointer-events-auto transition-transform duration-500 ${shouldShow ? "translate-y-0" : "-translate-y-full"
             }`}
         >
           <Container size="lg" className="py-4 md:py-6 flex items-center justify-between">

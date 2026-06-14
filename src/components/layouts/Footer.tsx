@@ -17,7 +17,7 @@ export default function Footer() {
   if (isModalOpen) return null;
 
   return (
-    <footer className="w-full bg-transparent backdrop-blur-xl text-brand-base py-16 md:py-24 border-t border-brand-base/10 shadow-2xl mt-0 relative z-10">
+    <footer className="w-full bg-background text-brand-base py-16 md:py-24 border-t-2 border-brand-base mt-0 relative z-10">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="flex flex-col md:flex-row gap-12 lg:gap-20">
 
@@ -30,13 +30,13 @@ export default function Footer() {
                 </h3>
                 {/* Social Icons for Mobile */}
                 <div className="flex md:hidden gap-4">
-                  <a href={SOCIAL_LINKS.github} target="_blank" rel="noopener noreferrer" className="p-2 rounded-none border border-brand-base/20 bg-brand-base/5 hover:bg-brand-base hover:text-brand-on-surface transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-base focus-visible:ring-offset-2 focus-visible:ring-offset-background">
+                  <a href={SOCIAL_LINKS.github} target="_blank" rel="noopener noreferrer" className="p-2 rounded-none border border-brand-base bg-brand-highlight shadow-[2px_2px_0px_0px_var(--color-primary)] hover:shadow-[4px_4px_0px_0px_var(--color-primary)] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 active:shadow-none transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-base focus-visible:ring-offset-2 focus-visible:ring-offset-background">
                     <FaGithub size={16} />
                   </a>
-                  <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="p-2 rounded-none border border-brand-base/20 bg-brand-base/5 hover:bg-brand-base hover:text-brand-on-surface transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-base focus-visible:ring-offset-2 focus-visible:ring-offset-background">
+                  <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="p-2 rounded-none border border-brand-base bg-brand-highlight shadow-[2px_2px_0px_0px_var(--color-primary)] hover:shadow-[4px_4px_0px_0px_var(--color-primary)] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 active:shadow-none transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-base focus-visible:ring-offset-2 focus-visible:ring-offset-background">
                     <FaLinkedin size={16} />
                   </a>
-                  <a href={SOCIAL_LINKS.email} className="p-2 rounded-none border border-brand-base/20 bg-brand-base/5 hover:bg-brand-base hover:text-brand-on-surface transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-base focus-visible:ring-offset-2 focus-visible:ring-offset-background">
+                  <a href={SOCIAL_LINKS.email} className="p-2 rounded-none border border-brand-base bg-brand-highlight shadow-[2px_2px_0px_0px_var(--color-primary)] hover:shadow-[4px_4px_0px_0px_var(--color-primary)] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 active:shadow-none transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-base focus-visible:ring-offset-2 focus-visible:ring-offset-background">
                     <FaEnvelope size={16} />
                   </a>
                 </div>
@@ -60,13 +60,13 @@ export default function Footer() {
 
             {/* Social Icons - Desktop Only */}
             <div className="hidden md:flex gap-4 mt-12">
-              <a href={SOCIAL_LINKS.github} target="_blank" rel="noopener noreferrer" className="p-4 rounded-none border border-brand-base/10 bg-brand-base/5 hover:bg-brand-base hover:text-brand-on-surface transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-base focus-visible:ring-offset-2 focus-visible:ring-offset-background">
+              <a href={SOCIAL_LINKS.github} target="_blank" rel="noopener noreferrer" className="p-4 rounded-none border border-brand-base bg-brand-highlight shadow-[3px_3px_0px_0px_var(--color-primary)] hover:shadow-[5px_5px_0px_0px_var(--color-primary)] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 active:shadow-none transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-base focus-visible:ring-offset-2 focus-visible:ring-offset-background">
                 <FaGithub size={20} />
               </a>
-              <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="p-4 rounded-none border border-brand-base/10 bg-brand-base/5 hover:bg-brand-base hover:text-brand-on-surface transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-base focus-visible:ring-offset-2 focus-visible:ring-offset-background">
+              <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="p-4 rounded-none border border-brand-base bg-brand-highlight shadow-[3px_3px_0px_0px_var(--color-primary)] hover:shadow-[5px_5px_0px_0px_var(--color-primary)] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 active:shadow-none transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-base focus-visible:ring-offset-2 focus-visible:ring-offset-background">
                 <FaLinkedin size={20} />
               </a>
-              <a href={SOCIAL_LINKS.email} className="p-4 rounded-none border border-brand-base/10 bg-brand-base/5 hover:bg-brand-base hover:text-brand-on-surface transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-base focus-visible:ring-offset-2 focus-visible:ring-offset-background">
+              <a href={SOCIAL_LINKS.email} className="p-4 rounded-none border border-brand-base bg-brand-highlight shadow-[3px_3px_0px_0px_var(--color-primary)] hover:shadow-[5px_5px_0px_0px_var(--color-primary)] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 active:shadow-none transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-base focus-visible:ring-offset-2 focus-visible:ring-offset-background">
                 <FaEnvelope size={20} />
               </a>
             </div>
@@ -127,7 +127,7 @@ export default function Footer() {
                   >
                     <ul className="space-y-8">
                       <li className="flex items-start gap-4">
-                        <div className="p-3 rounded-none bg-brand-base/5 border border-brand-base/10">
+                        <div className="p-3 rounded-none bg-brand-highlight border border-brand-base shadow-[2px_2px_0px_0px_var(--color-primary)]">
                           <FaEnvelope size={14} />
                         </div>
                         <div>
@@ -138,7 +138,7 @@ export default function Footer() {
                         </div>
                       </li>
                       <li className="flex items-start gap-4">
-                        <div className="p-3 rounded-none bg-brand-base/5 border border-brand-base/10">
+                        <div className="p-3 rounded-none bg-brand-highlight border border-brand-base shadow-[2px_2px_0px_0px_var(--color-primary)]">
                           <FaPhone size={14} />
                         </div>
                         <div>
@@ -149,7 +149,7 @@ export default function Footer() {
                         </div>
                       </li>
                       <li className="flex items-start gap-4">
-                        <div className="p-3 rounded-none bg-brand-base/5 border border-brand-base/10">
+                        <div className="p-3 rounded-none bg-brand-highlight border border-brand-base shadow-[2px_2px_0px_0px_var(--color-primary)]">
                           <FaMapMarkerAlt size={14} />
                         </div>
                         <div>
