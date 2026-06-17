@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Navbar, Footer, InteractiveBackground } from "@/components/layouts";
+import { Navbar, Footer } from "@/components/layouts";
 import { UIProvider } from "@/context/UIContext";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://gemintangsf.vercel.app"),
-  title: "Gemintang \u2013 Software Engineer | Gemintang Sangkaji Furqon",
+  title: "Gemintang – Software Engineer | Gemintang Sangkaji Furqon",
   description: "Gemintang (Gemintang Sangkaji Furqon) is a software engineer specializing in Backend, Frontend, and Mobile Development.",
   openGraph: {
-    title: "Gemintang \u2013 Software Engineer | Gemintang Sangkaji Furqon",
+    title: "Gemintang – Software Engineer | Gemintang Sangkaji Furqon",
     description: "Gemintang (Gemintang Sangkaji Furqon) is a software engineer specializing in Backend, Frontend, and Mobile Development.",
     url: "https://gemintangsf.vercel.app",
     siteName: "Portfolio Gemintang",
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Gemintang \u2013 Software Engineer | Gemintang Sangkaji Furqon",
+    title: "Gemintang – Software Engineer | Gemintang Sangkaji Furqon",
     description: "Gemintang (Gemintang Sangkaji Furqon) is a software engineer specializing in Backend, Frontend, and Mobile Development.",
   },
   icons: {
@@ -57,10 +57,6 @@ export default function RootLayout({
               })
             }}
           />
-          {/* Global Background Layer */}
-          <div className="fixed inset-0 -z-40">
-            <InteractiveBackground />
-          </div>
 
           <Navbar />
           <main className="min-h-screen relative z-0">{children}</main>

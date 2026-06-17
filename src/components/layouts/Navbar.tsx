@@ -5,9 +5,24 @@ import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { useUI } from "@/hooks/useUI";
-import { FaMoon, FaSun } from "react-icons/fa";
-import { Container, Button } from "@/components/ui";
-import { NAVIGATION_LINKS } from "@/lib/constants";
+import { FaMoon, FaSun, FaGithub, FaLinkedin, FaEnvelope, FaTimes, FaHome, FaUser, FaFolder, FaCommentDots } from "react-icons/fa";
+import { NAVIGATION_LINKS, SOCIAL_LINKS } from "@/lib/constants";
+
+
+const getNavIcon = (href: string) => {
+  switch (href) {
+    case "home":
+      return FaHome;
+    case "about-me":
+      return FaUser;
+    case "projects":
+      return FaFolder;
+    case "contact":
+      return FaCommentDots;
+    default:
+      return null;
+  }
+};
 
 
 export default function Navbar() {
@@ -22,6 +37,8 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
+      if (pathname !== "/") return;
+
       const currentScrollY = window.scrollY;
 
       // 1. Visibility logic (hide on scroll down)
@@ -46,7 +63,7 @@ export default function Navbar() {
       setLastScrollY(currentScrollY);
 
       // 2. Scrollspy logic (active section detection)
-      const sections = ["home", "services", "projects", "about-me", "faqs", "contact"];
+      const sections = ["home", "projects", "contact"];
       const scrollPosition = currentScrollY + 200; // Offset for better detection
 
       for (const section of sections) {
@@ -63,9 +80,25 @@ export default function Navbar() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY, isNavClickScrolling]);
+  }, [lastScrollY, isNavClickScrolling, pathname]);
+
+  useEffect(() => {
+    if (pathname === "/about-me") {
+      setActiveSection("about-me");
+    } else if (pathname.startsWith("/projects")) {
+      setActiveSection("projects");
+    } else if (pathname === "/") {
+      setActiveSection("home");
+    }
+  }, [pathname]);
 
   const handleNavClick = (e: React.MouseEvent, id: string) => {
+    // If it's about-me, let it navigate normally as a page link
+    if (id === "about-me") {
+      setIsMobileMenuOpen(false);
+      return;
+    }
+
     // If we are on the home page, handle scroll manually to ensure it triggers
     // even if the hash is already set to this ID
     if (pathname === '/') {
@@ -94,186 +127,141 @@ export default function Navbar() {
     }, 1000);
   };
 
-  const shouldShow = isVisible && !isModalOpen;
+  const shouldShowButton = !isModalOpen && !isMobileMenuOpen;
 
   const navLinks = NAVIGATION_LINKS;
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-[100] transition-all duration-500 pointer-events-none">
-        <motion.div
-          initial={{ y: -100, opacity: 0 }}
-          animate={isLoaded ? { y: 0, opacity: 1 } : { y: -100, opacity: 0 }}
-          transition={{
-            duration: 1,
-            delay: 0.2,
-            ease: [0.22, 1, 0.36, 1]
-          }}
-          className={`w-full border-b-2 border-brand-base bg-background/90 backdrop-blur-xl pointer-events-auto transition-transform duration-500 ${shouldShow ? "translate-y-0" : "-translate-y-full"
-            }`}
-        >
-          <Container size="lg" className="py-4 md:py-6 flex items-center justify-between">
-            {/* 1. Left: Logo */}
-            <div className="text-lg md:text-xl font-bold tracking-tighter z-50">
-              <Link
-                href="/#home"
-                onClick={(e) => {
-                  handleNavClick(e, "home");
-                }}
-                className="text-brand-base hover:opacity-70 transition-opacity uppercase"
-              >
-                Gemintang
-              </Link>
-            </div>
-
-            {/* 2. Center: Desktop Navigation Menu */}
-            <div className="hidden md:flex items-center gap-4 lg:gap-8 text-xs lg:text-sm font-medium lg:absolute lg:left-1/2 lg:-translate-x-1/2">
-              {navLinks.map((item) => {
-                const href = pathname === '/' ? `#${item.href}` : `/#${item.href}`;
-                const isActive = activeSection === item.href;
-
-                return (
-                  <Link
-                    key={item.name}
-                    href={href}
-                    onClick={(e) => handleNavClick(e, item.href)}
-                    className={`${isActive
-                      ? 'text-brand-base font-bold scale-105'
-                      : 'text-brand-base/60 hover:text-brand-base'
-                      } transition-all duration-300 relative group uppercase tracking-widest`}
-                  >
-                    {item.name}
-                    {isActive && (
-                      <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-brand-base rounded-full" />
-                    )}
-                  </Link>
-                );
-              })}
-            </div>
-
-            {/* 3. Right: Desktop Contact Button & Theme Toggle */}
-            <div className="hidden md:flex items-center gap-6">
-              <button
-                onClick={toggleTheme}
-                className="p-2 text-brand-base hover:bg-brand-base/10 transition-colors rounded-full relative group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-base focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                aria-label="Toggle Theme"
-              >
-                <div className="relative w-5 h-5">
-                  <motion.div
-                    initial={false}
-                    animate={{
-                      scale: theme === 'dark' ? 1 : 0,
-                      rotate: theme === 'dark' ? 0 : 90,
-                      opacity: theme === 'dark' ? 1 : 0
-                    }}
-                    className="absolute inset-0"
-                  >
-                    <FaSun size={20} />
-                  </motion.div>
-                  <motion.div
-                    initial={false}
-                    animate={{
-                      scale: theme === 'light' ? 1 : 0,
-                      rotate: theme === 'light' ? 0 : -90,
-                      opacity: theme === 'light' ? 1 : 0
-                    }}
-                    className="absolute inset-0"
-                  >
-                    <FaMoon size={20} />
-                  </motion.div>
-                </div>
-              </button>
-
-              <Link
-                href={pathname === '/' ? '#contact' : '/#contact'}
-                onClick={(e) => handleNavClick(e, "contact")}
-              >
-                <Button
-                  variant={activeSection === 'contact' ? 'secondary' : 'primary'}
-                  size="sm"
-                >
-                  Contact
-                </Button>
-              </Link>
-            </div>
-
-            {/* 4. Mobile Hamburger Button */}
-            <button
-              className="md:hidden text-brand-base focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-base focus-visible:ring-offset-2 focus-visible:ring-offset-background z-50 p-2 rounded-none"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label="Toggle Menu"
-            >
-              <div className="w-6 h-6 flex flex-col justify-center gap-1.5 relative">
-                <span
-                  className={`block w-full h-0.5 bg-brand-base rounded-full transition-all duration-300 ${isMobileMenuOpen ? "rotate-45 translate-y-2" : ""
-                    }`}
-                />
-                <span
-                  className={`block w-full h-0.5 bg-brand-base rounded-full transition-all duration-300 ${isMobileMenuOpen ? "opacity-0" : ""
-                    }`}
-                />
-                <span
-                  className={`block w-full h-0.5 bg-brand-base rounded-full transition-all duration-300 ${isMobileMenuOpen ? "-rotate-45 -translate-y-2" : ""
-                    }`}
-                />
-              </div>
-            </button>
-          </Container>
-        </motion.div>
-      </nav>
-
-      {/* Mobile Menu Overlay */}
-      <div
-        className={`fixed inset-0 bg-background/95 z-40 transition-all duration-500 ease-in-out md:hidden flex flex-col items-center justify-center gap-8 ${isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-          }`}
-      >
+      <div className="fixed top-4 left-4 md:top-6 md:left-6 z-[100] pointer-events-none">
         <button
-          onClick={toggleTheme}
-          className="p-4 text-brand-base hover:bg-brand-base/10 transition-colors rounded-full mb-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-base focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-          aria-label="Toggle Theme"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className={`group pointer-events-auto w-10 h-10 md:w-20 md:h-20 flex items-center justify-center rounded-none border border-brand-base bg-background text-brand-base shadow-[2px_2px_0px_0px_var(--color-base)] md:shadow-[4px_4px_0px_0px_var(--color-base)] hover:shadow-[3px_3px_0px_0px_var(--color-base)] md:hover:shadow-[6px_6px_0px_0px_var(--color-base)] hover:-translate-x-[1px] md:hover:-translate-x-0.5 hover:-translate-y-[1px] md:hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 active:shadow-none transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-base focus-visible:ring-offset-2 focus-visible:ring-offset-background ${shouldShowButton ? "scale-100 opacity-100" : "scale-0 opacity-0 pointer-events-none"
+            }`}
+          aria-label="Toggle Menu"
         >
-          <div className="flex items-center gap-4 font-bold uppercase tracking-[0.2em]">
-            {theme === 'dark' ? (
-              <><FaSun size={24} /> <span>Light Mode</span></>
-            ) : (
-              <><FaMoon size={24} /> <span>Dark Mode</span></>
-            )}
+          <div className="w-4 h-3.5 md:w-5 md:h-3.5 flex flex-col justify-between relative">
+            <span
+              className={`block w-full h-[2px] rounded-full bg-brand-base transition-all duration-300 ${isMobileMenuOpen ? "rotate-45 translate-y-[6px]" : ""
+                }`}
+            />
+            <span
+              className={`block w-full h-[2px] rounded-full bg-brand-base transition-all duration-300 ${isMobileMenuOpen ? "opacity-0" : ""
+                }`}
+            />
+            <span
+              className={`block w-full h-[2px] rounded-full bg-brand-base transition-all duration-300 ${isMobileMenuOpen ? "-rotate-45 -translate-y-[6px]" : ""
+                }`}
+            />
           </div>
         </button>
+      </div>
 
-        {navLinks.map((item, idx) => {
-          const href = pathname === '/' ? `#${item.href}` : `/#${item.href}`;
-          const isActive = activeSection === item.href;
+      {/* Backdrop */}
+      <div
+        className={`fixed inset-0 bg-background/50 backdrop-blur-md z-30 transition-opacity duration-500 ${isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          }`}
+        onClick={() => setIsMobileMenuOpen(false)}
+      />
 
-          return (
-            <Link
-              key={item.name}
-              href={href}
-              onClick={(e) => handleNavClick(e, item.href)}
-              className={`text-2xl font-black transition-all duration-300 transform uppercase tracking-[0.2em] ${isMobileMenuOpen ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-                } ${isActive ? "text-brand-base" : "text-brand-base/40 hover:text-brand-base"}`}
-              style={{ transitionDelay: `${idx * 100}ms` }}
-            >
-              {item.name}
-            </Link>
-          );
-        })}
-
-        <Link
-          href={pathname === '/' ? '#contact' : '/#contact'}
-          onClick={(e) => handleNavClick(e, "contact")}
-          className={`mt-4 transform transition-all duration-300 ${isMobileMenuOpen ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+      {/* Drawer Sidebar Menu */}
+      <div
+        className={`fixed top-0 bottom-0 left-0 h-screen w-full sm:w-[320px] md:w-[380px] bg-background border-r-2 border-brand-base z-40 flex flex-col justify-between p-0 transition-transform duration-500 ease-in-out ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
+      >
+        {/* Row 1: Close Button & Theme Toggle */}
+        <div
+          className={`w-full h-20 md:h-24 flex justify-between items-center px-8 md:px-12 border-b border-brand-base/15 bg-background transition-all duration-300 transform ${isMobileMenuOpen ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"
             }`}
-          style={{ transitionDelay: `${navLinks.length * 100}ms` }}
+          style={{ transitionDelay: "50ms" }}
         >
-          <Button
-            variant={activeSection === 'contact' ? 'secondary' : 'primary'}
-            size="lg"
-            className="text-lg w-full"
+          <button
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="flex items-center gap-3 text-brand-base hover:text-brand-accent transition-colors cursor-pointer focus:outline-none text-sm font-bold uppercase tracking-[0.2em] group/close"
+            aria-label="Close Menu"
           >
-            Contact Me
-          </Button>
-        </Link>
+            <span>Close</span>
+            <FaTimes size={14} className="group-hover/close:rotate-90 transition-transform duration-300" />
+          </button>
+
+          <button
+            onClick={toggleTheme}
+            className="w-10 h-10 flex items-center justify-center border border-brand-base/15 hover:border-brand-base text-brand-base bg-brand-highlight/20 hover:bg-brand-highlight/40 shadow-[2px_2px_0px_0px_var(--color-base)] hover:shadow-[4px_4px_0px_0px_var(--color-base)] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 active:shadow-none transition-all duration-300 cursor-pointer focus:outline-none group/theme"
+            aria-label="Toggle Theme"
+          >
+            {theme === 'dark' ? (
+              <FaSun size={16} className="text-amber-500 group-hover/theme:rotate-45 transition-transform duration-500" />
+            ) : (
+              <FaMoon size={16} className="text-indigo-400 group-hover/theme:-rotate-12 transition-transform duration-500" />
+            )}
+          </button>
+        </div>
+
+        {/* Rows 2 to 5: Navigation Links */}
+        <nav className="flex flex-col flex-1 w-full">
+          {navLinks.map((item, idx) => {
+            const href = item.href === "about-me" ? "/about-me" : (pathname === "/" ? `#${item.href}` : `/#${item.href}`);
+            const isActive = activeSection === item.href;
+            const Icon = getNavIcon(item.href);
+
+            return (
+              <Link
+                key={item.name}
+                href={href}
+                onClick={(e) => handleNavClick(e, item.href)}
+                className={`flex-1 w-full flex justify-between items-center px-8 md:px-12 border-b border-brand-base/15 transition-all duration-500 transform relative group cursor-pointer ${isMobileMenuOpen ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"
+                  } ${isActive ? "bg-brand-highlight/30" : "bg-transparent hover:bg-brand-highlight/20"}`}
+                style={{ transitionDelay: `${(idx + 1) * 100}ms` }}
+              >
+                <span className={`text-base font-bold tracking-wide ${isActive ? "text-brand-base" : "text-brand-base/60 group-hover:text-brand-base"}`}>
+                  {item.name}
+                </span>
+                {Icon && (
+                  <Icon className={`text-base ${isActive ? "text-brand-base" : "text-brand-base/40 group-hover:text-brand-base"}`} />
+                )}
+                {isActive && (
+                  <span className="absolute right-0 top-0 bottom-0 w-[6px] bg-brand-base" />
+                )}
+              </Link>
+            );
+          })}
+        </nav>
+
+        {/* Row 6: Footer Area with Theme Toggle and Socials */}
+        <div
+          className={`w-full h-20 md:h-24 flex justify-around items-center px-8 md:px-12 bg-background border-t border-brand-base/15 transition-all duration-500 transform ${isMobileMenuOpen ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"
+            }`}
+          style={{ transitionDelay: `${(navLinks.length + 1) * 100}ms` }}
+        >
+          <a
+            href={SOCIAL_LINKS.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-brand-base/60 hover:text-brand-base transition-colors"
+            aria-label="GitHub"
+          >
+            <FaGithub size={20} />
+          </a>
+
+
+          <a
+            href={SOCIAL_LINKS.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-brand-base/60 hover:text-brand-base transition-colors"
+            aria-label="LinkedIn"
+          >
+            <FaLinkedin size={20} />
+          </a>
+
+          <a
+            href={SOCIAL_LINKS.email}
+            className="text-brand-base/60 hover:text-brand-base transition-colors"
+            aria-label="Email"
+          >
+            <FaEnvelope size={20} />
+          </a>
+        </div>
       </div>
     </>
   );

@@ -18,14 +18,14 @@ export default function InteractiveBackground() {
         let mouseX = -1000;
         let mouseY = -1000;
 
-        // Dot configuration
-        const DOT_SPACING = 30; // Spacing between dots
-        const DOT_RADIUS = 1.2; // Base radius
-        const HOVER_RADIUS = 300; // Radius of mouse interaction
+        // Clover configuration
+        const CLOVER_SPACING = 55; // Spacing between clovers
+        const BASE_SIZE = 7; // Base size of the clover (full diameter ~14px)
+        const HOVER_RADIUS = 250; // Radius of mouse interaction
 
-        // Theme-aware colors
-        const DOT_COLOR = theme === 'dark' ? "rgba(255, 255, 255, 0.12)" : "rgba(0, 0, 0, 0.12)"; 
-        const HOVER_COLOR = theme === 'dark' ? "rgba(255, 255, 255, 0.4)" : "rgba(0, 0, 0, 0.4)"; 
+        // Theme-aware white/dark colors for subtle background pattern
+        const CLOVER_COLOR = theme === 'dark' ? "rgba(255, 255, 255, 0.12)" : "rgba(0, 0, 0, 0.12)";
+        const HOVER_COLOR = theme === 'dark' ? "rgba(255, 255, 255, 0.45)" : "rgba(0, 0, 0, 0.45)";
 
 
         let tick = false;
@@ -59,37 +59,45 @@ export default function InteractiveBackground() {
             requestDraw();
         };
 
+        const drawClover = (x: number, y: number, size: number) => {
+            ctx.beginPath();
+            for (let angle = 0; angle < Math.PI * 2; angle += 0.08) {
+                // Polar rose curve rotated by 45 deg to align with axes
+                // exponent 0.6 makes the leaves rounded and distinct
+                const r = Math.pow(Math.abs(Math.cos(2 * angle)), 0.6) * size;
+                const px = x + r * Math.cos(angle);
+                const py = y + r * Math.sin(angle);
+                if (angle === 0) {
+                    ctx.moveTo(px, py);
+                } else {
+                    ctx.lineTo(px, py);
+                }
+            }
+            ctx.closePath();
+            ctx.fill();
+        };
+
         const draw = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            for (let x = 0; x < canvas.width; x += DOT_SPACING) {
-                for (let y = 0; y < canvas.height; y += DOT_SPACING) {
+            for (let x = CLOVER_SPACING / 2; x < canvas.width; x += CLOVER_SPACING) {
+                for (let y = CLOVER_SPACING / 2; y < canvas.height; y += CLOVER_SPACING) {
                     const dx = mouseX - x;
                     const dy = mouseY - y;
                     const distance = Math.hypot(dx, dy);
 
-                    let currentRadius = DOT_RADIUS;
+                    let currentSize = BASE_SIZE;
 
-
-                    // Interaction logic: Scale up if close to mouse
                     if (distance < HOVER_RADIUS) {
                         const scale = 1 + (HOVER_RADIUS - distance) / HOVER_RADIUS; // Scale factor
-                        currentRadius = DOT_RADIUS * scale;
+                        currentSize = BASE_SIZE * scale;
 
-                        // Optional: Change color closer to mouse
-                        // simple check to swap color if very close
-                        if (distance < HOVER_RADIUS / 2) {
-                            ctx.fillStyle = HOVER_COLOR;
-                        } else {
-                            ctx.fillStyle = DOT_COLOR;
-                        }
+                        ctx.fillStyle = HOVER_COLOR;
                     } else {
-                        ctx.fillStyle = DOT_COLOR;
+                        ctx.fillStyle = CLOVER_COLOR;
                     }
 
-                    ctx.beginPath();
-                    ctx.arc(x, y, currentRadius, 0, Math.PI * 2);
-                    ctx.fill();
+                    drawClover(x, y, currentSize);
                 }
             }
         };

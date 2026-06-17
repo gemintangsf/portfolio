@@ -21,8 +21,7 @@ export const SOCIAL_LINKS = {
 
 export const NAVIGATION_LINKS = [
   { name: "Home", href: "home" },
-  { name: "Services", href: "services" },
-  { name: "Projects", href: "projects" },
-  { name: "About Me", href: "about-me" },
-  { name: "FAQs", href: "faqs" },
+  { name: "About", href: "about-me" },
+  { name: "Portfolio", href: "projects" },
+  { name: "Contact", href: "contact" },
 ];
