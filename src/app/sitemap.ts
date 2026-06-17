@@ -5,11 +5,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     const routes = [
         '',
-        '/services',
         '/projects',
         '/about-me',
         '/about/gemintang-sangkaji-furqon',
-        '/faqs',
         '/contact',
         '/game24',
     ]
