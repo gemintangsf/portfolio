@@ -5,6 +5,7 @@ import { useState } from "react";
 import { FaPaperPlane, FaCheckCircle, FaExclamationCircle } from "react-icons/fa";
 import { Container, Grid, Stack, Input, Textarea, Button } from "@/components/ui";
 import { useUI } from "@/hooks/useUI";
+import { SITE_CONFIG, SOCIAL_LINKS } from "@/lib/constants";
 
 export default function ContactSection() {
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -16,27 +17,27 @@ export default function ContactSection() {
             case "Mobile":
                 return {
                     title: <>Let&apos;s Build Your <span className="text-brand-accent">Mobile App</span></>,
-                    subtitle: "Have a mobile app concept or need optimization? Let's discuss how we can build a responsive, high-performance Flutter solution together."
+                    subtitle: "Got an app idea that hasn't shipped yet, or one that's already live but losing users to lag? Tell me what's breaking — let's figure out the fix."
                 };
             case "Web":
                 return {
                     title: <>Let&apos;s Design Your <span className="text-brand-accent">Web Platform</span></>,
-                    subtitle: "Need a modern Next.js site or custom e-commerce solution? Tell me about your requirements and let's craft an SEO-friendly platform."
+                    subtitle: "Need a site that doesn't just look good but actually moves the needle — more sales, more traffic, stronger brand? Tell me what you're optimizing for, we'll design around it."
                 };
             case "Enterprise":
                 return {
                     title: <>Let&apos;s Design Your <span className="text-brand-accent">APIs & Backend</span></>,
-                    subtitle: "Looking for a secure, scalable backend architecture? Tell me about your database and server needs, and let's design the ideal API schema."
+                    subtitle: "System starting to choke under data or traffic it wasn't built for? Tell me where it's breaking — we'll work backward to the right architecture."
                 };
             case "All":
                 return {
                     title: <>Let&apos;s Work <span className="text-brand-accent">Together</span></>,
-                    subtitle: "Looking for a collaborative full-stack engineer who values clean code? Reach out below to discuss open opportunities or team needs."
+                    subtitle: "Team need someone who can own both ends of the stack without breaking things? Tell me what the role actually needs — I'll tell you if I'm a fit."
                 };
             default:
                 return {
                     title: <>Let&apos;s <span className="text-brand-accent">Collaborate</span></>,
-                    subtitle: "Have a vision? Let’s turn it into reality. I’m always open to discussing new projects, roles, and creative solutions."
+                    subtitle: "What's the problem you're trying to solve? Start there — we'll figure out the rest together."
                 };
         }
     };
@@ -106,12 +107,64 @@ export default function ContactSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                    className="text-lg text-brand-accent max-w-xl mb-16 font-light leading-relaxed"
+                    className="text-lg text-brand-accent max-w-3xl mb-12 font-light leading-relaxed"
                 >
                     {headerContent.subtitle}
                 </motion.p>
 
-                <div className="w-full max-w-2xl">
+                {/* Contact Information Grid */}
+                <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                    className="w-full max-w-5xl mb-12 text-center"
+                >
+                    <p className="text-xs md:text-sm font-bold uppercase tracking-[0.15em] text-brand-accent/60 mb-8">
+                        Feel free to connect directly through any of my channels:
+                    </p>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 justify-center items-stretch border-y border-brand-base/10 py-10 mb-8">
+                        <div className="flex flex-col items-center justify-center px-6">
+                            <span className="text-lg md:text-xl font-black text-brand-base tracking-tight leading-none text-center">
+                                {SITE_CONFIG.name}
+                            </span>
+                            <span className="text-[10px] font-bold uppercase tracking-widest text-brand-accent/40 mt-3 text-center">
+                                identity
+                            </span>
+                        </div>
+
+                        <div className="flex flex-col items-center justify-center border-y md:border-y-0 md:border-x border-brand-base/10 py-6 md:py-0 px-6">
+                            <a
+                                href={SOCIAL_LINKS.email}
+                                className="text-base md:text-lg font-black text-brand-base hover:text-brand-accent hover:underline underline-offset-4 decoration-1 transition-all duration-300 tracking-tight leading-none text-center break-all"
+                            >
+                                {SITE_CONFIG.email}
+                            </a>
+                            <span className="text-[10px] font-bold uppercase tracking-widest text-brand-accent/40 mt-3 text-center">
+                                primary email
+                            </span>
+                        </div>
+
+                        <div className="flex flex-col items-center justify-center px-6">
+                            <a
+                                href={SOCIAL_LINKS.phone}
+                                className="text-lg md:text-xl font-black text-brand-base hover:text-brand-accent hover:underline underline-offset-4 decoration-1 transition-all duration-300 tracking-tight leading-none text-center"
+                            >
+                                {SOCIAL_LINKS.phone.replace("tel:", "")}
+                            </a>
+                            <span className="text-[10px] font-bold uppercase tracking-widest text-brand-accent/40 mt-3 text-center">
+                                mobile / whatsapp
+                            </span>
+                        </div>
+                    </div>
+
+                    <p className="text-xs md:text-sm font-bold uppercase tracking-[0.15em] text-brand-accent/60">
+                        Or send a message instantly via the form below:
+                    </p>
+                </motion.div>
+
+                <div className="w-full max-w-5xl">
                     <AnimatePresence mode="wait">
                         {status === "success" ? (
                             <motion.div
@@ -143,8 +196,8 @@ export default function ContactSection() {
                                 <input type="hidden" name="_captcha" value="false" />
                                 <input type="hidden" name="_template" value="table" />
 
-                                <Stack spacing="gap-6" align="stretch">
-                                    <Grid cols={{ md: 2 }} gap="gap-6">
+                                <Stack spacing="gap-8" align="stretch">
+                                    <Grid cols={{ md: 2 }} gap="gap-8">
                                         <Input
                                             type="text"
                                             name="name"
@@ -188,8 +241,8 @@ export default function ContactSection() {
                                             "Sending..."
                                         ) : (
                                             <>
-                                                <FaPaperPlane className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                                                Deliver Message
+                                                <FaPaperPlane />
+                                                Start the Conversation
                                             </>
                                         )}
                                     </Button>

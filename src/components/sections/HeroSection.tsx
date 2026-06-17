@@ -2,15 +2,15 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  FaMapMarkerAlt, 
-  FaMobileAlt, 
-  FaLaptopCode, 
-  FaServer, 
-  FaSearch, 
-  FaCompass, 
-  FaArrowLeft, 
-  FaArrowRight 
+import {
+  FaMapMarkerAlt,
+  FaMobileAlt,
+  FaLaptopCode,
+  FaServer,
+  FaSearch,
+  FaCompass,
+  FaArrowLeft,
+  FaArrowRight
 } from "react-icons/fa";
 import { useUI } from "@/hooks/useUI";
 import { Badge, Container } from "@/components/ui";
@@ -187,13 +187,13 @@ export default function HeroSection() {
                           <button
                             key={opt.id}
                             onClick={() => setSelectedOption(opt)}
-                            className="w-full text-left p-3.5 bg-background hover:bg-brand-base hover:text-background border border-brand-base/40 hover:border-brand-base shadow-[3px_3px_0px_0px_var(--color-highlight)] hover:shadow-[5px_5px_0px_0px_var(--color-primary)] active:translate-x-0.5 active:translate-y-0.5 transition-all duration-200 cursor-pointer flex items-center justify-between group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-base"
+                            className="w-full text-left p-3.5 bg-background border border-brand-base/40 hover:border-brand-base shadow-[3px_3px_0px_0px_var(--color-highlight)] hover:shadow-[5px_5px_0px_0px_var(--color-primary)] active:translate-x-0.5 active:translate-y-0.5 transition-all duration-200 cursor-pointer flex items-center justify-between group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-base"
                           >
                             <span className="flex items-center gap-3 font-bold uppercase tracking-wider text-xs">
-                              <Icon className="text-brand-accent group-hover:text-background transition-colors text-sm" />
+                              <Icon className="text-brand-accent transition-colors text-sm" />
                               {opt.label}
                             </span>
-                            <FaArrowRight className="text-brand-accent group-hover:text-background transition-colors text-xs" />
+                            <FaArrowRight className="text-brand-accent transition-colors text-xs" />
                           </button>
                         );
                       })}
@@ -240,7 +240,7 @@ export default function HeroSection() {
 
                         <button
                           onClick={() => setSelectedOption(null)}
-                          className="text-[10px] font-bold uppercase tracking-widest text-brand-primary hover:text-brand-base transition-colors flex items-center gap-2 cursor-pointer mt-2 focus:outline-none"
+                          className="text-[10px] font-bold uppercase tracking-widest text-brand-primary transition-colors flex items-center gap-2 cursor-pointer mt-2 focus:outline-none"
                         >
                           <FaArrowLeft /> Start Over
                         </button>
