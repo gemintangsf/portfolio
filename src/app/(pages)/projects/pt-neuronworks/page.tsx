@@ -1,0 +1,386 @@
+"use client";
+
+import Link from "next/link";
+import Image from "next/image";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  FaArrowLeft,
+  FaArrowRight,
+  FaLock,
+  FaCheckCircle,
+  FaExclamationTriangle,
+  FaLightbulb,
+  FaTimes,
+  FaChevronLeft,
+  FaChevronRight
+} from "react-icons/fa";
+import { Container, Button, Badge } from "@/components/ui";
+
+interface CaseStudySection {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  challenge: string;
+  solution: string;
+  impact: string;
+  stack: string[];
+  evidence: string[];
+}
+
+const neuronworksCaseStudies: CaseStudySection[] = [
+  {
+    id: "nadia",
+    title: "NADIA: Network Terminal Equipment Management",
+    subtitle: "Resolving Ambiguity in Enterprise Asset Lifecycles",
+    description: "Built and refined workflows for tracking Telkom Indonesia's returned terminal equipment (NTE) like customer routers and modems.",
+    challenge: "The legacy tracking rules were unmapped, causing frequent asset loss and status confusion. The system was prone to database inconsistencies, and nobody on the active team fully understood the legacy business rules.",
+    solution: "Collaborated directly with stakeholders to trace and document the real asset lifecycle. Refactored the core services using NestJS and Next.js, instituted SonarQube quality gates to block code regression, and implemented automated backend sync tasks using Apache Airflow to clean up status mismatches.",
+    impact: "Turned a chaotic asset pipeline into an auditable process, reducing status discrepancies and giving Telkom clear sight over thousands of hardware units.",
+    stack: ["NestJS", "Next.js", "PostgreSQL", "SonarQube", "Apache Airflow"],
+    evidence: [
+      "/assets/nadia/1.jpg",
+      "/assets/nadia/2.jpg"
+    ]
+  },
+  {
+    id: "scone",
+    title: "SCONE: Order Management System",
+    subtitle: "Migrating Legacy Architectures while Maintaining Real-Time Statuses",
+    description: "Contributed to migrating Telkom's order management frontend and integrating the pipeline with downstream services.",
+    challenge: "The legacy Zend Framework UI was slow and failed to meet updated corporate design patterns, causing drag on administrative workflows. Crucially, order sync states with oracle DBs could not be interrupted.",
+    solution: "Rebuilt ordering screens into Next.js using corporate brutalist guidelines. Wrote stable integration APIs to bridge Next.js events with legacy Oracle procedures, ensuring consistent state tracking without breaking existing processes.",
+    impact: "Improved UI response speed and ensured 100% data consistency for active enterprise customer orders.",
+    stack: ["Next.js", "Zend Framework", "Oracle Database"],
+    evidence: [
+      "/assets/scone/1.jpg"
+    ]
+  },
+  {
+    id: "dms",
+    title: "DMS: Document Management System",
+    subtitle: "Safe Document Operations with Object Storage Abstraction",
+    description: "Designed and implemented a secure document landing page with CRUD operations for internal corporate records.",
+    challenge: "Handling bulk document uploads and deletions was prone to sync failures. Accidental deletion in object storage is irreversible, posing a data-loss risk for audit records.",
+    solution: "Built a secure document pipeline integrated with MinIO object storage. Instead of hard deletions, implemented state transitions (soft-delete tags) and clean transaction layers in Zend Framework/jQuery to safeguard documents.",
+    impact: "Unified file storage across internal tools and eliminated accidental asset deletion risks completely.",
+    stack: ["Zend Framework", "jQuery", "REST API", "MinIO", "PostgreSQL"],
+    evidence: [
+      "/assets/dms/1.jpg",
+      "/assets/dms/2.jpg",
+      "/assets/dms/3.jpg"
+    ]
+  },
+  {
+    id: "pefita",
+    title: "PEFITA: Package Management System",
+    subtitle: "Adding Geographic Intelligence to Product Bundles",
+    description: "Enhanced coordinate-based package visualization inside an internal product pricing and bundling utility.",
+    challenge: "Product analysts configured geographic pricing packages blindly, without map-based visual context, leading to placement errors.",
+    solution: "Integrated Google Maps API with Street View support directly into the React (Vite) frontend. Connected geographic coordinates dynamically to the NestJS backend to draw interactive service boundaries.",
+    impact: "Allowed analysts to visually audit pricing regions, reducing package placement errors and speed of approval.",
+    stack: ["React (Vite)", "NestJS", "PostgreSQL", "Google Maps API"],
+    evidence: []
+  },
+  {
+    id: "ppt",
+    title: "PPT: Master Data Management",
+    subtitle: "Accelerating Administrative Task Entry via UI Revamps",
+    description: "Migrated legacy master data management screens to improve administrative speed and alignment.",
+    challenge: "Tight delivery deadlines under shifting requirements. Administrators were bogged down by an outdated PHP table design with poor validation.",
+    solution: "Worked closely with system analysts to define edge cases early. Rebuilt the frontend in Next.js with unified input components and inline validation guidelines.",
+    impact: "Delivered on schedule and improved data-entry speed for internal system administrators.",
+    stack: ["Next.js", "TypeScript"],
+    evidence: [
+      "/assets/ppt/1.jpg"
+    ]
+  }
+];
+
+export default function NeuronworksPage() {
+  const [activeTab, setActiveTab] = useState(neuronworksCaseStudies[0].id);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [activeEvidence, setActiveEvidence] = useState<string[]>([]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const tab = params.get("tab");
+      if (tab && neuronworksCaseStudies.some((s) => s.id === tab)) {
+        setActiveTab(tab);
+      }
+    }
+  }, []);
+
+  const activeStudy = neuronworksCaseStudies.find((s) => s.id === activeTab) || neuronworksCaseStudies[0];
+
+  const openLightbox = (images: string[], index: number) => {
+    setActiveEvidence(images);
+    setLightboxIndex(index);
+  };
+
+  const handleNext = () => {
+    if (lightboxIndex !== null && lightboxIndex < activeEvidence.length - 1) {
+      setLightboxIndex(lightboxIndex + 1);
+    }
+  };
+
+  const handlePrev = () => {
+    if (lightboxIndex !== null && lightboxIndex > 0) {
+      setLightboxIndex(lightboxIndex - 1);
+    }
+  };
+
+  return (
+    <main className="min-h-screen bg-background text-brand-base pt-28 pb-20 relative z-10 px-6 max-w-7xl mx-auto">
+      {/* Back to Journey */}
+      <Link
+        href="/projects"
+        className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-brand-accent hover:text-brand-base mb-8 transition-colors group"
+      >
+        <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" /> Back to Journey
+      </Link>
+
+      {/* Header Banner */}
+      <div className="border-4 border-brand-base p-8 md:p-12 mb-12 shadow-[8px_8px_0px_0px_var(--color-primary)] bg-brand-highlight flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+        <div>
+          <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-accent mb-2 block">
+            Case Study — PT. Jagoo IT (Outsourced to Neuronworks Indonesia)
+          </span>
+          <h1 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-brand-base">
+            Enterprise Scale Services
+          </h1>
+          <p className="text-sm text-brand-accent max-w-xl font-light mt-2">
+            Scaling operations for Telkom Indonesia. Standardizing returned assets, migrating legacy management frameworks, and securing file platforms.
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-2 md:self-end">
+          <Badge variant="status" className="bg-background border-2 border-brand-base text-[10px]">
+            FEB 2024 - FEB 2025
+          </Badge>
+          <Badge variant="status" className="bg-background border-2 border-brand-base text-[10px] text-brand-accent">
+            FULLSTACK DEVELOPER
+          </Badge>
+        </div>
+      </div>
+
+      {/* Main Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        {/* Navigation Sidebar */}
+        <div className="lg:col-span-4 flex flex-col gap-3">
+          <p className="text-[10px] font-bold uppercase tracking-widest text-brand-accent mb-1 px-1">
+            Select Project
+          </p>
+          {neuronworksCaseStudies.map((study) => (
+            <button
+              key={study.id}
+              onClick={() => setActiveTab(study.id)}
+              className={`w-full text-left p-4 border-2 transition-all cursor-pointer flex items-center justify-between group focus:outline-none ${
+                activeTab === study.id
+                  ? "bg-brand-base text-background border-brand-base shadow-[4px_4px_0px_0px_var(--color-primary)] -translate-x-0.5 -translate-y-0.5"
+                  : "bg-transparent text-brand-base border-brand-base/30 hover:border-brand-base hover:shadow-[4px_4px_0px_0px_var(--color-primary)] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0"
+              }`}
+            >
+              <div className="flex flex-col">
+                <span className="text-xs font-bold uppercase tracking-wider">
+                  {study.title.split(":")[0]}
+                </span>
+                <span className={`text-[10px] font-light mt-1 ${activeTab === study.id ? "text-background/80" : "text-brand-accent"}`}>
+                  {study.title.split(":")[1] || study.title}
+                </span>
+              </div>
+              <FaArrowRight className={`text-xs ${activeTab === study.id ? "text-background" : "text-brand-accent group-hover:text-brand-base transition-colors"}`} />
+            </button>
+          ))}
+        </div>
+
+        {/* Content Panel */}
+        <div className="lg:col-span-8 flex flex-col gap-8">
+          <div className="border-4 border-brand-base p-6 md:p-8 bg-background shadow-[8px_8px_0px_0px_var(--color-primary)]">
+            {/* Header info */}
+            <div className="border-b-2 border-brand-base pb-6 mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+              <div>
+                <h2 className="text-xl md:text-2xl font-black uppercase tracking-tight text-brand-base">
+                  {activeStudy.title}
+                </h2>
+                <p className="text-xs text-brand-accent italic font-light mt-1">
+                  &ldquo;{activeStudy.subtitle}&rdquo;
+                </p>
+              </div>
+              <div className="flex items-center gap-2 text-[10px] uppercase font-bold text-brand-accent bg-brand-highlight px-3 py-1.5 border border-brand-base/20">
+                <FaLock className="text-[9px]" /> Telkom Indonesia Project
+              </div>
+            </div>
+
+            {/* Problem - Solution - Impact flow */}
+            <div className="space-y-8">
+              {/* Problem Section */}
+              <div className="p-5 border-2 border-brand-base bg-brand-base/5 shadow-[3px_3px_0px_0px_var(--color-primary)]">
+                <div className="flex items-center gap-3 mb-3 text-brand-base">
+                  <span className="w-7 h-7 flex items-center justify-center border border-brand-base bg-background text-brand-base">
+                    <FaExclamationTriangle className="text-xs" />
+                  </span>
+                  <h3 className="text-xs font-bold uppercase tracking-widest">
+                    The Business Problem
+                  </h3>
+                </div>
+                <p className="text-sm font-light leading-relaxed text-brand-accent text-justify">
+                  {activeStudy.challenge}
+                </p>
+              </div>
+
+              {/* Solution Section */}
+              <div className="p-5 border-2 border-brand-base bg-background shadow-[3px_3px_0px_0px_var(--color-primary)]">
+                <div className="flex items-center gap-3 mb-3 text-brand-base">
+                  <span className="w-7 h-7 flex items-center justify-center border border-brand-base bg-brand-base text-background">
+                    <FaLightbulb className="text-xs" />
+                  </span>
+                  <h3 className="text-xs font-bold uppercase tracking-widest">
+                    The Solution
+                  </h3>
+                </div>
+                <p className="text-sm font-light leading-relaxed text-brand-base text-justify">
+                  {activeStudy.solution}
+                </p>
+              </div>
+
+              {/* Impact Section */}
+              <div className="p-5 border-2 border-brand-base bg-brand-base text-background shadow-[3px_3px_0px_0px_var(--color-primary)]">
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="w-7 h-7 flex items-center justify-center border border-background bg-background text-brand-base">
+                    <FaCheckCircle className="text-xs" />
+                  </span>
+                  <h3 className="text-xs font-bold uppercase tracking-widest text-background">
+                    Measurable Outcome
+                  </h3>
+                </div>
+                <p className="text-sm font-bold leading-relaxed text-background/90 text-justify">
+                  {activeStudy.impact}
+                </p>
+              </div>
+
+              {/* Tech stack */}
+              <div className="pt-4 border-t border-brand-base/20">
+                <h4 className="text-[10px] font-bold uppercase tracking-widest text-brand-accent mb-3">
+                  Technology Applied
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {activeStudy.stack.map((tech) => (
+                    <Badge key={tech} variant="tag">
+                      {tech}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Evidence Showcase */}
+          {activeStudy.evidence.length > 0 && (
+            <div className="border-4 border-brand-base p-6 md:p-8 bg-background shadow-[8px_8px_0px_0px_var(--color-primary)]">
+              <h3 className="text-lg md:text-xl font-black uppercase tracking-tight text-brand-base mb-2">
+                System Interface Showcase
+              </h3>
+              <p className="text-[10px] uppercase tracking-widest text-brand-accent mb-6">
+                Click screenshot to inspect interface details
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {activeStudy.evidence.map((img, idx) => (
+                  <div
+                    key={idx}
+                    onClick={() => openLightbox(activeStudy.evidence, idx)}
+                    className="relative overflow-hidden border-2 border-brand-base shadow-[4px_4px_0px_0px_var(--color-primary)] cursor-pointer bg-brand-base/5 group aspect-video"
+                  >
+                    {/* Browser header */}
+                    <div className="flex items-center gap-2 p-2 border-b-2 border-brand-base bg-background">
+                      <div className="flex gap-1">
+                        <div className="w-1.5 h-1.5 rounded-full bg-brand-base"></div>
+                        <div className="w-1.5 h-1.5 rounded-full bg-brand-base"></div>
+                        <div className="w-1.5 h-1.5 rounded-full bg-brand-base"></div>
+                      </div>
+                      <div className="flex-1 max-w-[120px] h-3 bg-brand-highlight border border-brand-base/40"></div>
+                    </div>
+                    <div className="relative w-full h-[calc(100%-28px)]">
+                      <Image
+                        src={img}
+                        alt={`Desktop Screen ${idx + 1}`}
+                        fill
+                        className="object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-500 group-hover:scale-102"
+                      />
+                      <div className="absolute inset-0 bg-brand-base/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <span className="bg-background text-brand-base text-[9px] font-bold uppercase tracking-widest px-3 py-1.5 border border-brand-base">
+                          Zoom
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Lightbox Modal */}
+      <AnimatePresence>
+        {lightboxIndex !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[200] bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
+            onClick={() => setLightboxIndex(null)}
+          >
+            {/* Close Button */}
+            <button
+              className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors p-2 cursor-pointer focus:outline-none"
+              onClick={() => setLightboxIndex(null)}
+            >
+              <FaTimes size={28} />
+            </button>
+
+            {/* Content Container */}
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="relative max-w-5xl max-h-[85vh] flex items-center justify-center"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Image
+                src={activeEvidence[lightboxIndex]}
+                alt={`Evidence full`}
+                width={1200}
+                height={800}
+                className="max-w-full max-h-[80vh] object-contain rounded-sm w-auto h-auto"
+              />
+
+              {activeEvidence.length > 1 && (
+                <>
+                  {lightboxIndex > 0 && (
+                    <button
+                      className="absolute left-[-50px] top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-all cursor-pointer hidden md:block"
+                      onClick={handlePrev}
+                    >
+                      <FaChevronLeft size={40} />
+                    </button>
+                  )}
+                  {lightboxIndex < activeEvidence.length - 1 && (
+                    <button
+                      className="absolute right-[-50px] top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-all cursor-pointer hidden md:block"
+                      onClick={handleNext}
+                    >
+                      <FaChevronRight size={40} />
+                    </button>
+                  )}
+                </>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </main>
+  );
+}
