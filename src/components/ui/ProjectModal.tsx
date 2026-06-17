@@ -123,7 +123,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                             {/* Close Button */}
                             <button
                                 onClick={onClose}
-                                className="absolute top-6 right-6 p-2 bg-background border-2 border-brand-base shadow-[3px_3px_0px_0px_var(--color-primary)] hover:shadow-[5px_5px_0px_0px_var(--color-primary)] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 active:shadow-none hover:bg-brand-base hover:text-brand-on-surface text-brand-base transition-all z-20 rounded-none mix-blend-difference focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-base focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                                className="absolute top-6 right-6 p-2 bg-background border-2 border-brand-base shadow-[3px_3px_0px_0px_var(--color-primary)] hover:shadow-[5px_5px_0px_0px_var(--color-primary)] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 active:shadow-none text-brand-base transition-all z-20 rounded-none mix-blend-difference focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-base focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                             >
                                 <FaTimes size={18} />
                             </button>
@@ -426,7 +426,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                                             href={project.link}
                                                             target="_blank"
                                                             rel="noopener noreferrer"
-                                                            className="flex-1 inline-flex items-center justify-center gap-3 px-8 py-4 bg-brand-base text-background border-2 border-brand-base text-[10px] uppercase tracking-widest font-black shadow-[3px_3px_0px_0px_var(--color-primary)] hover:shadow-[5px_5px_0px_0px_var(--color-primary)] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 active:shadow-none hover:invert transition-all"
+                                                            className="flex-1 inline-flex items-center justify-center gap-3 px-8 py-4 bg-brand-base text-background border-2 border-brand-base text-[10px] uppercase tracking-widest font-black shadow-[3px_3px_0px_0px_var(--color-primary)] hover:shadow-[5px_5px_0px_0px_var(--color-primary)] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 active:shadow-none transition-all"
                                                         >
                                                             {project.link.includes("github.com") ? "View Repository" : "Open in Browser"}
                                                             {project.link.includes("github.com") ? null : <FaExternalLinkAlt />}

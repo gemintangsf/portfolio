@@ -28,13 +28,13 @@ export default function Button({
 
   const variants = {
     primary:
-      "bg-brand-base text-background border-brand-base shadow-[4px_4px_0px_0px_var(--color-primary)] hover:shadow-[6px_6px_0px_0px_var(--color-primary)] focus-visible:shadow-[6px_6px_0px_0px_var(--color-primary)] hover:invert",
+      "bg-brand-base text-background border-brand-base shadow-[4px_4px_0px_0px_var(--color-primary)] hover:shadow-[6px_6px_0px_0px_var(--color-primary)] focus-visible:shadow-[6px_6px_0px_0px_var(--color-primary)]",
     secondary:
-      "bg-transparent text-brand-base border-brand-base shadow-[4px_4px_0px_0px_var(--color-base)] hover:shadow-[6px_6px_0px_0px_var(--color-base)] focus-visible:shadow-[6px_6px_0px_0px_var(--color-base)] hover:bg-brand-base hover:text-background",
+      "bg-transparent text-brand-base border-brand-base shadow-[4px_4px_0px_0px_var(--color-base)] hover:shadow-[6px_6px_0px_0px_var(--color-base)] focus-visible:shadow-[6px_6px_0px_0px_var(--color-base)]",
     outline:
-      "bg-transparent text-brand-base border-2 border-brand-base shadow-[4px_4px_0px_0px_var(--color-base)] hover:shadow-[6px_6px_0px_0px_var(--color-base)] focus-visible:shadow-[6px_6px_0px_0px_var(--color-base)] hover:bg-brand-base/5",
+      "bg-transparent text-brand-base border-2 border-brand-base shadow-[4px_4px_0px_0px_var(--color-base)] hover:shadow-[6px_6px_0px_0px_var(--color-base)] focus-visible:shadow-[6px_6px_0px_0px_var(--color-base)]",
     ghost:
-      "bg-transparent text-brand-accent border-transparent hover:text-brand-base hover:shadow-[2px_2px_0px_0px_var(--color-base)] focus-visible:shadow-[2px_2px_0px_0px_var(--color-base)]",
+      "bg-transparent text-brand-accent border-transparent hover:shadow-[2px_2px_0px_0px_var(--color-base)] focus-visible:shadow-[2px_2px_0px_0px_var(--color-base)]",
   };
 
   return (
