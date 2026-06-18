@@ -97,7 +97,7 @@ export default function ContactSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                    className="text-5xl md:text-7xl font-black text-brand-base uppercase tracking-tighter mb-4"
+                    className="text-2xl md:text-3xl font-black text-brand-base uppercase tracking-tighter mb-4 leading-tight"
                 >
                     {headerContent.title}
                 </motion.h2>
@@ -107,7 +107,7 @@ export default function ContactSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                    className="text-lg text-brand-accent max-w-3xl mb-12 font-light leading-relaxed"
+                    className="text-base text-brand-accent max-w-3xl mb-12 font-light leading-relaxed"
                 >
                     {headerContent.subtitle}
                 </motion.p>
@@ -126,7 +126,7 @@ export default function ContactSection() {
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 justify-center items-stretch border-y border-brand-base/10 py-10 mb-8">
                         <div className="flex flex-col items-center justify-center px-6">
-                            <span className="text-lg md:text-xl font-black text-brand-base tracking-tight leading-none text-center">
+                            <span className="text-lg font-black text-brand-base tracking-tight leading-tight text-center">
                                 {SITE_CONFIG.name}
                             </span>
                             <span className="text-[10px] font-bold uppercase tracking-widest text-brand-accent/40 mt-3 text-center">
@@ -137,7 +137,7 @@ export default function ContactSection() {
                         <div className="flex flex-col items-center justify-center border-y md:border-y-0 md:border-x border-brand-base/10 py-6 md:py-0 px-6">
                             <a
                                 href={SOCIAL_LINKS.email}
-                                className="text-base md:text-lg font-black text-brand-base hover:text-brand-accent hover:underline underline-offset-4 decoration-1 transition-all duration-300 tracking-tight leading-none text-center break-all"
+                                className="text-base md:text-lg font-black text-brand-base hover:text-brand-accent hover:underline underline-offset-4 decoration-1 transition-all duration-300 tracking-tight leading-tight text-center break-all"
                             >
                                 {SITE_CONFIG.email}
                             </a>
@@ -149,7 +149,7 @@ export default function ContactSection() {
                         <div className="flex flex-col items-center justify-center px-6">
                             <a
                                 href={SOCIAL_LINKS.phone}
-                                className="text-lg md:text-xl font-black text-brand-base hover:text-brand-accent hover:underline underline-offset-4 decoration-1 transition-all duration-300 tracking-tight leading-none text-center"
+                                className="text-lg font-black text-brand-base hover:text-brand-accent hover:underline underline-offset-4 decoration-1 transition-all duration-300 tracking-tight leading-tight text-center"
                             >
                                 {SOCIAL_LINKS.phone.replace("tel:", "")}
                             </a>
@@ -174,9 +174,9 @@ export default function ContactSection() {
                                 exit={{ opacity: 0, scale: 0.9 }}
                                 className="bg-brand-highlight border border-brand-base/10 p-12 text-center space-y-4"
                             >
-                                <FaCheckCircle className="mx-auto text-5xl text-brand-base mb-6" />
-                                <h3 className="text-2xl font-black text-brand-base uppercase tracking-widest">Message Sent!</h3>
-                                <p className="text-brand-accent font-light">Thank you for reaching out. I&apos;ll get back to you as soon as possible.</p>
+                                <FaCheckCircle className="mx-auto text-2xl text-brand-base mb-6" />
+                                <h3 className="text-xl font-black text-brand-base uppercase tracking-widest leading-tight">Message Sent!</h3>
+                                <p className="text-brand-accent font-light leading-relaxed">Thank you for reaching out. I&apos;ll get back to you as soon as possible.</p>
                                 <Button
                                     onClick={() => setStatus("idle")}
                                     className="mt-8 mx-auto"

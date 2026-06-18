@@ -6,8 +6,6 @@ import {
   FaLock,
   FaServer,
   FaMobileAlt,
-  FaLaptopCode,
-  FaBuilding,
   FaUserCog,
   FaUsers
 } from "react-icons/fa";
@@ -135,10 +133,10 @@ export default function ProjectsSection() {
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className="text-center mb-8"
       >
-        <h1 className="text-4xl md:text-5xl font-extrabold text-brand-base mb-4 uppercase tracking-tighter">
+        <h1 className="text-2xl font-extrabold text-brand-base mb-4 uppercase tracking-tighter leading-tight">
           Featured <span className="text-brand-accent">Case Studies</span>
         </h1>
-        <p className="text-lg text-brand-accent max-w-2xl mx-auto leading-relaxed font-light">
+        <p className="text-base text-brand-accent max-w-2xl mx-auto leading-relaxed font-light">
           Engineering solutions for complex business workflows and real-world scalability.
         </p>
         <div className="mt-6 flex justify-center">
@@ -206,7 +204,7 @@ export default function ProjectsSection() {
                 {/* Top Info */}
                 <div className="flex justify-between items-start mb-6">
                   <div className="flex items-center gap-4">
-                    <span className="w-12 h-12 flex items-center justify-center bg-brand-highlight border-2 border-brand-base text-brand-base text-xl group-hover:bg-brand-base group-hover:text-background transition-colors duration-300">
+                    <span className="w-12 h-12 flex items-center justify-center bg-brand-highlight border-2 border-brand-base text-brand-base text-lg group-hover:bg-brand-base group-hover:text-background transition-colors duration-300">
                       {getIcon(company.iconType)}
                     </span>
                     <div>
@@ -231,7 +229,7 @@ export default function ProjectsSection() {
                 </span>
 
                 {/* Short intro */}
-                <p className="text-brand-accent font-light text-sm mb-6 text-justify">
+                <p className="text-brand-accent font-light text-sm mb-6 text-justify leading-relaxed">
                   {company.description}
                 </p>
 
