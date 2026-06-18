@@ -50,7 +50,7 @@ export default function AboutSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="text-4xl md:text-5xl font-bold text-center mb-8 text-brand-base uppercase tracking-tighter"
+            className="text-2xl font-bold text-center mb-8 text-brand-base uppercase tracking-tighter leading-tight"
           >
             About <span className="text-brand-accent">Me</span>
           </motion.h1>
@@ -60,7 +60,7 @@ export default function AboutSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col md:flex-row gap-12 items-center text-lg text-brand-base leading-relaxed"
+            className="flex flex-col md:flex-row gap-12 items-center text-base text-brand-base leading-relaxed"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
@@ -81,15 +81,15 @@ export default function AboutSection() {
             </motion.div>
 
             <div className="space-y-6 text-center md:text-left flex-1">
-              <p className="font-light text-base md:text-lg">
-                Hi, I’m{" "}
-                <span className="font-bold text-brand-primary text-xl uppercase tracking-tighter">
+              <p className="font-light text-base leading-relaxed">
+                Hi, I'm{" "}
+                <span className="font-bold text-brand-primary text-base uppercase tracking-tight">
                   Gemintang Sangkaji Furqon
                 </span>
                 , a Software Engineer focused on translating business needs into high-quality mobile and web applications.
               </p>
 
-              <p className="font-light text-sm md:text-base">
+              <p className="font-light text-sm md:text-base leading-relaxed">
                 I currently work as a{" "}
                 <span className="font-bold text-brand-primary uppercase tracking-widest text-xs">
                   Full Stack & Mobile Developer
@@ -97,7 +97,7 @@ export default function AboutSection() {
                 at PT Javabooks Indonesia, where I develop commercial mobile features, POS configurations, and search indexing platforms.
               </p>
 
-              <p className="font-light text-sm md:text-base">
+              <p className="font-light text-sm md:text-base leading-relaxed">
                 Previously, I built backend architectures and migrated legacy database structures at{" "}
                 <span className="font-bold text-brand-primary uppercase tracking-widest text-xs">
                   Telkom Indonesia
@@ -130,7 +130,7 @@ export default function AboutSection() {
                   className="w-full sm:w-auto"
                 >
                   <Button variant="primary" size="lg" className="w-full">
-                    <FiDownload className="text-xl" />
+                    <FiDownload className="text-lg" />
                     <span>My Resume</span>
                   </Button>
                 </a>

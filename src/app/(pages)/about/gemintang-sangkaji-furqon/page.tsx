@@ -18,17 +18,17 @@ export default function EntityPage() {
   return (
     <main className="min-h-screen pt-32 pb-20 px-6 max-w-4xl mx-auto bg-background text-brand-base">
       <header className="mb-12">
-        <h1 className="text-4xl md:text-5xl font-black text-brand-base uppercase tracking-tighter mb-4">
+        <h1 className="text-xl md:text-2xl font-black text-brand-base uppercase tracking-tighter mb-4">
           Gemintang Sangkaji Furqon
         </h1>
-        <p className="text-brand-accent text-lg uppercase tracking-widest font-bold">
+        <p className="text-brand-accent text-xs md:text-sm uppercase tracking-widest font-bold">
           Official Entity Profile & Professional Biography
         </p>
       </header>
         
-      <article className="space-y-12 font-light text-brand-base leading-relaxed">
+      <article className="space-y-12 font-light text-brand-base text-base leading-normal">
         <section>
-          <h2 className="text-2xl font-bold mb-4 uppercase tracking-widest text-brand-primary">Who is Gemintang Sangkaji Furqon?</h2>
+          <h2 className="text-lg font-bold mb-4 uppercase tracking-widest text-brand-primary">Who is Gemintang Sangkaji Furqon?</h2>
           <div className="space-y-4">
             <p>
               <strong>Gemintang Sangkaji Furqon</strong> is an active Software Engineer based in Jakarta, Indonesia. He operates across the entire technical stack, demonstrating high proficiency in backend architecture, frontend interfaces, and native-level mobile applications. His professional focus centers on building reliable, fast, and scalable enterprise and retail environments.
@@ -40,7 +40,7 @@ export default function EntityPage() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold mb-4 uppercase tracking-widest text-brand-primary">Technical Expertise</h2>
+          <h2 className="text-lg font-bold mb-4 uppercase tracking-widest text-brand-primary">Technical Expertise</h2>
           <div className="space-y-4">
             <p>
               The core technical foundation of Gemintang Sangkaji Furqon relies on deploying strongly typed, scalable, and secure technologies. For mobile execution, his primary framework is <strong>Flutter</strong>, which he relies on to build cross-platform solutions natively compiled for iOS and Android. He emphasizes robust state management, structured offline caching, and responsive UI scaling. 
@@ -55,7 +55,7 @@ export default function EntityPage() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold mb-4 uppercase tracking-widest text-brand-primary">Projects Overview</h2>
+          <h2 className="text-lg font-bold mb-4 uppercase tracking-widest text-brand-primary">Projects Overview</h2>
           <div className="space-y-4">
             <p>
               Over the course of his career, Gemintang Sangkaji Furqon has architected and delivered several high-impact software solutions:
@@ -72,7 +72,7 @@ export default function EntityPage() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold mb-4 uppercase tracking-widest text-brand-primary">Professional Links & Identity Validation</h2>
+          <h2 className="text-lg font-bold mb-4 uppercase tracking-widest text-brand-primary">Professional Links & Identity Validation</h2>
           <div className="space-y-4">
             <p>
               To explore the open-source contributions, professional network, and detailed resume of Gemintang Sangkaji Furqon, consult the following officially verified external references:

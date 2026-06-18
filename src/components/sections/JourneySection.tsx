@@ -278,7 +278,7 @@ export default function JourneySection() {
         <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-accent mb-1 block">
           Developer Journey Timeline
         </span>
-        <h1 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-brand-base leading-none">
+        <h1 className="text-2xl font-black uppercase tracking-tighter text-brand-base leading-tight">
           My Coding Journey
         </h1>
         <p className="text-sm md:text-base text-brand-accent max-w-2xl font-light mt-2 leading-relaxed text-justify">
@@ -314,7 +314,7 @@ export default function JourneySection() {
                     <span className="text-[9px] font-bold uppercase tracking-widest text-brand-accent flex items-center gap-1.5 mb-1.5">
                       <FaCalendarAlt size={9} /> {item.period}
                     </span>
-                    <h3 className="text-lg md:text-xl font-black text-brand-base uppercase tracking-tighter leading-tight">
+                    <h3 className="text-lg font-black text-brand-base uppercase tracking-tighter leading-tight">
                       {item.title}
                     </h3>
                     {item.company && (
@@ -367,12 +367,12 @@ export default function JourneySection() {
                                 <span className="text-xs font-bold uppercase tracking-tight text-brand-base">
                                   {proj.name}
                                 </span>
-                                <span className="text-[9px] font-bold text-brand-primary uppercase tracking-wider bg-background px-2 py-0.5 border border-brand-base/20 self-start sm:self-auto">
+                                <span className="text-xs font-bold text-brand-primary uppercase tracking-wider bg-background px-2 py-0.5 border border-brand-base/20 self-start sm:self-auto">
                                   Role: {proj.role}
                                 </span>
                               </div>
                               
-                              <p className="text-xs text-brand-accent font-light leading-relaxed mb-4 text-justify">
+                              <p className="text-sm text-brand-accent font-light leading-relaxed mb-4 text-justify">
                                 {proj.description}
                               </p>
                             </div>
