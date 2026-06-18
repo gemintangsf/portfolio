@@ -9,3 +9,4 @@ export { default as Input } from "./Input";
 export { default as Stack } from "./Stack";
 export { default as Textarea } from "./Textarea";
 export { default as ProjectModal } from "./ProjectModal";
+export { default as ProjectNavigation } from "./ProjectNavigation";

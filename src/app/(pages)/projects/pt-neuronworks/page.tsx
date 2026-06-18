@@ -15,7 +15,8 @@ import {
   FaChevronLeft,
   FaChevronRight
 } from "react-icons/fa";
-import { Container, Button, Badge } from "@/components/ui";
+import { projects } from "@/data/projects";
+import { Container, Button, Badge, ProjectNavigation } from "@/components/ui";
 
 interface CaseStudySection {
   id: string;
@@ -29,72 +30,67 @@ interface CaseStudySection {
   evidence: string[];
 }
 
+const nadia = projects.find((p) => p.id === 6)!;
+const pefita = projects.find((p) => p.id === 7)!;
+const scone = projects.find((p) => p.id === 8)!;
+const dms = projects.find((p) => p.id === 9)!;
+const ppt = projects.find((p) => p.id === 10)!;
+
 const neuronworksCaseStudies: CaseStudySection[] = [
   {
     id: "nadia",
-    title: "NADIA: Network Terminal Equipment Management",
-    subtitle: "Resolving Ambiguity in Enterprise Asset Lifecycles",
-    description: "Built and refined workflows for tracking Telkom Indonesia's returned terminal equipment (NTE) like customer routers and modems.",
-    challenge: "The legacy tracking rules were unmapped, causing frequent asset loss and status confusion. The system was prone to database inconsistencies, and nobody on the active team fully understood the legacy business rules.",
-    solution: "Collaborated directly with stakeholders to trace and document the real asset lifecycle. Refactored the core services using NestJS and Next.js, instituted SonarQube quality gates to block code regression, and implemented automated backend sync tasks using Apache Airflow to clean up status mismatches.",
-    impact: "Turned a chaotic asset pipeline into an auditable process, reducing status discrepancies and giving Telkom clear sight over thousands of hardware units.",
-    stack: ["NestJS", "Next.js", "PostgreSQL", "SonarQube", "Apache Airflow"],
-    evidence: [
-      "/assets/nadia/1.jpg",
-      "/assets/nadia/2.jpg"
-    ]
+    title: nadia.title,
+    subtitle: nadia.subtitle || "",
+    description: nadia.description,
+    challenge: nadia.challenge || "",
+    solution: nadia.solution || "",
+    impact: nadia.impact ? nadia.impact.join("\n\n") : "",
+    stack: nadia.stack,
+    evidence: nadia.evidence || []
   },
   {
     id: "scone",
-    title: "SCONE: Order Management System",
-    subtitle: "Migrating Legacy Architectures while Maintaining Real-Time Statuses",
-    description: "Contributed to migrating Telkom's order management frontend and integrating the pipeline with downstream services.",
-    challenge: "The legacy Zend Framework UI was slow and failed to meet updated corporate design patterns, causing drag on administrative workflows. Crucially, order sync states with oracle DBs could not be interrupted.",
-    solution: "Rebuilt ordering screens into Next.js using corporate brutalist guidelines. Wrote stable integration APIs to bridge Next.js events with legacy Oracle procedures, ensuring consistent state tracking without breaking existing processes.",
-    impact: "Improved UI response speed and ensured 100% data consistency for active enterprise customer orders.",
-    stack: ["Next.js", "Zend Framework", "Oracle Database"],
-    evidence: [
-      "/assets/scone/1.jpg"
-    ]
+    title: scone.title,
+    subtitle: scone.subtitle || "",
+    description: scone.description,
+    challenge: scone.challenge || "",
+    solution: scone.solution || "",
+    impact: scone.impact ? scone.impact.join("\n\n") : "",
+    stack: scone.stack,
+    evidence: scone.evidence || []
   },
   {
     id: "dms",
-    title: "DMS: Document Management System",
-    subtitle: "Safe Document Operations with Object Storage Abstraction",
-    description: "Designed and implemented a secure document landing page with CRUD operations for internal corporate records.",
-    challenge: "Handling bulk document uploads and deletions was prone to sync failures. Accidental deletion in object storage is irreversible, posing a data-loss risk for audit records.",
-    solution: "Built a secure document pipeline integrated with MinIO object storage. Instead of hard deletions, implemented state transitions (soft-delete tags) and clean transaction layers in Zend Framework/jQuery to safeguard documents.",
-    impact: "Unified file storage across internal tools and eliminated accidental asset deletion risks completely.",
-    stack: ["Zend Framework", "jQuery", "REST API", "MinIO", "PostgreSQL"],
-    evidence: [
-      "/assets/dms/1.jpg",
-      "/assets/dms/2.jpg",
-      "/assets/dms/3.jpg"
-    ]
+    title: dms.title,
+    subtitle: dms.subtitle || "",
+    description: dms.description,
+    challenge: dms.challenge || "",
+    solution: dms.solution || "",
+    impact: dms.impact ? dms.impact.join("\n\n") : "",
+    stack: dms.stack,
+    evidence: dms.evidence || []
   },
   {
     id: "pefita",
-    title: "PEFITA: Package Management System",
-    subtitle: "Adding Geographic Intelligence to Product Bundles",
-    description: "Enhanced coordinate-based package visualization inside an internal product pricing and bundling utility.",
-    challenge: "Product analysts configured geographic pricing packages blindly, without map-based visual context, leading to placement errors.",
-    solution: "Integrated Google Maps API with Street View support directly into the React (Vite) frontend. Connected geographic coordinates dynamically to the NestJS backend to draw interactive service boundaries.",
-    impact: "Allowed analysts to visually audit pricing regions, reducing package placement errors and speed of approval.",
-    stack: ["React (Vite)", "NestJS", "PostgreSQL", "Google Maps API"],
-    evidence: []
+    title: pefita.title,
+    subtitle: pefita.subtitle || "",
+    description: pefita.description,
+    challenge: pefita.challenge || "",
+    solution: pefita.solution || "",
+    impact: pefita.impact ? pefita.impact.join("\n\n") : "",
+    stack: pefita.stack,
+    evidence: pefita.evidence || []
   },
   {
     id: "ppt",
-    title: "PPT: Master Data Management",
-    subtitle: "Accelerating Administrative Task Entry via UI Revamps",
-    description: "Migrated legacy master data management screens to improve administrative speed and alignment.",
-    challenge: "Tight delivery deadlines under shifting requirements. Administrators were bogged down by an outdated PHP table design with poor validation.",
-    solution: "Worked closely with system analysts to define edge cases early. Rebuilt the frontend in Next.js with unified input components and inline validation guidelines.",
-    impact: "Delivered on schedule and improved data-entry speed for internal system administrators.",
-    stack: ["Next.js", "TypeScript"],
-    evidence: [
-      "/assets/ppt/1.jpg"
-    ]
+    title: ppt.title,
+    subtitle: ppt.subtitle || "",
+    description: ppt.description,
+    challenge: ppt.challenge || "",
+    solution: ppt.solution || "",
+    impact: ppt.impact ? ppt.impact.join("\n\n") : "",
+    stack: ppt.stack,
+    evidence: ppt.evidence || []
   }
 ];
 
@@ -104,13 +100,18 @@ export default function NeuronworksPage() {
   const [activeEvidence, setActiveEvidence] = useState<string[]>([]);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    const handlePopState = () => {
       const params = new URLSearchParams(window.location.search);
       const tab = params.get("tab");
       if (tab && neuronworksCaseStudies.some((s) => s.id === tab)) {
         setActiveTab(tab);
       }
-    }
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    handlePopState();
+
+    return () => window.removeEventListener("popstate", handlePopState);
   }, []);
 
   const activeStudy = neuronworksCaseStudies.find((s) => s.id === activeTab) || neuronworksCaseStudies[0];
@@ -148,10 +149,10 @@ export default function NeuronworksPage() {
           <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-accent mb-2 block">
             Case Study — PT. Jagoo IT (Outsourced to Neuronworks Indonesia)
           </span>
-          <h1 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-brand-base">
+          <h1 className="text-2xl font-black uppercase tracking-tighter text-brand-base leading-tight">
             Enterprise Scale Services
           </h1>
-          <p className="text-sm text-brand-accent max-w-xl font-light mt-2">
+          <p className="text-sm text-brand-accent max-w-xl font-light mt-2 leading-relaxed">
             Scaling operations for Telkom Indonesia. Standardizing returned assets, migrating legacy management frameworks, and securing file platforms.
           </p>
         </div>
@@ -201,7 +202,7 @@ export default function NeuronworksPage() {
             {/* Header info */}
             <div className="border-b-2 border-brand-base pb-6 mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
               <div>
-                <h2 className="text-xl md:text-2xl font-black uppercase tracking-tight text-brand-base">
+                <h2 className="text-xl font-black uppercase tracking-tight text-brand-base leading-tight">
                   {activeStudy.title}
                 </h2>
                 <p className="text-xs text-brand-accent italic font-light mt-1">
@@ -273,13 +274,15 @@ export default function NeuronworksPage() {
                   ))}
                 </div>
               </div>
+
+              <ProjectNavigation currentId={activeStudy.id} setActiveTab={setActiveTab} />
             </div>
           </div>
 
           {/* Evidence Showcase */}
           {activeStudy.evidence.length > 0 && (
             <div className="border-4 border-brand-base p-6 md:p-8 bg-background shadow-[8px_8px_0px_0px_var(--color-primary)]">
-              <h3 className="text-lg md:text-xl font-black uppercase tracking-tight text-brand-base mb-2">
+              <h3 className="text-lg font-black uppercase tracking-tight text-brand-base mb-2 leading-tight">
                 System Interface Showcase
               </h3>
               <p className="text-[10px] uppercase tracking-widest text-brand-accent mb-6">

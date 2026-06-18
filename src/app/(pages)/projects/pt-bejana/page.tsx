@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   FaArrowLeft,
@@ -16,7 +16,8 @@ import {
   FaChevronRight,
   FaExternalLinkAlt
 } from "react-icons/fa";
-import { Container, Button, Badge } from "@/components/ui";
+import { projects } from "@/data/projects";
+import { Container, Button, Badge, ProjectNavigation } from "@/components/ui";
 
 interface CaseStudySection {
   id: string;
@@ -30,23 +31,57 @@ interface CaseStudySection {
   evidence: string[];
 }
 
-const bejanaCaseStudies: CaseStudySection[] = [
-  {
+const bejanaCaseStudies: CaseStudySection[] = projects
+  .filter((p) => p.id === 11)
+  .map((p) => ({
     id: "paboi",
-    title: "PABOI: Indonesia Orthopedic Association Web Platform",
-    subtitle: "Accelerating Project Velocity by Shifting to Full-Stack Execution",
-    description: "Contributed to building the official member portal and management system for the Indonesian Orthopaedic Association (PABOI).",
-    challenge: "Joining the team as a backend-only intern, there was a backlog of pending user interface tickets that delayed features. Communication gaps between frontend and backend components frequently stalled progress.",
-    solution: "Quickly ramped up on the team's processes and expanded my role from backend Ruby on Rails to full-stack, taking on ReactJS responsibilities midway through the internship. Directly resolved frontend usability bugs and aligned API endpoints.",
-    impact: "Accelerated features to completion, cleared the backlog of UI issues, and delivered a stable, responsive member portal on time.",
-    stack: ["Ruby on Rails", "ReactJS", "MySQL", "Git", "Kanban / Agile"],
-    evidence: []
-  }
-];
+    title: p.title,
+    subtitle: p.subtitle || "",
+    description: p.description,
+    challenge: p.challenge || "",
+    solution: p.solution || "",
+    impact: p.impact ? p.impact.join("\n\n") : "",
+    stack: p.stack,
+    evidence: p.evidence || []
+  }));
 
 export default function BejanaPage() {
   const [activeTab, setActiveTab] = useState(bejanaCaseStudies[0].id);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [activeEvidence, setActiveEvidence] = useState<string[]>([]);
   const activeStudy = bejanaCaseStudies.find((s) => s.id === activeTab) || bejanaCaseStudies[0];
+
+  useEffect(() => {
+    const handlePopState = () => {
+      const params = new URLSearchParams(window.location.search);
+      const tab = params.get("tab");
+      if (tab && bejanaCaseStudies.some((s) => s.id === tab)) {
+        setActiveTab(tab);
+      }
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    handlePopState();
+
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
+
+  const openLightbox = (images: string[], index: number) => {
+    setActiveEvidence(images);
+    setLightboxIndex(index);
+  };
+
+  const handleNext = () => {
+    if (lightboxIndex !== null && lightboxIndex < activeEvidence.length - 1) {
+      setLightboxIndex(lightboxIndex + 1);
+    }
+  };
+
+  const handlePrev = () => {
+    if (lightboxIndex !== null && lightboxIndex > 0) {
+      setLightboxIndex(lightboxIndex - 1);
+    }
+  };
 
   return (
     <main className="min-h-screen bg-background text-brand-base pt-28 pb-20 relative z-10 px-6 max-w-7xl mx-auto">
@@ -64,10 +99,10 @@ export default function BejanaPage() {
           <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-accent mb-2 block">
             Case Study — PT. Bejana Investidata Globalindo
           </span>
-          <h1 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-brand-base">
+          <h1 className="text-2xl font-black uppercase tracking-tighter text-brand-base leading-tight">
             Professional Foundations
           </h1>
-          <p className="text-sm text-brand-accent max-w-xl font-light mt-2">
+          <p className="text-sm text-brand-accent max-w-xl font-light mt-2 leading-relaxed">
             First professional experience, scaling membership portals and learning key teamwork methodologies in fullstack workflows.
           </p>
         </div>
@@ -86,7 +121,7 @@ export default function BejanaPage() {
         {/* Header info */}
         <div className="border-b-2 border-brand-base pb-6 mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div>
-            <h2 className="text-xl md:text-2xl font-black uppercase tracking-tight text-brand-base">
+            <h2 className="text-xl font-black uppercase tracking-tight text-brand-base leading-tight">
               {activeStudy.title}
             </h2>
             <p className="text-xs text-brand-accent italic font-light mt-1">
@@ -163,8 +198,114 @@ export default function BejanaPage() {
               ))}
             </div>
           </div>
+
+          <ProjectNavigation currentId={activeStudy.id} setActiveTab={setActiveTab} />
         </div>
       </div>
+
+      {/* Evidence Showcase */}
+      {activeStudy.evidence.length > 0 && (
+        <div className="max-w-4xl mx-auto border-4 border-brand-base p-6 md:p-8 bg-background shadow-[8px_8px_0px_0px_var(--color-primary)] mt-8">
+          <h3 className="text-lg font-black uppercase tracking-tight text-brand-base mb-2 leading-tight">
+            System Interface Showcase
+          </h3>
+          <p className="text-[10px] uppercase tracking-widest text-brand-accent mb-6">
+            Click screenshot to inspect interface details
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {activeStudy.evidence.map((img, idx) => (
+              <div
+                key={idx}
+                onClick={() => openLightbox(activeStudy.evidence, idx)}
+                className="relative overflow-hidden border-2 border-brand-base shadow-[4px_4px_0px_0px_var(--color-primary)] cursor-pointer bg-brand-base/5 group aspect-video"
+              >
+                {/* Browser header */}
+                <div className="flex items-center gap-2 p-2 border-b-2 border-brand-base bg-background">
+                  <div className="flex gap-1">
+                    <div className="w-1.5 h-1.5 rounded-full bg-brand-base"></div>
+                    <div className="w-1.5 h-1.5 rounded-full bg-brand-base"></div>
+                    <div className="w-1.5 h-1.5 rounded-full bg-brand-base"></div>
+                  </div>
+                  <div className="flex-1 max-w-[120px] h-3 bg-brand-highlight border border-brand-base/40"></div>
+                </div>
+                <div className="relative w-full h-[calc(100%-28px)]">
+                  <Image
+                    src={img}
+                    alt={`Desktop Screen ${idx + 1}`}
+                    fill
+                    className="object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-500 group-hover:scale-102"
+                  />
+                  <div className="absolute inset-0 bg-brand-base/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <span className="bg-background text-brand-base text-[9px] font-bold uppercase tracking-widest px-3 py-1.5 border border-brand-base">
+                      Zoom
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Lightbox Modal */}
+      <AnimatePresence>
+        {lightboxIndex !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[200] bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
+            onClick={() => setLightboxIndex(null)}
+          >
+            {/* Close Button */}
+            <button
+              className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors p-2 cursor-pointer focus:outline-none"
+              onClick={() => setLightboxIndex(null)}
+            >
+              <FaTimes size={28} />
+            </button>
+
+            {/* Content Container */}
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="relative max-w-5xl max-h-[85vh] flex items-center justify-center"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Image
+                src={activeEvidence[lightboxIndex]}
+                alt={`Evidence full`}
+                width={1200}
+                height={800}
+                className="max-w-full max-h-[80vh] object-contain rounded-sm w-auto h-auto"
+              />
+
+              {activeEvidence.length > 1 && (
+                <>
+                  {lightboxIndex > 0 && (
+                    <button
+                      className="absolute left-[-50px] top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-all cursor-pointer hidden md:block"
+                      onClick={handlePrev}
+                    >
+                      <FaChevronLeft size={40} />
+                    </button>
+                  )}
+                  {lightboxIndex < activeEvidence.length - 1 && (
+                    <button
+                      className="absolute right-[-50px] top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-all cursor-pointer hidden md:block"
+                      onClick={handleNext}
+                    >
+                      <FaChevronRight size={40} />
+                    </button>
+                  )}
+                </>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }

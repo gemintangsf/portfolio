@@ -21,7 +21,8 @@ import {
   FaGooglePlay,
   FaApple
 } from "react-icons/fa";
-import { Container, Button, Badge } from "@/components/ui";
+import { projects } from "@/data/projects";
+import { Container, Button, Badge, ProjectNavigation } from "@/components/ui";
 
 interface CaseStudySection {
   id: string;
@@ -36,77 +37,58 @@ interface CaseStudySection {
   forceDesktopStyle?: boolean;
 }
 
+const phc1 = projects.find((p) => p.id === 1)!;
+const phc2 = projects.find((p) => p.id === 2)!;
+const pos = projects.find((p) => p.id === 4)!;
+const periplus = projects.find((p) => p.id === 3)!;
+const search = projects.find((p) => p.id === 5)!;
+
 const javabooksCaseStudies: CaseStudySection[] = [
   {
     id: "phc-mobile",
     title: "PHC Mobile: HR & Gamification System",
-    subtitle: "Orchestrating Biometric Validation and High-Performance Leaderboards",
+    subtitle: phc1.subtitle || "",
     description: "Built and secured a robust, geofenced HR mobile application covering attendance, gamified leaderboards, and quizzes for retail staff.",
-    challenge: "Custom face validation had to run without prior photo enrollment to minimize administrative friction. Furthermore, rendering hundreds of leaderboard entries crashed low-end phones due to remote image payloads, and employees screenshotted and shared quiz answers to exploit cash rewards.",
-    solution: "Engineered an on-the-fly verification pipeline using InsightFace (Python) and geofencing coordinates synchronized via PHP OpenCart. Designed viewport-based image lazy-loading and client-side caching to maintain a 60fps leaderboard list. Hardened quiz campaigns with OS-level screenshot blocking and focus-loss tracking.",
-    impact: "Eliminated manual photo attendance fraud, stabilized mobile memory usage under heavy payloads, and prevented quiz collusions.",
-    stack: ["Flutter", "Python", "InsightFace", "MySQL", "OpenCart", "Viewport Caching", "OS-Level APIs"],
-    evidence: [
-      "/assets/phc/face_recognitions/3.jpg",
-      "/assets/phc/face_recognitions/4.jpg",
-      "/assets/phc/face_recognitions/5.jpg",
-      "/assets/phc/face_recognitions/6.jpg",
-      "/assets/phc/face_recognitions/7.jpg",
-      "/assets/phc/leaderboards/1.png",
-      "/assets/phc/leaderboards/2.png",
-      "/assets/phc/leaderboards/3.png",
-      "/assets/phc/leaderboards/4.png",
-      "/assets/phc/leaderboards/5.png"
-    ]
+    challenge: phc1.challenge || "",
+    solution: phc1.solution || "",
+    impact: phc1.impact ? phc1.impact.join("\n\n") : "",
+    stack: Array.from(new Set([...phc1.stack, ...phc2.stack])),
+    evidence: [...(phc1.evidence || []), ...(phc2.evidence || [])]
   },
   {
     id: "pos-mobile",
-    title: "Mobile POS (Point of Sale) Application",
-    subtitle: "Decentralizing Store Sales While Eliminating Remote Maintenance Travel",
-    description: "Replaced an obsolete, offline-compiled desktop POS system with a centralized mobile cashier application supporting sales, inventory syncing, and receipts.",
-    challenge: "The legacy desktop POS ran on local store databases. System sync issues or minor bugs required a software engineer to travel physically to the retail store—sometimes out-of-town locations—resulting in steep travel expenses and prolonged operational downtime.",
-    solution: "Rebuilt the POS from scratch as a centralized, cross-platform (Mobile, Tablet, and Desktop) Flutter application. By routing transaction data directly to a centralized server database and managing client state centrally, local compilation and databases were eliminated.",
-    impact: "Removed 100% of physical maintenance travel costs. New features or bug fixes are now deployed instantly over-the-air, reducing store downtime to zero.",
-    stack: ["Flutter (Mobile/Tablet/Desktop)", "REST API", "Receipt Printing", "Barcode Scanning", "Centralized DB"],
-    evidence: [
-      "/assets/pos/1.png",
-      "/assets/pos/4.png",
-      "/assets/pos/6.png"
-    ],
-    forceDesktopStyle: true
+    title: pos.title,
+    subtitle: pos.subtitle || "",
+    description: pos.description,
+    challenge: pos.challenge || "",
+    solution: pos.solution || "",
+    impact: pos.impact ? pos.impact.join("\n\n") : "",
+    stack: pos.stack,
+    evidence: pos.evidence || [],
+    forceDesktopStyle: pos.forceDesktopStyle
   },
   {
     id: "periplus-apps",
-    title: "PeriplusApps Mobile: Bookstore Platform",
-    subtitle: "Performance Tuning and Layout Consistency across Cross-Platform Devices",
-    description: "Contributed to debugging and optimizing Periplus's primary consumer e-commerce mobile application, ensuring stability across active modules.",
-    challenge: "The app suffered from redundant duplicate API calls, layout issues across phone and tablet screens, and state-retention bugs during transaction cart and coupon checkout actions.",
-    solution: "Audited API payloads to cut redundant endpoints, corrected incorrect request mappings, and rebuilt layouts with responsive constraints. Implemented strict state resets for coupon checkouts.",
-    impact: "Reduced mobile network data overhead, resolved UI overflows on tablets, and ensured stable checkout state workflows.",
-    stack: ["Flutter", "REST API Integration", "Responsive UI", "State Hardening"],
-    evidence: [
-      "/assets/mobile_p+/2.jpeg",
-      "/assets/mobile_p+/3.jpeg",
-      "/assets/mobile_p+/4.jpeg",
-      "/assets/mobile_p+/5.jpeg",
-      "/assets/mobile_p+/6.jpeg"
-    ]
+    title: periplus.title,
+    subtitle: periplus.subtitle || "",
+    description: periplus.description,
+    challenge: periplus.challenge || "",
+    solution: periplus.solution || "",
+    impact: periplus.impact ? periplus.impact.join("\n\n") : "",
+    stack: periplus.stack,
+    evidence: periplus.evidence || []
   },
   {
     id: "search-opensearch",
-    title: "Book Search & Recommendation Engine (periplus.com)",
-    subtitle: "Driving High-Intent Conversion by Aligning Search Results with Trends",
-    description: "Reworked the search suggestion and query algorithm for the periplus.com catalog of over one million books.",
-    challenge: "The existing search was slow and matched keywords blindly. It frequently pushed out-of-print or low-demand books to the top of results if they had title matches, frustrating users and leading to abandoned searches.",
-    solution: "Migrated the search backend from Elasticsearch to OpenSearch to cut software licensing costs. Rewrote query parsing algorithms to prioritize search suggestions similar to Amazon's auto-complete. Implemented custom weighting logic that ranks search results based on a blend of keyword similarity, sales velocity, and trending click activity.",
-    impact: "Aligned search output directly with consumer buying behavior. Customers are presented with trending, highly sought-after titles immediately, boosting catalog discovery.",
-    stack: ["OpenSearch", "Python", "MySQL", "OpenCart", "Search Suggestions"],
-    evidence: [
-      "/assets/web_p+/1.png",
-      "/assets/web_p+/2.png",
-      "/assets/web_p+/3.png"
-    ],
-    forceDesktopStyle: true
+    title: search.title,
+    subtitle: search.subtitle || "",
+    description: search.description,
+    challenge: search.challenge || "",
+    solution: search.solution || "",
+    impact: search.impact ? search.impact.join("\n\n") : "",
+    stack: search.stack,
+    evidence: search.evidence || [],
+    forceDesktopStyle: search.forceDesktopStyle
   }
 ];
 
@@ -116,13 +98,18 @@ export default function JavabooksPage() {
   const [activeEvidence, setActiveEvidence] = useState<string[]>([]);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    const handlePopState = () => {
       const params = new URLSearchParams(window.location.search);
       const tab = params.get("tab");
       if (tab && javabooksCaseStudies.some((s) => s.id === tab)) {
         setActiveTab(tab);
       }
-    }
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    handlePopState();
+
+    return () => window.removeEventListener("popstate", handlePopState);
   }, []);
 
   const activeStudy = javabooksCaseStudies.find((s) => s.id === activeTab) || javabooksCaseStudies[0];
@@ -160,10 +147,10 @@ export default function JavabooksPage() {
           <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-accent mb-2 block">
             Case Study — PT. Javabooks Indonesia (Periplus)
           </span>
-          <h1 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-brand-base">
+          <h1 className="text-2xl font-black uppercase tracking-tighter text-brand-base leading-tight">
             High-Performance Retail & HR
           </h1>
-          <p className="text-sm text-brand-accent max-w-xl font-light mt-2">
+          <p className="text-sm text-brand-accent max-w-xl font-light mt-2 leading-relaxed">
             Solving critical business bottlenecks: from eliminating attendance fraud with zero-friction biometric pipelines to stopping POS travel maintenance costs.
           </p>
         </div>
@@ -188,11 +175,10 @@ export default function JavabooksPage() {
             <button
               key={study.id}
               onClick={() => setActiveTab(study.id)}
-              className={`w-full text-left p-4 border-2 transition-all cursor-pointer flex items-center justify-between group focus:outline-none ${
-                activeTab === study.id
-                  ? "bg-brand-base text-background border-brand-base shadow-[4px_4px_0px_0px_var(--color-primary)] -translate-x-0.5 -translate-y-0.5"
-                  : "bg-transparent text-brand-base border-brand-base/30 hover:border-brand-base hover:shadow-[4px_4px_0px_0px_var(--color-primary)] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0"
-              }`}
+              className={`w-full text-left p-4 border-2 transition-all cursor-pointer flex items-center justify-between group focus:outline-none ${activeTab === study.id
+                ? "bg-brand-base text-background border-brand-base shadow-[4px_4px_0px_0px_var(--color-primary)] -translate-x-0.5 -translate-y-0.5"
+                : "bg-transparent text-brand-base border-brand-base/30 hover:border-brand-base hover:shadow-[4px_4px_0px_0px_var(--color-primary)] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0"
+                }`}
             >
               <div className="flex flex-col">
                 <span className="text-xs font-bold uppercase tracking-wider">
@@ -213,7 +199,7 @@ export default function JavabooksPage() {
             {/* Header info */}
             <div className="border-b-2 border-brand-base pb-6 mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
               <div>
-                <h2 className="text-xl md:text-2xl font-black uppercase tracking-tight text-brand-base">
+                <h2 className="text-xl font-black uppercase tracking-tight text-brand-base leading-tight">
                   {activeStudy.title}
                 </h2>
                 <p className="text-xs text-brand-accent italic font-light mt-1">
@@ -285,13 +271,15 @@ export default function JavabooksPage() {
                   ))}
                 </div>
               </div>
+
+              <ProjectNavigation currentId={activeStudy.id} setActiveTab={setActiveTab} />
             </div>
           </div>
 
           {/* Evidence Showcase */}
           {activeStudy.evidence.length > 0 && (
             <div className="border-4 border-brand-base p-6 md:p-8 bg-background shadow-[8px_8px_0px_0px_var(--color-primary)]">
-              <h3 className="text-lg md:text-xl font-black uppercase tracking-tight text-brand-base mb-2">
+              <h3 className="text-lg font-black uppercase tracking-tight text-brand-base mb-2 leading-tight">
                 System Interface Showcase
               </h3>
               <p className="text-[10px] uppercase tracking-widest text-brand-accent mb-6">

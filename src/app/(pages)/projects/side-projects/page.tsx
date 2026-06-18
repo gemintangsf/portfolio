@@ -15,7 +15,8 @@ import {
   FaChevronRight,
   FaGithub
 } from "react-icons/fa";
-import { Container, Button, Badge } from "@/components/ui";
+import { projects } from "@/data/projects";
+import { Container, Button, Badge, ProjectNavigation } from "@/components/ui";
 
 interface ProjectSection {
   id: string;
@@ -30,49 +31,46 @@ interface ProjectSection {
   githubUrl?: string;
 }
 
+const jtk = projects.find((p) => p.id === 12)!;
+const sinbadaProject = projects.find((p) => p.id === 13)!;
+const siinventProject = projects.find((p) => p.id === 14)!;
+
 const sideProjectsList: ProjectSection[] = [
   {
     id: "jtk-berbagi",
-    title: "JTK Berbagi: Donation Management Platform",
-    subtitle: "Digitalizing Social Fundraising for the Academic Community",
-    description: "Built a fundraising and donation platform designed for POLBAN's Computer Engineering department to structure campaigns and transactions.",
-    challenge: "Traditional donation processes in the department were manual and opaque, leading to accounting delays. Needs and requirements shifted dynamically during development, requiring close alignment with the frontend team.",
-    solution: "Followed systematic requirement analysis to build a donation engine using Ruby on Rails and MySQL. Coordinated closely with the ReactJS frontend developer to model clean API endpoints and design secure role-based access for campaign admins and donors.",
-    impact: "Established a transparent, auditable platform that simplified donation campaign setups and digital tracking of social funds.",
-    stack: ["Ruby on Rails", "ReactJS", "MySQL", "Waterfall Methodology", "REST API"],
-    evidence: [
-      "/assets/jtkberbagi/1.png",
-      "/assets/jtkberbagi/2.png"
-    ],
-    githubUrl: "https://github.com/gemintangsf/tugas_akhir/tree/main"
+    title: jtk.title,
+    subtitle: jtk.subtitle || "",
+    description: jtk.description,
+    challenge: jtk.challenge || "",
+    solution: jtk.solution || "",
+    impact: jtk.impact ? jtk.impact.join("\n\n") : "",
+    stack: jtk.stack,
+    evidence: jtk.evidence || [],
+    githubUrl: jtk.link
   },
   {
     id: "sinbada",
-    title: "Sinbada: Web-Based Inventory System",
-    subtitle: "Structuring Regional Asset Audits with MongoDB",
-    description: "Developed an inventory system to help track regional institutional stock, equipment state, and records.",
-    challenge: "Scaling relational records to handle dynamic, unstructured asset descriptions and categorization rules from diverse offices.",
-    solution: "Leveraged MongoDB and Ruby on Rails to design a schema-flexible document database. Hosted the service on Azure and worked within a multi-member team to integrate asset tracking utilities.",
-    impact: "Created a flexible inventory system capable of adapting to varying regional asset data formats without structural migrations.",
-    stack: ["Ruby on Rails", "ReactJS", "MongoDB", "Azure", "Git Team Workflow"],
-    evidence: [
-      "/assets/sinbada/1.jpg"
-    ],
-    githubUrl: "https://github.com/SekelompokOrangKuat/ProjectInventaris/tree/dev"
+    title: sinbadaProject.title,
+    subtitle: sinbadaProject.subtitle || "",
+    description: sinbadaProject.description,
+    challenge: sinbadaProject.challenge || "",
+    solution: sinbadaProject.solution || "",
+    impact: sinbadaProject.impact ? sinbadaProject.impact.join("\n\n") : "",
+    stack: sinbadaProject.stack,
+    evidence: sinbadaProject.evidence || [],
+    githubUrl: sinbadaProject.link
   },
   {
     id: "siinvent",
-    title: "Siinvent: Stock Auditing Tool",
-    subtitle: "Foundational Experience in RESTful APIs and Database Norms",
-    description: "Designed a lightweight inventory management system to audit stock levels and institutional assets.",
-    challenge: "First experience working in a collaborative team repository, resolving database integration limits and avoiding git conflict bottlenecks.",
-    solution: "Designed and implemented RESTful backend APIs using Express.js and PostgreSQL. Kept branch management strict and standardized request models.",
-    impact: "Successfully delivered standard inventory control software with secure database relations.",
-    stack: ["Express.js", "ReactJS", "PostgreSQL", "REST API Development"],
-    evidence: [
-      "/assets/siinvent/2.jpg"
-    ],
-    githubUrl: "https://github.com/SekelompokOrangKuat/PROJECTCUAN/tree/backend"
+    title: siinventProject.title,
+    subtitle: siinventProject.subtitle || "",
+    description: siinventProject.description,
+    challenge: siinventProject.challenge || "",
+    solution: siinventProject.solution || "",
+    impact: siinventProject.impact ? siinventProject.impact.join("\n\n") : "",
+    stack: siinventProject.stack,
+    evidence: siinventProject.evidence || [],
+    githubUrl: siinventProject.link
   }
 ];
 
@@ -82,13 +80,18 @@ export default function SideProjectsPage() {
   const [activeEvidence, setActiveEvidence] = useState<string[]>([]);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    const handlePopState = () => {
       const params = new URLSearchParams(window.location.search);
       const tab = params.get("tab");
       if (tab && sideProjectsList.some((s) => s.id === tab)) {
         setActiveTab(tab);
       }
-    }
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    handlePopState();
+
+    return () => window.removeEventListener("popstate", handlePopState);
   }, []);
 
   const activeProject = sideProjectsList.find((s) => s.id === activeTab) || sideProjectsList[0];
@@ -126,10 +129,10 @@ export default function SideProjectsPage() {
           <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-accent mb-2 block">
             Academic & Community Experiments
           </span>
-          <h1 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-brand-base">
+          <h1 className="text-2xl font-black uppercase tracking-tighter text-brand-base leading-tight">
             Side Projects
           </h1>
-          <p className="text-sm text-brand-accent max-w-xl font-light mt-2">
+          <p className="text-sm text-brand-accent max-w-xl font-light mt-2 leading-relaxed">
             Early software engineering projects focusing on donation management, inventory auditing systems, and learning team coordination paradigms.
           </p>
         </div>
@@ -176,7 +179,7 @@ export default function SideProjectsPage() {
             {/* Header info */}
             <div className="border-b-2 border-brand-base pb-6 mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
               <div>
-                <h2 className="text-xl md:text-2xl font-black uppercase tracking-tight text-brand-base">
+                <h2 className="text-xl font-black uppercase tracking-tight text-brand-base leading-tight">
                   {activeProject.title}
                 </h2>
                 <p className="text-xs text-brand-accent italic font-light mt-1">
@@ -255,13 +258,15 @@ export default function SideProjectsPage() {
                   ))}
                 </div>
               </div>
+
+              <ProjectNavigation currentId={activeProject.id} setActiveTab={setActiveTab} />
             </div>
           </div>
 
           {/* Evidence Showcase */}
           {activeProject.evidence.length > 0 && (
             <div className="border-4 border-brand-base p-6 md:p-8 bg-background shadow-[8px_8px_0px_0px_var(--color-primary)]">
-              <h3 className="text-lg md:text-xl font-black uppercase tracking-tight text-brand-base mb-2">
+              <h3 className="text-lg font-black uppercase tracking-tight text-brand-base mb-2 leading-tight">
                 System Interface Showcase
               </h3>
               <p className="text-[10px] uppercase tracking-widest text-brand-accent mb-6">
