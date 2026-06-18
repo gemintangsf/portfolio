@@ -8,7 +8,7 @@ const ContactSection = dynamic(() => import("@/components/sections/ContactSectio
 export default function Home() {
   return (
     <main className="flex flex-col">
-      <div className="min-h-[100dvh] flex flex-col justify-between relative z-10">
+      <div className="min-h-[100dvh] lg:h-[100dvh] flex flex-col justify-between items-center relative z-10 w-full">
         <HeroSection />
         <TechStack />
       </div>

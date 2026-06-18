@@ -43,7 +43,7 @@ export default function Preloader() {
                             initial={{ opacity: 0, letterSpacing: "1.5em", filter: "blur(10px)" }}
                             animate={{ opacity: 1, letterSpacing: "0.5em", filter: "blur(0px)" }}
                             transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-                            className="text-brand-base text-2xl md:text-4xl font-black uppercase tracking-[0.5em] ml-[0.5em]"
+                            className="text-brand-base text-xl md:text-2xl font-black uppercase tracking-[0.5em] ml-[0.5em]"
                         >
                             Gemintang
                         </motion.h1>
