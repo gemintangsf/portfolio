@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 import { useUI } from "@/hooks/useUI";
 import { FaMoon, FaSun, FaGithub, FaLinkedin, FaEnvelope, FaTimes, FaHome, FaUser, FaFolder, FaCommentDots } from "react-icons/fa";
 import { NAVIGATION_LINKS, SOCIAL_LINKS } from "@/lib/constants";
@@ -28,12 +27,8 @@ const getNavIcon = (href: string) => {
 export default function Navbar() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [activeSection, setActiveSection] = useState("home");
-  const [isNavClickScrolling, setIsNavClickScrolling] = useState(false);
-  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const { isModalOpen, isLoaded, theme, toggleTheme } = useUI();
+  const { isModalOpen, theme, toggleTheme } = useUI();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,28 +36,7 @@ export default function Navbar() {
 
       const currentScrollY = window.scrollY;
 
-      // 1. Visibility logic (hide on scroll down)
-      // Only hide if NOT scrolling because of a nav click
-      if (!isNavClickScrolling) {
-        if (currentScrollY > lastScrollY && currentScrollY > 50) {
-          // Check if we are near the bottom of the page
-          const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
-          if (currentScrollY < scrollableHeight - 50) {
-            setIsVisible(false);
-          } else {
-            setIsVisible(true);
-          }
-        } else {
-          setIsVisible(true);
-        }
-      } else {
-        // Keep it visible during nav click scroll
-        setIsVisible(true);
-      }
-
-      setLastScrollY(currentScrollY);
-
-      // 2. Scrollspy logic (active section detection)
+      // Scrollspy logic (active section detection)
       const sections = ["home", "projects", "contact"];
       const scrollPosition = currentScrollY + 200; // Offset for better detection
 
@@ -80,7 +54,7 @@ export default function Navbar() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY, isNavClickScrolling, pathname]);
+  }, [pathname]);
 
   useEffect(() => {
     if (pathname === "/about-me") {
@@ -112,19 +86,7 @@ export default function Navbar() {
       }
     }
 
-    // Clear existing timeout to prevent state conflicts
-    if (scrollTimeoutRef.current) {
-      clearTimeout(scrollTimeoutRef.current);
-    }
-
-    setIsNavClickScrolling(true);
     setIsMobileMenuOpen(false);
-
-    // Reset after transition usually takes ~800ms
-    scrollTimeoutRef.current = setTimeout(() => {
-      setIsNavClickScrolling(false);
-      scrollTimeoutRef.current = null;
-    }, 1000);
   };
 
   const shouldShowButton = !isModalOpen && !isMobileMenuOpen;

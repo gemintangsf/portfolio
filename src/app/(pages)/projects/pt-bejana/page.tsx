@@ -6,8 +6,6 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   FaArrowLeft,
-  FaArrowRight,
-  FaLock,
   FaCheckCircle,
   FaExclamationTriangle,
   FaLightbulb,
@@ -17,7 +15,7 @@ import {
   FaExternalLinkAlt
 } from "react-icons/fa";
 import { projects } from "@/data/projects";
-import { Container, Button, Badge, ProjectNavigation } from "@/components/ui";
+import { Badge, ProjectNavigation } from "@/components/ui";
 
 interface CaseStudySection {
   id: string;

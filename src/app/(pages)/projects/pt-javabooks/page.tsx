@@ -11,18 +11,12 @@ import {
   FaCheckCircle,
   FaExclamationTriangle,
   FaLightbulb,
-  FaServer,
-  FaShieldAlt,
-  FaMobileAlt,
-  FaSearch,
   FaTimes,
   FaChevronLeft,
-  FaChevronRight,
-  FaGooglePlay,
-  FaApple
+  FaChevronRight
 } from "react-icons/fa";
 import { projects } from "@/data/projects";
-import { Container, Button, Badge, ProjectNavigation } from "@/components/ui";
+import { Badge, ProjectNavigation } from "@/components/ui";
 
 interface CaseStudySection {
   id: string;

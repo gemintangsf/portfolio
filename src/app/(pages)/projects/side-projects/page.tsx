@@ -16,7 +16,7 @@ import {
   FaGithub
 } from "react-icons/fa";
 import { projects } from "@/data/projects";
-import { Container, Button, Badge, ProjectNavigation } from "@/components/ui";
+import { Badge, ProjectNavigation } from "@/components/ui";
 
 interface ProjectSection {
   id: string;
