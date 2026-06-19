@@ -142,7 +142,7 @@ export default function JavabooksPage() {
       </Link>
 
       {/* Header Banner */}
-      <div className="border-4 border-brand-base p-8 md:p-12 mb-12 shadow-[8px_8px_0px_0px_var(--color-primary)] bg-brand-highlight flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+      <div className="border-4 border-brand-base p-6 md:p-12 mb-12 shadow-[8px_8px_0px_0px_var(--color-primary)] bg-brand-highlight flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
         <div>
           <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-accent mb-2 block">
             Case Study — PT. Javabooks Indonesia (Periplus)
@@ -293,7 +293,7 @@ export default function JavabooksPage() {
                     <div
                       key={idx}
                       onClick={() => openLightbox(activeStudy.evidence, idx)}
-                      className="flex-none w-[200px] md:w-[240px] snap-center cursor-pointer group"
+                      className="flex-none w-[12.5rem] md:w-[15rem] snap-center cursor-pointer group"
                     >
                       {/* Phone container */}
                       <div className="relative rounded-[2rem] border-[6px] border-brand-highlight shadow-[6px_6px_0px_0px_var(--color-primary)] overflow-hidden aspect-[9/19.5] transition-all duration-300 group-hover:-translate-y-2 group-hover:border-brand-base bg-[#050505] ring-1 ring-brand-base/10">
@@ -329,7 +329,7 @@ export default function JavabooksPage() {
                           <div className="w-1.5 h-1.5 rounded-full bg-brand-base"></div>
                           <div className="w-1.5 h-1.5 rounded-full bg-brand-base"></div>
                         </div>
-                        <div className="flex-1 max-w-[120px] h-3 bg-brand-highlight border border-brand-base/40"></div>
+                        <div className="flex-1 max-w-[7.5rem] h-3 bg-brand-highlight border border-brand-base/40"></div>
                       </div>
                       <div className="relative w-full h-[calc(100%-28px)]">
                         <Image

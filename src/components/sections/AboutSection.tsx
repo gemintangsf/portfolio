@@ -43,7 +43,7 @@ export default function AboutSection() {
 
   return (
     <section id="about-me" className="min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden relative z-10 py-20 md:py-28 scroll-mt-16 md:scroll-mt-4">
-      <Container size="md" className="flex flex-col items-center justify-center">
+      <Container size="full" className="max-w-7xl flex flex-col items-center justify-center">
         <div className="relative z-10 w-full">
           <motion.h1
             initial={{ opacity: 0, y: 40 }}

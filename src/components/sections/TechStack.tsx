@@ -80,8 +80,8 @@ export default function TechStack() {
     <section className="mb-0 overflow-hidden relative z-10 w-full border-b border-brand-base/5 pt-8 pb-16 md:pt-10 md:pb-20">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
-        whileInView={isLoaded ? { opacity: 1, y: 0 } : {}}
-        viewport={{ once: true, margin: "-100px" }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-20px" }}
         transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
       >
         <Container size="lg">
@@ -108,7 +108,7 @@ export default function TechStack() {
               </button>
 
               {/* Carousel Window */}
-              <div className="w-full max-w-5xl overflow-hidden px-4 md:px-4 pb-6 md:pb-0" style={{ minHeight: '80px' }}>
+              <div className="w-full max-w-5xl overflow-hidden px-4 md:px-4 pb-6 md:pb-0 min-h-[5rem]">
                 <AnimatePresence mode="wait" custom={direction}>
                   <motion.div
                     key={currentIndex}
@@ -129,7 +129,7 @@ export default function TechStack() {
                     {currentStack.map((tech, index) => (
                       <div
                         key={`${tech}-${index}`}
-                        className="flex-1 min-w-[120px] max-w-[150px] md:max-w-[200px] min-h-[70px] md:min-h-[100px] flex items-center justify-center px-4 py-4 md:px-4 md:py-6 rounded-none border-2 border-brand-base bg-brand-highlight/20 shadow-[3px_3px_0px_0px_var(--color-primary)] hover:shadow-[5px_5px_0px_0px_var(--color-primary)] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 active:shadow-none transition-all cursor-default mt-2 group"
+                        className="flex-1 min-w-[7.5rem] max-w-[9.375rem] md:max-w-[12.5rem] min-h-[4.375rem] md:min-h-[6.25rem] flex items-center justify-center px-4 py-4 md:px-4 md:py-6 rounded-none border-2 border-brand-base bg-brand-highlight/20 shadow-[3px_3px_0px_0px_var(--color-primary)] hover:shadow-[5px_5px_0px_0px_var(--color-primary)] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 active:shadow-none transition-all cursor-default mt-2 group"
                       >
                         <span className="text-brand-base font-bold text-[10px] md:text-xs text-center uppercase tracking-wider group-hover:scale-105 transition-transform leading-tight block w-full px-1">
                           {tech}

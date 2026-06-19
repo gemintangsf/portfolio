@@ -141,7 +141,7 @@ export default function ProjectsSection() {
         </p>
         <div className="mt-6 flex justify-center">
           <Link
-            href="/projects/journey"
+            href="/projects"
             className="inline-flex items-center gap-2 px-5 py-2.5 bg-brand-highlight text-brand-base border-2 border-brand-base text-[10px] uppercase tracking-widest font-black shadow-[3px_3px_0px_0px_var(--color-primary)] hover:shadow-[5px_5px_0px_0px_var(--color-primary)] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 active:shadow-none transition-all duration-200"
           >
             Explore My Developer Journey &rarr;

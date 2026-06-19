@@ -97,7 +97,7 @@ export default function ContactSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                    className="text-2xl md:text-3xl font-black text-brand-base uppercase tracking-tighter mb-4 leading-tight"
+                    className="text-2xl md:text-2xl lg:text-3xl font-black text-brand-base uppercase tracking-tighter mb-4 leading-tight"
                 >
                     {headerContent.title}
                 </motion.h2>
@@ -118,26 +118,26 @@ export default function ContactSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                    className="w-full max-w-5xl mb-12 text-center"
+                    className="w-full max-w-6xl mb-12 text-center"
                 >
                     <p className="text-xs md:text-sm font-bold uppercase tracking-[0.15em] text-brand-accent/60 mb-8">
                         Feel free to connect directly through any of my channels:
                     </p>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 justify-center items-stretch border-y border-brand-base/10 py-10 mb-8">
-                        <div className="flex flex-col items-center justify-center px-6">
-                            <span className="text-lg font-black text-brand-base tracking-tight leading-tight text-center">
-                                {SITE_CONFIG.name}
+                        <div className="flex flex-col items-center justify-center px-4 md:px-2 lg:px-4 xl:px-6">
+                            <span className="text-base md:text-sm lg:text-base xl:text-lg font-black text-brand-base tracking-tight leading-tight text-center">
+                                Gemintang Sangkaji<br className="hidden md:inline" /> Furqon
                             </span>
                             <span className="text-[10px] font-bold uppercase tracking-widest text-brand-accent/40 mt-3 text-center">
                                 identity
                             </span>
                         </div>
 
-                        <div className="flex flex-col items-center justify-center border-y md:border-y-0 md:border-x border-brand-base/10 py-6 md:py-0 px-6">
+                        <div className="flex flex-col items-center justify-center border-y md:border-y-0 md:border-x border-brand-base/10 py-6 md:py-0 px-4 md:px-2 lg:px-4 xl:px-6">
                             <a
                                 href={SOCIAL_LINKS.email}
-                                className="text-base md:text-lg font-black text-brand-base hover:text-brand-accent hover:underline underline-offset-4 decoration-1 transition-all duration-300 tracking-tight leading-tight text-center break-all"
+                                className="text-sm md:text-xs lg:text-sm xl:text-base font-black text-brand-base hover:text-brand-accent hover:underline underline-offset-4 decoration-1 transition-all duration-300 tracking-tight leading-tight text-center whitespace-nowrap"
                             >
                                 {SITE_CONFIG.email}
                             </a>
@@ -146,10 +146,10 @@ export default function ContactSection() {
                             </span>
                         </div>
 
-                        <div className="flex flex-col items-center justify-center px-6">
+                        <div className="flex flex-col items-center justify-center px-4 md:px-2 lg:px-4 xl:px-6">
                             <a
                                 href={SOCIAL_LINKS.phone}
-                                className="text-lg font-black text-brand-base hover:text-brand-accent hover:underline underline-offset-4 decoration-1 transition-all duration-300 tracking-tight leading-tight text-center"
+                                className="text-sm md:text-xs lg:text-sm xl:text-base font-black text-brand-base hover:text-brand-accent hover:underline underline-offset-4 decoration-1 transition-all duration-300 tracking-tight leading-tight text-center whitespace-nowrap"
                             >
                                 {SOCIAL_LINKS.phone.replace("tel:", "")}
                             </a>

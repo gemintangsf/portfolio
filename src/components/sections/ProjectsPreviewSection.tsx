@@ -116,7 +116,7 @@ export default function ProjectsPreviewSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, delay: idx * 0.05, ease: easeElegant }}
-            className={`flex h-[300px] sm:h-[330px] md:h-[350px] lg:h-[380px] ${getOffsetClass(idx)}`}
+            className={`flex h-[18.75rem] sm:h-[20.625rem] md:h-[21.875rem] lg:h-[23.75rem] ${getOffsetClass(idx)}`}
           >
             <Link href={item.link} className="flex-1 flex w-full">
               {/* Parent Card dengan variants hover */}

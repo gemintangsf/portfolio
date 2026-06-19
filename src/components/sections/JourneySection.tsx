@@ -264,7 +264,7 @@ export default function JourneySection() {
   };
 
   return (
-    <section className="min-h-screen bg-background text-brand-base pt-28 pb-20 relative z-10 px-6 max-w-5xl mx-auto">
+    <section className="min-h-screen bg-background text-brand-base pt-28 pb-20 relative z-10 px-6 max-w-7xl mx-auto">
       {/* Back to Home */}
       <Link
         href="/#projects"
@@ -274,7 +274,7 @@ export default function JourneySection() {
       </Link>
 
       {/* Page Header */}
-      <div className="border-4 border-brand-base p-8 md:p-12 mb-16 shadow-[8px_8px_0px_0px_var(--color-primary)] bg-brand-highlight flex flex-col justify-between items-start gap-4">
+      <div className="border-4 border-brand-base p-6 md:p-12 mb-16 shadow-[8px_8px_0px_0px_var(--color-primary)] bg-brand-highlight flex flex-col justify-between items-start gap-4">
         <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-accent mb-1 block">
           Developer Journey Timeline
         </span>
@@ -302,12 +302,12 @@ export default function JourneySection() {
               className="relative scroll-mt-24"
             >
               {/* Timeline dot / Icon */}
-              <span className="absolute -left-[50px] md:-left-[66px] top-1.5 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-brand-highlight border-2 border-brand-base text-brand-base shadow-[2px_2px_0px_0px_var(--color-primary)] z-20">
+              <span className="absolute -left-[3.125rem] md:-left-[4.125rem] top-1.5 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-brand-highlight border-2 border-brand-base text-brand-base shadow-[2px_2px_0px_0px_var(--color-primary)] z-20">
                 {getIcon(item.iconType)}
               </span>
 
               {/* Card Container */}
-              <Card hoverable className="p-6 md:p-8 relative">
+              <Card hoverable className="p-5 md:p-8 relative">
                 {/* Header Row */}
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 border-b border-brand-base/10 pb-4">
                   <div>

@@ -130,7 +130,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
                             {/* Header Image Area */}
                             <div className={`h-64 md:h-96 w-full ${project.image} relative`}>
-                                <div className="absolute inset-0 bg-background/60 flex flex-col justify-end p-8 md:p-12 border-b-2 border-brand-base backdrop-blur-[2px]">
+                                <div className="absolute inset-0 bg-background/60 flex flex-col justify-end p-6 md:p-12 border-b-2 border-brand-base backdrop-blur-[2px]">
                                     <div className="flex items-center gap-4 mb-6">
                                         <span className="px-4 py-2 bg-brand-base text-background text-[10px] font-bold uppercase tracking-widest rounded-none">
                                             {project.category}
@@ -146,7 +146,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                             </div>
 
                             {/* Content Body */}
-                            <div className="p-8 md:p-12 space-y-10">
+                            <div className="p-6 md:p-12 space-y-10">
 
                                 {/* 1. Overview */}
                                 <div>
@@ -297,7 +297,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                                         whileInView={{ opacity: 1, x: 0 }}
                                                         viewport={{ once: true }}
                                                         transition={{ delay: idx * 0.05 }}
-                                                        className="flex-none w-[260px] md:w-[320px] snap-center group relative cursor-pointer"
+                                                        className="flex-none w-[16.25rem] md:w-[20rem] snap-center group relative cursor-pointer"
                                                         onClick={() => openLightbox(idx)}
                                                     >
                                                         {/* Mock Phone Frame - Refined for better definition */}
@@ -346,7 +346,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                                                 <div className="w-2.5 h-2.5 rounded-full bg-brand-base"></div>
                                                             </div>
                                                             {/* Mock Address Bar */}
-                                                            <div className="flex-1 max-w-[200px] h-4 bg-brand-highlight rounded-none border border-brand-base"></div>
+                                                            <div className="flex-1 max-w-[12.5rem] h-4 bg-brand-highlight rounded-none border border-brand-base"></div>
                                                         </div>
 
                                                         <div className="relative overflow-hidden aspect-video">

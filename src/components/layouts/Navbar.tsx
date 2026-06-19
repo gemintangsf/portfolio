@@ -166,7 +166,7 @@ export default function Navbar() {
 
       {/* Drawer Sidebar Menu */}
       <div
-        className={`fixed top-0 bottom-0 left-0 h-screen w-full sm:w-[320px] md:w-[380px] bg-background border-r-2 border-brand-base z-40 flex flex-col justify-between p-0 transition-transform duration-500 ease-in-out ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+        className={`fixed top-0 bottom-0 left-0 h-screen w-full sm:w-[20rem] md:w-[23.75rem] bg-background border-r-2 border-brand-base z-40 flex flex-col justify-between p-0 transition-transform duration-500 ease-in-out ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
           }`}
       >
         {/* Row 1: Close Button & Theme Toggle */}

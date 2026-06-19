@@ -50,7 +50,7 @@ const itemVariants = {
 export default function AboutPage() {
   return (
     <section className="min-h-screen pt-28 pb-20 overflow-hidden bg-background">
-      <Container size="md">
+      <Container size="full" className="max-w-7xl">
         <motion.div
           variants={containerVariants}
           initial="hidden"

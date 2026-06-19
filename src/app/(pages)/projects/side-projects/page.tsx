@@ -124,7 +124,7 @@ export default function SideProjectsPage() {
       </Link>
 
       {/* Header Banner */}
-      <div className="border-4 border-brand-base p-8 md:p-12 mb-12 shadow-[8px_8px_0px_0px_var(--color-primary)] bg-brand-highlight flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+      <div className="border-4 border-brand-base p-6 md:p-12 mb-12 shadow-[8px_8px_0px_0px_var(--color-primary)] bg-brand-highlight flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
         <div>
           <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-accent mb-2 block">
             Academic & Community Experiments
@@ -287,7 +287,7 @@ export default function SideProjectsPage() {
                         <div className="w-1.5 h-1.5 rounded-full bg-brand-base"></div>
                         <div className="w-1.5 h-1.5 rounded-full bg-brand-base"></div>
                       </div>
-                      <div className="flex-1 max-w-[120px] h-3 bg-brand-highlight border border-brand-base/40"></div>
+                      <div className="flex-1 max-w-[7.5rem] h-3 bg-brand-highlight border border-brand-base/40"></div>
                     </div>
                     <div className="relative w-full h-[calc(100%-28px)]">
                       <Image

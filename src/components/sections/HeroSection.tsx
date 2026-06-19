@@ -46,7 +46,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 40 }}
               animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
               transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="text-2xl sm:text-3xl font-black text-brand-base relative z-10 tracking-tighter uppercase text-center w-full leading-tight"
+              className="text-2xl md:text-2xl lg:text-3xl font-black text-brand-base relative z-10 tracking-tighter uppercase text-center w-full leading-tight"
             >
               Hello <span className="text-brand-accent">World!</span>
             </motion.h1>
