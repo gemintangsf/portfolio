@@ -7,6 +7,9 @@ html {
 
 :root {
   --background: #181818;
+  --background-alt: #222222;
+  --card-background: #121212;
+  --input-background: #1C1C1E;
   --color-surface: #1F1F1F;
   --foreground: #CCCCCC;
   --color-border: #424242;
@@ -19,62 +22,122 @@ html {
 
   --color-base-rgb: 255, 255, 255;
 
+  /* Slanted Divider and Section Padding variables */
+  --divider-height: 8vw;
+  --divider-min-height: 70px;
+  --section-pt: 7vw;
+
   /* Font mappings */
   --font-display: "Satoshi", sans-serif;
   --font-body: "Satoshi", sans-serif;
   --font-geist-mono: "Roboto Mono", "Courier New", monospace;
 
   /* 5. Hp (<= 425px) - Mobile-first baseline */
-  --font-size-xs: 0.6875rem;   /* 11px */
-  --font-size-sm: 0.75rem;      /* 12px */
-  --font-size-base: 0.875rem;   /* 14px */
-  --font-size-lg: 1.125rem;     /* 18px */
-  --font-size-xl: 1.375rem;     /* 22px */
-  --font-size-2xl: 1.625rem;    /* 26px */
-  --font-size-3xl: 2rem;        /* 32px */
+  --font-size-xs: 0.6875rem;
+  /* 11px */
+  --font-size-sm: 0.75rem;
+  /* 12px */
+  --font-size-base: 0.875rem;
+  /* 14px */
+  --font-size-lg: 1.125rem;
+  /* 18px */
+  --font-size-xl: 1.375rem;
+  /* 22px */
+  --font-size-2xl: 1.625rem;
+  /* 26px */
+  --font-size-3xl: 2rem;
+  /* 32px */
 }
 
 @media (min-width: 426px) {
   :root {
     /* Transition scale for larger mobile screen/small tablet */
-    --font-size-xs: 0.75rem;      /* 12px */
-    --font-size-sm: 0.875rem;     /* 14px */
-    --font-size-base: 1rem;       /* 16px */
-    --font-size-lg: 1.25rem;      /* 20px */
-    --font-size-xl: 1.625rem;     /* 26px */
-    --font-size-2xl: 2rem;        /* 32px */
-    --font-size-3xl: 2.625rem;    /* 42px */
+    --font-size-xs: 0.75rem;
+    /* 12px */
+    --font-size-sm: 0.875rem;
+    /* 14px */
+    --font-size-base: 1rem;
+    /* 16px */
+    --font-size-lg: 1.25rem;
+    /* 20px */
+    --font-size-xl: 1.625rem;
+    /* 26px */
+    --font-size-2xl: 2rem;
+    /* 32px */
+    --font-size-3xl: 2.625rem;
+    /* 42px */
   }
 }
 
 @media (min-width: 768px) {
   :root {
     /* 4. Tablet (>= 768px) & 3. Laptop (>= 1024px) */
-    --font-size-xs: 0.75rem;      /* 12px */
-    --font-size-sm: 0.875rem;     /* 14px */
-    --font-size-base: 1rem;       /* 16px */
-    --font-size-lg: 1.625rem;     /* 26px */
-    --font-size-xl: 2.625rem;     /* 42px */
-    --font-size-2xl: 4.25rem;     /* 68px */
-    --font-size-3xl: 6.875rem;    /* 110px */
+    --font-size-xs: 0.75rem;
+    /* 12px */
+    --font-size-sm: 0.875rem;
+    /* 14px */
+    --font-size-base: 1rem;
+    /* 16px */
+    --font-size-lg: 1.625rem;
+    /* 26px */
+    --font-size-xl: 2.625rem;
+    /* 42px */
+    --font-size-2xl: 4.25rem;
+    /* 68px */
+    --font-size-3xl: 6.875rem;
+    /* 110px */
   }
 }
 
 @media (min-width: 1440px) {
   :root {
     /* 2. Laptop L (>= 1440px) */
-    --font-size-xs: 0.875rem;     /* 14px */
-    --font-size-sm: 1rem;         /* 16px */
-    --font-size-base: 1.125rem;   /* 18px */
-    --font-size-lg: 2rem;         /* 32px */
-    --font-size-xl: 3rem;         /* 48px */
-    --font-size-2xl: 4.75rem;     /* 76px */
-    --font-size-3xl: 7.5rem;      /* 120px */
+    --divider-height: 12vw;
+    --divider-min-height: 120px;
+    --section-pt: 9vw;
+
+    --font-size-xs: 0.875rem;
+    /* 14px */
+    --font-size-sm: 1rem;
+    /* 16px */
+    --font-size-base: 1.125rem;
+    /* 18px */
+    --font-size-lg: 2rem;
+    /* 32px */
+    --font-size-xl: 3rem;
+    /* 48px */
+    --font-size-2xl: 4.75rem;
+    /* 76px */
+    --font-size-3xl: 7.5rem;
+    /* 120px */
+  }
+}
+
+@media (min-width: 2560px) {
+  :root {
+    /* 1. Ultra Large / 4K (>= 2560px) */
+    --font-size-xs: 1rem;
+    /* 16px */
+    --font-size-sm: 1.125rem;
+    /* 18px */
+    --font-size-base: 1.25rem;
+    /* 20px */
+    --font-size-lg: 2.5rem;
+    /* 40px */
+    --font-size-xl: 3.75rem;
+    /* 60px */
+    --font-size-2xl: 6rem;
+    /* 96px */
+    --font-size-3xl: 9.5rem;
+    /* 152px */
   }
 }
 
 [data-theme='light'] {
   --background: #FAFAFA;
+  --background-alt: #F4F4F5;
+  --card-background: #FFFFFF;
+  --input-background: #FFFFFF;
   --color-surface: #CCCCCC;
   --foreground: #181818;
   --color-border: #424242;
@@ -89,7 +152,13 @@ html {
 }
 
 @theme inline {
+  --breakpoint-laptop-l: 90rem;
+  --breakpoint-4k: 160rem;
+
   --color-background: var(--background);
+  --color-background-alt: var(--background-alt);
+  --color-card-bg: var(--card-background);
+  --color-input-bg: var(--input-background);
   --color-foreground: var(--foreground);
   --color-border: var(--color-border);
 
@@ -178,6 +247,7 @@ a.uppercase {
 }
 
 @media (min-width: 1440px) {
+
   /* Direct overrides for arbitrary pixel text sizes used across components, including responsive breakpoints */
   .text-\[6px\],
   .text-\[7px\],

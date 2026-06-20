@@ -1,8 +1,14 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Navbar, Footer } from "@/components/layouts";
 import { UIProvider } from "@/context/UIContext";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://gemintangsf.vercel.app"),
