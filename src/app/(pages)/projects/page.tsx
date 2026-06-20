@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { JourneySection } from "@/components/sections";
+import JourneySection from "./journey/JourneySection";
 
 export const metadata: Metadata = {
   title: "Developer Journey | Gemintang Sangkaji Furqon | Software Engineer",
