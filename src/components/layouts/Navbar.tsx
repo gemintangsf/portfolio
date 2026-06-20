@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { useUI } from "@/hooks/useUI";
-import { FaMoon, FaSun, FaGithub, FaLinkedin, FaEnvelope, FaTimes, FaHome, FaUser, FaFolder, FaCommentDots } from "react-icons/fa";
+import { FaMoon, FaSun, FaGithub, FaLinkedin, FaEnvelope, FaTimes, FaHome, FaUser, FaFolder, FaCommentDots, FaLaptopCode } from "react-icons/fa";
 import { NAVIGATION_LINKS, SOCIAL_LINKS } from "@/lib/constants";
 
 
@@ -12,6 +12,8 @@ const getNavIcon = (href: string) => {
   switch (href) {
     case "home":
       return FaHome;
+    case "tech-stack":
+      return FaLaptopCode;
     case "about-me":
       return FaUser;
     case "projects":
@@ -37,7 +39,7 @@ export default function Navbar() {
       const currentScrollY = window.scrollY;
 
       // Scrollspy logic (active section detection)
-      const sections = ["home", "projects", "contact"];
+      const sections = ["home", "tech-stack", "projects", "contact"];
       const scrollPosition = currentScrollY + 200; // Offset for better detection
 
       for (const section of sections) {
@@ -67,8 +69,8 @@ export default function Navbar() {
   }, [pathname]);
 
   const handleNavClick = (e: React.MouseEvent, id: string) => {
-    // If it's about-me, let it navigate normally as a page link
-    if (id === "about-me") {
+    // If it's about-me or projects, let it navigate normally as a page link
+    if (id === "about-me" || id === "projects") {
       setIsMobileMenuOpen(false);
       return;
     }
@@ -79,7 +81,7 @@ export default function Navbar() {
       const element = document.getElementById(id);
       if (element) {
         e.preventDefault();
-        element.scrollIntoView({ behavior: "smooth" });
+        element.scrollIntoView({ behavior: "smooth", block: "center" });
         // Update URL hash without triggering a jump
         window.history.pushState(null, '', `#${id}`);
         setActiveSection(id);
@@ -128,12 +130,12 @@ export default function Navbar() {
 
       {/* Drawer Sidebar Menu */}
       <div
-        className={`fixed top-0 bottom-0 left-0 h-screen w-full sm:w-[20rem] md:w-[23.75rem] bg-background border-r-2 border-brand-base z-40 flex flex-col justify-between p-0 transition-transform duration-500 ease-in-out ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+        className={`fixed top-0 bottom-0 left-0 h-[100dvh] w-full sm:w-[20rem] md:w-[23.75rem] bg-background border-r-2 border-brand-base z-40 flex flex-col justify-between p-0 transition-transform duration-500 ease-in-out ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
           }`}
       >
         {/* Row 1: Close Button & Theme Toggle */}
         <div
-          className={`w-full h-20 md:h-24 flex justify-between items-center px-8 md:px-12 border-b border-brand-base/15 bg-background transition-all duration-300 transform ${isMobileMenuOpen ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"
+          className={`w-full h-[calc(5rem+env(safe-area-inset-top))] md:h-24 pt-[env(safe-area-inset-top)] flex justify-between items-center px-8 md:px-12 border-b border-brand-base/15 bg-background transition-all duration-300 transform ${isMobileMenuOpen ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"
             }`}
           style={{ transitionDelay: "50ms" }}
         >
@@ -162,7 +164,7 @@ export default function Navbar() {
         {/* Rows 2 to 5: Navigation Links */}
         <nav className="flex flex-col flex-1 w-full">
           {navLinks.map((item, idx) => {
-            const href = item.href === "about-me" ? "/about-me" : (pathname === "/" ? `#${item.href}` : `/#${item.href}`);
+            const href = item.href === "about-me" ? "/about-me" : (item.href === "projects" ? "/projects" : (pathname === "/" ? `#${item.href}` : `/#${item.href}`));
             const isActive = activeSection === item.href;
             const Icon = getNavIcon(item.href);
 
@@ -191,7 +193,7 @@ export default function Navbar() {
 
         {/* Row 6: Footer Area with Theme Toggle and Socials */}
         <div
-          className={`w-full h-20 md:h-24 flex justify-around items-center px-8 md:px-12 bg-background border-t border-brand-base/15 transition-all duration-500 transform ${isMobileMenuOpen ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"
+          className={`w-full h-[calc(5rem+env(safe-area-inset-bottom))] md:h-24 pb-[env(safe-area-inset-bottom)] flex justify-around items-center px-8 md:px-12 bg-background border-t border-brand-base/15 transition-all duration-500 transform ${isMobileMenuOpen ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"
             }`}
           style={{ transitionDelay: `${(navLinks.length + 1) * 100}ms` }}
         >
