@@ -7,7 +7,7 @@ export const SITE_CONFIG = {
   url: "https://gemintangsf.vercel.app",
   location: "Jakarta, Indonesia",
   email: "gemintangsfurqon@gmail.com",
-  phone: "+62 821-1839-7901",
+  phone: "+62 821 1839 7901",
   resumeUrl: "https://drive.google.com/file/d/1pM1gkkSRh9u7QdJRbPwICaRId_3yLnb8/view?usp=sharing",
   googleVerification: "V4LXIZhcFBbe-hon_g9EleuX573WoTVY40LlsHLGgmI",
 };

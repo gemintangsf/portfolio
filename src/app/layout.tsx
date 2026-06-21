@@ -46,7 +46,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://api.fontshare.com" crossOrigin="anonymous" />
         <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" />
       </head>
-      <body className={`antialiased bg-background text-foreground transition-colors duration-300`}>
+      <body className="antialiased bg-background text-foreground transition-colors duration-300 min-h-screen flex flex-col">
         <UIProvider>
           <script
             type="application/ld+json"
@@ -65,7 +65,7 @@ export default function RootLayout({
           />
 
           <Navbar />
-          <main className="relative z-0">{children}</main>
+          <main className="flex-grow flex flex-col relative z-0">{children}</main>
           <Footer />
           <SpeedInsights />
         </UIProvider>
