@@ -21,7 +21,6 @@ const neuronworksCaseStudies: CaseStudy[] = [
   {
     id: "nadia",
     title: nadia.title,
-    subtitle: nadia.subtitle || "",
     description: nadia.description,
     challenge: nadia.challenge || "",
     solution: nadia.solution || "",
@@ -34,7 +33,6 @@ const neuronworksCaseStudies: CaseStudy[] = [
   {
     id: "scone",
     title: scone.title,
-    subtitle: scone.subtitle || "",
     description: scone.description,
     challenge: scone.challenge || "",
     solution: scone.solution || "",
@@ -47,7 +45,6 @@ const neuronworksCaseStudies: CaseStudy[] = [
   {
     id: "dms",
     title: dms.title,
-    subtitle: dms.subtitle || "",
     description: dms.description,
     challenge: dms.challenge || "",
     solution: dms.solution || "",
@@ -60,7 +57,6 @@ const neuronworksCaseStudies: CaseStudy[] = [
   {
     id: "pefita",
     title: pefita.title,
-    subtitle: pefita.subtitle || "",
     description: pefita.description,
     challenge: pefita.challenge || "",
     solution: pefita.solution || "",
@@ -73,7 +69,6 @@ const neuronworksCaseStudies: CaseStudy[] = [
   {
     id: "ppt",
     title: ppt.title,
-    subtitle: ppt.subtitle || "",
     description: ppt.description,
     challenge: ppt.challenge || "",
     solution: ppt.solution || "",
@@ -88,15 +83,15 @@ const neuronworksCaseStudies: CaseStudy[] = [
 export default function NeuronworksPage() {
   return (
     <ProjectLayout
-      company="Case Study — PT. Jagoo IT (Outsourced to Neuronworks Indonesia)"
-      title="Enterprise Scale Services"
-      description="Scaling operations for Telkom Indonesia. Standardizing returned assets, migrating legacy management frameworks, and securing file platforms."
+      company="Work Experience — PT. Jagoo IT (Outsourced to Neuronworks Indonesia)"
+      title="Enterprise Applications"
+      description="Helping Telkom Indonesia fix and maintain their big web applications. I updated old backend systems, fixed file upload security, and cleaned up legacy code."
       dateBadge="FEB 2024 - FEB 2025"
       roleBadge="FULLSTACK DEVELOPER"
       caseStudies={neuronworksCaseStudies}
-      problemLabel="The Business Problem"
-      solutionLabel="The Solution"
-      impactLabel="Measurable Outcome"
+      problemLabel="The Challenge"
+      solutionLabel="What I Did"
+      impactLabel="The Result"
     />
   );
 }

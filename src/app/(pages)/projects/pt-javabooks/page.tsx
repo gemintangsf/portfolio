@@ -21,21 +21,39 @@ const javabooksCaseStudies: CaseStudy[] = [
   {
     id: "phc-mobile",
     title: "PHC Mobile: HR & Gamification System",
-    subtitle: phc1.subtitle || "",
     description: "Built and secured a robust, geofenced HR mobile application covering attendance, gamified leaderboards, and quizzes for retail staff.",
-    challenge: phc1.challenge || "",
-    solution: phc1.solution || "",
-    impact: phc1.impact ? phc1.impact.join("\n\n") : "",
     stack: Array.from(new Set([...phc1.stack, ...phc2.stack])),
     evidence: [...(phc1.evidence || []), ...(phc2.evidence || [])],
     isMobileApp: true,
     linkType: "lock",
     linkText: "Proprietary Enterprise System",
+    period: "May 2025 - Present",
+    features: [
+      {
+        id: "biometric-verification",
+        title: "Biometric Face Verification",
+        description: "On-the-fly verification system performing secure face recognition check-ins without pre-enrolled photos.",
+        challenge: "Custom face validation had to run without prior photo enrollment to minimize administrative friction. Furthermore, network latency caused timeout errors during biometric match uploads from remote sites.",
+        solution: "Engineered an on-the-fly verification pipeline using InsightFace (Python) on a central service. The mobile client uploads face photos dynamically, handling network latency gracefully.",
+        impact: "Eliminated manual photo attendance fraud, stabilized mobile memory usage under heavy payloads, and reduced transaction retry rates.",
+        stack: ["Flutter", "Python", "InsightFace", "REST API"],
+        evidence: phc1.evidence || []
+      },
+      {
+        id: "gamification-optimization",
+        title: "Gamification & UI Optimizations",
+        description: "Engaging quizzes and leaderboards for retail staff, optimized to run smoothly on low-end mobile devices.",
+        challenge: "Rendering hundreds of leaderboard entries with images without the UI becoming unusable, and employees screenshotting and sharing quiz answers to exploit cash rewards.",
+        solution: "Designed viewport-based image lazy-loading and client-side caching to maintain a 60fps leaderboard list. Hardened quiz campaigns with OS-level screenshot blocking and focus-loss tracking.",
+        impact: "Prevented quiz collusions and stabilized memory usage on low-end employee devices.",
+        stack: ["Flutter", "Custom Cache Manager", "Performance Optimization", "Gamification Logic"],
+        evidence: phc2.evidence || []
+      }
+    ]
   },
   {
     id: "pos-mobile",
     title: pos.title,
-    subtitle: pos.subtitle || "",
     description: pos.description,
     challenge: pos.challenge || "",
     solution: pos.solution || "",
@@ -46,11 +64,11 @@ const javabooksCaseStudies: CaseStudy[] = [
     forceDesktopStyle: pos.forceDesktopStyle,
     linkType: "lock",
     linkText: "Proprietary Enterprise System",
+    period: "May 2025 - Present",
   },
   {
     id: "periplus-apps",
     title: periplus.title,
-    subtitle: periplus.subtitle || "",
     description: periplus.description,
     challenge: periplus.challenge || "",
     solution: periplus.solution || "",
@@ -60,11 +78,11 @@ const javabooksCaseStudies: CaseStudy[] = [
     isMobileApp: true,
     linkType: "lock",
     linkText: "Proprietary Enterprise System",
+    period: "May 2025 - Present",
   },
   {
     id: "search-opensearch",
     title: search.title,
-    subtitle: search.subtitle || "",
     description: search.description,
     challenge: search.challenge || "",
     solution: search.solution || "",
@@ -74,21 +92,22 @@ const javabooksCaseStudies: CaseStudy[] = [
     forceDesktopStyle: search.forceDesktopStyle,
     linkType: "lock",
     linkText: "Proprietary Enterprise System",
+    period: "May 2025 - Present",
   }
 ];
 
 export default function JavabooksPage() {
   return (
     <ProjectLayout
-      company="Case Study — PT. Javabooks Indonesia (Periplus)"
-      title="High-Performance Retail & HR"
-      description="Solving critical business bottlenecks: from eliminating attendance fraud with zero-friction biometric pipelines to stopping POS travel maintenance costs."
+      company="Work Experience — PT. Javabooks Indonesia"
+      title="Retail & HR Systems"
+      description="Fixing everyday system issues across HR apps, POS systems, and e-commerce apps."
       dateBadge="MAY 2025 - PRESENT"
       roleBadge="FULLSTACK & MOBILE"
       caseStudies={javabooksCaseStudies}
-      problemLabel="The Business Problem & Constraints"
-      solutionLabel="The Engineering Workaround"
-      impactLabel="Measurable Client Impact"
+      problemLabel="The Problem"
+      solutionLabel="What I Did"
+      impactLabel="The Result"
     />
   );
 }

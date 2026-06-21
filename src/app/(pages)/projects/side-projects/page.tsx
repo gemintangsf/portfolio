@@ -19,7 +19,6 @@ const sideProjectsList: CaseStudy[] = [
   {
     id: "jtk-berbagi",
     title: jtk.title,
-    subtitle: jtk.subtitle || "",
     description: jtk.description,
     challenge: jtk.challenge || "",
     solution: jtk.solution || "",
@@ -29,11 +28,11 @@ const sideProjectsList: CaseStudy[] = [
     linkType: "github",
     linkUrl: jtk.link,
     linkText: "Repository",
+    period: "Feb 2023 - Nov 2023",
   },
   {
     id: "sinbada",
     title: sinbadaProject.title,
-    subtitle: sinbadaProject.subtitle || "",
     description: sinbadaProject.description,
     challenge: sinbadaProject.challenge || "",
     solution: sinbadaProject.solution || "",
@@ -43,11 +42,11 @@ const sideProjectsList: CaseStudy[] = [
     linkType: "github",
     linkUrl: sinbadaProject.link,
     linkText: "Repository",
+    period: "Nov 2022 - Jan 2023",
   },
   {
     id: "siinvent",
     title: siinventProject.title,
-    subtitle: siinventProject.subtitle || "",
     description: siinventProject.description,
     challenge: siinventProject.challenge || "",
     solution: siinventProject.solution || "",
@@ -57,20 +56,21 @@ const sideProjectsList: CaseStudy[] = [
     linkType: "github",
     linkUrl: siinventProject.link,
     linkText: "Repository",
+    period: "Nov 2021 - Dec 2021",
   }
 ];
 
 export default function SideProjectsPage() {
   return (
     <ProjectLayout
-      company="Academic & Community Experiments"
+      company="College & Freelance"
       title="Side Projects"
-      description="Early software engineering projects focusing on donation management, inventory auditing systems, and learning team coordination paradigms."
-      roleBadge="ACADEMIC & OPEN SOURCE"
+      description="A collection of my coding projects during college. This includes my final year project, a donation platform like Kitabisa.com. And inventory monitoring systems built for regional offices."
+      roleBadge="Backend Developer"
       caseStudies={sideProjectsList}
-      problemLabel="The Business Problem"
+      problemLabel="The Problem"
       solutionLabel="The Solution"
-      impactLabel="Outcome"
+      impactLabel="Result"
     />
   );
 }

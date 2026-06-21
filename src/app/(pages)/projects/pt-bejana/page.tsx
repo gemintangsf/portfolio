@@ -16,7 +16,6 @@ const bejanaCaseStudies: CaseStudy[] = projects
   .map((p) => ({
     id: "paboi",
     title: p.title,
-    subtitle: p.subtitle || "",
     description: p.description,
     challenge: p.challenge || "",
     solution: p.solution || "",
@@ -24,14 +23,15 @@ const bejanaCaseStudies: CaseStudy[] = projects
     stack: p.stack,
     evidence: p.evidence || [],
     linkType: "visit",
-    linkUrl: "https://indonesia-orthopaedic.org/",
+    linkUrl: p.link,
     linkText: "Visit Website",
+    period: "Jun 2022 - Oct 2022",
   }));
 
 export default function BejanaPage() {
   return (
     <ProjectLayout
-      company="Case Study — PT. Bejana Investidata Globalindo"
+      company="Work Experience — PT. Bejana Investidata Globalindo"
       title="Professional Foundations"
       description="First professional experience, scaling membership portals and learning key teamwork methodologies in fullstack workflows."
       dateBadge="JUNE 2022 - OCT 2022"

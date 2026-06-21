@@ -3,8 +3,8 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { FiDownload, FiArrowRight } from "react-icons/fi";
-import { Badge, Button, Card, Container } from "@/components/ui";
+import { FaArrowLeft, FaDownload, FaArrowRight } from "react-icons/fa";
+import { Badge, Button, Card } from "@/components/ui";
 import { SITE_CONFIG } from "@/lib/constants";
 
 const corePillars = [
@@ -49,26 +49,57 @@ const itemVariants = {
 
 export default function AboutPage() {
   return (
-    <section className="min-h-screen pt-28 pb-20 overflow-hidden bg-background">
-      <Container size="full" className="max-w-7xl">
+    <div className="w-full bg-background overflow-hidden">
+      {/* 1. HEADER / BANNER SECTION */}
+      <div className="w-full bg-background pt-28 pb-16 px-6 md:px-[128px] 4k:px-[256px] relative z-10 overflow-hidden">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="w-full flex flex-col gap-8"
+          className="w-full relative z-10"
         >
-          {/* Header Row */}
-          <motion.div variants={itemVariants} className="border-4 border-brand-base p-6 md:p-8 shadow-[8px_8px_0px_0px_var(--color-primary)] bg-brand-highlight flex flex-col justify-between items-start gap-2">
-            <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-accent">
+          {/* Back to Home */}
+          <motion.div variants={itemVariants}>
+            <Link
+              href="/#about"
+              className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-brand-accent hover:text-brand-base mb-8 transition-colors group"
+            >
+              <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" /> Back to Home
+            </Link>
+          </motion.div>
+
+          {/* Header Banner */}
+          <motion.div
+            variants={itemVariants}
+            className="border-4 border-brand-base p-6 md:p-12 shadow-[8px_8px_0px_0px_var(--color-primary)] bg-brand-highlight flex flex-col justify-between items-start gap-2"
+          >
+            <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-accent mb-2 block">
               About Me
             </span>
-            <h1 className="text-lg md:text-xl font-black uppercase tracking-tighter text-brand-base leading-none">
+            <h1 className="text-2xl font-black uppercase tracking-tighter text-brand-base leading-tight">
               I build mobile applications, web platforms, and backend systems.
             </h1>
           </motion.div>
+        </motion.div>
+      </div>
 
-          {/* Main Layout Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      {/* 2. BODY SECTION */}
+      <section className="relative w-full px-6 pt-24 pb-24 md:px-[128px] md:pt-[var(--section-pt)] md:pb-[128px] 4k:px-[256px] bg-background-alt overflow-hidden z-10">
+        {/* Slanted Divider */}
+        <div className="absolute top-0 left-0 w-full overflow-hidden leading-[0] pointer-events-none z-0" style={{ height: "var(--divider-height)", minHeight: "var(--divider-min-height)" }}>
+          <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="w-full h-full fill-[var(--background)]">
+            <polygon points="0,0 100,0 0,100" />
+          </svg>
+        </div>
+
+        <div className="w-full relative z-10">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"
+          >
             {/* Left Column (Profile Info & Details) */}
             <motion.div variants={itemVariants} className="lg:col-span-4 flex flex-col gap-6">
               {/* Photo Box */}
@@ -83,7 +114,7 @@ export default function AboutPage() {
               </div>
 
               {/* Fast Facts Card */}
-              <Card className="p-5 border-2">
+              <Card hoverable className="p-6 md:p-8 border-2 bg-card-bg">
                 <h3 className="text-[10px] font-bold uppercase tracking-widest text-brand-base mb-4 border-b border-brand-base/15 pb-2">
                   Quick Facts
                 </h3>
@@ -119,7 +150,7 @@ export default function AboutPage() {
             {/* Right Column (Bento Cards Grid) */}
             <motion.div variants={itemVariants} className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Card 1: Core Pillars (Col-span 2) */}
-              <Card className="p-6 md:p-8 md:col-span-2">
+              <Card hoverable className="p-6 md:p-8 md:col-span-2 bg-card-bg">
                 <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-accent mb-6 border-b border-brand-base/10 pb-2">
                   Core Pillars & Expertise
                 </h3>
@@ -148,7 +179,7 @@ export default function AboutPage() {
               </Card>
 
               {/* Card 2: Tech Ecosystem (Col-span 1) */}
-              <Card className="p-6">
+              <Card hoverable className="p-6 md:p-8 bg-card-bg">
                 <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-accent mb-4 border-b border-brand-base/10 pb-2">
                   Ecosystem
                 </h3>
@@ -187,24 +218,24 @@ export default function AboutPage() {
               </Card>
 
               {/* Card 3: Stats Grid (Col-span 1) */}
-              <Card className="p-6 flex flex-col justify-between">
+              <Card hoverable className="p-6 md:p-8 flex flex-col justify-between bg-card-bg">
                 <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-accent mb-6 border-b border-brand-base/10 pb-2">
                   Key Metrics
                 </h3>
                 <div className="grid grid-cols-2 gap-4 flex-1">
-                  <div className="border border-brand-base/10 bg-brand-highlight/20 p-4 shadow-[2px_2px_0px_0px_var(--color-primary)] flex flex-col justify-center rounded-none">
+                  <div className="border border-brand-base/10 bg-brand-highlight/20 p-4 shadow-[2px_2px_0px_0px_var(--color-primary)] flex flex-col justify-center rounded-none hover:bg-brand-highlight/40 transition-colors">
                     <span className="text-base md:text-lg font-black text-brand-base uppercase leading-none tracking-tighter">03+</span>
                     <span className="text-[9px] text-brand-accent font-bold uppercase tracking-wider mt-1 block">Years of Exp</span>
                   </div>
-                  <div className="border border-brand-base/10 bg-brand-highlight/20 p-4 shadow-[2px_2px_0px_0px_var(--color-primary)] flex flex-col justify-center rounded-none">
+                  <div className="border border-brand-base/10 bg-brand-highlight/20 p-4 shadow-[2px_2px_0px_0px_var(--color-primary)] flex flex-col justify-center rounded-none hover:bg-brand-highlight/40 transition-colors">
                     <span className="text-base md:text-lg font-black text-brand-base uppercase leading-none tracking-tighter">03</span>
                     <span className="text-[9px] text-brand-accent font-bold uppercase tracking-wider mt-1 block">Companies</span>
                   </div>
-                  <div className="border border-brand-base/10 bg-brand-highlight/20 p-4 shadow-[2px_2px_0px_0px_var(--color-primary)] flex flex-col justify-center rounded-none">
+                  <div className="border border-brand-base/10 bg-brand-highlight/20 p-4 shadow-[2px_2px_0px_0px_var(--color-primary)] flex flex-col justify-center rounded-none hover:bg-brand-highlight/40 transition-colors">
                     <span className="text-base md:text-lg font-black text-brand-base uppercase leading-none tracking-tighter">12+</span>
                     <span className="text-[9px] text-brand-accent font-bold uppercase tracking-wider mt-1 block">Projects Built</span>
                   </div>
-                  <div className="border border-brand-base/10 bg-brand-highlight/20 p-4 shadow-[2px_2px_0px_0px_var(--color-primary)] flex flex-col justify-center rounded-none">
+                  <div className="border border-brand-base/10 bg-brand-highlight/20 p-4 shadow-[2px_2px_0px_0px_var(--color-primary)] flex flex-col justify-center rounded-none hover:bg-brand-highlight/40 transition-colors">
                     <span className="text-base md:text-lg font-black text-brand-base uppercase leading-none tracking-tighter">01</span>
                     <span className="text-[9px] text-brand-accent font-bold uppercase tracking-wider mt-1 block">Degree (Polban)</span>
                   </div>
@@ -220,21 +251,21 @@ export default function AboutPage() {
                   className="flex-1"
                 >
                   <Button variant="primary" size="lg" className="w-full justify-center gap-2">
-                    <FiDownload className="text-base shrink-0" />
+                    <FaDownload className="text-sm shrink-0" />
                     <span>Download Resume</span>
                   </Button>
                 </a>
                 <Link href="/projects" className="flex-1">
                   <Button variant="outline" size="lg" className="w-full justify-center gap-2 border-2">
                     <span>Explore Timeline Journey</span>
-                    <FiArrowRight className="text-base shrink-0" />
+                    <FaArrowRight className="text-sm shrink-0" />
                   </Button>
                 </Link>
               </div>
             </motion.div>
-          </div>
-        </motion.div>
-      </Container>
-    </section>
+          </motion.div>
+        </div>
+      </section>
+    </div>
   );
 }
