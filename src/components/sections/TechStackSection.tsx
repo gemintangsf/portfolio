@@ -9,8 +9,11 @@ import {
   FaPalette,
   FaCheck,
   FaWrench,
-  FaBrain,
-  FaShoppingCart
+  FaShoppingCart,
+  FaTasks,
+  FaSync,
+  FaArrowDown,
+  FaProjectDiagram
 } from "react-icons/fa";
 import {
   SiReact,
@@ -43,8 +46,11 @@ import {
   SiOpensearch,
   SiPostman,
   SiHtml5,
-  SiGithubactions
+  SiGithubactions,
+  SiExpress,
+  SiOllama
 } from "react-icons/si";
+import { BsMicrosoftTeams } from "react-icons/bs";
 import { IconType } from "react-icons";
 
 interface TechItem {
@@ -63,18 +69,29 @@ const techCategories: TechCategory[] = [
   {
     title: "Frontend & Mobile",
     icon: FaLaptopCode,
-    sizeClass: "col-span-12 lg:col-span-8",
+    sizeClass: "col-span-12 lg:col-span-5",
     items: [
       { name: "React JS", icon: SiReact },
       { name: "Next JS", icon: SiNextdotjs },
       { name: "Flutter", icon: SiFlutter },
-      { name: "HTML Jquery", icon: SiHtml5 }
+      { name: "HTML Jquery", icon: SiHtml5 },
+      { name: "React Vite", icon: SiReact }
+    ]
+  },
+  {
+    title: "SDLC (Software Development Life Cycle)",
+    icon: FaProjectDiagram,
+    sizeClass: "col-span-12 lg:col-span-4",
+    items: [
+      { name: "Kanban", icon: FaTasks },
+      { name: "Agile", icon: FaSync },
+      { name: "Waterfall", icon: FaArrowDown }
     ]
   },
   {
     title: "Design",
     icon: FaPalette,
-    sizeClass: "col-span-12 lg:col-span-4",
+    sizeClass: "col-span-12 lg:col-span-3",
     items: [
       { name: "Figma", icon: SiFigma },
       { name: "Canva", icon: SiCanva }
@@ -91,6 +108,7 @@ const techCategories: TechCategory[] = [
       { name: "Zend Framework", icon: SiPhp },
       { name: "PHP Laravel", icon: SiLaravel },
       { name: "PHP OpenCart", icon: FaShoppingCart },
+      { name: "Express JS", icon: SiExpress },
       { name: "Java Springboots", icon: SiSpringboot },
       { name: "JWT Auth", icon: SiJsonwebtokens },
       { name: "Postman / Swagger", icon: SiPostman }
@@ -139,9 +157,10 @@ const techCategories: TechCategory[] = [
       { name: "SonarQube", icon: SiSonarqube },
       { name: "Apache Airflow", icon: SiApacheairflow },
       { name: "Githooks", icon: SiGit },
+      { name: "Microsoft Teams", icon: BsMicrosoftTeams },
       { name: "Jira", icon: SiJira },
       { name: "Notion", icon: SiNotion },
-      { name: "Ollama (LLM/AI)", icon: FaBrain },
+      { name: "Ollama (LLM/AI)", icon: SiOllama },
       { name: "Git", icon: SiGit }
     ]
   }
@@ -171,7 +190,7 @@ export default function TechStackSection() {
             {/* Title + Subtitle group */}
             <div className="flex flex-col gap-2 md:gap-3 text-center mb-8 md:mb-12">
               <h2 className="text-xl md:text-xl lg:text-xl laptop-l:text-2xl 4k:text-2xl font-black text-brand-base uppercase tracking-tighter leading-tight">
-                Technologies I Use
+                WHAT I <span className="text-brand-accent">USE</span>
               </h2>
             </div>
 

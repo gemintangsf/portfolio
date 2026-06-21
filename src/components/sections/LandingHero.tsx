@@ -8,7 +8,6 @@ import { Button } from "@/components/ui";
 export default function LandingHero() {
   const { isLoaded } = useUI();
 
-  // Scroll to section handler
   const handleScroll = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
