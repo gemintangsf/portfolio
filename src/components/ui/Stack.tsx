@@ -26,8 +26,7 @@ export default function Stack({
     if (direction.sm) classes.push(direction.sm === "row" ? "sm:flex-row" : "sm:flex-col");
     if (direction.md) classes.push(direction.md === "row" ? "md:flex-row" : "md:flex-col");
     if (direction.lg) classes.push(direction.lg === "row" ? "lg:flex-row" : "lg:flex-col");
-    
-    // Default fallback base is flex-col
+
     return ["flex-col", ...classes].join(" ");
   };
 

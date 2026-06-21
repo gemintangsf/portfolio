@@ -26,7 +26,6 @@ export function UIProvider({ children }: { children: ReactNode }) {
     const [selectedCategory, setSelectedCategory] = useState("All");
     const [prefilledMessage, setPrefilledMessage] = useState("");
 
-    // Initialize theme and trigger load transition instantly
     useEffect(() => {
         setLoaded(true);
         const storedTheme = localStorage.getItem("portfolio-theme") as Theme | null;
@@ -47,12 +46,12 @@ export function UIProvider({ children }: { children: ReactNode }) {
     };
 
     return (
-        <UIContext.Provider value={{ 
-            isModalOpen, 
-            setModalOpen, 
-            isLoaded, 
-            setLoaded, 
-            theme, 
+        <UIContext.Provider value={{
+            isModalOpen,
+            setModalOpen,
+            isLoaded,
+            setLoaded,
+            theme,
             toggleTheme,
             selectedCategory,
             setSelectedCategory,

@@ -37,10 +37,8 @@ export default function Navbar() {
       if (pathname !== "/") return;
 
       const currentScrollY = window.scrollY;
-
-      // Scrollspy logic (active section detection)
       const sections = ["home", "tech-stack", "projects", "contact"];
-      const scrollPosition = currentScrollY + 200; // Offset for better detection
+      const scrollPosition = currentScrollY + 200;
 
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -69,20 +67,16 @@ export default function Navbar() {
   }, [pathname]);
 
   const handleNavClick = (e: React.MouseEvent, id: string) => {
-    // If it's about-me or projects, let it navigate normally as a page link
     if (id === "about-me" || id === "projects") {
       setIsMobileMenuOpen(false);
       return;
     }
 
-    // If we are on the home page, handle scroll manually to ensure it triggers
-    // even if the hash is already set to this ID
     if (pathname === '/') {
       const element = document.getElementById(id);
       if (element) {
         e.preventDefault();
         element.scrollIntoView({ behavior: "smooth", block: "center" });
-        // Update URL hash without triggering a jump
         window.history.pushState(null, '', `#${id}`);
         setActiveSection(id);
       }

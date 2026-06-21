@@ -14,10 +14,10 @@ export default function Container({
   id,
 }: ContainerProps) {
   const sizes = {
-    sm: "max-w-3xl",          // Tablet (768px)
-    md: "max-w-5xl",          // Laptop (1024px)
-    lg: "max-w-7xl",          // Laptop L (1440px)
-    xl: "max-w-[1440px]",     // Ultra / Laptop L extended
+    sm: "max-w-3xl",
+    md: "max-w-5xl",
+    lg: "max-w-7xl",
+    xl: "max-w-[1440px]",
     full: "w-full",
   };
 
