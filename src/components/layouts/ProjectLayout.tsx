@@ -1,10 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  FaArrowLeft,
   FaArrowRight,
   FaLock,
   FaExternalLinkAlt,
@@ -366,8 +364,8 @@ export default function ProjectLayout({
                               key={feature.id}
                               onClick={() => setActiveFeatureIndex(idx)}
                               className={`px-4 py-2 text-xs font-bold uppercase tracking-wider border-2 transition-all cursor-pointer select-none ${activeFeatureIndex === idx
-                                  ? "bg-brand-base text-background border-brand-base shadow-[2px_2px_0px_0px_var(--color-primary)] -translate-x-0.5 -translate-y-0.5"
-                                  : "bg-background text-brand-base border-brand-base hover:shadow-[2px_2px_0px_0px_var(--color-primary)] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0"
+                                ? "bg-brand-base text-background border-brand-base shadow-[2px_2px_0px_0px_var(--color-primary)] -translate-x-0.5 -translate-y-0.5"
+                                : "bg-background text-brand-base border-brand-base hover:shadow-[2px_2px_0px_0px_var(--color-primary)] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0"
                                 }`}
                             >
                               {feature.title}
@@ -415,24 +413,6 @@ export default function ProjectLayout({
             </motion.div>
           </motion.div>
         </div>
-      </section>
-
-      {/* 3. BOTTOM SPACER */}
-      <section className="relative w-full px-6 pt-24 pb-24 md:px-[128px] md:pb-[64px] 4k:px-[256px] bg-background-alt overflow-hidden z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: easeElegant }}
-          className="w-full relative z-10 flex justify-center"
-        >
-          <Link
-            href={backLink}
-            className="inline-flex items-center gap-3 px-8 py-4 bg-brand-base text-background border-2 border-brand-base text-[10px] uppercase tracking-[0.25em] font-black shadow-[4px_4px_0px_0px_var(--color-primary)] hover:shadow-[6px_6px_0px_0px_var(--color-primary)] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 active:shadow-none transition-all duration-200"
-          >
-            <FaArrowLeft /> Back to Journey
-          </Link>
-        </motion.div>
       </section>
 
       {/* Lightbox Modal */}
