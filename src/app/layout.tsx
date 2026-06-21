@@ -65,7 +65,7 @@ export default function RootLayout({
           />
 
           <Navbar />
-          <main className="min-h-screen relative z-0">{children}</main>
+          <main className="relative z-0">{children}</main>
           <Footer />
           <SpeedInsights />
         </UIProvider>

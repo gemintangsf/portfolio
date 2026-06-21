@@ -2,15 +2,41 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { FaPaperPlane, FaCheckCircle, FaExclamationCircle } from "react-icons/fa";
+import { FaPaperPlane, FaCheckCircle, FaExclamationCircle, FaArrowLeft } from "react-icons/fa";
+import Link from "next/link";
 import { Grid, Stack, Input, Textarea, Button } from "@/components/ui";
 import { useUI } from "@/hooks/useUI";
 import { SITE_CONFIG, SOCIAL_LINKS } from "@/lib/constants";
 
-export default function ContactSection() {
+export interface ContactSectionProps {
+    isStandalone?: boolean;
+}
+
+export default function ContactSection({ isStandalone = false }: ContactSectionProps) {
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
     const [errorMessage, setErrorMessage] = useState("");
     const { prefilledMessage, setPrefilledMessage } = useUI();
+
+    const headerContainerVariants = {
+        hidden: {},
+        visible: {
+            transition: {
+                staggerChildren: 0.2,
+            },
+        },
+    };
+
+    const headerItemVariants = {
+        hidden: { opacity: 0, y: 50 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.8,
+                ease: [0.22, 1, 0.36, 1] as const,
+            },
+        },
+    };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -47,14 +73,49 @@ export default function ContactSection() {
     };
 
     return (
-        <section className="relative w-full px-6 pt-16 pb-12 md:px-[128px] md:pt-[var(--section-pt)] md:pb-[64px] 4k:px-[256px] bg-background-alt overflow-x-hidden z-10">
-            {/* Slanted Divider */}
-            <div className="absolute top-0 left-0 w-full overflow-hidden leading-[0] pointer-events-none z-0" style={{ height: "var(--divider-height)", minHeight: "var(--divider-min-height)" }}>
-                <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="w-full h-full fill-[var(--background)]">
-                    <polygon points="0,0 100,0 0,100" />
-                </svg>
-            </div>
-            <div id="contact" className="w-full flex flex-col items-center justify-center text-center relative z-10 scroll-mt-24">
+        <div className="w-full bg-background overflow-hidden">
+            {isStandalone && (
+                <div className="w-full bg-background pt-28 pb-16 px-6 md:px-[128px] 4k:px-[256px] relative z-10 overflow-hidden">
+                    <motion.div
+                        variants={headerContainerVariants}
+                        initial="hidden"
+                        animate="visible"
+                        className="w-full relative z-10"
+                    >
+                        {/* Back to Home */}
+                        <motion.div variants={headerItemVariants}>
+                            <Link
+                                href="/#projects"
+                                className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-brand-accent hover:text-brand-base mb-8 transition-colors group"
+                            >
+                                <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" /> Back to Home
+                            </Link>
+                        </motion.div>
+
+                        {/* Page Header */}
+                        <motion.div
+                            variants={headerItemVariants}
+                            className="border-4 border-brand-base p-6 md:p-12 shadow-[8px_8px_0px_0px_var(--color-primary)] bg-brand-highlight flex flex-col justify-between items-start gap-4"
+                        >
+                            <h1 className="text-2xl font-black uppercase tracking-tighter text-brand-base leading-tight">
+                                Contact Me
+                            </h1>
+                            <p className="text-sm md:text-base text-brand-accent font-light mt-2 leading-relaxed text-justify">
+                                Have an exciting project, a job opportunity, or just want to say hello? Drop a message below and let's build something amazing together.
+                            </p>
+                        </motion.div>
+                    </motion.div>
+                </div>
+            )}
+
+            <section className="relative w-full px-6 pt-24 pb-24 md:px-[128px] md:pt-[var(--section-pt)] md:pb-[128px] 4k:px-[256px] bg-background-alt overflow-x-hidden z-10">
+                {/* Slanted Divider */}
+                <div className="absolute top-0 left-0 w-full overflow-hidden leading-[0] pointer-events-none z-0" style={{ height: "var(--divider-height)", minHeight: "var(--divider-min-height)" }}>
+                    <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="w-full h-full fill-[var(--background)]">
+                        <polygon points="0,0 100,0 0,100" />
+                    </svg>
+                </div>
+                <div id="contact" className="w-full flex flex-col items-center justify-center text-center relative z-10 scroll-mt-24">
                 <motion.div
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -224,5 +285,25 @@ export default function ContactSection() {
                 </div>
             </div>
         </section>
+
+        {isStandalone && (
+            <section className="relative w-full px-6 pt-24 pb-24 md:px-[128px] md:pb-[64px] 4k:px-[256px] bg-background-alt overflow-hidden z-10">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "0px 0px -100px 0px" }}
+                    transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                    className="w-full relative z-10 flex justify-center"
+                >
+                    <Link
+                        href="/#projects"
+                        className="inline-flex items-center gap-3 px-8 py-4 bg-brand-base text-background border-2 border-brand-base text-[10px] uppercase tracking-[0.25em] font-black shadow-[4px_4px_0px_0px_var(--color-primary)] hover:shadow-[6px_6px_0px_0px_var(--color-primary)] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 active:shadow-none transition-all duration-200"
+                    >
+                        <FaArrowLeft /> Back to Home
+                    </Link>
+                </motion.div>
+            </section>
+        )}
+    </div>
     );
 }
