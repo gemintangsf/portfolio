@@ -132,7 +132,7 @@ export const projects: Project[] = [
   {
     "id": 5,
     "title": "Book Search & Recommendation Engine (periplus.com)",
-    "description": "Built a book search and recommendation feature for a large product catalog, with keyword search, suggestions, and basic recommendation logic.",
+    "description": "An e-commerce website for PT Javabooks Indonesia to sell books online. I built the book search and recommendation features, making it easier for users to find and get book suggestions.",
     "image": "bg-brand-highlight",
     "stack": [
       "Python",
@@ -143,15 +143,15 @@ export const projects: Project[] = [
     ],
     "link": "https://www.periplus.com/",
     "isPrivate": true,
-    "challenge": "The existing search was slow and matched keywords blindly. It frequently pushed out-of-print or low-demand books to the top of results if they had title matches, frustrating users and leading to abandoned searches.",
-    "solution": "Migrated the search backend from Elasticsearch to OpenSearch to cut software licensing costs. Rewrote query parsing algorithms to prioritize search suggestions similar to Amazon's auto-complete. Implemented custom weighting logic that ranks search results based on a blend of keyword similarity, sales velocity, and trending click activity.",
+    "challenge": "The old search system was slow and only matched exact words. It often showed out-of-print or unpopular books at the top just because the titles matched, which made users stop searching.",
+    "solution": "Moved the search system from Elasticsearch to OpenSearch to save costs. I rewrote the search logic to add auto-complete suggestions and changed how books are ranked, putting popular and trending books at the top of the results.",
+    "impact": [
+      "Helped users see popular and trending books immediately, making it much easier for them to discover books they actually want to buy."
+    ],
     "evidence": [
       "/assets/web_p+/1.png",
       "/assets/web_p+/2.png",
       "/assets/web_p+/3.png"
-    ],
-    "impact": [
-      "Aligned search output directly with consumer buying behavior. Customers are presented with trending, highly sought-after titles immediately, boosting catalog discovery."
     ]
   },
   {

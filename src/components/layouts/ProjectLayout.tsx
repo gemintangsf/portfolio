@@ -7,6 +7,8 @@ import {
   FaLock,
   FaExternalLinkAlt,
   FaGithub,
+  FaGooglePlay,
+  FaApple,
 } from "react-icons/fa";
 import {
   Badge,
@@ -46,6 +48,8 @@ export interface CaseStudy {
   linkText?: string;
   period?: string;
   features?: SubFeature[];
+  playStore?: string;
+  appStore?: string;
 }
 
 export interface ProjectLayoutProps {
@@ -311,8 +315,28 @@ export default function ProjectLayout({
                             {activeStudy.title}
                           </h2>
                         </div>
-                        <div className="shrink-0 mt-1">
-                          {activeStudy.linkType && activeStudy.linkUrl && activeStudy.linkType === "visit" && (
+                        <div className="shrink-0 mt-1 flex flex-wrap gap-2">
+                          {activeStudy.playStore && (
+                            <Button
+                              variant="primary"
+                              size="sm"
+                              onClick={() => window.open(activeStudy.playStore, "_blank")}
+                              className="text-[10px] py-1.5 px-3 font-bold uppercase tracking-wider flex items-center gap-1.5"
+                            >
+                              <FaGooglePlay className="text-[9px]" /> Play Store
+                            </Button>
+                          )}
+                          {activeStudy.appStore && (
+                            <Button
+                              variant="primary"
+                              size="sm"
+                              onClick={() => window.open(activeStudy.appStore, "_blank")}
+                              className="text-[10px] py-1.5 px-3 font-bold uppercase tracking-wider flex items-center gap-1.5"
+                            >
+                              <FaApple className="text-[10px]" /> App Store
+                            </Button>
+                          )}
+                          {!activeStudy.playStore && !activeStudy.appStore && activeStudy.linkType && activeStudy.linkUrl && activeStudy.linkType === "visit" && (
                             <Button
                               variant="primary"
                               size="sm"
@@ -322,7 +346,7 @@ export default function ProjectLayout({
                               {activeStudy.linkText || "Visit Website"} <FaExternalLinkAlt className="text-[9px]" />
                             </Button>
                           )}
-                          {activeStudy.linkType && activeStudy.linkUrl && activeStudy.linkType === "github" && (
+                          {!activeStudy.playStore && !activeStudy.appStore && activeStudy.linkType && activeStudy.linkUrl && activeStudy.linkType === "github" && (
                             <Button
                               variant="primary"
                               size="sm"
@@ -332,7 +356,7 @@ export default function ProjectLayout({
                               <FaGithub size={12} /> {activeStudy.linkText || "Repository"} <FaArrowRight size={8} />
                             </Button>
                           )}
-                          {activeStudy.linkType && activeStudy.linkType === "lock" && (
+                          {!activeStudy.playStore && !activeStudy.appStore && activeStudy.linkType && activeStudy.linkType === "lock" && (
                             <div className="flex items-center gap-2 text-[10px] uppercase font-bold text-brand-accent bg-brand-highlight px-3 py-1.5 border border-brand-base/20">
                               <FaLock className="text-[9px]" /> {activeStudy.linkText || "Proprietary System"}
                             </div>

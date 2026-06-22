@@ -25,8 +25,8 @@ const javabooksCaseStudies: CaseStudy[] = [
     stack: Array.from(new Set([...phc1.stack, ...phc2.stack])),
     evidence: [...(phc1.evidence || []), ...(phc2.evidence || [])],
     isMobileApp: true,
-    linkType: "lock",
-    linkText: "Proprietary Enterprise System",
+    playStore: phc1.playStore,
+    appStore: phc1.appStore,
     period: "May 2025 - Present",
     features: [
       {
@@ -63,7 +63,7 @@ const javabooksCaseStudies: CaseStudy[] = [
     isMobileApp: true,
     forceDesktopStyle: pos.forceDesktopStyle,
     linkType: "lock",
-    linkText: "Proprietary Enterprise System",
+    linkText: "Periplus Project",
     period: "May 2025 - Present",
   },
   {
@@ -76,8 +76,8 @@ const javabooksCaseStudies: CaseStudy[] = [
     stack: periplus.stack,
     evidence: periplus.evidence || [],
     isMobileApp: true,
-    linkType: "lock",
-    linkText: "Proprietary Enterprise System",
+    playStore: periplus.playStore,
+    appStore: periplus.appStore,
     period: "May 2025 - Present",
   },
   {
@@ -90,8 +90,9 @@ const javabooksCaseStudies: CaseStudy[] = [
     stack: search.stack,
     evidence: search.evidence || [],
     forceDesktopStyle: search.forceDesktopStyle,
-    linkType: "lock",
-    linkText: "Proprietary Enterprise System",
+    linkType: "visit",
+    linkUrl: search.link,
+    linkText: "Visit Website",
     period: "May 2025 - Present",
   }
 ];
