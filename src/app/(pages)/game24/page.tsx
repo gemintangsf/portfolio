@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './game24.css';
 
-import { GamePhase, GameManager, checkTargetSolutionAvailable, getAllValidSets } from './utils';
+import { GamePhase, GameManager, checkTargetSolutionAvailable } from './utils';
 
 export default function Game24Page() {
     const gameRef = useRef<GameManager | null>(null);
@@ -15,7 +15,6 @@ export default function Game24Page() {
 
     const [statusText, setStatusText] = useState("Tahap: Menunggu...");
     const [selectedTargetId, setSelectedTargetId] = useState<string | null>(null);
-    const [exprInput, setExprInput] = useState("");
 
     const [snackbar, setSnackbar] = useState({ show: false, text: '', type: 'info' });
     const snackbarTimeoutRef = useRef<any>(null);
@@ -312,7 +311,6 @@ export default function Game24Page() {
 
     const nextRoundTrigger = () => {
         if (game && game.state.phase === GamePhase.RESOLVING) {
-            setExprInput("");
             setSelectedTargetId(null);
             setHintModal({ show: false, html: '' });
             game.startNewRound();

@@ -17,10 +17,10 @@ export default function NotFound() {
                 </h1>
 
                 <div className="mt-[-4rem] md:mt-[-6rem] relative z-20">
-                    <h2 className="text-3xl md:text-5xl font-black text-brand-base mb-4 uppercase tracking-[0.2em]">
+                    <h2 className="text-2xl font-black text-brand-base mb-4 uppercase tracking-[0.2em] leading-tight">
                         LOST IN SPACE
                     </h2>
-                    <p className="text-brand-base/50 text-base md:text-lg max-w-md mx-auto mb-10 tracking-widest leading-relaxed">
+                    <p className="text-brand-base/50 text-base max-w-md mx-auto mb-10 tracking-widest leading-relaxed">
                         The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
                     </p>
 

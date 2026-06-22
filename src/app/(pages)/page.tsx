@@ -1,27 +1,20 @@
 import dynamic from "next/dynamic";
-import { HeroSection, TechStack } from "@/components/sections";
+import { LandingHero, TechStackSection } from "@/components/sections";
 
-const ServicesSection = dynamic(() => import("@/components/sections/ServicesSection"));
-const ProjectsSection = dynamic(() => import("@/components/sections/ProjectsSection"));
-const AboutSection = dynamic(() => import("@/components/sections/AboutSection"));
-const FAQSection = dynamic(() => import("@/components/sections/FAQSection"));
+const ProjectsPreviewSection = dynamic(() => import("@/components/sections/ProjectsPreviewSection"));
 const ContactSection = dynamic(() => import("@/components/sections/ContactSection"));
 
 
 export default function Home() {
   return (
     <main className="flex flex-col">
-      <div className="min-h-[100dvh] flex flex-col justify-between relative z-10">
-        <HeroSection />
-        <TechStack />
-      </div>
+      <LandingHero />
+      <TechStackSection />
       <div>
-        <ServicesSection />
-        <ProjectsSection />
-        <AboutSection />
-        <FAQSection />
+        <ProjectsPreviewSection />
         <ContactSection />
       </div>
     </main>
   );
 }
+

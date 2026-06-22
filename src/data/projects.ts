@@ -1,20 +1,9 @@
 import { Project } from "@/types";
 
-export const categories: string[] = [
-  "All",
-  "Web",
-  "Mobile",
-  "Enterprise",
-  "AI",
-  "E-Commerce",
-  "Others"
-];
-
 export const projects: Project[] = [
   {
     "id": 1,
     "title": "PHC Mobile: Attendance & HR System",
-    "category": "Mobile Application",
     "description": "Built an internal HR mobile app covering attendance, leave requests, and employee records. Face recognition handles check-in validation; geolocation logs entry and exit.",
     "image": "bg-brand-highlight",
     "stack": [
@@ -27,15 +16,8 @@ export const projects: Project[] = [
     ],
     "link": "#",
     "isPrivate": true,
-    "challenge": "Face recognition doesn't behave the same across every device and lighting condition — consistent results were harder to get than expected.",
-    "solution": "Built a photo comparison flow backed by a Python service and wired it into the mobile app.",
-    "features": [
-      "Face Recognition-based Attendance",
-      "Geolocation-based Check-in/out",
-      "Leave Management",
-      "Basic Payroll Support",
-      "Employee Data Management"
-    ],
+    "challenge": "Custom face validation had to run without prior photo enrollment to minimize administrative friction. Furthermore, network latency caused timeout errors during biometric match uploads from remote sites.",
+    "solution": "Engineered an on-the-fly verification pipeline using InsightFace (Python) and geofencing coordinates synchronized via PHP OpenCart. Designed responsive API fallbacks to handle poor connectivity gracefully.",
     "evidence": [
       "/assets/phc/face_recognitions/3.jpg",
       "/assets/phc/face_recognitions/4.jpg",
@@ -43,8 +25,8 @@ export const projects: Project[] = [
       "/assets/phc/face_recognitions/6.jpg",
       "/assets/phc/face_recognitions/7.jpg"
     ],
-    "tags": [
-      "Mobile"
+    "impact": [
+      "Eliminated manual photo attendance fraud, stabilized mobile memory usage under heavy payloads, and reduced transaction retry rates."
     ],
     "playStore": "https://play.google.com/store/apps/details?id=com.periplus.hc",
     "appStore": "https://apps.apple.com/app/periplus-human-capital/id1669643043"
@@ -52,7 +34,6 @@ export const projects: Project[] = [
   {
     "id": 2,
     "title": "PHC Mobile: Gamification Module",
-    "category": "Mobile Application",
     "description": "Added a gamification module to the PHC app — quiz challenges, a leaderboard, and performance work to keep scrolling smooth on large datasets. Capped the image cache to prevent storage from growing out of control. Resized images at load time to match UI dimensions and reduce memory pressure.",
     "image": "bg-brand-highlight",
     "stack": [
@@ -63,29 +44,8 @@ export const projects: Project[] = [
     ],
     "link": "#",
     "isPrivate": true,
-    "challenge": "Rendering hundreds of leaderboard entries with images without the UI becoming unusable.",
-    "solution": "Applied caching and image optimization to bring down memory usage and keep the list scrollable.",
-    "features": [
-      "Leaderboard System",
-      "Weekly Quiz Feature",
-      "Smooth List Scrolling",
-      "Background Data Sync",
-      "Point & Reward System"
-    ],
-    "technicalOptimizations": [
-      {
-        "title": "Image Caching",
-        "description": "Implemented a cache mechanism to limit stored images and prevent excessive storage usage."
-      },
-      {
-        "title": "Optimized Image Loading",
-        "description": "Resized images during loading to match UI needs and reduce memory consumption."
-      },
-      {
-        "title": "Efficient List Rendering",
-        "description": "Adjusted rendering strategy to keep scrolling smooth when displaying large datasets."
-      }
-    ],
+    "challenge": "Rendering hundreds of leaderboard entries with images without the UI becoming unusable, and employees screenshotting and sharing quiz answers to exploit cash rewards.",
+    "solution": "Designed viewport-based image lazy-loading and client-side caching to maintain a 60fps leaderboard list. Hardened quiz campaigns with OS-level screenshot blocking and focus-loss tracking.",
     "evidence": [
       "/assets/phc/leaderboards/1.png",
       "/assets/phc/leaderboards/2.png",
@@ -96,8 +56,8 @@ export const projects: Project[] = [
       "/assets/phc/leaderboards/7.png",
       "/assets/phc/leaderboards/8.png"
     ],
-    "tags": [
-      "Mobile"
+    "impact": [
+      "Prevented quiz collusions and stabilized memory usage on low-end employee devices."
     ],
     "playStore": "https://play.google.com/store/apps/details?id=com.periplus.hc",
     "appStore": "https://apps.apple.com/app/periplus-human-capital/id1669643043"
@@ -105,7 +65,6 @@ export const projects: Project[] = [
   {
     "id": 3,
     "title": "PeriplusApps Mobile",
-    "category": "Mobile Application",
     "description": "Worked on PeriplusApps, a mobile e-commerce app tied to periplus.com. Focused on performance tuning, fixing visual inconsistencies across devices, and getting features to behave reliably across different modules. Cut duplicate API calls and corrected endpoints that were pointing to the wrong places. Fixed layouts to behave consistently across phone and tablet screen sizes. Tracked down and fixed a set of bugs: bad request mappings, UI overflow, and state that wasn't being reset properly.",
     "image": "bg-brand-highlight",
     "stack": [
@@ -116,30 +75,8 @@ export const projects: Project[] = [
     ],
     "link": "#",
     "isPrivate": true,
-    "challenge": "Keeping UI behavior consistent and performance stable across phones and tablets while wiring up multiple features and APIs.",
-    "solution": "Trimmed redundant API calls, fixed data mapping bugs, and tightened up layout behavior across modules.",
-    "features": [
-      "Wishlist Management",
-      "Barcode (PEC) Integration",
-      "Authentication & Profile Handling",
-      "Cart & Transaction Flow",
-      "Store Locator",
-      "E-Coupon & Reward System"
-    ],
-    "technicalOptimizations": [
-      {
-        "title": "API Optimization",
-        "description": "Removed redundant API calls and fixed incorrect endpoint usage to improve efficiency."
-      },
-      {
-        "title": "Responsive UI Improvements",
-        "description": "Adjusted layouts and components to ensure consistency across mobile and tablet devices."
-      },
-      {
-        "title": "Bug Fixing & Data Mapping",
-        "description": "Resolved multiple issues including incorrect request mapping, UI overflow, and inconsistent state handling."
-      }
-    ],
+    "challenge": "The app suffered from redundant duplicate API calls, layout issues across phone and tablet screens, and state-retention bugs during transaction cart and coupon checkout actions.",
+    "solution": "Audited API payloads to cut redundant endpoints, corrected incorrect request mappings, and rebuilt layouts with responsive constraints. Implemented strict state resets for coupon checkouts.",
     "evidence": [
       "/assets/mobile_p+/2.jpeg",
       "/assets/mobile_p+/3.jpeg",
@@ -159,9 +96,8 @@ export const projects: Project[] = [
       "/assets/mobile_p+/17.jpeg",
       "/assets/mobile_p+/18.jpeg"
     ],
-    "tags": [
-      "Mobile",
-      "E-Commerce"
+    "impact": [
+      "Reduced mobile network data overhead, resolved UI overflows on tablets, and ensured stable checkout state workflows."
     ],
     "playStore": "https://play.google.com/store/apps/details?id=com.bookindo.periplus.periplus",
     "appStore": "https://apps.apple.com/id/app/periplus/id6444208499"
@@ -169,7 +105,6 @@ export const projects: Project[] = [
   {
     "id": 4,
     "title": "Mobile POS (Point of Sale) Application",
-    "category": "Retail System",
     "description": "Built a mobile POS app for cashier operations — transaction processing, product handling, and receipt printing. Simpler and easier to maintain than the desktop system it replaced.",
     "image": "bg-brand-highlight",
     "stack": [
@@ -179,30 +114,25 @@ export const projects: Project[] = [
     ],
     "link": "#",
     "isPrivate": true,
-    "challenge": "Supporting cashier workflows on mobile while managing pricing rules, hardware, and replacing a desktop POS setup.",
-    "solution": "Built a mobile POS with a simple, responsive UI, lean API calls, and basic printer and scanner support.",
-    "features": [
-      "Barcode Scanning for Checkout",
-      "Payment and Discount Handling",
-      "Receipt Printing Integration",
-      "Inventory Synchronization",
-      "Centralized Configuration"
-    ],
+    "challenge": "The legacy desktop POS ran on local store databases. System sync issues or minor bugs required a software engineer to travel physically to the retail store—sometimes out-of-town locations—resulting in steep travel expenses and prolonged operational downtime.",
+    "solution": "Rebuilt the POS from scratch as a centralized, cross-platform (Mobile, Tablet, and Desktop) Flutter application. By routing transaction data directly to a centralized server database and managing client state centrally, local compilation and databases were eliminated.",
     "evidence": [
       "/assets/pos/1.png",
+      "/assets/pos/2.png",
+      "/assets/pos/3.png",
       "/assets/pos/4.png",
+      "/assets/pos/5.png",
       "/assets/pos/6.png"
     ],
-    "tags": [
-      "Mobile"
+    "impact": [
+      "Removed 100% of physical maintenance travel costs. New features or bug fixes are now deployed instantly over-the-air, reducing store downtime to zero."
     ],
     "forceDesktopStyle": true
   },
   {
     "id": 5,
-    "title": "Book Search & Recommendation System",
-    "category": "Search System",
-    "description": "Built a book search and recommendation feature for a large product catalog, with keyword search, suggestions, and basic recommendation logic.",
+    "title": "Book Search & Recommendation Engine (periplus.com)",
+    "description": "An e-commerce website for PT Javabooks Indonesia to sell books online. I built the book search and recommendation features, making it easier for users to find and get book suggestions.",
     "image": "bg-brand-highlight",
     "stack": [
       "Python",
@@ -213,223 +143,160 @@ export const projects: Project[] = [
     ],
     "link": "https://www.periplus.com/",
     "isPrivate": true,
-    "challenge": "Search was slow and results weren't relevant enough for the catalog size.",
-    "solution": "Reworked the OpenSearch query logic, keyword handling, and indexing. Added more search capabilities to surface better results.",
-    "features": [
-      "Keyword-based Search",
-      "Search Suggestions (Autocomplete)",
-      "Typo-tolerant Search",
-      "Product Ranking Based on Popularity",
-      "Basic Recommendation Features"
+    "challenge": "The old search system was slow and only matched exact words. It often showed out-of-print or unpopular books at the top just because the titles matched, which made users stop searching.",
+    "solution": "Moved the search system from Elasticsearch to OpenSearch to save costs. I rewrote the search logic to add auto-complete suggestions and changed how books are ranked, putting popular and trending books at the top of the results.",
+    "impact": [
+      "Helped users see popular and trending books immediately, making it much easier for them to discover books they actually want to buy."
     ],
     "evidence": [
-      "/assets/web_p+/2.png",
       "/assets/web_p+/1.png",
+      "/assets/web_p+/2.png",
       "/assets/web_p+/3.png"
-    ],
-    "tags": [
-      "Web",
-      "AI",
-      "E-Commerce"
     ]
   },
   {
     "id": 6,
     "title": "NADIA – Network Terminal Equipment Management",
-    "category": "Enterprise Application",
-    "description": "Worked on an internal Telkom Indonesia system for managing returned NTE assets like customer routers. Untangled confusing workflows, fixed bugs in older features, and tidied up the code structure.",
+    "description": "This was my first and main project at the company. It is a web-based microservices app used by Telkom Indonesia to manage and track the entire journey of NTE hardware assets (like customer routers).",
     "image": "bg-brand-highlight",
     "stack": [
       "NestJS",
       "Next.js",
       "PostgreSQL",
       "SonarQube",
-      "Apache Airflow"
+      "Apache Airflow",
+      "Jest",
+      "Githooks"
     ],
     "link": "#",
     "isPrivate": true,
-    "challenge": "A legacy system where nobody fully understood the business rules anymore — bugs were frequent and asset retrieval logic was unclear.",
-    "solution": "Mapped out the real workflows with stakeholders and documented them. Refactored using NestJS and Next.js, enforced code quality via SonarQube, and added scheduled jobs for recurring processes (using Airflow).",
-    "features": [
-      "NTE asset retrieval and return tracking",
-      "Structured business workflow handling",
-      "Background job scheduling",
-      "Basic logging and error handling",
-      "Legacy feature improvements"
-    ],
-    "responsibilities": [
-      "Developed backend and frontend features",
-      "Translated business requirements into technical workflows",
-      "Collaborated with stakeholders to clarify processes",
-      "Improved code quality and maintainability",
-      "Implemented scheduled jobs using Apache Airflow"
-    ],
+    "challenge": "The project had been abandoned for a long time, and I was the only developer assigned to fix it. I had never handled a microservices architecture before, so I had to learn the entire system ecosystem from scratch. The existing codebase was messy, lacked testing, and was failing SonarQube quality checks.",
+    "solution": "I worked closely with the System Analyst and Project Manager to clear up the requirements. I refactored the whole code to clean it up, added unit testing using Jest, and set up Git hooks to make sure nobody could push messy code. This allowed the project to finally pass the SonarQube gates, fix the main flows, and run automated status syncs using Apache Airflow.",
     "impact": [
-      "Made business workflows easier to understand",
-      "Reduced issues in legacy features",
-      "Improved system reliability",
-      "Helped teams follow clearer asset retrieval processes"
+      "Successfully revived the abandoned system, making the codebase clean, tested, and stable enough for the next developers to take over easily."
     ],
     "evidence": [
       "/assets/nadia/1.jpg",
       "/assets/nadia/2.jpg"
-    ],
-    "tags": [
-      "Enterprise",
-      "Web"
     ]
   },
   {
     "id": 7,
     "title": "PEFITA – Package Management System",
-    "category": "Enterprise Application",
-    "description": "Improved the map visualization in an internal package management tool used to configure and price product bundles.",
+    "description": "An internal Telkom Indonesia system used to manage internet and product packages. For this project, I worked as a Frontend Developer to build the map visualization features.",
     "image": "bg-brand-highlight",
     "stack": [
-      "React (Vite)",
-      "NestJS",
-      "PostgreSQL",
-      "Google Maps API"
+      "React (Vite)"
     ],
     "link": "#",
     "isPrivate": true,
-    "challenge": "Improving the map feature without disrupting the rest of the system.",
-    "solution": "Extended the map using Google Maps, added Street View, and integrated the changes into the existing frontend and backend without breaking other parts.",
-    "features": [
-      "Package location visualization",
-      "Google Maps integration",
-      "Street View support",
-      "Integration with existing services"
+    "challenge": "It was my first time using React (Vite) and integrating the Google Maps API. I had to quickly learn how map systems work and figure out how to add a Street View feature to the dashboard.",
+    "solution": "Learned the map integration flow and successfully built the interactive Google Maps and Street View features on the frontend using React.",
+    "impact": [
+      "Successfully delivered the map features, helping users see and check package locations more easily."
     ],
-    "evidence": [],
-    "tags": [
-      "Enterprise",
-      "Web"
-    ]
+    "evidence": []
   },
   {
     "id": 8,
     "title": "SCONE – Order Management System",
-    "category": "Enterprise Application",
-    "description": "Helped migrate the legacy order management UI at Telkom Indonesia to Next.js and worked on connecting the order flow to downstream systems.",
+    "description": "A web-based microservices app used by Telkom Indonesia to make service orders, like internet activation and deactivation. I migrated the frontend from HTML/jQuery to Next.js and worked on the backend logic.",
     "image": "bg-brand-highlight",
     "stack": [
       "Next.js",
-      "Zend Framework",
+      "Zend Framework (PHP)",
+      "HTML JQuery",
       "Oracle"
     ],
     "link": "#",
     "isPrivate": true,
-    "challenge": "Replacing a legacy UI with Next.js while matching the team's design standards and keeping order statuses in sync across systems.",
-    "solution": "Rebuilt the relevant screens from the existing design specs and implemented integration flows to keep order state consistent.",
-    "features": [
-      "UI migration from Zend Framework to Next.js",
-      "Updated interface based on existing design standards",
-      "Order status synchronization",
-      "Integration with related systems"
+    "challenge": "This is a huge core system for Telkom with a lot of features and flows. Even though my main job was just migrating the UI to Next.js, I still had to understand how the whole application worked. Also, I got a side task to work on the backend, but I had no experience with PHP before. I had to fix the deactivation order flow that connects directly to the NADIA system.",
+    "solution": "I used my software analysis basics from college to understand the big application flow. I learned the PHP code by tracing it manually and searching some documentation to help. I managed to connect the deactivation flow directly with the NADIA.",
+    "impact": [
+      "The app was developed well, the deactivation flow integrated with NADIA perfectly, and I finally understood how microservices actually work."
     ],
     "evidence": [
       "/assets/scone/1.jpg"
-    ],
-    "tags": [
-      "Enterprise",
-      "Web"
     ]
   },
   {
     "id": 9,
     "title": "DMS – Document Management System",
-    "category": "Enterprise Application",
-    "description": "Built a document landing page with CRUD support for an internal Telkom Indonesia document system, used for uploads and accessed by other internal tools.",
+    "description": "Built a microservice document platform for Telkom Indonesia. I worked as a Full-Stack Developer, System Analyst, and UI/UX designer to make sure the app connects well with other internal systems like SCONE.",
     "image": "bg-brand-highlight",
     "stack": [
       "Zend Framework",
       "jQuery",
-      "REST API",
       "MinIO",
-      "PostgreSQL"
+      "Oracle",
+      "MySQL",
     ],
     "link": "#",
     "isPrivate": true,
-    "challenge": "File uploads and storage needed careful handling — especially around deletion, where errors in object storage aren't easily reversible.",
-    "solution": "Worked with the team to define the document flow. Stored files via MinIO and managed state transitions without using direct deletion.",
-    "features": [
-      "Document upload and management",
-      "CRUD operations with metadata",
-      "Integration with other systems",
-      "Structured document storage using MinIO"
+    "challenge": "Designing a complex flow where users can upload single or multiple files easily. We had to make sure files are not saved permanently to MinIO storage until the user clicks 'Submit' (they must stay in a temporary place first) while keeping the UI status clear.",
+    "solution": "Collaborated with the Project Manager to plan the business logic and user journey. I built a dynamic upload system using a temporary storage layer before the final upload, and created a clear UI so users always know their current upload status.",
+    "impact": [
+      "Successfully delivered a secure and flexible document system that links with other internal apps without risking wrong data uploads."
     ],
     "evidence": [
       "/assets/dms/1.jpg",
       "/assets/dms/2.jpg",
       "/assets/dms/3.jpg"
-    ],
-    "tags": [
-      "Enterprise",
-      "Web"
     ]
   },
   {
     "id": 10,
     "title": "PPT – Master Data Management",
-    "category": "Enterprise Application",
-    "description": "Migrated a Master Data Management frontend from PHP to Next.js, fixing usability issues and aligning it with the team's existing UI patterns.",
+    "description": "A core microservice for Telkom Indonesia that acts as the central database. It stores all important data like user details, order records, and products used by all other Telkom systems. My job was to rewrite the old HTML JQuery frontend into Next.js.",
     "image": "bg-brand-highlight",
     "stack": [
       "Next.js"
     ],
     "link": "#",
     "isPrivate": true,
-    "challenge": "Tight deadline, and most requirements came through system analysts rather than directly from the business.",
-    "solution": "Worked from the provided specs, flagged ambiguities early, and stayed in regular contact with the analysts. Delivered on time.",
-    "features": [
-      "UI migration from PHP to Next.js",
-      "Updated interface based on existing standards",
-      "Frontend improvements for usability"
+    "challenge": "The deadline was short, the rules kept changing, and I was not given the original source code. I only received the live website link, so I had to manually test every single feature on the old UI to understand how it worked before rewriting it.",
+    "solution": "Discussed the details with the system analyst and carefully analyzed the live website. Then, I rebuilt the frontend using Next.js, making the tables and input fields much cleaner and easier to use.",
+    "impact": [
+      "Finished the project right on time and made it much faster for admins to manage Telkom's master data without losing any old features."
     ],
     "evidence": [
       "/assets/ppt/1.jpg"
-    ],
-    "tags": [
-      "Enterprise",
-      "Web"
     ]
   },
   {
     "id": 11,
-    "title": "PABOI (Indonesia Orthopedic Association) Web Application",
-    "category": "Full Stack Intern Project",
-    "description": "Contributed to the PABOI web app during a 4-month internship, taking on both backend and frontend work across different parts of the product.",
+    "title": "PABOI: Indonesian Orthopaedic Association",
+    "description": "Helped build the official member website and admin system for the Indonesian Orthopaedic Association (PABOI).",
     "image": "bg-brand-highlight",
     "stack": [
-      "ReactJS",
       "Ruby on Rails",
-      "MySQL"
+      "ReactJS",
+      "MySQL",
+      "Git",
+      "Kanban / Agile"
     ],
     "link": "https://indonesia-orthopaedic.org/",
     "isPrivate": true,
-    "challenge": "Ramping up on a real team workflow and contributing to a production system without prior professional experience.",
-    "solution": "Fixed bugs and shipped small features on both frontend and backend. Followed team processes and worked alongside QA and product.",
-    "features": [
-      "Bug fixing on backend and frontend",
-      "Small feature updates",
-      "Team collaboration across roles",
-      "Task tracking using Kanban"
+    "challenge": "I started as a backend intern, but the team had a lot of unfinished frontend tasks that delayed the project. There were also miscommunications between backend and frontend stuff.",
+    "solution": "I learned the team's workflow quickly and started helping with ReactJS too. I fixed frontend bugs and made sure the APIs matched correctly.",
+    "evidence": [
+      "/assets/paboi/1.png"
     ],
-    "tags": [
-      "Web"
+    "impact": [
+      "Fixed the frontend bugs, helped finish the tasks faster, and the website was done on time."
     ]
   },
   {
     "id": 12,
-    "title": "JTK Berbagi – Donation Management Platform",
-    "category": "Others",
-    "description": "Built a donation management platform for POLBAN's Computer Engineering Department — covers campaign setup, transaction tracking, and distribution logging.",
+    "title": "JTK Berbagi",
+    "description": "A web app for JTK POLBAN (Computer Engineering Department) for managing donation campaigns, tracking money, and logging donations.",
     "image": "bg-brand-highlight",
     "stack": [
-      "ReactJS",
       "Ruby on Rails",
-      "MySQL"
+      "ReactJS",
+      "MySQL",
+      "Waterfall SDLC",
+      "REST API"
     ],
     "link": "https://github.com/gemintangsf/tugas_akhir/tree/main",
     "isPrivate": false,
@@ -437,77 +304,54 @@ export const projects: Project[] = [
       "/assets/jtkberbagi/1.png",
       "/assets/jtkberbagi/2.png"
     ],
-    "challenge": "Building a donation system from scratch with requirements that changed as the project moved forward.",
-    "solution": "Gathered requirements, defined the workflows, built the core features, and tested until it matched how donations actually needed to work.",
-    "features": [
-      "Donation campaign management",
-      "Donor and recipient data tracking",
-      "Transaction recording and reporting",
-      "Role-based access",
-      "Structured donation workflow"
-    ],
-    "tags": [
-      "Others",
-      "Web"
+    "challenge": "I had to build this app from scratch using standard software engineering steps. At first, I had to interview stakeholders manually to get requirements without AI tools. Also, I made a mistake by choosing MongoDB early on, because the donation data was actually relational and didn't fit MongoDB's structure.",
+    "solution": "I handled almost every role: System Analyst, UI Designer, Backend Developer, and QA. I fixed the database mistake by reading research papers, talking to experts, and switching to MySQL. I made sure every step—from analysis, design, coding, to testing—was fully connected and synced.",
+    "impact": [
+      "Finished the app successfully by following good development steps, making sure the code actually solved the users' problems."
     ]
   },
   {
     "id": 13,
     "title": "Sinbada",
-    "category": "Others",
-    "description": "Built a web-based inventory system in a university team project to manage asset and stock data.",
+    "description": "A web app to help manage and track asset and stock data.",
     "image": "bg-brand-highlight",
     "stack": [
       "ReactJS",
       "Ruby on Rails",
       "MongoDB",
-      "Azure"
+      "Git",
+      "Swagger"
     ],
     "link": "https://github.com/SekelompokOrangKuat/ProjectInventaris/tree/dev",
     "isPrivate": false,
-    "challenge": "Worked in a team environment while learning to use multiple technologies and understand how frontend and backend systems interact.",
-    "solution": "Contributed to both frontend and backend development and followed team workflows to complete assigned tasks.",
-    "features": [
-      "Asset and inventory management",
-      "CRUD operations",
-      "Role-based access",
-      "Team-based development"
-    ],
+    "challenge": "As the backend lead, I had to make sure the code stayed clean and easy to maintain while being developed by 3 other developers at the same time.",
+    "solution": "I chose Ruby on Rails for its simple syntax and quick setup for CRUD features. I built the initial clean code architecture and folder structure first, so the team could easily jump in and write code together without making a mess.",
     "evidence": [
       "/assets/sinbada/1.jpg"
     ],
-    "tags": [
-      "Others",
-      "Web"
+    "impact": [
+      "The team successfully built the backend features together on top of a clean and maintainable codebase."
     ]
   },
   {
     "id": 14,
     "title": "Siinvent",
-    "category": "Others",
-    "description": "Earlier university team project — a basic web inventory system for tracking stock and inventory records.",
+    "description": "A web app to track and manage stock inventory.",
     "image": "bg-brand-highlight",
     "stack": [
       "Express.js",
-      "ReactJS",
-      "PostgreSQL"
+      "PostgreSQL",
+      "GIT"
     ],
     "link": "https://github.com/SekelompokOrangKuat/PROJECTCUAN/tree/backend",
     "isPrivate": false,
-    "challenge": "First time working with a shared codebase and figuring out how to contribute without causing conflicts.",
-    "solution": "Built features alongside teammates, used version control throughout, and picked up the basic development workflow as the project went on.",
-    "features": [
-      "Inventory data management",
-      "Basic stock tracking",
-      "User authentication",
-      "Team-based development"
-    ],
+    "challenge": "First time working together in a team Git repository, handling database connections, and fixing git conflicts.",
+    "solution": "Built the backend APIs using Express.js and PostgreSQL. Managed Git branches carefully and made standard request models.",
     "evidence": [
       "/assets/siinvent/2.jpg"
     ],
-    "tags": [
-      "Others",
-      "Web"
+    "impact": [
+      "The app works fine and all CRUD features are working."
     ]
   }
 ];

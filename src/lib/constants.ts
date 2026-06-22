@@ -7,7 +7,7 @@ export const SITE_CONFIG = {
   url: "https://gemintangsf.vercel.app",
   location: "Jakarta, Indonesia",
   email: "gemintangsfurqon@gmail.com",
-  phone: "+62 821-1839-7901",
+  phone: "+62 821 1839 7901",
   resumeUrl: "https://drive.google.com/file/d/1pM1gkkSRh9u7QdJRbPwICaRId_3yLnb8/view?usp=sharing",
   googleVerification: "V4LXIZhcFBbe-hon_g9EleuX573WoTVY40LlsHLGgmI",
 };
@@ -21,8 +21,9 @@ export const SOCIAL_LINKS = {
 
 export const NAVIGATION_LINKS = [
   { name: "Home", href: "home" },
-  { name: "Services", href: "services" },
-  { name: "Projects", href: "projects" },
-  { name: "About Me", href: "about-me" },
-  { name: "FAQs", href: "faqs" },
+  { name: "Tech Stack", href: "tech-stack" },
+  { name: "About", href: "about-me" },
+  { name: "Portfolio", href: "projects" },
+  { name: "Contact", href: "contact" },
 ];
+

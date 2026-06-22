@@ -17,14 +17,14 @@ export default function Container({
     sm: "max-w-3xl",
     md: "max-w-5xl",
     lg: "max-w-7xl",
-    xl: "max-w-8xl",
+    xl: "max-w-[1440px]",
     full: "w-full",
   };
 
   return (
     <div
       id={id}
-      className={`w-full mx-auto px-6 ${sizes[size]} ${className}`}
+      className={`w-full mx-auto px-4 md:px-8 lg:px-12 xl:px-16 [@media(min-width:2560px)]:px-24 ${sizes[size]} ${className}`}
     >
       {children}
     </div>

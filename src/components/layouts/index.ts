@@ -1,3 +1,3 @@
 export { default as Navbar } from "./Navbar";
 export { default as Footer } from "./Footer";
-export { default as InteractiveBackground } from "./InteractiveBackground";
+export { default as ProjectLayout } from "./ProjectLayout";
