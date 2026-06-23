@@ -3,29 +3,62 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { FaArrowLeft, FaDownload, FaArrowRight } from "react-icons/fa";
-import { Badge, Button, Card } from "@/components/ui";
+import {
+  FaArrowLeft,
+  FaCalculator,
+  FaFlask,
+  FaGamepad,
+  FaExclamationTriangle,
+  FaLightbulb,
+  FaCode,
+  FaArrowRight,
+} from "react-icons/fa";
+import { Button, Card } from "@/components/ui";
 import { SITE_CONFIG } from "@/lib/constants";
 
-const corePillars = [
+const timelineMilestones = [
   {
     num: "01",
-    role: "Mobile Developer",
-    tech: "Flutter",
-    desc: "Developing cross-platform mobile apps for iOS and Android. Experienced in building features like location check-ins, local storage caching, and responsive UI layouts."
+    title: "My Love for Math",
+    subtitle: "Playing with numbers since childhood",
+    desc: "When I was a kid, I really loved mathematics. Solving logic puzzles and numbers was my hobby. But at that time, I did not know that loving math could lead me to the coding world. To me, computers and programming were still a big mystery.",
+    icon: FaCalculator,
   },
   {
     num: "02",
-    role: "Web Developer",
-    tech: "Next.js / React",
-    desc: "Building web applications with React and Next.js. Worked on retail catalogs, search autocomplete functionality, and SEO configuration."
+    title: "The Chemical Engineering Dream",
+    subtitle: "Targeting one specific major",
+    desc: "When it was time to choose a college major, I was really focused on Chemical Engineering. I wanted to work in labs and study chemical formulas. I didn't want to look at any other options.",
+    icon: FaFlask,
   },
   {
     num: "03",
-    role: "Backend Developer",
-    tech: "NestJS / Node.js / Python",
-    desc: "Creating APIs and designing database schemas in PostgreSQL and MySQL. Worked on migrating PHP codebases to NestJS and writing data sync scripts."
-  }
+    title: "My Father's Advice",
+    subtitle: "Ego vs. reality",
+    desc: "Seeing my daily habits, my father told me: 'You love playing games and spending hours on the computer. Why don't you try IT instead?' But because of my ego, I ignored him. I still wanted to study chemistry.",
+    icon: FaGamepad,
+  },
+  {
+    num: "04",
+    title: "The Accidental Pivot",
+    subtitle: "Failing the chemistry exam",
+    desc: "Fate had a different path for me. I failed the entrance exam for Chemical Engineering. Luckily, I had a backup choice and got accepted into Informatics Engineering at Polban. I took it, but honestly, I was still unhappy because I still wanted chemistry.",
+    icon: FaExclamationTriangle,
+  },
+  {
+    num: "05",
+    title: "Math Meets Code",
+    subtitle: "Realizing coding is just applied logic",
+    desc: "After a few months of learning programming, I realized something. The logical thinking I used in math was exactly what I needed for coding. Programming wasn't just typing commands; it was using math logic to solve real problems. I finally felt that I was in the right place.",
+    icon: FaLightbulb,
+  },
+  {
+    num: "06",
+    title: "The Software Engineer",
+    subtitle: "From math logic to real apps",
+    desc: "Now, I am a software engineer building mobile apps, websites, and backend systems. That childhood hobby of solving math problems has turned into a passion for writing clean, efficient code. The detour was actually the best path for me.",
+    icon: FaCode,
+  },
 ];
 
 const containerVariants = {
@@ -77,7 +110,7 @@ export default function AboutPage() {
               About Me
             </span>
             <h1 className="text-2xl font-black uppercase tracking-tighter text-brand-base leading-tight">
-              I build mobile applications, web platforms, and backend systems.
+              My Journey: How a Passion for Mathematics Led to Software Engineering.
             </h1>
           </motion.div>
         </motion.div>
@@ -116,152 +149,162 @@ export default function AboutPage() {
               {/* Fast Facts Card */}
               <Card hoverable className="p-6 md:p-8 border-2 bg-card-bg">
                 <h3 className="text-[10px] font-bold uppercase tracking-widest text-brand-base mb-4 border-b border-brand-base/15 pb-2">
-                  Quick Facts
+                  The Blueprint
                 </h3>
                 <div className="space-y-4 font-mono">
                   <div className="flex justify-between items-center text-xs">
-                    <span className="text-brand-accent text-[9px] uppercase tracking-wider">Role</span>
-                    <span className="font-bold text-brand-base uppercase text-right">Full Stack & Mobile</span>
+                    <span className="text-brand-accent text-[9px] uppercase tracking-wider">First Love</span>
+                    <span className="font-bold text-brand-base uppercase text-right">Mathematics 📐</span>
+                  </div>
+                  <div className="border-t border-dashed border-brand-base/15"></div>
+                  <div className="flex justify-between items-center text-xs">
+                    <span className="text-brand-accent text-[9px] uppercase tracking-wider">First Choice</span>
+                    <span className="font-bold text-brand-accent/50 line-through uppercase text-right">Chemical Eng. 🧪</span>
+                  </div>
+                  <div className="border-t border-dashed border-brand-base/15"></div>
+                  <div className="flex justify-between items-center text-xs">
+                    <span className="text-brand-accent text-[9px] uppercase tracking-wider">Accidental Path</span>
+                    <span className="font-bold text-brand-base uppercase text-right">Polban Informatics 🏫</span>
+                  </div>
+                  <div className="border-t border-dashed border-brand-base/15"></div>
+                  <div className="flex justify-between items-center text-xs">
+                    <span className="text-brand-accent text-[9px] uppercase tracking-wider">Current Quest</span>
+                    <span className="font-bold text-brand-base uppercase text-right">Software Engineer 💻</span>
                   </div>
                   <div className="border-t border-dashed border-brand-base/15"></div>
                   <div className="flex justify-between items-center text-xs">
                     <span className="text-brand-accent text-[9px] uppercase tracking-wider">Location</span>
-                    <span className="font-bold text-brand-base uppercase text-right">Jakarta, ID</span>
-                  </div>
-                  <div className="border-t border-dashed border-brand-base/15"></div>
-                  <div className="flex justify-between items-center text-xs">
-                    <span className="text-brand-accent text-[9px] uppercase tracking-wider">Focus</span>
-                    <span className="font-bold text-brand-base uppercase text-right">Speed & Scale</span>
-                  </div>
-                  <div className="border-t border-dashed border-brand-base/15"></div>
-                  <div className="flex justify-between items-center text-xs">
-                    <span className="text-brand-accent text-[9px] uppercase tracking-wider">Email</span>
-                    <a
-                      href={`mailto:${SITE_CONFIG.email}`}
-                      className="font-bold text-brand-accent hover:text-brand-base transition-colors underline truncate text-right max-w-[150px] md:max-w-none"
-                    >
-                      {SITE_CONFIG.email}
-                    </a>
+                    <span className="font-bold text-brand-base uppercase text-right">Jakarta, ID 🇮🇩</span>
                   </div>
                 </div>
               </Card>
             </motion.div>
 
-            {/* Right Column (Bento Cards Grid) */}
-            <motion.div variants={itemVariants} className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Card 1: Core Pillars (Col-span 2) */}
-              <Card hoverable className="p-6 md:p-8 md:col-span-2 bg-card-bg">
-                <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-accent mb-6 border-b border-brand-base/10 pb-2">
-                  Core Pillars & Expertise
-                </h3>
-                <div className="space-y-6">
-                  {corePillars.map((pillar) => (
-                    <div key={pillar.num} className="flex gap-4 md:gap-6 items-start pb-6 border-b border-brand-base/5 last:border-b-0 last:pb-0">
-                      <span className="text-xs font-black font-mono bg-brand-highlight border-2 border-brand-base text-brand-base w-8 h-8 flex items-center justify-center shrink-0 shadow-[2px_2px_0px_0px_var(--color-primary)]">
-                        {pillar.num}
-                      </span>
-                      <div className="space-y-1">
-                        <div className="flex flex-wrap items-center gap-2">
-                          <h4 className="text-sm md:text-base font-bold text-brand-base uppercase tracking-tight">
-                            {pillar.role}
-                          </h4>
-                          <span className="text-[8px] font-bold text-brand-primary uppercase tracking-widest bg-brand-highlight px-2 py-0.5 border border-brand-base/10">
-                            {pillar.tech}
-                          </span>
-                        </div>
-                        <p className="text-xs md:text-sm text-brand-accent font-light leading-relaxed">
-                          {pillar.desc}
-                        </p>
+            {/* Right Column (Roadmap Timeline) */}
+            <motion.div variants={itemVariants} className="lg:col-span-8 relative">
+              {/* Winding Roadmap Layout */}
+              <div className="relative space-y-12 lg:space-y-0">
+                {/* Wobbly SVG Snake Line */}
+                <svg
+                  className="absolute left-0 w-8 md:w-10 lg:w-40 lg:left-1/2 lg:-translate-x-1/2 top-8 bottom-8 text-brand-base/15 pointer-events-none"
+                  preserveAspectRatio="none"
+                  viewBox="0 0 100 1000"
+                >
+                  <path
+                    d="M 50 0 C 20 50, 80 150, 50 200 C 20 250, 80 350, 50 400 C 20 450, 80 550, 50 600 C 20 650, 80 750, 50 800 C 20 850, 80 950, 50 1000"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="3"
+                    strokeDasharray="8 8"
+                  />
+                </svg>
+
+                {timelineMilestones.map((milestone, idx) => {
+                  const IconComponent = milestone.icon;
+                  const isEven = idx % 2 === 1;
+
+                  return (
+                    <div
+                      key={milestone.num}
+                      className="relative grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-center min-h-[160px]"
+                    >
+                      {/* Milestone Node */}
+                      <div className="absolute left-0 lg:left-1/2 lg:-translate-x-1/2 top-4 lg:top-1/2 lg:-translate-y-1/2 z-10">
+                        <span className="text-xs font-black font-mono bg-brand-highlight border-2 border-brand-base text-brand-base w-8 h-8 md:w-10 md:h-10 flex items-center justify-center shrink-0 shadow-[2px_2px_0px_0px_var(--color-primary)]">
+                          {milestone.num}
+                        </span>
+                      </div>
+
+                      {/* Left Column (Card for odd milestones on desktop, visible as fallback on mobile) */}
+                      <div className="col-span-1 lg:col-span-5 pl-12 lg:pl-0">
+                        {!isEven ? (
+                          <motion.div variants={itemVariants}>
+                            <Card hoverable className="p-6 md:p-8 bg-card-bg">
+                              <div className="flex items-center gap-3 mb-4">
+                                <span className="text-lg md:text-xl text-brand-primary p-2 bg-brand-highlight/20 border border-brand-base/10 shadow-[2px_2px_0px_0px_var(--color-primary)]">
+                                  <IconComponent />
+                                </span>
+                                <div>
+                                  <h4 className="text-sm md:text-base font-bold text-brand-base uppercase tracking-tight">
+                                    {milestone.title}
+                                  </h4>
+                                  <span className="text-[9px] md:text-[10px] font-bold text-brand-accent uppercase tracking-widest block mt-0.5">
+                                    {milestone.subtitle}
+                                  </span>
+                                </div>
+                              </div>
+                              <p className="text-xs md:text-sm text-brand-accent font-light leading-relaxed text-justify">
+                                {milestone.desc}
+                              </p>
+                            </Card>
+                          </motion.div>
+                        ) : (
+                          // Desktop empty spacing placeholder
+                          <div className="hidden lg:block h-10" />
+                        )}
+                      </div>
+
+                      {/* Center Spacer Column for Desktop */}
+                      <div className="hidden lg:block lg:col-span-2 h-10" />
+
+                      {/* Right Column (Card for even milestones on desktop, visible as fallback on mobile) */}
+                      <div className="col-span-1 lg:col-span-5 pl-12 lg:pl-0">
+                        {isEven ? (
+                          <motion.div variants={itemVariants}>
+                            <Card hoverable className="p-6 md:p-8 bg-card-bg">
+                              <div className="flex items-center gap-3 mb-4">
+                                <span className="text-lg md:text-xl text-brand-primary p-2 bg-brand-highlight/20 border border-brand-base/10 shadow-[2px_2px_0px_0px_var(--color-primary)]">
+                                  <IconComponent />
+                                </span>
+                                <div>
+                                  <h4 className="text-sm md:text-base font-bold text-brand-base uppercase tracking-tight">
+                                    {milestone.title}
+                                  </h4>
+                                  <span className="text-[9px] md:text-[10px] font-bold text-brand-accent uppercase tracking-widest block mt-0.5">
+                                    {milestone.subtitle}
+                                  </span>
+                                </div>
+                              </div>
+                              <p className="text-xs md:text-sm text-brand-accent font-light leading-relaxed text-justify">
+                                {milestone.desc}
+                              </p>
+                            </Card>
+                          </motion.div>
+                        ) : (
+                          // Desktop empty spacing placeholder
+                          <div className="hidden lg:block h-10" />
+                        )}
                       </div>
                     </div>
-                  ))}
-                </div>
-              </Card>
-
-              {/* Card 2: Tech Ecosystem (Col-span 1) */}
-              <Card hoverable className="p-6 md:p-8 bg-card-bg">
-                <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-accent mb-4 border-b border-brand-base/10 pb-2">
-                  Ecosystem
-                </h3>
-                <div className="space-y-4">
-                  <div>
-                    <span className="text-[8px] font-bold uppercase tracking-wider text-brand-primary block mb-2">Mobile & Frontend</span>
-                    <div className="flex flex-wrap gap-1.5">
-                      {["Flutter", "Next.js", "React", "TypeScript", "TailwindCSS"].map((tech) => (
-                        <Badge key={tech} variant="tag" className="text-[9px]">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <span className="text-[8px] font-bold uppercase tracking-wider text-brand-primary block mb-2">Backend & Logic</span>
-                    <div className="flex flex-wrap gap-1.5">
-                      {["NestJS", "Node.js", "Python", "Express.js", "Ruby on Rails"].map((tech) => (
-                        <Badge key={tech} variant="tag" className="text-[9px]">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <span className="text-[8px] font-bold uppercase tracking-wider text-brand-primary block mb-2">Data & Infrastructure</span>
-                    <div className="flex flex-wrap gap-1.5">
-                      {["PostgreSQL", "MySQL", "OpenSearch", "MinIO", "Airflow", "Git"].map((tech) => (
-                        <Badge key={tech} variant="tag" className="text-[9px]">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </Card>
-
-              {/* Card 3: Stats Grid (Col-span 1) */}
-              <Card hoverable className="p-6 md:p-8 flex flex-col justify-between bg-card-bg">
-                <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-accent mb-6 border-b border-brand-base/10 pb-2">
-                  Key Metrics
-                </h3>
-                <div className="grid grid-cols-2 gap-4 flex-1">
-                  <div className="border border-brand-base/10 bg-brand-highlight/20 p-4 shadow-[2px_2px_0px_0px_var(--color-primary)] flex flex-col justify-center rounded-none hover:bg-brand-highlight/40 transition-colors">
-                    <span className="text-base md:text-lg font-black text-brand-base uppercase leading-none tracking-tighter">03+</span>
-                    <span className="text-[9px] text-brand-accent font-bold uppercase tracking-wider mt-1 block">Years of Exp</span>
-                  </div>
-                  <div className="border border-brand-base/10 bg-brand-highlight/20 p-4 shadow-[2px_2px_0px_0px_var(--color-primary)] flex flex-col justify-center rounded-none hover:bg-brand-highlight/40 transition-colors">
-                    <span className="text-base md:text-lg font-black text-brand-base uppercase leading-none tracking-tighter">03</span>
-                    <span className="text-[9px] text-brand-accent font-bold uppercase tracking-wider mt-1 block">Companies</span>
-                  </div>
-                  <div className="border border-brand-base/10 bg-brand-highlight/20 p-4 shadow-[2px_2px_0px_0px_var(--color-primary)] flex flex-col justify-center rounded-none hover:bg-brand-highlight/40 transition-colors">
-                    <span className="text-base md:text-lg font-black text-brand-base uppercase leading-none tracking-tighter">12+</span>
-                    <span className="text-[9px] text-brand-accent font-bold uppercase tracking-wider mt-1 block">Projects Built</span>
-                  </div>
-                  <div className="border border-brand-base/10 bg-brand-highlight/20 p-4 shadow-[2px_2px_0px_0px_var(--color-primary)] flex flex-col justify-center rounded-none hover:bg-brand-highlight/40 transition-colors">
-                    <span className="text-base md:text-lg font-black text-brand-base uppercase leading-none tracking-tighter">01</span>
-                    <span className="text-[9px] text-brand-accent font-bold uppercase tracking-wider mt-1 block">Degree (Polban)</span>
-                  </div>
-                </div>
-              </Card>
-
-              {/* Card 4: Action Footer (Col-span 2) */}
-              <div className="md:col-span-2 flex flex-col sm:flex-row gap-4 mt-2">
-                <a
-                  href={SITE_CONFIG.resumeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1"
-                >
-                  <Button variant="primary" size="lg" className="w-full justify-center gap-2">
-                    <FaDownload className="text-sm shrink-0" />
-                    <span>Download Resume</span>
-                  </Button>
-                </a>
-                <Link href="/projects" className="flex-1">
-                  <Button variant="outline" size="lg" className="w-full justify-center gap-2 border-2">
-                    <span>Explore Timeline Journey</span>
-                    <FaArrowRight className="text-sm shrink-0" />
-                  </Button>
-                </Link>
+                  );
+                })}
               </div>
+
+              {/* Action Footer */}
+              <motion.div
+                variants={itemVariants}
+                className="mt-16 text-center max-w-xl mx-auto pl-12 lg:pl-0"
+              >
+                <p className="text-xs md:text-sm text-brand-accent font-mono mb-4 uppercase tracking-wider">
+                  The End of My Story
+                </p>
+                <p className="text-sm md:text-base text-brand-base font-light mb-8 leading-relaxed">
+                  We have reached the end of my story. To see my professional experience and details, feel free to check out my resume.
+                </p>
+                <div className="flex justify-center">
+                  <a
+                    href={SITE_CONFIG.resumeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block"
+                  >
+                    <Button variant="primary" size="lg" className="gap-2 px-8">
+                      <span>See My Resume</span>
+                      <FaArrowRight className="text-sm shrink-0" />
+                    </Button>
+                  </a>
+                </div>
+              </motion.div>
             </motion.div>
           </motion.div>
         </div>
