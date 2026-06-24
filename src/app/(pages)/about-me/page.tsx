@@ -66,10 +66,6 @@ export default function AboutPage() {
             <h1 className="text-2xl font-black uppercase tracking-tighter text-brand-base leading-tight">
               The Story of How I Became a Software Engineer
             </h1>
-            <p className="text-sm text-brand-accent font-light leading-relaxed max-w-3xl">
-              A journey that started with a love for math, took an unexpected
-              detour through chemistry, and eventually found its way to code.
-            </p>
           </motion.div>
         </motion.div>
       </div>
@@ -119,9 +115,7 @@ export default function AboutPage() {
             {/* Intro text */}
             <div className="text-center max-w-2xl">
               <p className="text-sm md:text-base text-brand-accent font-light leading-relaxed">
-                Every software engineer has an origin story. Mine didn&apos;t
-                start with a computer — it started with a pencil, a math book,
-                and a dream that had nothing to do with code.
+                I used to love math, then I got lost in chemistry for a bit, but I finally found my way into the world of code.
               </p>
             </div>
           </motion.div>
@@ -140,10 +134,13 @@ export default function AboutPage() {
           </motion.div>
 
           {/* ── Chapter cards ── */}
-          <div className="space-y-8 md:space-y-12 max-w-4xl mx-auto">
+          <div className="relative space-y-16 lg:space-y-24 py-8">
+            {/* Continuous Vertical Line */}
+            <div className="absolute left-[22px] lg:left-1/2 lg:-translate-x-1/2 top-8 bottom-8 w-1 bg-brand-base/20 z-0" />
+
             {chapters.map((chapter, idx) => {
               const IconComponent = chapter.icon;
-              const isReversed = idx % 2 === 1;
+              const isLeft = idx % 2 === 1;
 
               return (
                 <motion.div
@@ -155,37 +152,46 @@ export default function AboutPage() {
                     duration: 0.7,
                     ease: [0.22, 1, 0.36, 1],
                   }}
+                  className={`w-full relative flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-16 pl-16 lg:pl-0 ${isLeft ? "" : "lg:flex-row-reverse"
+                    }`}
                 >
-                  <Card hoverable className="p-6 md:p-10 bg-card-bg">
-                    <div
-                      className={`flex flex-col ${
-                        isReversed ? "md:flex-row-reverse" : "md:flex-row"
-                      } gap-6 md:gap-10 items-start`}
-                    >
-                      {/* Number + Icon */}
-                      <div className="shrink-0 flex flex-row md:flex-col items-center gap-4">
-                        <span className="text-5xl md:text-7xl font-black text-brand-base/10 leading-none tracking-tighter font-mono select-none">
+                  {/* Timeline dot / Icon - absolute positioning */}
+                  <span className="absolute left-[4px] lg:left-1/2 lg:-translate-x-1/2 top-4 lg:top-1/2 lg:-translate-y-1/2 w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center bg-brand-highlight border-2 border-brand-base text-brand-base shadow-[2px_2px_0px_0px_var(--color-primary)] z-20">
+                    <IconComponent className="text-sm lg:text-base text-brand-primary" />
+                  </span>
+
+                  {/* Card Column */}
+                  <div className="w-full lg:w-[calc(50%-48px)] flex flex-col justify-start">
+                    <Card hoverable className="p-6 md:p-8 bg-card-bg w-full">
+                      {/* Mobile Number + Header */}
+                      <div className="flex justify-between items-start gap-4 mb-4 border-b border-brand-base/10 pb-4">
+                        <div>
+                          <h3 className="text-sm md:text-base font-black text-brand-base uppercase tracking-tight mb-1">
+                            {chapter.title}
+                          </h3>
+                          <span className="text-[10px] font-bold text-brand-accent uppercase tracking-widest block">
+                            {chapter.subtitle}
+                          </span>
+                        </div>
+                        <span className="lg:hidden text-4xl font-black text-brand-base/10 font-mono leading-none select-none">
                           {chapter.num}
                         </span>
-                        <span className="text-lg md:text-xl text-brand-primary p-3 bg-brand-highlight border-2 border-brand-base shadow-[3px_3px_0px_0px_var(--color-primary)]">
-                          <IconComponent />
-                        </span>
                       </div>
+                      <p className="text-xs md:text-sm text-brand-accent font-light leading-relaxed text-justify">
+                        {chapter.desc}
+                      </p>
+                    </Card>
+                  </div>
 
-                      {/* Content */}
-                      <div className="flex-1">
-                        <h3 className="text-sm md:text-base font-black text-brand-base uppercase tracking-tight mb-1">
-                          {chapter.title}
-                        </h3>
-                        <span className="text-[10px] font-bold text-brand-accent uppercase tracking-widest block mb-4">
-                          {chapter.subtitle}
-                        </span>
-                        <p className="text-xs md:text-sm text-brand-accent font-light leading-relaxed">
-                          {chapter.desc}
-                        </p>
-                      </div>
-                    </div>
-                  </Card>
+                  {/* Empty Column / Number Column on Desktop */}
+                  <div
+                    className={`hidden lg:flex lg:w-[calc(50%-48px)] flex-col justify-center ${isLeft ? "items-start text-left" : "items-end text-right"
+                      }`}
+                  >
+                    <span className="text-[8rem] xl:text-[10rem] font-black text-brand-base/5 leading-none tracking-tighter font-mono select-none">
+                      {chapter.num}
+                    </span>
+                  </div>
                 </motion.div>
               );
             })}
@@ -211,11 +217,10 @@ export default function AboutPage() {
                         {fact.label}
                       </span>
                       <span
-                        className={`font-bold uppercase text-right ${
-                          fact.strikethrough
-                            ? "text-brand-accent/50 line-through"
-                            : "text-brand-base"
-                        }`}
+                        className={`font-bold uppercase text-right ${fact.strikethrough
+                          ? "text-brand-accent/50 line-through"
+                          : "text-brand-base"
+                          }`}
                       >
                         {fact.value}
                       </span>
