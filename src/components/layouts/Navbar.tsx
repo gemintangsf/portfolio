@@ -43,7 +43,9 @@ export default function Navbar() {
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
-          const { offsetTop, offsetHeight } = element;
+          const rect = element.getBoundingClientRect();
+          const offsetTop = rect.top + currentScrollY;
+          const offsetHeight = rect.height;
           if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
             setActiveSection(section);
             break;
@@ -76,7 +78,7 @@ export default function Navbar() {
       const element = document.getElementById(id);
       if (element) {
         e.preventDefault();
-        element.scrollIntoView({ behavior: "smooth", block: "center" });
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
         window.history.pushState(null, '', `#${id}`);
         setActiveSection(id);
       }
